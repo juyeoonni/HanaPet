@@ -29,8 +29,9 @@ body {
 }
 
 .menu-item {
-    margin-right: 80px;
+    margin-right: 60px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .menu-item:last-child {
@@ -53,8 +54,8 @@ body {
 }
 
 /* Optional: Add hover effect */
-.menu-item:hover,
-.login:hover,
-.register:hover {
-    text-decoration: underline;
-}
+/*.menu-item:hover,*/
+/*.login:hover,*/
+/*.register:hover {*/
+/*    !*text-decoration: underline;*!*/
+/*}*/

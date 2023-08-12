@@ -13,10 +13,10 @@
             <img src="../../../resources/img/main_logo.png" style="width:130px;">
         </a>
         <div class="menu">
-            <div class="menu-item"> HOME</div>
-            <div class="menu-item"> 상품</div>
-            <div class="menu-item"> 펫스토리</div>
-            <div class="menu-item"> 마이펫</div>
+            <a href="/" class="menu-item" style="color: #008485"> 상품</a>
+            <a href="/" class="menu-item" style="color: #008485"> 펫스토리</a>
+            <a href="/" class="menu-item" style="color: #008485"> 펫캘린더</a>
+            <a href="/" class="menu-item" style="color: #008485"> 마이펫</a>
         </div>
         <div class="login-register">
             <a href="login" class="login">로그인</a>
