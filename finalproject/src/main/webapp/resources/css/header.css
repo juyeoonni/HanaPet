@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'font-regular';
+    src: url('../font/NEXON Lv2 Gothic.woff');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    color: #008c8c;
+    padding: 10px 20px;
+}
+
+.logo img {
+    width: 50px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.menu-item {
+    margin-right: 80px;
+    cursor: pointer;
+}
+
+.menu-item:last-child {
+    margin-right: 0;
+}
+
+.login-register {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.login,
+.register {
+    color: #000000;
+    font-family: font-regular;
+    font-size: 13px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/* Optional: Add hover effect */
+.menu-item:hover,
+.login:hover,
+.register:hover {
+    text-decoration: underline;
+}

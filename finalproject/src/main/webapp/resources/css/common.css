@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'font-bold';
+    src: url('../font/NEXON Lv2 Gothic Bold.woff') format('woff2');
+}
+
+* {
+    font-family: 'font-bold';
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.container {
+    padding-left: 250px;
+    padding-right: 250px;
+}
+
+body {
+    background-size: cover;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
