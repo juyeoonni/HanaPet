@@ -9,9 +9,9 @@
 </head>
 <header>
     <div class="header-container">
-        <div class="logo">
+        <a href="/" class="logo">
             <img src="../../../resources/img/main_logo.png" style="width:130px;">
-        </div>
+        </a>
         <div class="menu">
             <div class="menu-item"> HOME</div>
             <div class="menu-item"> 상품</div>
@@ -19,8 +19,8 @@
             <div class="menu-item"> 마이펫</div>
         </div>
         <div class="login-register">
-            <div class="login">로그인</div>
-            <div class="register">회원가입</div>
+            <a href="login" class="login">로그인</a>
+            <a href="register" class="register">회원가입</a>
         </div>
     </div>
 
