@@ -10,12 +10,13 @@
 <header>
     <div class="header-container">
         <div class="logo">
-            <img src="../../../resources/img/main_logo.png" style="width:110px;">
+            <img src="../../../resources/img/main_logo.png" style="width:130px;">
         </div>
         <div class="menu">
             <div class="menu-item"> HOME</div>
             <div class="menu-item"> 상품</div>
-            <div class="menu-item"> 마이페이지</div>
+            <div class="menu-item"> 펫스토리</div>
+            <div class="menu-item"> 마이펫</div>
         </div>
         <div class="login-register">
             <div class="login">로그인</div>

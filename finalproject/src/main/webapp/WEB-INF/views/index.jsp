@@ -9,11 +9,11 @@
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
-<div class="container">
+<div class="body">
     <%@ include file="include/banner.jsp" %>
 
-    <div class="body">
-        생애주기 그래프 넣을 자리
+    <div class="body" style=" display: flex; justify-content: center; margin-top: 100px">
+        <img src="../../../resources/img/life-event.png" style="width:70%;">
     </div>
 </div>
 </body>

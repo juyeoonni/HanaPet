@@ -5,6 +5,7 @@
 
 * {
     font-family: 'font-bold';
+    font-size: 18px;
 }
 
 header {
@@ -14,8 +15,8 @@ header {
 }
 
 .container {
-    padding-left: 250px;
-    padding-right: 250px;
+    padding-left: 200px;
+    padding-right: 200px;
 }
 
 body {

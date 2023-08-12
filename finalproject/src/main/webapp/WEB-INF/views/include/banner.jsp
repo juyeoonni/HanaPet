@@ -17,7 +17,13 @@
 
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
      style="background-color: #008485; padding-top: 30px;">
-    <div class="carousel-inner" style="height: 300px; width: 655.2px; margin-left: 140.4px;">
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <div class="carousel-inner" style="height: 300px; width: 70%; margin-left: 220px;">
         <div class="carousel-item active" style="height: 300px;" data-bs-interval="2000">
             <h2>반려견의 생애주기로 보는 하나 펫 금융 서비스, 나랑 평생 함께하개를 시작해보세요!</h2>
             <p>바로가기</p>
@@ -31,11 +37,6 @@
             <p>Some representative placeholder content for the third slide.</p>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
