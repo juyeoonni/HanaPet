@@ -24,6 +24,10 @@ body {
     align-items: center;
 }
 
+.body {
+    padding-bottom: 100px;
+}
+
 .content {
     display: flex;
     align-items: center;

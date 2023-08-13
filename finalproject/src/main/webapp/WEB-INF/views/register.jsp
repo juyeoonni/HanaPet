@@ -18,19 +18,24 @@
             <div class="form-wrapper align-items-center">
                 <div class="form sign-up">
                     <div class="input-group">
-                        <i class='bx bxs-user'></i>
-                        <input type="text" placeholder="Username">
+                        <input type="text" placeholder="이름">
                     </div>
                     <div class="input-group">
-                        <i class='bx bx-mail-send'></i>
-                        <input type="email" placeholder="Email">
+                        <input type="email" placeholder="이메일">
                     </div>
                     <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
-                        <input type="password" placeholder="Password">
+                        <input type="text" placeholder="전화번호">
                     </div>
                     <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
+                        <input type="text" placeholder="주민등록번호">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" placeholder="아이디">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" placeholder="비밀번호">
+                    </div>
+                    <div class="input-group">
                         <input type="password" placeholder="Confirm password">
                     </div>
                     <button>

@@ -25,11 +25,11 @@
                     <form id="loginForm" method="post"> <!-- 로그인 폼 시작 -->
                         <div class="input-group">
                             <i class='bx bxs-user'></i>
-                            <input type="text" placeholder="ID" id="guest_id">
+                            <input type="text" placeholder="아이디" id="guest_id">
                         </div>
                         <div class="input-group">
                             <i class='bx bxs-lock-alt'></i>
-                            <input type="password" placeholder="PW" id="pw">
+                            <input type="password" placeholder="비밀번호" id="pw">
                         </div>
                         <input type="button" class="button" value="로그인" onclick="loginFormFunc(); return false;">
                     </form> <!-- 로그인 폼 종료 -->

@@ -12,8 +12,19 @@
 <div class="body">
     <%@ include file="include/banner.jsp" %>
 
-    <div class="body" style=" display: flex; justify-content: center; margin-top: 100px">
-        <img src="../../../resources/img/life-event.png" style="width:70%;">
+    <div style=" display: grid; justify-content: center; margin-top: 100px">
+        <%
+            if ((String) session.getAttribute("name") != null) {
+        %>
+        <div>
+            <img src="../../../resources/img/life-event.png" style="width:1000px;">
+        </div>
+        <div>
+            토리는 현재 성년기에요!
+        </div>
+        <%} else {%>
+        <img src="../../../resources/img/life-event.png" style="width:1000px;">
+        <%}%>
     </div>
 </div>
 </body>
