@@ -14,7 +14,7 @@
             <img src="../../../resources/img/main_logo.png" style="width:130px;">
         </a>
         <div class="menu">
-            <a href="/" class="menu-item" style="color: #008485"> 상품</a>
+            <a href="/product" class="menu-item" style="color: #008485"> 상품</a>
             <a href="/" class="menu-item" style="color: #008485"> 펫스토리</a>
             <a href="/" class="menu-item" style="color: #008485"> 펫캘린더</a>
             <a href="/" class="menu-item" style="color: #008485"> 마이펫</a>
