@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.14'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'war'
 }
 
 group = 'com.kopo'
@@ -22,15 +23,34 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	implementation 'javax.servlet:jstl'
+	implementation 'commons-io:commons-io:2.11.0'
+	implementation 'org.springframework.boot:spring-boot-devtools'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'org.json:json:20201115'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
-	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'javax.servlet:jstl'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'
+
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+
+	// Additional Jars for using Oracle Wallets
+	implementation 'com.oracle.database.jdbc:ojdbc8'
+	implementation 'com.oracle.database.security:osdt_cert'
+	implementation 'com.oracle.database.security:oraclepki'
+	implementation 'com.oracle.database.security:osdt_core'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.slf4j:slf4j-api:1.7.32'
+	implementation 'ch.qos.logback:logback-classic:1.2.6'
+
 }
 
 tasks.named('test') {

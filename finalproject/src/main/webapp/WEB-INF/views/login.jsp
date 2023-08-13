@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../../../resources/css/common.css">
     <link rel="stylesheet" href="../../../resources/css/login-register.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
@@ -21,17 +22,17 @@
 ">
             <div class="form-wrapper align-items-center">
                 <div class="form sign-in">
-                    <div class="input-group">
-                        <i class='bx bxs-user'></i>
-                        <input type="text" placeholder="ID">
-                    </div>
-                    <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
-                        <input type="password" placeholder="Password">
-                    </div>
-                    <button>
-                        로그인
-                    </button>
+                    <form id="loginForm" method="post"> <!-- 로그인 폼 시작 -->
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" placeholder="ID" id="guest_id">
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="password" placeholder="PW" id="pw">
+                        </div>
+                        <input type="button" class="button" value="로그인" onclick="loginFormFunc(); return false;">
+                    </form> <!-- 로그인 폼 종료 -->
                     <p>
                         <b>
                             비밀번호 찾기
@@ -81,5 +82,38 @@
     setTimeout(() => {
         container.classList.add('sign-in')
     }, 200)
+
+    function loginFormFunc() {
+        // 아이디와 비밀번호 가져오기
+        var guest_id = $("#guest_id").val();
+        var pw = $("#pw").val();
+
+        // Ajax를 통해 서버에 요청 전송
+        $.ajax({
+            type: "POST",
+            url: "/login-guest",
+            data: JSON.stringify({
+                guest_id: guest_id,
+                pw: pw
+            }),
+            contentType: 'application/json',
+            error: function (xhr, status, error) {
+                alert(error + "error");
+            },
+            success: function (response) {
+                if (response === "로그인 성공") {
+                    // 로그인 성공 시 처리
+                    alert("로그인 성공");
+                    console.error("로그인 성공");
+                    var link = document.createElement("a");
+                    link.href = "/";
+                    link.click();
+                } else {
+                    // 로그인 실패 시 처리
+                    console.error("로그인 실패");
+                }
+            }
+        });
+    }
 </script>
 </html>
