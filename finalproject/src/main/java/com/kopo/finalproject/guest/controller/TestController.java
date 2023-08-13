@@ -38,7 +38,7 @@ class TestController {
         System.out.println(loginData);
         if (loginMember != null) {
             session.setAttribute("name", loginMember.getName());
-            session.setAttribute("id", loginMember.getGuest_id());
+            session.setAttribute("guest_id", loginMember.getGuest_id());
             return ResponseEntity.ok("로그인 성공");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("로그인 실패");
@@ -60,8 +60,9 @@ class TestController {
     }
 
     @RequestMapping(value = "/logout")
-    public ModelAndView deleteMember(HttpSession session) {
+    public ModelAndView deleteGuest(HttpSession session) {
         String guest_id = (String) session.getAttribute("guest_id");
+        System.out.println(guest_id);
         ModelAndView mav = new ModelAndView();
         session.invalidate();
         mav.addObject("msg", "로그아웃 성공");

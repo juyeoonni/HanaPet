@@ -45,17 +45,20 @@ body {
 }
 
 .login,
-.register {
+.register,
+.logout{
     color: #000000;
     font-family: font-regular;
     font-size: 14px;
     margin-left: 20px;
     cursor: pointer;
+    text-decoration: none;
 }
 
-/* Optional: Add hover effect */
-/*.menu-item:hover,*/
-/*.login:hover,*/
-/*.register:hover {*/
-/*    !*text-decoration: underline;*!*/
-/*}*/
+.myinfo {
+    color: #000000;
+    font-family: font-regular;
+    font-size: 14px;
+    margin-left: 20px;
+    text-decoration: none;
+}

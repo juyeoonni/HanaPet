@@ -95,7 +95,7 @@ body {
     border: 0.125rem solid var(--primary-color);
 }
 
-.form button {
+.input.button {
     cursor: pointer;
     width: 100%;
     padding: .6rem 0;
