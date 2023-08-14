@@ -103,7 +103,16 @@
                         .attr("data-bs-target", "#accordionItem" + pet.pet_id)
                         .attr("aria-expanded", "false")
                         .attr("aria-controls", "accordionItem" + pet.pet_id)
-                        .text(pet.name);
+                        .html('<div class="button-content" style="display: flex; justify-content: space-between; align-items: center; width: 90%">'
+                            + '<div class="left">'
+                            + '<span class="petimg"></span>'
+                            + '<span class="petname">' + pet.name + '</span>'
+                            + '</div>'
+                            + '<div class="right">'
+                            + '<div>' + pet.gender + '|' + pet.month_age + '개월 ' + pet.breed + '</div>'
+                            + '<div>3개의 적금 보유</div>'
+                            + '</div>'
+                            + '</div>');
                     var accordionCollapse = $("<div>").addClass("accordion-collapse collapse show") // 처음에 show로 펼쳐주기
                         .attr("id", "accordionItem" + pet.pet_id);
                     var accordionBody = $("<div>").addClass("accordion-body");
