@@ -55,6 +55,20 @@
                     $("<div>").addClass("footer")
                         .append($("<span>").text(product.rate))
                         .append($("<button>").text("시작하기"))
+                            .click(function () {
+                                // 시작하기 버튼 클릭 시 제품 정보를 세션에 저장
+                                var productInfo = {
+                                    category: product.category,
+                                    description: product.description,
+                                    rate: product.rate,
+                                    min_period: product.min_period,
+                                    min_balance: product.min_balance
+                                };
+                                sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
+
+                                // 새 페이지로 이동
+                                window.location.href = "/one-product";
+                            })
                         .appendTo(productCard);
 
                     productList.append(productCard);

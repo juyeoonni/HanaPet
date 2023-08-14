@@ -37,4 +37,11 @@ public class ProductController {
         return mav;
     }
 
+
+    @RequestMapping("/one-product")
+    public ModelAndView oneProduct() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("one-product");
+        return mav;
+    }
 }
