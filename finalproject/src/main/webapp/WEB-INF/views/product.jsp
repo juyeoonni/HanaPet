@@ -17,15 +17,20 @@
 
         /* 그리드 아이템 스타일 */
         .grid-item {
+            background-color: #f5f5f5;
             border: 1px solid #ccc;
-            padding: 10px;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
 
 <body>
 <%@ include file="include/header.jsp" %>
-<div class="container">
+<div class="body">
     <div class="grid-container">
 </div>
 </div>

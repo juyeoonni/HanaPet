@@ -9,7 +9,7 @@
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
-<div class="body">
+<div class>
     <%@ include file="include/banner.jsp" %>
 
     <div style=" display: grid; justify-content: center; margin-top: 100px">

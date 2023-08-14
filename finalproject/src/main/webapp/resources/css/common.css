@@ -14,19 +14,11 @@ header {
     padding-right: 200px;
 }
 
-.container {
-    padding-top: 50px;
+.body {
+    padding-top: 60px;
+    padding-bottom: 100px;
     padding-left: 200px;
     padding-right: 200px;
-}
-
-body {
-    background-size: cover;
-    align-items: center;
-}
-
-.body {
-    padding-bottom: 100px;
 }
 
 .content {

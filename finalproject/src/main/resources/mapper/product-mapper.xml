@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kopo.finalproject.product.model.dao.ProductMapper">
-    <!--     회원 전체 조회 -->
+    <!-- 상품 전체 조회 -->
     <select id="getAllProduct" parameterType="com.kopo.finalproject.product.model.dto.Product"
             resultType="com.kopo.finalproject.product.model.dto.Product">
         SELECT *
