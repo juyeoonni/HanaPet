@@ -44,4 +44,11 @@ public class ProductController {
         mav.setViewName("one-product");
         return mav;
     }
+
+    @RequestMapping("/join-product")
+    public ModelAndView joinProduct() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("join-product");
+        return mav;
+    }
 }

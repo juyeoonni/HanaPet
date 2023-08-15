@@ -9,6 +9,25 @@
     <!-- 부트스트랩 CSS 링크 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .join {
+            display: inline-block;
+            text-align: center;
+            width: 150px;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #008485;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .join:hover {
+            background-color: #008c8c;
+        }
+    </style>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
@@ -42,7 +61,7 @@
     <div class="accordion accordion-flush" id="faqlist1">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingone">
-                <label for="agree">
+                <label for="agree" style="width:100%">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-content-1">
                         <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
@@ -93,7 +112,7 @@
     <div class="accordion accordion-flush" id="faqlist2">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingtwo">
-                <%--@declare id="agree"--%><label for="agree">
+                <%--@declare id="agree"--%><label for="agree" style="width:100%">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#faq-content-2">
                     <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
@@ -123,7 +142,7 @@
     <div class="accordion accordion-flush" id="faqlist3">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingthree">
-                <label for="agree">
+                <label for="agree" style="width:100%">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-content-3">
                         <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
@@ -142,7 +161,7 @@
     <div class="accordion accordion-flush" id="faqlist4">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingfour">
-                <label for="agree">
+                <label for="agree" style="width:100%">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-content-4">
                         <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
@@ -161,7 +180,7 @@
     <div class="accordion accordion-flush" id="faqlist5">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingfive">
-                <label for="agree">
+                <label for="agree" style="width:100%">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-content-5">
                         <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
@@ -176,43 +195,65 @@
             </div>
         </div>
     </div>
-    <%--        </div>--%>
-    <%--    </div>--%>
-    <%--</div>--%>
-
-    <script>
-        $(document).ready(function () {
-            // 세션에서 제품 정보 가져오기
-            var productInfo = JSON.parse(sessionStorage.getItem("selectedProduct"));
-
-            // 제품 정보를 화면에 표시
-            if (productInfo) {
-                $("#productCategory").text("카테고리: " + productInfo.category);
-                $("#productDescription").text("설명: " + productInfo.description);
-                $("#productRate").text("이자율: " + productInfo.rate);
-                $("#productMinPeriod").text("최소 기간: " + productInfo.min_period);
-                $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance);
-            }
-
-            // 가입하기 버튼 클릭 시 이용약관 아코디언 표시
-            $("#joinButton").click(function () {
-                $("#collapseTerms").collapse("show");
-            });
-        });
-
-        const agreeChkAll = document.querySelector('input[name=agree_all]');
-
-        agreeChkAll.addEventListener('change', (e) => {
-            let agreeChk = document.querySelectorAll('input[name=agree]');
-            for (let i = 0; i < agreeChk.length; i++) {
-                agreeChk[i].checked = e.target.checked;
-            }
-        });
-    </script>
-
-    <!-- 부트스트랩 JS 링크 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
+    <form id="joinForm" action="/join-product">
+        <input type="hidden" id="category" name="category">
+        <input type="hidden" id="min_period" name="min_period">
+        <input type="hidden" id="min_balance" name="min_balance">
+        <input class="join" value="가입하기" readonly
+               style="text-align: center; width: 150px; font-size: 18px;">
+    </form>
+</div>
 </body>
+<script>
+    $(document).ready(function () {
+        // 세션에서 제품 정보 가져오기
+        var productInfo = JSON.parse(sessionStorage.getItem("selectedProduct"));
+
+        // 제품 정보를 화면에 표시
+        if (productInfo) {
+            $("#productCategory").text("카테고리: " + productInfo.category);
+            $("#productDescription").text("설명: " + productInfo.description);
+            $("#productRate").text("이자율: " + productInfo.rate);
+            $("#productMinPeriod").text("최소 기간: " + productInfo.min_period);
+            $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance);
+        }
+
+        $("#joinForm").click(function () {
+            // 선택된 약관 동의 여부 확인
+            var isAgreed = document.getElementById("agree_all").checked;
+            if (!isAgreed) {
+                alert("약관에 동의해주세요.");
+            } else {
+                // 서버로 전송할 데이터 구성
+                var productData = {
+                    category: productInfo.category,
+                    min_period: productInfo.min_period,
+                    min_balance: productInfo.min_balance
+                };
+
+                // hidden 필드에 데이터 설정
+                $("#category").val(productData.category);
+                $("#min_period").val(productData.min_period);
+                $("#min_balance").val(productData.min_balance);
+
+                // form 제출
+                $("#joinForm").submit();
+            }
+        });
+    });
+
+    const agreeChkAll = document.querySelector('input[name=agree_all]');
+
+    agreeChkAll.addEventListener('change', (e) => {
+        let agreeChk = document.querySelectorAll('input[name=agree]');
+        for (let i = 0; i < agreeChk.length; i++) {
+            agreeChk[i].checked = e.target.checked;
+        }
+    });
+</script>
+
+<!-- 부트스트랩 JS 링크 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 </html>
