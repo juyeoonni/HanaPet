@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 
 <body>
@@ -53,7 +55,7 @@
 
                     for (var j = i * 2; j < Math.min((i + 1) * 2, petsData.length); j++) {
                         var pet = petsData[j];
-                        var petCard = $("<div class='col-md-6 mb-4' style='text-align: center;'></div>");
+                        var petCard = $("<div class='col-md-6 mb-4 animate__animated animate__slideInLeft slow 4s' style='text-align: center;'></div>");
 
                         var petImage = $("<img class='img-fluid rounded-circle' alt='" + pet.name + "' src='../../../resources/img/" + pet.image + "'>");
                         petImage.css("width", "500px");
@@ -73,7 +75,7 @@
                         var centerRow = $("<div class='row justify-content-center'></div>");
 
                         var lastPet = petsData[petsData.length - 1];
-                        var lastPetCard = $("<div class='col-md-6 mb-4' style='text-align: center;'></div>");
+                        var lastPetCard = $("<div class='col-md-6 mb-4 animate__animated animate__slideInLeft slow 4s' style='text-align: center;'></div>");
 
 
                         var lastPetImage = $("<img class='img-fluid rounded-circle' alt='" + lastPet.name + "' src='../../../resources/img/" + lastPet.image + "'>");
