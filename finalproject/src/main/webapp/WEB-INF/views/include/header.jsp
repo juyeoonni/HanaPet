@@ -15,7 +15,7 @@
         </a>
         <div class="menu">
             <a href="/product" class="menu-item" style="color: #008485"> 상품</a>
-            <a href="/" class="menu-item" style="color: #008485"> 펫스토리</a>
+            <a href="/petstory-start" class="menu-item" style="color: #008485"> 펫스토리</a>
             <a href="/" class="menu-item" style="color: #008485"> 펫캘린더</a>
             <a href="/mypet" class="menu-item" style="color: #008485"> 마이펫</a>
         </div>
