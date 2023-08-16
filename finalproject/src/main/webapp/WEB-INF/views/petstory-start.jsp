@@ -55,7 +55,7 @@
 
                     for (var j = i * 2; j < Math.min((i + 1) * 2, petsData.length); j++) {
                         var pet = petsData[j];
-                        var petCard = $("<div class='col-md-6 mb-4 animate__animated animate__slideInLeft slow 4s' style='text-align: center;'></div>");
+                        var petCard = $("<div class='col-md-6 mb-4 animate__animated animate__fadeInUp slow 3s' style='text-align: center;'></div>");
 
                         var petImage = $("<img class='img-fluid rounded-circle' alt='" + pet.name + "' src='../../../resources/img/" + pet.image + "'>");
                         petImage.css("width", "500px");
@@ -64,6 +64,13 @@
                         petImage.css("border-radius", "50%");
 
                         var petName = $("<h3 style='text-align: center;'>" + pet.name + "</h3>");
+
+                        // 클릭 이벤트 핸들러 추가
+                        petCard.click(function(petInfo) {
+                            return function() {
+                                window.location.href = "/petstory.jsp?id=" + encodeURIComponent(petInfo.pet_id);
+                            };
+                        }(pet));
 
                         petCard.append(petImage);
                         petCard.append(petName);
@@ -75,7 +82,7 @@
                         var centerRow = $("<div class='row justify-content-center'></div>");
 
                         var lastPet = petsData[petsData.length - 1];
-                        var lastPetCard = $("<div class='col-md-6 mb-4 animate__animated animate__slideInLeft slow 4s' style='text-align: center;'></div>");
+                        var lastPetCard = $("<div class='col-md-6 mb-4 animate__animated animate__fadeInUp slow 3s' style='text-align: center;'></div>");
 
 
                         var lastPetImage = $("<img class='img-fluid rounded-circle' alt='" + lastPet.name + "' src='../../../resources/img/" + lastPet.image + "'>");
@@ -86,6 +93,12 @@
 
                         var lastPetName = $("<h3 style='text-align: center;'>" + pet.name + "</h3>");
 
+                        // 클릭 이벤트 핸들러 추가
+                        lastPetCard.click(function(petInfo) {
+                            return function() {
+                                window.location.href = "/petstory.jsp?id=" + encodeURIComponent(petInfo.pet_id);
+                            };
+                        }(lastPet));
 
                         lastPetCard.append(lastPetImage);
                         lastPetCard.append(lastPetName);
