@@ -20,8 +20,7 @@
             <label for="petSelection" class="form-label">Select Your Pet</label>
             <select class="form-select" id="petSelection" required>
                 <option value="" disabled selected>Select a pet</option>
-                <option value="dog">Dog</option>
-                <!-- 다른 옵션 추가 가능 -->
+                <!-- Ajax로 옵션 추가될 예정 -->
             </select>
         </div>
 
@@ -71,12 +70,56 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-
+<%
+    String guest_id = (String) session.getAttribute("guest_id");
+%>
 <script>
     $(document).ready(function () {
+        var guest_id = '<%= guest_id %>';
+
+        // Ajax로 강아지 목록 가져와서 옵션 추가
+        $.ajax({
+            url: '/pets',
+            method: 'GET',
+            data: {
+                guest_id: guest_id
+            },
+            dataType: 'json',
+            success: function (data) {
+                const petSelection = document.getElementById('petSelection');
+                data.forEach(function (pet) {
+                    const option = document.createElement('option');
+                    option.value = pet.name;
+                    option.textContent = pet.name;
+                    petSelection.appendChild(option);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching pet list:', error);
+            }
+        });
+        //
+        // // Ajax로 예금 계좌 목록 가져와서 옵션 추가
+        // $.ajax({
+        //     url: '/depositaccounts',
+        //     method: 'GET',
+        //     dataType: 'json',
+        //     success: function (data) {
+        //         const accountNumber = document.getElementById('accountNumber');
+        //         data.forEach(function (account) {
+        //             const option = document.createElement('option');
+        //             option.value = account.accountNumber;
+        //             option.textContent = account.accountNumber;
+        //             accountNumber.appendChild(option);
+        //         });
+        //     },
+        //     error: function (xhr, status, error) {
+        //         console.error('Error fetching account list:', error);
+        //     }
+        // });
+
         const joinAmountInput = document.getElementById('joinAmount');
         const joinPeriodInput = document.getElementById('joinPeriod');
-        const joinButton = document.getElementById('joinButton');
         const conditionMessage1 = document.getElementById('conditionMessage1');
         const conditionMessage2 = document.getElementById('conditionMessage2');
 
