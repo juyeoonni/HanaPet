@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,17 +56,23 @@
                         var petCard = $("<div class='col-md-6 mb-4 animate__animated animate__fadeInUp slow 3s' style='text-align: center;'></div>");
 
                         var petImage = $("<img class='img-fluid rounded-circle' alt='" + pet.name + "' src='../../../resources/img/" + pet.image + "'>");
-                        petImage.css("width", "500px");
-                        petImage.css("height", "500px");
-                        petImage.css("object-fit", "cover");
+                        petImage.css("width", "400px");
+                        petImage.css("height", "400px");
                         petImage.css("border-radius", "50%");
+                        petImage.css("cursor", "pointer");
 
                         var petName = $("<h3 style='text-align: center;'>" + pet.name + "</h3>");
 
                         // 클릭 이벤트 핸들러 추가
-                        petCard.click(function(petInfo) {
-                            return function() {
-                                window.location.href = "/petstory.jsp?id=" + encodeURIComponent(petInfo.pet_id);
+                        petImage.click(function(petInfo) {
+                            return function(event) {
+                                var posX = event.pageX - $(this).offset().left;
+                                var posY = event.pageY - $(this).offset().top;
+                                var radius = $(this).width() / 2;
+
+                                if ((posX - radius) ** 2 + (posY - radius) ** 2 <= radius ** 2) {
+                                    window.location.href = "/petstory.jsp?id=" + encodeURIComponent(petInfo.pet_id);
+                                }
                             };
                         }(pet));
 
@@ -86,17 +90,23 @@
 
 
                         var lastPetImage = $("<img class='img-fluid rounded-circle' alt='" + lastPet.name + "' src='../../../resources/img/" + lastPet.image + "'>");
-                        lastPetImage.css("width", "500px");
-                        lastPetImage.css("height", "500px");
-                        lastPetImage.css("object-fit", "cover");
+                        lastPetImage.css("width", "400px");
+                        lastPetImage.css("height", "400px");
                         lastPetImage.css("border-radius", "50%");
+                        lastPetImage.css("cursor", "pointer");
 
-                        var lastPetName = $("<h3 style='text-align: center;'>" + pet.name + "</h3>");
+                        var lastPetName = $("<h3 style='text-align: center;'>" + lastPet.name + "</h3>");
 
                         // 클릭 이벤트 핸들러 추가
-                        lastPetCard.click(function(petInfo) {
-                            return function() {
-                                window.location.href = "/petstory.jsp?id=" + encodeURIComponent(petInfo.pet_id);
+                        lastPetImage.click(function(petInfo) {
+                            return function(event) {
+                                var posX = event.pageX - $(this).offset().left;
+                                var posY = event.pageY - $(this).offset().top;
+                                var radius = $(this).width() / 2;
+
+                                if ((posX - radius) ** 2 + (posY - radius) ** 2 <= radius ** 2) {
+                                    window.location.href = "/petstory.jsp?id=" + encodeURIComponent(petInfo.pet_id);
+                                }
                             };
                         }(lastPet));
 
@@ -119,7 +129,6 @@
     });
 
 </script>
-
 
 </body>
 </html>
