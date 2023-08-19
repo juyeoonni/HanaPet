@@ -16,7 +16,7 @@
 <body>
 
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
-     style="background: linear-gradient(to right, rgba(0, 132, 133, 0.9), rgba(69, 186, 125, 0.9)); padding-top: 30px;">
+     style="background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); padding-top: 30px;">
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide="prev">
