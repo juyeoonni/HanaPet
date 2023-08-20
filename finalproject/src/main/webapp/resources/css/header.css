@@ -32,6 +32,9 @@ body {
     margin-right: 60px;
     cursor: pointer;
     text-decoration: none;
+    color: #008485;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .menu-item:last-child {
@@ -46,7 +49,7 @@ body {
 
 .login,
 .register,
-.logout{
+.logout {
     color: #000000;
     font-family: font-regular;
     font-size: 14px;

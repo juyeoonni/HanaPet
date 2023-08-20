@@ -1,15 +1,10 @@
 :root {
-    --primary-color: #008485;
-    --secondary-color: #008485;
+    --primary-color:  #008485;
+    --secondary-color:  #fed6e3;
     --black: #000000;
     --white: #ffffff;
     --gray: #efefef;
     --gray-2: #757575;
-
-    --facebook-color: #4267B2;
-    --google-color: #DB4437;
-    --twitter-color: #1DA1F2;
-    --insta-color: #E1306C;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
@@ -161,22 +156,6 @@ body {
 
 .social-list > div:hover i {
     transform: scale(1.5);
-}
-
-.facebook-bg {
-    background-color: var(--facebook-color);
-}
-
-.google-bg {
-    background-color: var(--google-color);
-}
-
-.twitter-bg {
-    background-color: var(--twitter-color);
-}
-
-.insta-bg {
-    background-color: var(--insta-color);
 }
 
 .pointer {
