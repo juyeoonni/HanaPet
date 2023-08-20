@@ -6,14 +6,9 @@
     <title>Document</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../../../resources/css/common.css">
-
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
-        /* CSS for styling the sections */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -63,7 +58,7 @@
             </div>
 
             <!-- Section 1 -->
-            <div class="section">
+            <div class="section scroll-target">
                 <h2>반려견 생애주기와 추천 적금</h2>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                     <div>
@@ -73,6 +68,7 @@
                             <p class="one">7가지 다양한 카테고리에서 당신의 반려견을 위한 최적의 적금 상품을 찾아보세요. 단기부터 장기, 그리고 특별한 선택까지 가족 모두 함께
                                 결정할 수
                                 있습니다.</p>
+                            <button> 적금 상품 찾으러 가기</button>
                         </div>
                     </div>
                     <div>
@@ -90,12 +86,16 @@
                         <img src="../../../resources/img/main_펫스토리1.svg" height="430px" class="scroll-fadeInUp">
                     </div>
                     <div style="text-align: center; margin-left: 40px;">
-                        <div style="margin-top: 60px;" >
+                        <div style="margin-top: 10px;">
                             <h2>펫 스토리와 프라이빗한 공간</h2>
                         </div>
-                        <img src="../../../resources/img/main_펫스토리2.svg" width="500px" style="margin-top: 50px;" class="scroll-slideInLeft">
+                        <img src="../../../resources/img/main_펫스토리2.svg" width="500px" style="margin-top: 50px"
+                             class="scroll-slideInLeft">
 
-                        <p style="margin-top: 50px">반려견 한 마리마다 고유한 펫 스토리 공간을 소유하세요. 가족들과 함께하는 소중한 순간을 기록하고, 모두가 볼 수 없는 특별한 공간에서 공유하세요.</p>
+                        <p style="margin-top: 50px">
+                            반려견 한 마리마다 고유한 펫 스토리 공간을 소유하세요. 가족들과 함께하는 소중한 순간을 기록하고, 모두가 볼 수 없는 특별한 공간에서 공유하세요.</p>
+
+                        <button> 반려견의 소중한 순간 기록하러 가기</button>
                     </div>
                 </div>
             </div>
@@ -133,7 +133,7 @@
         const animate_zoomIn = document.querySelectorAll('.scroll-zoomIn');
         const animate_fadeInUp = document.querySelectorAll('.scroll-fadeInUp');
         const animate_slideInLeft = document.querySelectorAll('.scroll-slideInLeft')
-        const halfViewportHeight = window.innerHeight/3 ; // 절반의 뷰포트 높이
+        const halfViewportHeight = window.innerHeight / 3; // 절반의 뷰포트 높이
 
         function isElementInViewport(el) {
             const rect = el.getBoundingClientRect();
@@ -156,7 +156,7 @@
             });
             animate_slideInLeft.forEach(elem => {
                 if (isElementInViewport(elem)) {
-                    elem.classList.add('animate__animated', 'animate__slideInLeft', 'slow', '5');
+                    elem.classList.add('animate__animated', 'animate__slideInLeft', 'slow', '7');
                 }
             });
         }

@@ -12,6 +12,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
             integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
             crossorigin="anonymous"></script>
+
+    <script src="resources/js/scroll.js"></script>
+<%--    <style>--%>
+<%--        .scroll-button {--%>
+<%--            position: fixed;--%>
+<%--            bottom: 20px;--%>
+<%--            right: 20px;--%>
+<%--            background-color: #008485;--%>
+<%--            color: white;--%>
+<%--            padding: 10px 20px;--%>
+<%--            border: none;--%>
+<%--            cursor: pointer;--%>
+<%--        }--%>
+
+<%--        .scroll-button.active {--%>
+<%--            animation: bounce 1s infinite;--%>
+<%--        }--%>
+
+<%--        @keyframes bounce {--%>
+<%--            0%, 100% {--%>
+<%--                transform: translateY(0);--%>
+<%--            }--%>
+<%--            50% {--%>
+<%--                transform: translateY(-10px);--%>
+<%--            }--%>
+<%--        }--%>
+<%--    </style>--%>
 </head>
 <body>
 
@@ -36,8 +63,8 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                 aria-label="Slide 3"></button>
     </div>
-    <div class="carousel-inner" style="height: 300px; width: 70%; margin-left: 220px;">
-        <div class="carousel-item active" style="height: 300px;" data-bs-interval="2000">
+    <div class="carousel-inner" style="height: 500px; width: 70%; margin-left: 220px;">
+        <div class="carousel-item active" style="height: 500px;" data-bs-interval="1600">
             <h2>토리 왕자님은 11살이에요!</h2>
             <p>토리 또래 친구들의 적금 TOP 2!</p>
             <div>
@@ -45,11 +72,11 @@
                 <button>숙박/여행 적금</button>
             </div>
         </div>
-        <div class="carousel-item" style="height: 300px;" data-bs-interval="2000">
+        <div class="carousel-item" style="height: 500px;" data-bs-interval="1600">
             <h5>Second slide label</h5>
             <p>Some representative placeholder content for the second slide.</p>
         </div>
-        <div class="carousel-item" style="height: 300px;" data-bs-interval="2000">
+        <div class="carousel-item" style="height: 500px;" data-bs-interval="1600">
             <h5>Third slide label</h5>
             <p>Some representative placeholder content for the third slide.</p>
         </div>
@@ -61,16 +88,17 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
                 aria-label="Slide 2"></button>
     </div>
-    <div class="carousel-inner" style="height: 300px; width: 70%; margin-left: 220px;">
-        <div class="carousel-item active" style="height: 300px;" data-bs-interval="2000">
+    <div class="carousel-inner" style="height: 500px; width: 70%; margin-left: 220px;">
+        <div class="carousel-item active" style="height: 500px;" data-bs-interval="1600">
             <h2>반려견의 생애주기로 보는 하나 펫 금융 서비스, 나랑 평생 함께하개를 시작해보세요!</h2>
             <p>바로가기</p>
         </div>
-        <div class="carousel-item" style="height: 300px;" data-bs-interval="2000">
+        <div class="carousel-item" style="height: 500px;" data-bs-interval="1600">
             <h5>Second slide label</h5>
             <p>Some representative placeholder content for the second slide.</p>
         </div>
     </div>
+    <button id="scrollToSectionButton" style="width: 500px">스크롤하기</button>
     <%}%>
 
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -80,5 +108,16 @@
     </button>
 </div>
 
+<script>
+    document.getElementById('scrollToSectionButton').addEventListener('click', function() {
+        scrollToTarget();
+    });
+
+    function scrollToTarget() {
+        const targetElement = document.querySelector('.scroll-target');
+        const targetTop = targetElement.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    }
+</script>
 </body>
 </html>
