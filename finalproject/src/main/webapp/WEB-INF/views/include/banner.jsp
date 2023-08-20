@@ -14,36 +14,29 @@
             crossorigin="anonymous"></script>
 
     <script src="resources/js/scroll.js"></script>
-<%--    <style>--%>
-<%--        .scroll-button {--%>
-<%--            position: fixed;--%>
-<%--            bottom: 20px;--%>
-<%--            right: 20px;--%>
-<%--            background-color: #008485;--%>
-<%--            color: white;--%>
-<%--            padding: 10px 20px;--%>
-<%--            border: none;--%>
-<%--            cursor: pointer;--%>
-<%--        }--%>
+    <style>
+        #scrollToSectionButton {
+            cursor: pointer;
+        }
 
-<%--        .scroll-button.active {--%>
-<%--            animation: bounce 1s infinite;--%>
-<%--        }--%>
+        #scrollToSectionButton.active {
+            animation: bounce 1s infinite;
+        }
 
-<%--        @keyframes bounce {--%>
-<%--            0%, 100% {--%>
-<%--                transform: translateY(0);--%>
-<%--            }--%>
-<%--            50% {--%>
-<%--                transform: translateY(-10px);--%>
-<%--            }--%>
-<%--        }--%>
-<%--    </style>--%>
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
 </head>
 <body>
 
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
-     style="background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); padding-top: 30px;">
+     style="background-image: url('/resources/img/강아지와 아기3.svg'); padding-top: 30px; background-size: cover; background-position: center; opacity: 0.94;">
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide="prev">
@@ -82,11 +75,15 @@
         </div>
     </div>
     <%} else {%>
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
+    <div class="carousel-indicators" style="display: flex; flex-direction: column; align-items: center;">
+        <div>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+        </div>
+
+        <img src="/resources/img/down-arrow.png" id="scrollToSectionButton" style="width: 45px; height: 35px; margin-top: 10px"></img>
     </div>
     <div class="carousel-inner" style="height: 500px; width: 70%; margin-left: 220px;">
         <div class="carousel-item active" style="height: 500px;" data-bs-interval="1600">
@@ -98,7 +95,7 @@
             <p>Some representative placeholder content for the second slide.</p>
         </div>
     </div>
-    <button id="scrollToSectionButton" style="width: 500px">스크롤하기</button>
+
     <%}%>
 
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
