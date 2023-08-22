@@ -15,9 +15,11 @@
         /* Main container for the calendar */
         .calendar {
             display: flex;
+            padding-top: 50px;
             background-color: #fff;
+            padding-left: 200px;
+            padding-right: 200px;
             border-radius: 6px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -78,6 +80,18 @@
             background-color: #59a6f5;
             color: #fff;
         }
+
+        /* Highlight today's date */
+        .date.today {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        /* Highlight selected date with a border */
+        .date.selected {
+            background-color: #f2f2f2;
+        }
+
 
         /* Right side of the calendar - Event Form */
         .calendar-right {
@@ -193,11 +207,25 @@
     function getDaysInMonth(month, year) {
         var daysInMonth = new Date(year, month + 1, 0).getDate();
         var daysArray = [];
+        var today = new Date(); // 현재 날짜를 가져옴
+
         for (var i = 1; i <= daysInMonth; i++) {
-            daysArray.push({date: i, events: []});
+            var date = {date: i, events: []};
+
+            // Check if the date is today
+            if (
+                year === today.getFullYear() &&
+                month === today.getMonth() &&
+                i === today.getDate()
+            ) {
+                date.today = true; // 오늘 날짜인 경우 표시하기 위해 플래그 설정
+            }
+
+            daysArray.push(date);
         }
         return daysArray;
     }
+
 
     // Function to render the calendar
     function renderCalendar(monthOffset) {
@@ -214,6 +242,11 @@
             var date = daysInMonth[i];
             var dateElement = document.createElement("div");
             dateElement.className = "date";
+
+            if (date.today) {
+                dateElement.classList.add("today"); // 오늘 날짜라면 .today 클래스 추가
+            }
+
             dateElement.dataset.date = date.date; // Add a custom attribute to store the date
 
             var dateText = document.createElement("span");
@@ -247,18 +280,23 @@
     document.getElementById("calendarDatesContainer").addEventListener("click", function (event) {
         var target = event.target;
         if (target.classList.contains("date")) {
+            var selectedDate = document.querySelector(".date.selected");
+            if (selectedDate) {
+                selectedDate.classList.remove("selected");
+            }
+
+            target.classList.add("selected");
+
             var date = target.dataset.date;
             var eventForm = document.getElementById("eventForm");
             eventForm.dataset.date = date;
 
-            // Set the eventDate input value to the selected date
             var eventDateInput = document.getElementById("eventDate");
             eventDateInput.value = currentDate.toLocaleString('default', {
                 month: 'long',
                 year: 'numeric'
             }) + " " + date + "일";
 
-            // Display events for the selected date in the right container
             var selectedDateEvents = target.events;
             var eventsListContainer = document.getElementById("eventsListContainer");
             eventsListContainer.innerHTML = "";
@@ -273,6 +311,7 @@
             }
         }
     });
+
 
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>';
@@ -329,7 +368,7 @@
                     // Clear the form and re-render the calendar
                     document.getElementById("eventDescription").value = "";
                     console.error("insert 성공");
-                }else {
+                } else {
                     // 로그인 실패 시 처리
                     console.error("insert 실패");
                 }
