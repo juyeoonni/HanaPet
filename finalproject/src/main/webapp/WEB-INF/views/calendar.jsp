@@ -274,30 +274,6 @@
         }
     });
 
-    // Handle event form submission
-    document.getElementById("addEventButton").addEventListener("click", function () {
-        var eventForm = document.getElementById("eventForm");
-        var date = eventForm.dataset.date;
-        var eventDescription = document.getElementById("eventDescription").value;
-
-        // Add the event to the corresponding date
-        var dateElement = document.querySelector(".date[data-date='" + date + "']");
-        //dateElement.events.push(eventDescription);
-
-        // Clear the form and re-render the calendar
-        document.getElementById("eventDescription").value = "";
-
-        // Update the events list in the left calendar for the selected date
-        var leftCalendarDate = document.querySelector(".date.selected");
-        if (leftCalendarDate && leftCalendarDate.dataset.date === date) {
-            leftCalendarDate.events.push(eventDescription);
-            var eventsList = leftCalendarDate.querySelector(".events");
-            var eventItem = document.createElement("li");
-            eventItem.innerText = eventDescription;
-            eventsList.appendChild(eventItem);
-        }
-    });
-
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>';
 
@@ -312,7 +288,7 @@
                 const petSelection = document.getElementById('petSelection');
                 data.forEach(function (pet) {
                     const option = document.createElement('option');
-                    option.value = pet.name;
+                    option.value = pet.pet_id; // 이 부분을 pet의 pet_id로 설정
                     option.textContent = pet.name;
                     petSelection.appendChild(option);
                 });
@@ -323,9 +299,63 @@
         });
     });
 
-    // Initial rendering of the calendar
-    renderCalendar(0);
+    // Handle event form submission
+    document.getElementById("addEventButton").addEventListener("click", function () {
+        var date = document.getElementById("eventDate").value;
+        var formattedDate = formatDateForDatabase(date);
+        var petId = parseInt(document.getElementById("petSelection").value, 6);
+        var eventDescription = document.getElementById("eventDescription").value;
 
+        // console.log(formattedDate + " " + petId + " " + eventDescription);
+        $.ajax({
+            url: "/insertcalendar",
+            type: "POST",
+            data: JSON.stringify({
+                event_date: formattedDate,
+                pet_id: petId,
+                content: eventDescription
+            }),
+            contentType: 'application/json',
+            success: function (response) {
+                if (response === "insert 성공") {
+                    var leftCalendarDate = document.querySelector(".date.selected");
+                    if (leftCalendarDate && leftCalendarDate.dataset.date === date) {
+                        leftCalendarDate.events.push(eventDescription);
+                        var eventsList = leftCalendarDate.querySelector(".events");
+                        var eventItem = document.createElement("li");
+                        eventItem.innerText = eventDescription;
+                        eventsList.appendChild(eventItem);
+                    }
+                    // Clear the form and re-render the calendar
+                    document.getElementById("eventDescription").value = "";
+                    console.error("insert 성공");
+                }else {
+                    // 로그인 실패 시 처리
+                    console.error("insert 실패");
+                }
+            },
+            error: function () {
+                console.log("Error adding event.");
+            }
+        });
+    });
+
+    // Function to format date for database storage
+    function formatDateForDatabase(dateString) {
+        var parsedDate = new Date(dateString.replace(/년|월/g, "/").replace(/일/, ""));
+        var year = parsedDate.getFullYear() % 100; // 뒤 두 자리 연도 값
+        var month = parsedDate.getMonth() + 1; // getMonth()는 0부터 시작하므로 +1
+        var day = parsedDate.getDate();
+
+        if (year < 10) year = "0" + year;
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var formattedDate = year + "/" + month + "/" + day;
+        return formattedDate;
+    }
+
+    renderCalendar(0);
 </script>
 </body>
 </html>

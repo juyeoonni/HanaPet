@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kopo.finalproject.petcalendar.model.dao.PetCalendarMapper">
+    <!-- 펫의 특정 날짜의 캘린더 일정 모두 불러오기
+    String pet_id랑 String event_date로 '23/08/22' 이런식 -->
+    <select id="getDayEventsOfPet"
+            resultType="com.kopo.finalproject.petcalendar.model.dto.PetCalendar">
+        SELECT *
+        FROM pet_calendar
+        WHERE pet_id = #{pet_id}
+          and event_date = #{event_date}
+    </select>
+
+    <!-- 펫의 현재 달의 캘린더 일정 모두 불러오기
+     String pet_id랑 String month로 '23/08/ 이런식으로'-->
+    <select id="getMonthEventsOfPet"
+            resultType="com.kopo.finalproject.petcalendar.model.dto.PetCalendar">
+        SELECT *
+        FROM pet_calendar
+        WHERE pet_id = #{pet_id}
+          and event_date like #{month}
+    </select>
+
+    <insert id="insertEventOfPet" parameterType="HashMap">
+        INSERT INTO pet_calendar(event_date, content, pet_id)
+        VALUES (#{event_date}, #{content}, #{pet_id})
+    </insert>
+
+</mapper>
+
