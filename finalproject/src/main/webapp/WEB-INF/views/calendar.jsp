@@ -59,6 +59,18 @@
             gap: 5px;
         }
 
+        /* Style for the event dot */
+        .event-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #4CAF50; /* You can change the color to your preference */
+            border-radius: 50%;
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+
+
         /* Individual date */
         .date {
             background-color: #fff;
@@ -91,7 +103,6 @@
         .date.selected {
             background-color: #f2f2f2;
         }
-
 
         /* Right side of the calendar - Event Form */
         .calendar-right {
@@ -330,6 +341,11 @@
                     option.value = pet.pet_id; // 이 부분을 pet의 pet_id로 설정
                     option.textContent = pet.name;
                     petSelection.appendChild(option);
+
+                    var month = currentDate.getMonth() + 1;
+                    fetchMonthEvents(currentDate.getFullYear() % 100, month < 10 ? "0" + month : "" + month, option.value);
+                    console.log("여기임" + currentDate.getFullYear() % 100 + " " + month < 10 ? "0" + month : month + " " + option.value);
+
                 });
             },
             error: function () {
@@ -337,6 +353,61 @@
             }
         });
     });
+
+    // Function to fetch month events from the server
+    function fetchMonthEvents(year, month, pet_id) {
+        // Make an API request to fetch month events for the selected pet
+        $.ajax({
+            url: "/monthcalendars",
+            type: "GET",
+            data: {
+                month: year + "/" + month,
+                pet_id: parseInt(pet_id)
+            },
+            dataType: "json",
+            success: function (data) {
+                // Process the fetched data and mark the corresponding dates with dots
+                markDatesWithEvents(data);
+                console.log(data)
+            },
+            error: function () {
+                console.log("Error fetching month events.");
+            }
+        });
+    }
+
+    // Function to mark dates with events
+    function markDatesWithEvents(data) {
+        const calendarDatesContainer = document.getElementById("calendarDatesContainer");
+        const dateElements = calendarDatesContainer.querySelectorAll(".date");
+
+        data.forEach((item, index) => {
+            const eventDate = new Date(item.event_date);
+            const day = eventDate.getDate();
+
+            const colors = ["red", "blue", "green", "orange"]; // Array of different colors
+            const color = colors[index % colors.length]; // Choose color based on index
+
+            dateElements.forEach(dateElement => {
+                const date = dateElement.dataset.date;
+                if (date == day) {
+                    console.log("date: " + date);
+
+                    const dot = createDot(color); // Pass the color to createDot function
+                    console.log("dot" + dot);
+                    dateElement.appendChild(dot);
+                }
+            });
+        });
+    }
+
+    // Function to create a dot element with a specified color
+    function createDot(color) {
+        const dot = document.createElement("span");
+        dot.className = "event-dot";
+        dot.style.backgroundColor = color; // Set the background color of the dot
+        return dot;
+    }
 
     // Handle event form submission
     document.getElementById("addEventButton").addEventListener("click", function () {

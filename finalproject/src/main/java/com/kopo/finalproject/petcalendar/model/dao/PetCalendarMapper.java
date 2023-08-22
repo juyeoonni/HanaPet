@@ -8,9 +8,9 @@ import java.util.List;
 
 @Mapper
 public interface PetCalendarMapper {
-    List<PetCalendar> getDayEventsOfPet(String event_date, String pet_id);
+    List<PetCalendar> getDayEventsOfPet(String event_date, int pet_id);
 
-    List<PetCalendar> getMonthEventsOfPet(String month, String pet_id);
+    List<PetCalendar> getMonthEventsOfPet(String month, int pet_id);
 
     void insertEventOfPet(HashMap<String,String> data);
 }

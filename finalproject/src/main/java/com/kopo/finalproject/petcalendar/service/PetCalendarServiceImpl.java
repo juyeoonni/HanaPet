@@ -19,12 +19,12 @@ public class PetCalendarServiceImpl implements PetCalendarService {
     }
 
     @Override
-    public List<PetCalendar> getDayEventsOfPet(String event_date, String pet_id) {
+    public List<PetCalendar> getDayEventsOfPet(String event_date, int pet_id) {
         return petCalendarMapper.getDayEventsOfPet(event_date, pet_id);
     }
 
     @Override
-    public List<PetCalendar> getMonthEventsOfPet(String month, String pet_id) {
+    public List<PetCalendar> getMonthEventsOfPet(String month, int pet_id) {
         return petCalendarMapper.getMonthEventsOfPet(month, pet_id);
     }
 
