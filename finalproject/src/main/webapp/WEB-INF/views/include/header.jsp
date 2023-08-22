@@ -19,7 +19,7 @@
         <div class="menu">
             <a href="/product" class="menu-item hvr-underline-from-center"> 상품</a>
             <a href="/petstory-start" class="menu-item hvr-underline-from-center"> 펫스토리</a>
-            <a href="/" class="menu-item hvr-underline-from-center"> 펫캘린더</a>
+            <a href="/petcalendar" class="menu-item hvr-underline-from-center"> 펫캘린더</a>
             <a href="/mypet" class="menu-item hvr-underline-from-center"> 마이펫</a>
         </div>
 
