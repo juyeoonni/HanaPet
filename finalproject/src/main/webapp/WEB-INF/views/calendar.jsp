@@ -164,8 +164,6 @@
                 <div class="form-group">
                     <label class="form-label" for="petSelection">Pet:</label>
                     <select class="form-select" id="petSelection">
-                        <option value="Dog">Dog</option>
-                        <option value="Cat">Cat</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -181,6 +179,11 @@
         </div>
     </div>
 </div>
+
+<%
+    String guest_id = (String) session.getAttribute("guest_id");
+    // 여기서 필요한 세션값과 변수들을 설정하세요
+%>
 
 <script>
     // Initialize the current date
@@ -250,7 +253,10 @@
 
             // Set the eventDate input value to the selected date
             var eventDateInput = document.getElementById("eventDate");
-            eventDateInput.value = currentDate.toLocaleString('default', {month: 'long', year: 'numeric'}) + " " + date +"일";
+            eventDateInput.value = currentDate.toLocaleString('default', {
+                month: 'long',
+                year: 'numeric'
+            }) + " " + date + "일";
 
             // Display events for the selected date in the right container
             var selectedDateEvents = target.events;
@@ -290,6 +296,31 @@
             eventItem.innerText = eventDescription;
             eventsList.appendChild(eventItem);
         }
+    });
+
+    $(document).ready(function () {
+        var guest_id = '<%= guest_id %>';
+
+        $.ajax({
+            url: "/pets",
+            type: "GET",
+            data: {
+                guest_id: guest_id
+            },
+            dataType: "json",
+            success: function (data) {
+                const petSelection = document.getElementById('petSelection');
+                data.forEach(function (pet) {
+                    const option = document.createElement('option');
+                    option.value = pet.name;
+                    option.textContent = pet.name;
+                    petSelection.appendChild(option);
+                });
+            },
+            error: function () {
+                console.log("Error fetching pets data.");
+            }
+        });
     });
 
     // Initial rendering of the calendar
