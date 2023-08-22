@@ -13,7 +13,7 @@ public class Guest {
     private String type;
     private String email;
     private String personal_id;
-    private String age;
+    private int age;
     private String pw;
     private String reg_date;
     private String phone;

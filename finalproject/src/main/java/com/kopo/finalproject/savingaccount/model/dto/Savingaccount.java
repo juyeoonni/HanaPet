@@ -13,11 +13,11 @@ public class Savingaccount {
     private String end_date;
     private String category;
     private String opener_id;
-    private String current_balance;
+    private int current_balance;
     private String saving_name;
-    private String emoticon_id;
-    private String pet_id;
-    private String progress_rate;
+    private int emoticon_id;
+    private int pet_id;
+    private double progress_rate;
 
     public Savingaccount() {
     }
