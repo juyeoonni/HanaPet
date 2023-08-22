@@ -234,6 +234,7 @@
 
             daysArray.push(date);
         }
+
         return daysArray;
     }
 
@@ -299,6 +300,13 @@
             target.classList.add("selected");
 
             var date = target.dataset.date;
+
+            // Get the year and month from the clicked date
+            var clickedYear = currentDate.getFullYear() % 100; // 연도 뒤 2글자만 가져옴
+            var clickedMonth = currentDate.getMonth() + 1; // 월 (0부터 시작하므로 +1)
+            // Format the clicked date in "yy/MM/dd" format
+            var formattedClickedDate = clickedYear + "/" + (clickedMonth < 10 ? "0" + clickedMonth : clickedMonth) + "/" + (date < 10 ? "0" + date : date);
+
             var eventForm = document.getElementById("eventForm");
             eventForm.dataset.date = date;
 
@@ -308,18 +316,10 @@
                 year: 'numeric'
             }) + " " + date + "일";
 
-            var selectedDateEvents = target.events;
-            var eventsListContainer = document.getElementById("eventsListContainer");
-            eventsListContainer.innerHTML = "";
-            if (selectedDateEvents.length > 0) {
-                var eventsList = document.createElement("ul");
-                selectedDateEvents.forEach(function (event) {
-                    var eventItem = document.createElement("li");
-                    eventItem.innerText = event;
-                    eventsList.appendChild(eventItem);
-                });
-                eventsListContainer.appendChild(eventsList);
-            }
+            // Get the selected pet_id
+            const selectedPetId = document.getElementById("petSelection").value;
+            // Call fetchDayEvents with selectedDate and selectedPetId
+            fetchDayEvents(formattedClickedDate, selectedPetId);
         }
     });
 
@@ -345,6 +345,17 @@
                     var month = currentDate.getMonth() + 1;
                     fetchMonthEvents(currentDate.getFullYear() % 100, month < 10 ? "0" + month : "" + month, option.value);
                     console.log("여기임" + currentDate.getFullYear() % 100 + " " + month < 10 ? "0" + month : month + " " + option.value);
+
+
+                    // Attach a click event listener to each pet option
+                    option.addEventListener("click", function () {
+                        // Get the selected date from the eventForm
+                        const selectedDate = document.getElementById("eventDate").value;
+                        // Get the selected pet_id
+                        const selectedPetId = this.value;
+                        // Call fetchDayEvents with selectedDate and selectedPetId
+                        fetchDayEvents(selectedDate, selectedPetId);
+                    });
 
                 });
             },
@@ -385,7 +396,7 @@
             const eventDate = new Date(item.event_date);
             const day = eventDate.getDate();
 
-            const colors = ["red", "blue", "green", "orange"]; // Array of different colors
+            const colors = ["red", "green"]; // Array of different colors
             const color = colors[index % colors.length]; // Choose color based on index
 
             dateElements.forEach(dateElement => {
@@ -463,6 +474,43 @@
 
         var formattedDate = year + "/" + month + "/" + day;
         return formattedDate;
+    }
+
+    // Function to fetch day events from the server and populate eventsListContainer
+    function fetchDayEvents(eventDate, petId) {
+        // Make an AJAX request to fetch day events for the selected date and pet
+        $.ajax({
+            url: "/daycalendars",
+            type: "GET",
+            data: {
+                event_date: eventDate,
+                pet_id: petId
+            },
+            dataType: "json",
+            success: function (data) {
+                // Clear the eventsListContainer
+                const eventsListContainer = document.getElementById("eventsListContainer");
+                eventsListContainer.innerHTML = "";
+
+                if (data.length > 0) {
+                    const eventsList = document.createElement("ul");
+                    data.forEach(function (event) {
+                        const eventItem = document.createElement("li");
+                        eventItem.innerText = event.content;
+                        eventsList.appendChild(eventItem);
+                    });
+                    eventsListContainer.appendChild(eventsList);
+                } else {
+                    // If no events, show a message
+                    const noEventsMessage = document.createElement("p");
+                    noEventsMessage.innerText = "No events for this date.";
+                    eventsListContainer.appendChild(noEventsMessage);
+                }
+            },
+            error: function () {
+                console.log("Error fetching day events.");
+            }
+        });
     }
 
     renderCalendar(0);
