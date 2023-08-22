@@ -250,7 +250,7 @@
 
             // Set the eventDate input value to the selected date
             var eventDateInput = document.getElementById("eventDate");
-            eventDateInput.value = currentMonth + " " + date;
+            eventDateInput.value = currentDate.toLocaleString('default', {month: 'long', year: 'numeric'}) + " " + date +"일";
 
             // Display events for the selected date in the right container
             var selectedDateEvents = target.events;
