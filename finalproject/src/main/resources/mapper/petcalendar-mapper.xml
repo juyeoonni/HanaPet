@@ -5,7 +5,7 @@
 <mapper namespace="com.kopo.finalproject.petcalendar.model.dao.PetCalendarMapper">
     <!-- 펫의 특정 날짜의 캘린더 일정 모두 불러오기
     String pet_id랑 String event_date로 '23/08/22' 이런식 -->
-    <select id="getDayEventsOfPet" parameterType="HashMap"
+    <select id="getDayEventsOfPet"
             resultType="com.kopo.finalproject.petcalendar.model.dto.PetCalendar">
         SELECT *
         FROM pet_calendar
