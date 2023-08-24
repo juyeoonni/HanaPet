@@ -30,16 +30,24 @@
             width: 60px;
         }
 
+        .menu-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 60px;
+        }
+
     </style>
 </head>
 
 <body>
 <%@ include file="include/header.jsp" %>
 <div class="body">
+    <div class="menu-title">
+        펫 적금 상품
+    </div>
     <div class="grid-container">
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         // 서버에서 제품 데이터 가져오기

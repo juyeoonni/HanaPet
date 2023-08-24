@@ -15,55 +15,56 @@
 <div class="body">
     <h2 class="mb-4">${param.category} 상품 가입</h2>
     <form>
-        <!-- 기본 정보 -->
+        <!-- 펫 정보 -->
         <div class="mb-3">
-            <label for="petSelection" class="form-label">Select Your Pet</label>
+            <label for="petSelection" class="form-label">누구를 위한 적금인가요?</label>
             <select class="form-select" id="petSelection" required>
-                <option value="" disabled selected>Select a pet</option>
+                <option value="" disabled selected>강아지를 선택해주세요.</option>
                 <!-- Ajax로 옵션 추가될 예정 -->
             </select>
         </div>
 
         <!-- 출금 계좌 정보 -->
         <div class="mb-3">
-            <label for="accountNumberSelection" class="form-label">Withdrawal Account Number</label>
+            <label for="accountNumberSelection" class="form-label">어떤 계좌와 연결할까요?</label>
             <select class="form-select" id="accountNumberSelection" required>
-                <option value="" disabled selected>Select a account</option>
+                <option value="" disabled selected>연결하실 계좌를 선택해주세요.</option>
                 <!-- Ajax로 옵션 추가될 예정 -->
             </select>
         </div>
 
         <!-- 계좌 비밀번호 -->
         <div class="mb-3">
-            <label for="accountPassword" class="form-label">Account Password</label>
-            <input type="password" class="form-control" id="accountPassword" placeholder="Enter account password"
+            <label for="accountPassword" class="form-label">계좌 비밀번호</label>
+            <input type="password" class="form-control" id="accountPassword" placeholder="계좌 비밀번호를 입력해주세요."
                    required>
+            <button id="confirmButton">확인</button>
         </div>
 
         <!-- 상품 정보 -->
         <div class="mb-3">
-            <label for="joinAmount" class="form-label">Join Amount</label>
-            <input type="number" class="form-control" id="joinAmount" placeholder="Enter join amount" required>
+            <label for="joinAmount" class="form-label">얼마를 입금할까요?</label>
+            <input type="number" class="form-control" id="joinAmount" placeholder="금액을 입력해주세요." required>
             <p id="conditionMessage1" class="mt-2 text-danger"></p>
         </div>
+
         <div class="mb-3">
-            <label for="joinPeriod" class="form-label">Join Period (Months)</label>
-            <input type="number" class="form-control" id="joinPeriod" placeholder="Enter join period" required>
+            <label for="joinPeriod" class="form-label">적금 기간</label>
+            <input type="number" class="form-control" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required>
             <p id="conditionMessage2" class="mt-2 text-danger"></p>
         </div>
 
         <div class="mb-3">
-            <label for="transferCycle" class="form-label">Transfer Cycle</label>
+            <label for="transferCycle" class="form-label">자동이체 주기</label>
             <select class="form-select" id="transferCycle" required>
-                <option value="" disabled selected>Select transfer cycle</option>
-                <option value="monthly">Monthly</option>
-                <option value="quarterly">Quarterly</option>
-                <option value="yearly">Yearly</option>
+                <option value="" disabled selected>자동이체 주기를 선택해주세요</option>
+                <option value="monthly">매달</option>
+                <option value="weekly">매주</option>
             </select>
         </div>
 
         <!-- 조건 충족 여부에 따른 가입 버튼 -->
-        <button type="submit" class="btn btn-primary" id="joinButton">Join Now</button>
+        <button type="submit" class="btn btn-primary" id="joinButton">가입하기</button>
 
     </form>
 </div>
@@ -113,7 +114,7 @@
             success: function (data) {
                 const accountNumberSelection = document.getElementById('accountNumberSelection');
                 data.forEach(function (account) {
-                    console.log("account" +account.name);
+                    console.log("account" + account.name);
                     const option = document.createElement('option');
                     option.value = account.account_number;
                     option.textContent = account.account_number;
