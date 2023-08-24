@@ -1,6 +1,11 @@
+/*@font-face {*/
+/*    font-family: 'font-regular';*/
+/*    src: url('../font/NEXON Lv2 Gothic.woff');*/
+/*}*/
+
 @font-face {
     font-family: 'font-regular';
-    src: url('../font/NEXON Lv2 Gothic.woff');
+    src: url('../font/Hana2-Regular.ttf');
 }
 
 body {
