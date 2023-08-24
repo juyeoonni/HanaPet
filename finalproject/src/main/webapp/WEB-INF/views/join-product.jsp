@@ -26,8 +26,11 @@
 
         <!-- 출금 계좌 정보 -->
         <div class="mb-3">
-            <label for="accountNumber" class="form-label">Withdrawal Account Number</label>
-            <input type="text" class="form-control" id="accountNumber" placeholder="Enter account number" required>
+            <label for="accountNumberSelection" class="form-label">Withdrawal Account Number</label>
+            <select class="form-select" id="accountNumberSelection" required>
+                <option value="" disabled selected>Select a account</option>
+                <!-- Ajax로 옵션 추가될 예정 -->
+            </select>
         </div>
 
         <!-- 계좌 비밀번호 -->
@@ -98,25 +101,29 @@
                 console.error('Error fetching pet list:', error);
             }
         });
-        //
-        // // Ajax로 예금 계좌 목록 가져와서 옵션 추가
-        // $.ajax({
-        //     url: '/depositaccounts',
-        //     method: 'GET',
-        //     dataType: 'json',
-        //     success: function (data) {
-        //         const accountNumber = document.getElementById('accountNumber');
-        //         data.forEach(function (account) {
-        //             const option = document.createElement('option');
-        //             option.value = account.accountNumber;
-        //             option.textContent = account.accountNumber;
-        //             accountNumber.appendChild(option);
-        //         });
-        //     },
-        //     error: function (xhr, status, error) {
-        //         console.error('Error fetching account list:', error);
-        //     }
-        // });
+
+        // Ajax로 예금 계좌 목록 가져와서 옵션 추가
+        $.ajax({
+            url: '/depositaccounts',
+            method: 'GET',
+            data: {
+                guest_id: guest_id
+            },
+            dataType: 'json',
+            success: function (data) {
+                const accountNumberSelection = document.getElementById('accountNumberSelection');
+                data.forEach(function (account) {
+                    console.log("account" +account.name);
+                    const option = document.createElement('option');
+                    option.value = account.account_number;
+                    option.textContent = account.account_number;
+                    accountNumberSelection.appendChild(option);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching account list:', error);
+            }
+        });
 
         const joinAmountInput = document.getElementById('joinAmount');
         const joinPeriodInput = document.getElementById('joinPeriod');

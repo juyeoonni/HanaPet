@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kopo.finalproject.depositaccount.model.dao.DepositaccountMapper">
+    <!-- 손님의 예금 계좌 전체 조회 -->
+    <select id="getAllDepositAccountsOfGuest" parameterType="String"
+            resultType="com.kopo.finalproject.depositaccount.model.dto.Depositaccount">
+        SELECT *
+        FROM deposit_account
+        WHERE guest_id = #{guest_id}
+    </select>
+</mapper>
