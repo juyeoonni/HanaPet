@@ -25,6 +25,11 @@
             display: flex;
             flex-direction: column;
         }
+
+        .product-image {
+            width: 60px;
+        }
+
     </style>
 </head>
 
@@ -32,7 +37,7 @@
 <%@ include file="include/header.jsp" %>
 <div class="body">
     <div class="grid-container">
-</div>
+    </div>
 </div>
 
 <script>
@@ -48,6 +53,9 @@
                 // 가져온 데이터를 사용하여 제품 카드 생성 및 추가
                 products.forEach(function (product) {
                     var productCard = $("<div>").addClass("grid-item");
+                    // 이미지 추가
+                    var productImage = $("<img>").attr("src", "/resources/img/" + product.image).addClass("product-image");
+                    productCard.append(productImage);
                     $("<div>").addClass("header")
                         .append($("<span>").text(product.category))
                         .appendTo(productCard);
@@ -55,20 +63,21 @@
                     $("<div>").addClass("footer")
                         .append($("<span>").text(product.rate))
                         .append($("<button>").text("시작하기"))
-                            .click(function () {
-                                // 시작하기 버튼 클릭 시 제품 정보를 세션에 저장
-                                var productInfo = {
-                                    category: product.category,
-                                    description: product.description,
-                                    rate: product.rate,
-                                    min_period: product.min_period,
-                                    min_balance: product.min_balance
-                                };
-                                sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
+                        .click(function () {
+                            // 시작하기 버튼 클릭 시 제품 정보를 세션에 저장
+                            var productInfo = {
+                                category: product.category,
+                                description: product.description,
+                                rate: product.rate,
+                                min_period: product.min_period,
+                                min_balance: product.min_balance,
+                                image: product.image
+                            };
+                            sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
 
-                                // 새 페이지로 이동
-                                window.location.href = "/one-product";
-                            })
+                            // 새 페이지로 이동
+                            window.location.href = "/one-product";
+                        })
                         .appendTo(productCard);
 
                     productList.append(productCard);
