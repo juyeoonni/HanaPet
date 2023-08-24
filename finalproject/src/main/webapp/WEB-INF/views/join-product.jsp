@@ -125,6 +125,31 @@
             }
         });
 
+        $("#confirmButton").click(function () {
+            // 선택된 계좌 옵션의 값 가져오기
+            var account_number = $("#accountNumberSelection").val();
+            // 입력한 계좌 비밀번호 가져오기
+            var account_pw = $("#accountPassword").val();
+
+            console.log(account_number + account_pw + guest_id);
+            $.ajax({
+                url: '/checkdepositaccountpw',
+                method: 'GET',
+                data: {
+                    guest_id: guest_id,
+                    account_number: account_number,
+                    account_pw: account_pw
+                },
+                dataType: 'json',
+                success: function (data) { // 비번 일치하는 경우
+                    console.log(data);
+                },
+                error: function (xhr, status, error) { // 비번 틀린 경우
+                    console.error('Error fetching account list:', error);
+                }
+            });
+        });
+
         const joinAmountInput = document.getElementById('joinAmount');
         const joinPeriodInput = document.getElementById('joinPeriod');
         const conditionMessage1 = document.getElementById('conditionMessage1');

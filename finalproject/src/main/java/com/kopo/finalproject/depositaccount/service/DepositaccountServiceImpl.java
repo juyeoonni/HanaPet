@@ -5,6 +5,7 @@ import com.kopo.finalproject.depositaccount.model.dto.Depositaccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -18,5 +19,10 @@ public class DepositaccountServiceImpl implements DepositaccountService {
     @Override
     public List<Depositaccount> getAllDepositAccountsOfGuest(String guest_id) {
         return depositaccountMapper.getAllDepositAccountsOfGuest(guest_id);
+    }
+
+    @Override
+    public Depositaccount checkDepositAccountPW(HashMap<String, String> checkPWdata) {
+        return depositaccountMapper.checkDepositAccountPW(checkPWdata);
     }
 }
