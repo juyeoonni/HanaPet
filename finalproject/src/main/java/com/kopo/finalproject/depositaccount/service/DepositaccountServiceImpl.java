@@ -22,7 +22,7 @@ public class DepositaccountServiceImpl implements DepositaccountService {
     }
 
     @Override
-    public Depositaccount checkDepositAccountPW(HashMap<String, String> checkPWdata) {
+    public int checkDepositAccountPW(HashMap<String, String> checkPWdata) {
         return depositaccountMapper.checkDepositAccountPW(checkPWdata);
     }
 }

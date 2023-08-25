@@ -27,9 +27,9 @@ public class DepositaccountController {
     }
 
     @GetMapping("/checkdepositaccountpw")
-    public ResponseEntity<Depositaccount> checkDepositAccountPW(@RequestParam HashMap<String, String> checkPWdata) {
-        Depositaccount depositaccount = depositaccountService.checkDepositAccountPW(checkPWdata);
-        return ResponseEntity.ok(depositaccount);
+    public ResponseEntity<Integer> checkDepositAccountPW(@RequestParam HashMap<String, String> checkPWdata) {
+        int num = depositaccountService.checkDepositAccountPW(checkPWdata);
+        return ResponseEntity.ok(num);
     }
 
 }

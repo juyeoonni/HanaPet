@@ -10,5 +10,5 @@ import java.util.List;
 public interface DepositaccountMapper {
     List<Depositaccount> getAllDepositAccountsOfGuest(String guest_id);
 
-    Depositaccount checkDepositAccountPW(HashMap<String, String> checkPWdata);
+    int checkDepositAccountPW(HashMap<String, String> checkPWdata);
 }

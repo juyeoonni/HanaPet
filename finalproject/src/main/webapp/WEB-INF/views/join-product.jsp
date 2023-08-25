@@ -132,7 +132,6 @@
             // 입력한 계좌 비밀번호 가져오기
             var account_pw = $("#accountPassword").val();
 
-            console.log(account_number + account_pw + guest_id);
             $.ajax({
                 url: '/checkdepositaccountpw',
                 method: 'GET',
@@ -142,10 +141,14 @@
                     account_pw: account_pw
                 },
                 dataType: 'json',
-                success: function (data) { // 비번 일치하는 경우
-                    console.log(data);
+                success: function (data) {
+                    if (data < 1) { // 비번 틀린 경우
+                        console.log("비밀번호 불일치");
+                    } else { // 비번 일치하는 경우
+                        console.log("비밀번호 일치");
+                    }
                 },
-                error: function (xhr, status, error) { // 비번 틀린 경우
+                error: function (xhr, status, error) {
                     console.error('Error fetching account list:', error);
                 }
             });
