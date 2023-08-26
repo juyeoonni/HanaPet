@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OneBank Pet Love Savings</title>
+    <title>Join-Product</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../../../resources/css/common.css">
     <!-- 부트스트랩 CSS 링크 -->
@@ -114,7 +114,6 @@
             success: function (data) {
                 const accountNumberSelection = document.getElementById('accountNumberSelection');
                 data.forEach(function (account) {
-                    console.log("account" + account.name);
                     const option = document.createElement('option');
                     option.value = account.account_number;
                     option.textContent = account.account_number;
@@ -126,6 +125,7 @@
             }
         });
 
+        // Ajax로 예금 계좌 비밀번호 일치 확인
         $("#confirmButton").click(function () {
             // 선택된 계좌 옵션의 값 가져오기
             var account_number = $("#accountNumberSelection").val();
@@ -178,7 +178,6 @@
 
             conditionMessage1.textContent = message1;
             conditionMessage2.textContent = message2;
-
         }
 
         // 입력 값 변경 시 가입 버튼 상태 업데이트

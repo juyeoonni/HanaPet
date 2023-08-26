@@ -19,7 +19,6 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: #ffffff;
-    color: #008c8c;
     padding: 10px 20px;
 }
 
@@ -37,7 +36,7 @@ body {
     margin-right: 60px;
     cursor: pointer;
     text-decoration: none;
-    color: #008485;
+    color: #000000;
     padding-top: 5px;
     padding-bottom: 5px;
 }
