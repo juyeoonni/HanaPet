@@ -15,18 +15,32 @@
         /* Main container for the calendar */
         .calendar {
             display: flex;
-            padding-top: 50px;
+            position: relative;
+            padding: 60px 200px 100px 200px;
             background-color: #fff;
-            padding-left: 200px;
-            padding-right: 200px;
             border-radius: 6px;
             overflow: hidden;
         }
 
-        /* Left side of the calendar - Days and Dates */
+        /* .calendar-left 스타일링 추가 */
         .calendar-left {
             flex: 1;
-            padding: 20px;
+            position: relative;
+            background-color: white;
+            transition: transform 0.5s ease;
+            z-index: 2; /* calendar-right 앞에 위치하도록 설정 */
+        }
+
+        /* .calendar-right 스타일링 추가 */
+        .calendar-right {
+            flex: 1;
+            visibility: hidden;
+            position: absolute;
+            top: 100px;
+            right: 0;
+            transform: translateX(-140%); /* 처음에 calendar-left 아래로 숨겨짐 */
+            transition: transform 0.5s ease;
+            z-index: 1; /* calendar-left 뒤에 위치하도록 설정 */
         }
 
         /* Calendar header with Previous, Month Name, and Next buttons */
@@ -101,13 +115,6 @@
 
         /* Highlight selected date with a border */
         .date.selected {
-            background-color: #f2f2f2;
-        }
-
-        /* Right side of the calendar - Event Form */
-        .calendar-right {
-            flex: 1;
-            padding: 20px;
             background-color: #f2f2f2;
         }
 
@@ -287,6 +294,33 @@
     function nextMonth() {
         renderCalendar(1);
     }
+
+    // 일정을 표시하고 오른쪽 패널을 보여주는 함수
+    function showEventPanel() {
+        const calendarRight = document.querySelector(".calendar-right");
+        const calendarLeft = document.querySelector(".calendar-left");
+
+        calendarRight.style.transform = "translateX(-40%)";
+        calendarLeft.style.flex = "0.6";
+        calendarRight.style.flex = "0.4";
+        calendarRight.style.visibility = "visible"
+    }
+
+    // 오른쪽 패널을 다시 숨기는 함수
+    function hideEventPanel() {
+        const calendarRight = document.querySelector(".calendar-right");
+        const calendarLeft = document.querySelector(".calendar-left");
+
+        calendarRight.style.transform = "translateX(-140%)"; // 처음 숨겨진 위치로 이동
+        // flex 속성을 부드럽게 변경하여 커지는 효과 생성
+        calendarLeft.style.transition = "flex 0.7s ease"; // 0.3초 동안 ease 가속도로 flex 변화
+        calendarLeft.style.flex = "1";
+        setTimeout(function () {
+            calendarRight.style.transition = ""; // transition 속성 제거
+            calendarRight.style.visibility = "hidden";
+        }, 500); // 애니메이션 시간과 동일한 시간으로 설정 (0.5초)
+    }
+
 
     // Attach event listeners to date elements for adding events
     document.getElementById("calendarDatesContainer").addEventListener("click", function (event) {
@@ -498,6 +532,7 @@
                         const eventItem = document.createElement("li");
                         eventItem.innerText = event.content;
                         eventsList.appendChild(eventItem);
+                        showEventPanel(); // 일정을 표시하고 오른쪽 패널을 보여줌
                     });
                     eventsListContainer.appendChild(eventsList);
                 } else {
@@ -505,6 +540,7 @@
                     const noEventsMessage = document.createElement("p");
                     noEventsMessage.innerText = "No events for this date.";
                     eventsListContainer.appendChild(noEventsMessage);
+                    hideEventPanel();
                 }
             },
             error: function () {
