@@ -1,3 +1,4 @@
+<%@ page import="java.sql.Array" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -274,19 +275,28 @@
 
 
     // Function to render the calendar
-    function renderCalendar(monthOffset) {
-        currentDate.setMonth(currentDate.getMonth() + monthOffset);
-        var calendarDatesContainer = document.getElementById("calendarDatesContainer");
+    function renderCalendar(month) {
+        currentDate.setMonth(month);
+        const months = currentDate.getMonth() + 1;
+        const petOptions = Array.from(document.getElementById("petSelection").options);
+        const petIds = petOptions.map(option => option.value);
+        for (const petId of petIds) {
+            fetchMonthEvents(currentDate.getFullYear() % 100, months < 10 ? "0" + months : "" + months, petId);
+        }
+
+        const calendarDatesContainer = document.getElementById("calendarDatesContainer");
         calendarDatesContainer.innerHTML = "";
 
-        var currentMonth = currentDate.toLocaleString('default', {month: 'long', year: 'numeric'});
-        document.getElementById("currentMonth").innerText = currentMonth;
+        document.getElementById("currentMonth").innerText = currentDate.toLocaleString('default', {
+            month: 'long',
+            year: 'numeric'
+        });
 
         var daysInMonth = getDaysInMonth(currentDate.getMonth(), currentDate.getFullYear());
 
-        for (var i = 0; i < daysInMonth.length; i++) {
-            var date = daysInMonth[i];
-            var dateElement = document.createElement("div");
+        for (let i = 0; i < daysInMonth.length; i++) {
+            const date = daysInMonth[i];
+            const dateElement = document.createElement("div");
             dateElement.className = "date";
 
             if (date.today) {
@@ -314,12 +324,12 @@
 
     // Function to go to the previous month
     function prevMonth() {
-        renderCalendar(-1);
+        renderCalendar(currentDate.getMonth() - 1);
     }
 
     // Function to go to the next month
     function nextMonth() {
-        renderCalendar(1);
+        renderCalendar(currentDate.getMonth() + 1);
     }
 
     // 일정을 표시하고 오른쪽 패널을 보여주는 함수
@@ -377,9 +387,6 @@
                 year: 'numeric'
             }) + " " + date + "일";
 
-            const petIds = Array.from(document.getElementById("petSelection").options).map(option => option.value);
-
-            // Fetch events for all pets and display in the right panel
             fetchAllPetDayEvents(formattedClickedDate, petIds);
         }
     });
@@ -398,33 +405,6 @@
         });
     }
 
-    $(document).ready(function () {
-        var guest_id = '<%= guest_id %>';
-
-        $.ajax({
-            url: "/pets",
-            type: "GET",
-            data: {
-                guest_id: guest_id
-            },
-            dataType: "json",
-            success: function (data) {
-                const petSelection = document.getElementById('petSelection');
-                data.forEach(function (pet) {
-                    const option = document.createElement('option');
-                    option.value = pet.pet_id; // 이 부분을 pet의 pet_id로 설정
-                    option.textContent = pet.name;
-                    petSelection.appendChild(option);
-
-                    var month = currentDate.getMonth() + 1;
-                    fetchMonthEvents(currentDate.getFullYear() % 100, month < 10 ? "0" + month : "" + month, option.value);
-                });
-            },
-            error: function () {
-                console.log("Error fetching pets data.");
-            }
-        });
-    });
 
     // Function to fetch month events from the server
     function fetchMonthEvents(year, month, pet_id) {
@@ -459,7 +439,6 @@
             const colorsByPet = {
                 1: "red",   // Example color for pet_id 1
                 2: "green"  // Example color for pet_id 2
-                // Add more pet_id to color mappings as needed
             };
 
             const color = colorsByPet[petId] || "blue"; // Default color if pet_id not found
@@ -512,17 +491,15 @@
                 contentType: 'application/json',
                 success: function (response) {
                     if (response === "insert 성공") {
-                        var leftCalendarDate = document.querySelector(".date.selected");
-                        if (leftCalendarDate && leftCalendarDate.dataset.date === date) {
-                            leftCalendarDate.events.push(eventDescription);
-                            var eventsList = leftCalendarDate.querySelector(".events");
-                            var eventItem = document.createElement("li");
-                            eventItem.innerText = eventDescription;
-                            eventsList.appendChild(eventItem);
-                        }
-                        // Clear the form and re-render the calendar
+                        document.getElementById("petSelection").selectedIndex = 0;
+                        document.getElementById("calendar_start_date").value = "";
+                        document.getElementById("calendar_end_date").value = "";
                         document.getElementById("eventDescription").value = "";
-                        console.error("insert 성공");
+
+                        console.log("insert 성공");
+                        const modal = document.getElementById("myModal");
+                        modal.style.display = "none";
+                        renderCalendar(currentDate.getMonth());
                     } else {
                         // 로그인 실패 시 처리
                         console.error("insert 실패");
@@ -605,7 +582,38 @@
         modal.style.display = "none";
     });
 
-    renderCalendar(0);
+    $(document).ready(function () {
+        var guest_id = '<%= guest_id %>';
+
+        $.ajax({
+            url: "/pets",
+            type: "GET",
+            data: {
+                guest_id: guest_id
+            },
+            dataType: "json",
+            success: function (data) {
+                const petSelection = document.getElementById('petSelection');
+                data.forEach(function (pet) {
+                    const option = document.createElement('option');
+                    option.value = pet.pet_id; // 이 부분을 pet의 pet_id로 설정
+                    option.textContent = pet.name;
+                    petSelection.appendChild(option);
+
+                    const petOptions = Array.from(document.getElementById("petSelection").options);
+                    petIds = petOptions.map(option => option.value);
+
+                    var month = currentDate.getMonth() + 1;
+                    fetchMonthEvents(currentDate.getFullYear() % 100, month < 10 ? "0" + month : "" + month, option.value);
+                });
+            },
+            error: function () {
+                console.log("Error fetching pets data.");
+            }
+        });
+        renderCalendar(currentDate.getMonth());
+    });
+
 </script>
 </body>
 </html>
