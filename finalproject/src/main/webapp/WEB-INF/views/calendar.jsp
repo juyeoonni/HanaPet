@@ -162,6 +162,31 @@
             cursor: pointer;
         }
 
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 50%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #openModalButton {
+            margin-top: 20px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -184,30 +209,32 @@
         </div>
         <div class="calendar-dates" id="calendarDatesContainer">
         </div>
+        <div>
+            <button id="openModalButton">일정 추가</button>
+
+            <!-- 모달 창 -->
+            <div class="modal" id="myModal">
+                <div class="modal-content">
+                    <%@ include file="include/modal.jsp" %>
+                    <button id="closeModalButton">Close</button>
+                    <button class="form-submit" type="button" id="addEventButton">일정 등록</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="calendar-right">
         <div class="form-container">
-            <h2>Add Event</h2>
+            <h2>일정</h2>
             <form id="eventForm">
                 <div class="form-group">
-                    <label class="form-label" for="eventDate">Date:</label>
-                    <input class="form-input" type="text" id="eventDate" readonly>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="petSelection">Pet:</label>
-                    <select class="form-select" id="petSelection">
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="eventDescription">Description:</label>
-                    <input class="form-input" type="text" id="eventDescription">
+                    <span class="form-text" id="eventDate"></span>
                 </div>
             </form>
             <div id="eventsListContainer">
                 <!-- Display events for the selected date here -->
             </div>
 
-            <button class="form-submit" type="button" id="addEventButton">Add Event</button>
+
         </div>
     </div>
 </div>
@@ -300,9 +327,9 @@
         const calendarRight = document.querySelector(".calendar-right");
         const calendarLeft = document.querySelector(".calendar-left");
 
-        calendarRight.style.transform = "translateX(-40%)";
-        calendarLeft.style.flex = "0.6";
-        calendarRight.style.flex = "0.4";
+        calendarRight.style.transform = "translateX(-130%)";
+        calendarLeft.style.flex = "0.7";
+        calendarRight.style.flex = "0.3";
         calendarRight.style.visibility = "visible"
     }
 
@@ -345,14 +372,13 @@
             eventForm.dataset.date = date;
 
             var eventDateInput = document.getElementById("eventDate");
-            eventDateInput.value = currentDate.toLocaleString('default', {
+            eventDateInput.textContent = currentDate.toLocaleString('default', {
                 month: 'long',
                 year: 'numeric'
             }) + " " + date + "일";
 
             // Get the selected pet_id
             const selectedPetId = document.getElementById("petSelection").value;
-            // Call fetchDayEvents with selectedDate and selectedPetId
             fetchDayEvents(formattedClickedDate, selectedPetId);
         }
     });
@@ -384,10 +410,9 @@
                     // Attach a click event listener to each pet option
                     option.addEventListener("click", function () {
                         // Get the selected date from the eventForm
-                        const selectedDate = document.getElementById("eventDate").value;
+                        const selectedDate = document.getElementById("eventDate").textContent;
                         // Get the selected pet_id
                         const selectedPetId = this.value;
-                        // Call fetchDayEvents with selectedDate and selectedPetId
                         fetchDayEvents(selectedDate, selectedPetId);
                     });
 
@@ -548,6 +573,19 @@
             }
         });
     }
+
+    // 열기 버튼 클릭 시 모달 창 표시
+    document.getElementById("openModalButton").addEventListener("click", function () {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    });
+
+    // 닫기 버튼 클릭 시 모달 창 숨김
+    document.getElementById("closeModalButton").addEventListener("click", function () {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    });
+
 
     renderCalendar(0);
 </script>
