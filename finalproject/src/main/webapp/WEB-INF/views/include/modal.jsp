@@ -25,7 +25,7 @@
     </div>
     <div>
         <label class="form-label">일정 내용</label>
-        <input autocomplete="off" type="text" class="form-control" id="calendar_content" name="calendar_content">
+        <input autocomplete="off" type="text" class="form-control" id="eventDescription" name="eventDescription">
     </div>
 
 

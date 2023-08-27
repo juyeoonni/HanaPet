@@ -38,7 +38,7 @@
             position: absolute;
             top: 100px;
             right: 0;
-            transform: translateX(-140%); /* 처음에 calendar-left 아래로 숨겨짐 */
+            transform: translateX(-160%); /* 처음에 calendar-left 아래로 숨겨짐 */
             transition: transform 0.5s ease;
             z-index: 1; /* calendar-left 뒤에 위치하도록 설정 */
         }
@@ -338,9 +338,9 @@
         const calendarRight = document.querySelector(".calendar-right");
         const calendarLeft = document.querySelector(".calendar-left");
 
-        calendarRight.style.transform = "translateX(-140%)"; // 처음 숨겨진 위치로 이동
+        calendarRight.style.transform = "translateX(-160%)"; // 처음 숨겨진 위치로 이동
         // flex 속성을 부드럽게 변경하여 커지는 효과 생성
-        calendarLeft.style.transition = "flex 0.7s ease"; // 0.3초 동안 ease 가속도로 flex 변화
+        calendarLeft.style.transition = "flex 0.5s ease"; // 0.3초 동안 ease 가속도로 flex 변화
         calendarLeft.style.flex = "1";
         setTimeout(function () {
             calendarRight.style.transition = ""; // transition 속성 제거
@@ -377,9 +377,12 @@
                 year: 'numeric'
             }) + " " + date + "일";
 
-            // Get the selected pet_id
-            const selectedPetId = document.getElementById("petSelection").value;
-            fetchDayEvents(formattedClickedDate, selectedPetId);
+            const petIds = Array.from(document.getElementById("petSelection").options).map(option => option.value);
+
+            petIds.forEach(petId => {
+                console.log("petId:" + petId + "date:"+formattedClickedDate);
+                fetchDayEvents(formattedClickedDate, petId);
+            });
         }
     });
 
@@ -404,17 +407,15 @@
 
                     var month = currentDate.getMonth() + 1;
                     fetchMonthEvents(currentDate.getFullYear() % 100, month < 10 ? "0" + month : "" + month, option.value);
-                    console.log("여기임" + currentDate.getFullYear() % 100 + " " + month < 10 ? "0" + month : month + " " + option.value);
-
 
                     // Attach a click event listener to each pet option
-                    option.addEventListener("click", function () {
-                        // Get the selected date from the eventForm
-                        const selectedDate = document.getElementById("eventDate").textContent;
-                        // Get the selected pet_id
-                        const selectedPetId = this.value;
-                        fetchDayEvents(selectedDate, selectedPetId);
-                    });
+                    // option.addEventListener("click", function () {
+                    //     // Get the selected date from the eventForm
+                    //     const selectedDate = document.getElementById("eventDate").textContent;
+                    //     // Get the selected pet_id
+                    //     const selectedPetId = this.value;
+                    //     //fetchDayEvents(selectedDate, selectedPetId);
+                    // });
 
                 });
             },
@@ -436,9 +437,7 @@
             },
             dataType: "json",
             success: function (data) {
-                // Process the fetched data and mark the corresponding dates with dots
                 markDatesWithEvents(data);
-                console.log(data)
             },
             error: function () {
                 console.log("Error fetching month events.");
@@ -454,17 +453,20 @@
         data.forEach((item, index) => {
             const eventDate = new Date(item.event_date);
             const day = eventDate.getDate();
+            const petId = item.pet_id;
 
-            const colors = ["red", "green"]; // Array of different colors
-            const color = colors[index % colors.length]; // Choose color based on index
+            const colorsByPet = {
+                1: "red",   // Example color for pet_id 1
+                2: "green"  // Example color for pet_id 2
+                // Add more pet_id to color mappings as needed
+            };
+
+            const color = colorsByPet[petId] || "blue"; // Default color if pet_id not found
 
             dateElements.forEach(dateElement => {
                 const date = dateElement.dataset.date;
                 if (date == day) {
-                    console.log("date: " + date);
-
                     const dot = createDot(color); // Pass the color to createDot function
-                    console.log("dot" + dot);
                     dateElement.appendChild(dot);
                 }
             });
@@ -481,58 +483,68 @@
 
     // Handle event form submission
     document.getElementById("addEventButton").addEventListener("click", function () {
-        var date = document.getElementById("eventDate").value;
-        var formattedDate = formatDateForDatabase(date);
+        const startDateInput = document.getElementById("calendar_start_date").value;
+        const endDateInput = document.getElementById("calendar_end_date").value;
+        const startDate = new Date(startDateInput);
+        const endDate = new Date(endDateInput);
         var petId = parseInt(document.getElementById("petSelection").value, 6);
         var eventDescription = document.getElementById("eventDescription").value;
 
-        // console.log(formattedDate + " " + petId + " " + eventDescription);
-        $.ajax({
-            url: "/insertcalendar",
-            type: "POST",
-            data: JSON.stringify({
-                event_date: formattedDate,
-                pet_id: petId,
-                content: eventDescription
-            }),
-            contentType: 'application/json',
-            success: function (response) {
-                if (response === "insert 성공") {
-                    var leftCalendarDate = document.querySelector(".date.selected");
-                    if (leftCalendarDate && leftCalendarDate.dataset.date === date) {
-                        leftCalendarDate.events.push(eventDescription);
-                        var eventsList = leftCalendarDate.querySelector(".events");
-                        var eventItem = document.createElement("li");
-                        eventItem.innerText = eventDescription;
-                        eventsList.appendChild(eventItem);
+        // Loop through each date between startDate and endDate
+        let currentDate = new Date(startDate);
+        while (currentDate <= endDate) {
+            const formattedDate = formatDateForDatabase(currentDate);
+            sendEventToServer(formattedDate, petId, eventDescription);
+            // Move to the next day
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        function sendEventToServer(eventDate, petId, eventDescription) {
+            $.ajax({
+                url: "/insertcalendar",
+                type: "POST",
+                data: JSON.stringify({
+                    event_date: eventDate,
+                    pet_id: petId,
+                    content: eventDescription
+                }),
+                contentType: 'application/json',
+                success: function (response) {
+                    if (response === "insert 성공") {
+                        var leftCalendarDate = document.querySelector(".date.selected");
+                        if (leftCalendarDate && leftCalendarDate.dataset.date === date) {
+                            leftCalendarDate.events.push(eventDescription);
+                            var eventsList = leftCalendarDate.querySelector(".events");
+                            var eventItem = document.createElement("li");
+                            eventItem.innerText = eventDescription;
+                            eventsList.appendChild(eventItem);
+                        }
+                        // Clear the form and re-render the calendar
+                        document.getElementById("eventDescription").value = "";
+                        console.error("insert 성공");
+                    } else {
+                        // 로그인 실패 시 처리
+                        console.error("insert 실패");
                     }
-                    // Clear the form and re-render the calendar
-                    document.getElementById("eventDescription").value = "";
-                    console.error("insert 성공");
-                } else {
-                    // 로그인 실패 시 처리
-                    console.error("insert 실패");
+                },
+                error: function () {
+                    console.log("Error adding event.");
                 }
-            },
-            error: function () {
-                console.log("Error adding event.");
-            }
-        });
+            });
+        }
     });
 
     // Function to format date for database storage
-    function formatDateForDatabase(dateString) {
-        var parsedDate = new Date(dateString.replace(/년|월/g, "/").replace(/일/, ""));
-        var year = parsedDate.getFullYear() % 100; // 뒤 두 자리 연도 값
-        var month = parsedDate.getMonth() + 1; // getMonth()는 0부터 시작하므로 +1
-        var day = parsedDate.getDate();
+    function formatDateForDatabase(date) {
+        var year = date.getFullYear() % 100; // 뒤 두 자리 연도 값
+        var month = date.getMonth() + 1; // getMonth()는 0부터 시작하므로 +1
+        var day = date.getDate();
 
         if (year < 10) year = "0" + year;
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
 
-        var formattedDate = year + "/" + month + "/" + day;
-        return formattedDate;
+        return year + "/" + month + "/" + day;
     }
 
     // Function to fetch day events from the server and populate eventsListContainer
@@ -561,10 +573,6 @@
                     });
                     eventsListContainer.appendChild(eventsList);
                 } else {
-                    // If no events, show a message
-                    const noEventsMessage = document.createElement("p");
-                    noEventsMessage.innerText = "No events for this date.";
-                    eventsListContainer.appendChild(noEventsMessage);
                     hideEventPanel();
                 }
             },
