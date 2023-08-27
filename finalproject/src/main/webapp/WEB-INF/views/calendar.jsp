@@ -1,8 +1,6 @@
-<%@ page import="java.sql.Array" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
 <head>
     <title>Calendar</title>
     <style>
@@ -247,16 +245,16 @@
 
 <script>
     // Initialize the current date
-    var currentDate = new Date();
+    const currentDate = new Date();
 
     // Function to get the days in a month
     function getDaysInMonth(month, year) {
-        var daysInMonth = new Date(year, month + 1, 0).getDate();
-        var daysArray = [];
-        var today = new Date(); // 현재 날짜를 가져옴
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const daysArray = [];
+        const today = new Date(); // 현재 날짜를 가져옴
 
-        for (var i = 1; i <= daysInMonth; i++) {
-            var date = {date: i, events: []};
+        for (let i = 1; i <= daysInMonth; i++) {
+            const date = {date: i, events: []};
 
             // Check if the date is today
             if (
@@ -292,7 +290,7 @@
             year: 'numeric'
         });
 
-        var daysInMonth = getDaysInMonth(currentDate.getMonth(), currentDate.getFullYear());
+        const daysInMonth = getDaysInMonth(currentDate.getMonth(), currentDate.getFullYear());
 
         for (let i = 0; i < daysInMonth.length; i++) {
             const date = daysInMonth[i];
@@ -305,14 +303,14 @@
 
             dateElement.dataset.date = date.date; // Add a custom attribute to store the date
 
-            var dateText = document.createElement("span");
+            const dateText = document.createElement("span");
             dateText.innerText = date.date;
             dateElement.appendChild(dateText);
 
-            var eventsList = document.createElement("ul");
+            const eventsList = document.createElement("ul");
             eventsList.className = "events";
             date.events.forEach(function (event) {
-                var eventItem = document.createElement("li");
+                const eventItem = document.createElement("li");
                 eventItem.innerText = event;
                 eventsList.appendChild(eventItem);
             });
@@ -361,27 +359,27 @@
 
     // Attach event listeners to date elements for adding events
     document.getElementById("calendarDatesContainer").addEventListener("click", function (event) {
-        var target = event.target;
+        const target = event.target;
         if (target.classList.contains("date")) {
-            var selectedDate = document.querySelector(".date.selected");
+            const selectedDate = document.querySelector(".date.selected");
             if (selectedDate) {
                 selectedDate.classList.remove("selected");
             }
 
             target.classList.add("selected");
 
-            var date = target.dataset.date;
+            const date = target.dataset.date;
 
             // Get the year and month from the clicked date
-            var clickedYear = currentDate.getFullYear() % 100; // 연도 뒤 2글자만 가져옴
-            var clickedMonth = currentDate.getMonth() + 1; // 월 (0부터 시작하므로 +1)
+            const clickedYear = currentDate.getFullYear() % 100; // 연도 뒤 2글자만 가져옴
+            const clickedMonth = currentDate.getMonth() + 1; // 월 (0부터 시작하므로 +1)
             // Format the clicked date in "yy/MM/dd" format
-            var formattedClickedDate = clickedYear + "/" + (clickedMonth < 10 ? "0" + clickedMonth : clickedMonth) + "/" + (date < 10 ? "0" + date : date);
+            const formattedClickedDate = clickedYear + "/" + (clickedMonth < 10 ? "0" + clickedMonth : clickedMonth) + "/" + (date < 10 ? "0" + date : date);
 
-            var eventForm = document.getElementById("eventForm");
+            const eventForm = document.getElementById("eventForm");
             eventForm.dataset.date = date;
 
-            var eventDateInput = document.getElementById("eventDate");
+            const eventDateInput = document.getElementById("eventDate");
             eventDateInput.textContent = currentDate.toLocaleString('default', {
                 month: 'long',
                 year: 'numeric'
@@ -467,8 +465,8 @@
         const endDateInput = document.getElementById("calendar_end_date").value;
         const startDate = new Date(startDateInput);
         const endDate = new Date(endDateInput);
-        var petId = parseInt(document.getElementById("petSelection").value, 6);
-        var eventDescription = document.getElementById("eventDescription").value;
+        const petId = parseInt(document.getElementById("petSelection").value, 6);
+        const eventDescription = document.getElementById("eventDescription").value;
 
         // Loop through each date between startDate and endDate
         let currentDate = new Date(startDate);
@@ -514,9 +512,9 @@
 
     // Function to format date for database storage
     function formatDateForDatabase(date) {
-        var year = date.getFullYear() % 100; // 뒤 두 자리 연도 값
-        var month = date.getMonth() + 1; // getMonth()는 0부터 시작하므로 +1
-        var day = date.getDate();
+        let year = date.getFullYear() % 100; // 뒤 두 자리 연도 값
+        let month = date.getMonth() + 1; // getMonth()는 0부터 시작하므로 +1
+        let day = date.getDate();
 
         if (year < 10) year = "0" + year;
         if (month < 10) month = "0" + month;
@@ -529,7 +527,7 @@
     function displayAllPetEvents(allPetEvents) {
         const eventsListContainer = document.getElementById("eventsListContainer");
         eventsListContainer.innerHTML = "";
-        var check = true;
+        let check = true;
         for (const petId in allPetEvents) {
             const petEvents = allPetEvents[petId];
             if (petEvents.length > 0) {
@@ -583,7 +581,7 @@
     });
 
     $(document).ready(function () {
-        var guest_id = '<%= guest_id %>';
+        const guest_id = '<%= guest_id %>';
 
         $.ajax({
             url: "/pets",
@@ -603,7 +601,7 @@
                     const petOptions = Array.from(document.getElementById("petSelection").options);
                     petIds = petOptions.map(option => option.value);
 
-                    var month = currentDate.getMonth() + 1;
+                    const month = currentDate.getMonth() + 1;
                     fetchMonthEvents(currentDate.getFullYear() % 100, month < 10 ? "0" + month : "" + month, option.value);
                 });
             },
@@ -616,4 +614,3 @@
 
 </script>
 </body>
-</html>
