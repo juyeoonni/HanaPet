@@ -379,13 +379,24 @@
 
             const petIds = Array.from(document.getElementById("petSelection").options).map(option => option.value);
 
-            petIds.forEach(petId => {
-                console.log("petId:" + petId + "date:"+formattedClickedDate);
-                fetchDayEvents(formattedClickedDate, petId);
-            });
+            // Fetch events for all pets and display in the right panel
+            fetchAllPetDayEvents(formattedClickedDate, petIds);
         }
     });
 
+    // Function to fetch events for all pets and display in the right panel
+    function fetchAllPetDayEvents(eventDate, petIds) {
+        const allPetEvents = {};
+
+        petIds.forEach(petId => {
+            fetchDayEvents(eventDate, petId, function (events) {
+                allPetEvents[petId] = events;
+                if (Object.keys(allPetEvents).length === petIds.length) {
+                    displayAllPetEvents(allPetEvents);
+                }
+            });
+        });
+    }
 
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>';
@@ -407,16 +418,6 @@
 
                     var month = currentDate.getMonth() + 1;
                     fetchMonthEvents(currentDate.getFullYear() % 100, month < 10 ? "0" + month : "" + month, option.value);
-
-                    // Attach a click event listener to each pet option
-                    // option.addEventListener("click", function () {
-                    //     // Get the selected date from the eventForm
-                    //     const selectedDate = document.getElementById("eventDate").textContent;
-                    //     // Get the selected pet_id
-                    //     const selectedPetId = this.value;
-                    //     //fetchDayEvents(selectedDate, selectedPetId);
-                    // });
-
                 });
             },
             error: function () {
@@ -547,8 +548,33 @@
         return year + "/" + month + "/" + day;
     }
 
+    // Function to display events for all pets in the right panel
+    function displayAllPetEvents(allPetEvents) {
+        const eventsListContainer = document.getElementById("eventsListContainer");
+        eventsListContainer.innerHTML = "";
+        var check = true;
+        for (const petId in allPetEvents) {
+            const petEvents = allPetEvents[petId];
+            if (petEvents.length > 0) {
+                check = false;
+                const eventsList = document.createElement("ul");
+                petEvents.forEach(event => {
+                    const eventItem = document.createElement("li");
+                    eventItem.innerText = event.content;
+                    eventsList.appendChild(eventItem);
+                });
+
+                eventsListContainer.appendChild(eventsList);
+            }
+            showEventPanel();
+        }
+        if (check) {
+            hideEventPanel();
+        }
+    }
+
     // Function to fetch day events from the server and populate eventsListContainer
-    function fetchDayEvents(eventDate, petId) {
+    function fetchDayEvents(eventDate, petId, callback) {
         // Make an AJAX request to fetch day events for the selected date and pet
         $.ajax({
             url: "/daycalendars",
@@ -559,22 +585,7 @@
             },
             dataType: "json",
             success: function (data) {
-                // Clear the eventsListContainer
-                const eventsListContainer = document.getElementById("eventsListContainer");
-                eventsListContainer.innerHTML = "";
-
-                if (data.length > 0) {
-                    const eventsList = document.createElement("ul");
-                    data.forEach(function (event) {
-                        const eventItem = document.createElement("li");
-                        eventItem.innerText = event.content;
-                        eventsList.appendChild(eventItem);
-                        showEventPanel(); // 일정을 표시하고 오른쪽 패널을 보여줌
-                    });
-                    eventsListContainer.appendChild(eventsList);
-                } else {
-                    hideEventPanel();
-                }
+                callback(data);
             },
             error: function () {
                 console.log("Error fetching day events.");
@@ -593,7 +604,6 @@
         const modal = document.getElementById("myModal");
         modal.style.display = "none";
     });
-
 
     renderCalendar(0);
 </script>
