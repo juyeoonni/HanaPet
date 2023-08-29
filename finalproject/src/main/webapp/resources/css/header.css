@@ -19,11 +19,12 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: #ffffff;
-    padding: 10px 20px;
+    padding: 40px 20px 0px 20px;
 }
 
 .logo img {
     width: 50px;
+    padding-bottom: 10px;
 }
 
 .menu {
@@ -36,7 +37,8 @@ body {
     margin-right: 60px;
     cursor: pointer;
     text-decoration: none;
-    color: #000000;
+    color: #324D3D;
+    font-size: 19px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -54,7 +56,7 @@ body {
 .login,
 .register,
 .logout {
-    color: #000000;
+    color: #324D3D;
     font-family: font-regular;
     font-size: 14px;
     margin-left: 20px;
@@ -63,7 +65,7 @@ body {
 }
 
 .myinfo {
-    color: #000000;
+    color: #324D3D;
     font-family: font-regular;
     font-size: 14px;
     margin-left: 20px;
