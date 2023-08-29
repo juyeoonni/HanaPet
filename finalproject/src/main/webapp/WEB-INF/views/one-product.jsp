@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OneBank Pet Love Savings</title>
+    <title>HanaPet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../../../resources/css/common.css">
     <!-- 부트스트랩 CSS 링크 -->
@@ -27,28 +27,75 @@
         .join:hover {
             background-color: #008c8c;
         }
+
+        .first-section {
+            text-align: center;
+        }
+
+        #productCategory {
+            font-size: 31px;
+            margin-bottom: 15px;
+        }
+
+        #productDescription {
+            font-family: font-medium;
+            margin-bottom: 15px;
+        }
+
+        .line {
+            background: #CFDBC8;
+            border-radius: 80px;
+            width: auto;
+            height: 2.5px;
+            margin-bottom: 30px;
+        }
+
+        .product-info {
+            font-size: 17px;
+            margin-bottom: 7px;
+            margin-top: 7px;
+            font-family: font-medium;
+        }
+
+        .accordion-button{
+            color: white !important;
+            background-color: #75A989 !important;
+        }
     </style>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
 <div class="body">
+    <div class="first-section">
+        <img src=""/>
+        <div id="productCategory"></div>
+        <div id="productDescription"></div>
+    </div>
+    <div class="line"></div>
+
     <div class="accordion" id="productAccordion">
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseProduct"
                         aria-expanded="true" aria-controls="collapseProduct">
-                    제품 상세 정보
+                    적금 상품 상세 정보
                 </button>
             </h2>
             <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#productAccordion">
-                <div class="accordion-body">
-                    <div id="productCategory"></div>
-                    <div id="productDescription"></div>
-                    <div id="productRate"></div>
-                    <div id="productMinPeriod"></div>
-                    <div id="productMinBalance"></div>
+                <div class="accordion-body" class="product-info" style="background-color: #E1E6DE;">
+                    <div id="productRate" class="product-info"></div>
+                    <div id="productMinPeriod" class="product-info"></div>
+                    <div id="productMinBalance" class="product-info"></div>
+                    <div class="product-info">상품 특징: 만 3세 이하 펫 우대 적금</div>
+                    <div class="product-info">가입 대상: 반려견을 등록한 모든 Hanna Pet 손님</div>
+                    <div class="product-info">가입 기간: 3개월 이상</div>
+                    <div class="product-info">가입 금액: 매월 5000원 이상 ~ 100만원 이하</div>
+                    <div class="product-info">이자 지급 방법: 만기일시지급식 : 만기(후)해지시 이자를 지급</div>
+                    <div class="product-info">적립 방법: 자유적립식</div>
+
+
                 </div>
             </div>
         </div>
@@ -65,7 +112,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-content-1">
                         <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
-                        <span style="font-size: 18px;">&nbsp적금거래기본 약관</span>
+                        <span style="font-size: 18px; color: white">&nbsp적금거래기본 약관</span>
                     </button>
                 </label>
             </h2>
@@ -116,7 +163,7 @@
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#faq-content-2">
                     <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
-                    <span style="font-size: 18px;">&nbsp적립식 적금 약관</span>
+                    <span style="font-size: 18px; color: white">&nbsp적립식 적금 약관</span>
                 </button>
             </label>
             </h2>
@@ -146,7 +193,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-content-3">
                         <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
-                        <span style="font-size: 18px;">&nbsp개인(신용)정보 수집 이용 동의서<strong
+                        <span style="font-size: 18px; color: white">&nbsp개인(신용)정보 수집 이용 동의서<strong
                                 style="font-weight: bold;"> (필수)</strong> </span>
                     </button>
                 </label>
@@ -165,7 +212,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-content-4">
                         <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
-                        <span style="font-size: 18px;">&nbsp계좌간 자동이체 약관</span>
+                        <span style="font-size: 18px; color: white">&nbsp계좌간 자동이체 약관</span>
                     </button>
                 </label>
             </h2>
@@ -184,7 +231,7 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-content-5">
                         <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
-                        <span style="font-size: 18px;">&nbsp비과세종합저축특약</span>
+                        <span style="font-size: 18px; color: white">&nbsp비과세종합저축특약</span>
                     </button>
                 </label>
             </h2>
@@ -211,8 +258,8 @@
 
         // 제품 정보를 화면에 표시
         if (productInfo) {
-            $("#productCategory").text("카테고리: " + productInfo.category);
-            $("#productDescription").text("설명: " + productInfo.description);
+            $("#productCategory").text(productInfo.category + " 펫 적금");
+            $("#productDescription").text(productInfo.description);
             $("#productRate").text("이자율: " + productInfo.rate);
             $("#productMinPeriod").text("최소 기간: " + productInfo.min_period);
             $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance);

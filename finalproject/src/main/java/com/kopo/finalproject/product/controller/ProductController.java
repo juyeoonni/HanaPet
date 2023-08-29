@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -49,6 +47,13 @@ public class ProductController {
     public ModelAndView joinProduct() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("join-product");
+        return mav;
+    }
+
+    @RequestMapping("/test")
+    public ModelAndView login() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("card-box");
         return mav;
     }
 }
