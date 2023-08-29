@@ -8,22 +8,35 @@
     <link rel="stylesheet" href="../../../resources/css/common.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+        .middle-box {
+            background: #75A989;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            width: auto;
+            height: 50px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 30px;
+        }
+
         /* 그리드 컨테이너 스타일 */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr); /* 4개의 열로 구성 */
-            gap: 20px; /* 아이템 사이의 간격 */
+            gap: 40px; /* 아이템 사이의 간격 */
         }
 
         /* 그리드 아이템 스타일 */
         .grid-item {
-            background-color: #f5f5f5;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
             display: flex;
             flex-direction: column;
+            background: #B6D2C1;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            height: 160px;
         }
 
         .product-image {
@@ -33,7 +46,7 @@
         .menu-title {
             text-align: center;
             font-size: 30px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
     </style>
@@ -44,6 +57,10 @@
 <div class="body">
     <div class="menu-title">
         펫 적금 상품
+    </div>
+    <div class="middle-box">
+        <span>전체 7개 적금</span>
+        <span style="font-size: 16px; font-family: font-regular">(조회 기준일자: 2023-08-29, 우대금리포함)</span>
     </div>
     <div class="grid-container">
     </div>
