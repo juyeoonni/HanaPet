@@ -1,11 +1,16 @@
-/*@font-face {*/
-/*    font-family: 'font-regular';*/
-/*    src: url('../font/NEXON Lv2 Gothic.woff');*/
-/*}*/
-
 @font-face {
     font-family: 'font-regular';
     src: url('../font/Hana2-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'font-bold';
+    src: url('../font/Hana2-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'font-medium';
+    src: url('../font/Hana2-Medium.ttf');
 }
 
 body {
@@ -19,7 +24,7 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: #ffffff;
-    padding: 40px 20px 0px 20px;
+    padding: 30px 20px 0px 20px;
 }
 
 .logo img {
@@ -57,7 +62,7 @@ body {
 .register,
 .logout {
     color: #324D3D;
-    font-family: font-regular;
+    font-family: font-medium;
     font-size: 14px;
     margin-left: 20px;
     cursor: pointer;
@@ -66,7 +71,7 @@ body {
 
 .myinfo {
     color: #324D3D;
-    font-family: font-regular;
+    font-family: font-medium;
     font-size: 14px;
     margin-left: 20px;
     text-decoration: none;

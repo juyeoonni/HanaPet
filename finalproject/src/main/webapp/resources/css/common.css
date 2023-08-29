@@ -1,8 +1,3 @@
-/*@font-face {*/
-/*    font-family: 'font-bold';*/
-/*    src: url('../font/NEXON Lv2 Gothic Bold.woff') format('woff2');*/
-/*}*/
-
 @font-face {
     font-family: 'font-bold';
     src: url('../font/Hana2-Bold.ttf');
@@ -10,13 +5,8 @@
 
 * {
     font-family: 'font-bold';
-    font-size: 18px;
+    font-size: 19px;
 }
-
-/** {*/
-/*    font-family: 'font-bold';*/
-/*    font-size: 18px;*/
-/*}*/
 
 header {
     background-color: rgba(255, 255, 255, 0.4);
@@ -25,10 +15,7 @@ header {
 }
 
 .body {
-    padding-top: 60px;
-    padding-bottom: 100px;
-    padding-left: 200px;
-    padding-right: 200px;
+    padding: 40px 200px 100px 200px;
 }
 
 .content {
