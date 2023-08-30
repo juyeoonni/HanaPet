@@ -15,6 +15,42 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
+
+        .circle-container {
+            display: flex;
+            width: 1200px;
+            height: 300px;
+            margin-bottom: 30px;
+        }
+
+        .circle1, .circle2, .circle3, .circle4 {
+            width: 300px;
+            height: 300px;
+            border-radius: 9999px;
+            background-color: rgba(117, 169, 137, 0.73);
+            transform: translateX(45.5px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .circle2 {
+            background-color: rgba(191, 223, 203, 0.73);
+            transform: translateX(-11.5px);
+        }
+
+        .circle3 {
+            background-color: rgba(225, 230, 222, 0.73);
+            transform: translateX(-68.5px);
+        }
+
+        .circle4 {
+            background-color: rgba(238, 224, 234, 0.73);
+            transform: translateX(-125.5px);
+        }
+
+
         .join {
             display: inline-block;
             text-align: center;
@@ -52,7 +88,7 @@
             border-radius: 80px;
             width: auto;
             height: 2.5px;
-            margin-bottom: 30px;
+            margin-bottom: 90px;
         }
 
         .product-info {
@@ -72,9 +108,28 @@
             font-family: font-medium;
         }
 
-        #joinForm{
+        #joinForm {
             text-align-last: center;
             margin-top: 50px;
+        }
+
+        .centered-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            font-size: 23px;
+            font-family: 'font-medium';
+            font-weight: bold;
+            margin-top: 60px;
+        }
+
+        .bottom-centered-div {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            font-size: 17px;
+            margin-bottom: 30px;
         }
 
     </style>
@@ -83,11 +138,35 @@
 <%@ include file="include/header.jsp" %>
 <div class="body">
     <div class="first-section">
-        <img src=""/>
+        <img id="productImg" width="90px" style="margin-bottom: 10px"/>
         <div id="productCategory"></div>
         <div id="productDescription"></div>
     </div>
     <div class="line"></div>
+
+    <div class="circle-container">
+        <span class="circle1">
+    <div class="centered-div"> 만 3세 이하<br>우대 적금</div>
+    <div class="bottom-centered-div">특징</div>
+</span>
+        <span class="circle2">
+    <div class="centered-div"> 3개월 이상</div>
+    <div class="bottom-centered-div">기간</div>
+</span>
+        <span class="circle3">
+    <div class="centered-div"> 5000원 이상<br>100만원 이하</div>
+    <div class="bottom-centered-div">가입 금액</div>
+</span>
+        <span class="circle4">
+    <div class="centered-div">연 5.00%</div>
+    <div class="bottom-centered-div">최대 금리</div>
+</span>
+
+    </div>
+    <div style="font-size: 15px; text-align: end; margin-bottom: 60px">
+        (2023.05.10 기준, 세전)
+    </div>
+
 
     <div class="accordion" id="productAccordion"> <!-- 아코디언을 감싸는 컨테이너 -->
         <div class="accordion-item"> <!--아코디언의 각 항목을 나타내고, 하나의 아코디언 항목은 헤더와 본문으로 구성됨-->
@@ -260,12 +339,11 @@
         </div>
     </div>
 
-
     <form id="joinForm" action="/join-product">
         <input type="hidden" id="category" name="category">
         <input type="hidden" id="min_period" name="min_period">
         <input type="hidden" id="min_balance" name="min_balance">
-        <input class="join" value="가입하기" readonly >
+        <input class="join" value="가입하기" readonly>
     </form>
 </div>
 </body>
@@ -276,6 +354,7 @@
 
         // 제품 정보를 화면에 표시
         if (productInfo) {
+            $("#productImg").attr("src", "/resources/img/"+productInfo.image);
             $("#productCategory").text(productInfo.category + " 펫 적금");
             $("#productDescription").text(productInfo.description);
             $("#productRate").text("이자율: " + productInfo.rate);
