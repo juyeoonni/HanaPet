@@ -14,7 +14,7 @@
         }
 
         #banner2 {
-            background: #B6D2C1;
+            background: #BFDFCB;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
             width: 300px;

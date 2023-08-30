@@ -88,7 +88,7 @@
             border-radius: 80px;
             width: auto;
             height: 2.5px;
-            margin-bottom: 90px;
+            margin-bottom: 50px;
         }
 
         .product-info {
@@ -137,12 +137,7 @@
 <body>
 <%@ include file="include/header.jsp" %>
 <div class="body">
-    <div class="first-section">
-        <img id="productImg" width="90px" style="margin-bottom: 10px"/>
-        <div id="productCategory"></div>
-        <div id="productDescription"></div>
-    </div>
-    <div class="line"></div>
+    <%@ include file="include/product-header.jsp" %>
 
     <div class="circle-container">
         <span class="circle1">
