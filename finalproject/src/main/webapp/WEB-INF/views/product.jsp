@@ -40,7 +40,7 @@
         }
 
         .product-image {
-            width: 60px;
+            width: 90px;
         }
 
         .menu-title {
@@ -66,52 +66,58 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        // 서버에서 제품 데이터 가져오기
-        $.ajax({
-            url: "/products",
-            type: "GET",
-            dataType: "json",
-            success: function (products) {
-                var productList = $(".grid-container");
+    $.ajax({
+        url: "/products",
+        type: "GET",
+        dataType: "json",
+        success: function (products) {
+            var productList = $(".grid-container");
 
-                // 가져온 데이터를 사용하여 제품 카드 생성 및 추가
-                products.forEach(function (product) {
-                    var productCard = $("<div>").addClass("grid-item");
-                    // 이미지 추가
-                    var productImage = $("<img>").attr("src", "/resources/img/" + product.image).addClass("product-image");
-                    productCard.append(productImage);
-                    $("<div>").addClass("header")
-                        .append($("<span>").text(product.category))
-                        .appendTo(productCard);
-                    $("<div>").addClass("middle").text(product.description).appendTo(productCard);
-                    $("<div>").addClass("footer")
-                        .append($("<span>").text(product.rate))
-                        .append($("<button>").text("시작하기"))
-                        .click(function () {
-                            // 시작하기 버튼 클릭 시 제품 정보를 세션에 저장
-                            var productInfo = {
-                                category: product.category,
-                                description: product.description,
-                                rate: product.rate,
-                                min_period: product.min_period,
-                                min_balance: product.min_balance,
-                                image: product.image
-                            };
-                            sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
+            products.forEach(function (product) {
+                var productCard = $("<div>").addClass("grid-item")
+                    .css({
+                        "display": "flex",
+                        "justify-content": "center",
+                        "cursor":"pointer"
+                    })
+                    .click(function () {
+                        // 시작하기 버튼 클릭 시 제품 정보를 세션에 저장
+                        var productInfo = {
+                            category: product.category,
+                            description: product.description,
+                            rate: product.rate,
+                            min_period: product.min_period,
+                            min_balance: product.min_balance,
+                            image: product.image
+                        };
+                        sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
 
-                            // 새 페이지로 이동
-                            window.location.href = "/one-product";
-                        })
-                        .appendTo(productCard);
+                        // 새 페이지로 이동
+                        window.location.href = "/one-product";
+                    });
 
-                    productList.append(productCard);
-                });
-            },
-            error: function () {
-                console.log("Error fetching product data.");
-            }
-        });
+                var header = $("<div>").addClass("header")
+                    .append($("<span>").text(product.category).css({"font-family":"font-medium","font-weight":"bold","font-size":"27px"}));
+                var box = $("<div>").addClass("box")
+                    .css({
+                        "display": "flex",
+                        "align-self": "end",
+                        "margin-bottom": "20px"
+                    })
+                    .append($("<img>").attr("src", "/resources/img/" + product.image).addClass("product-image"))
+                    .append($("<div>").addClass("footer")
+                        .css("align-self", "center")
+                        .append($("<div>").html("최대 연<br>" + product.rate + "%").css({"margin-left": "20px","font-size":"25px", "font-family":"font-medium","font-weight":"bold"}))
+                    );
+                var middle = $("<div>").addClass("middle").text(product.description);
+
+                productCard.append(header).append(box).append(middle);
+                productList.append(productCard);
+            });
+        },
+        error: function () {
+            console.log("Error fetching product data.");
+        }
     });
 </script>
 </body>
