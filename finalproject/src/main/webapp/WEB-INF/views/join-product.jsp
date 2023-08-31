@@ -64,7 +64,7 @@
         </div>
 
         <!-- 조건 충족 여부에 따른 가입 버튼 -->
-        <button type="submit" class="btn btn-primary" id="joinButton" onclick="location.href='/test';">가입하기</button>
+        <button type="submit" class="btn btn-primary" id="joinButton" onclick="location.href='/card';">가입하기</button>
     </form>
 </div>
 </body>

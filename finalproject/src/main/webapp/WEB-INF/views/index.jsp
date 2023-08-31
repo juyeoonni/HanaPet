@@ -49,7 +49,16 @@
     <div id="banners">
         <%@ include file="include/banner.jsp" %>
         <div class="banner-right">
-            <div id="banner2"></div>
+            <div id="banner2">
+                <button id="openModalButton">모달 열기</button>
+
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="modalContent"></div>
+                    </div>
+                </div>
+            </div>
             <div id="banner3">
             </div>
         </div>
@@ -111,6 +120,43 @@
         window.addEventListener('scroll', handleScroll);
         handleScroll();
     });
+    document.addEventListener("DOMContentLoaded", function() {
+        const openModalButton = document.getElementById("openModalButton");
+        const modal = document.getElementById("myModal");
+        const modalContent = document.getElementById("modalContent");
+        const closeSpan = document.getElementsByClassName("close")[0];
+
+        openModalButton.addEventListener("click", function() {
+            // "test-start.jsp"의 내용을 가져와 모달 내에 채웁니다.
+            loadPage("test/start");
+        });
+
+        closeSpan.addEventListener("click", function() {
+            modal.style.display = "none";
+            modalContent.innerHTML = ""; // 모달 내용 초기화
+        });
+
+        function loadPage(url) {
+            // AJAX를 통해 페이지를 로드하여 모달 내에 채웁니다.
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    modalContent.innerHTML = data;
+
+                    // 모달 내 링크 클릭 이벤트 처리
+                    modalContent.addEventListener("click", function(event) {
+                        if (event.target.tagName === "A") {
+                            event.preventDefault();
+                            loadPage(event.target.getAttribute("href"));
+                        }
+                    });
+                });
+
+            modal.style.display = "block";
+        }
+    });
+
+
 </script>
 
 </body>

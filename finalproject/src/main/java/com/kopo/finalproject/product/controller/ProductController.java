@@ -50,7 +50,7 @@ public class ProductController {
         return mav;
     }
 
-    @RequestMapping("/test")
+    @RequestMapping("/card")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("card-box");
