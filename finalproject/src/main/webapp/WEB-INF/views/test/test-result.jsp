@@ -1,19 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Test</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../../resources/css/common.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-    </style>
-</head>
 
-<body>
-<div class="modal-content">
-    <div class="top">
+<style>
+    .progressbar {
+        width: 400px;
+        height: 15px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #ccc;
+        position: relative;
+    }
+
+    .progressbar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 15px;
+        width: 0;
+        background: #BFDFCB;
+        animation: progress 1s ease forwards;
+    }
+
+    @keyframes progress {
+        0% {
+            width: 75%;
+        }
+        100% {
+            width: 100%; /* 25%의 너비를 지정 */
+        }
+    }
+
+    .progress {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 99;
+    }
+
+    .top1 {
+        display: block;
+    }
+
+    .top2, .middle, .end {
+        display: none;
+    }
+</style>
+
+
+<div class="modal-c">
+    <div class="top1">
+        <div style="display: flex; align-items: center">
+            <img src="/resources/img/left-arrow.png" width="20px" style="margin-left: 15px"/>
+            <div class="progressbar">
+                <span class="progress"></span>
+            </div>
+        </div>
+    </div>
+    <div class="top2">
         <img src="/resources/img/dog.png" width="200px"/>
     </div>
     <div class="middle">
@@ -43,13 +85,13 @@
             <p data-we-empty-p="" style="text-align:center; line-height:2;"><span>펫적금은 반려동물을 키우는 가정들을 위한 새로운 금융상품입니다. 일반적인 적금과 비슷하지만, 이자율이 더 높은 경우 혹은 펫 관련 서비스 할인 혜택 등의 추가 혜택이 있습니다. 또한, 펫적금에서 모은 돈은 반려동물의 건강관리나 교육 등에 사용할 수 있도록 제한이 없다는 특징이 있습니다 :-)</span>
             </p>
         </div>
-        <div class="end">
-            <a href="/test/start" class="button-link">테스트 다시하개!
-            </a>
-            <a href="/product">
-                <button>추천 상품 보러가개!</button>
-            </a>
-        </div>
     </div>
-</body>
-</html>
+    <div class="end">
+        <a href="/test/start" class="button-link">테스트 다시하개!
+        </a>
+        <a href="/product">
+            <button>추천 상품 보러가개!</button>
+        </a>
+    </div>
+</div>
+

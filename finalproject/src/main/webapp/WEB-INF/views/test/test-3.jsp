@@ -1,23 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Test</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../../resources/css/common.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-    </style>
-</head>
+<style>
+    .progressbar {
+        width: 400px;
+        height: 15px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #ccc;
+        position: relative;
+    }
 
-<body>
-<div class="modal-content">
+    .progressbar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 15px;
+        width: 0;
+        background: #BFDFCB;
+        animation: progress 1s ease forwards;
+    }
+
+    @keyframes progress {
+        0% {
+            width: 25%;
+        }
+        100% {
+            width: 50%; /* 25%의 너비를 지정 */
+        }
+    }
+
+    .progress {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 99;
+    }
+</style>
+<div class="modal-c">
     <div class="top">
         <div>3/4</div>
-        <div>
-            <img src="" width="20px"/>
-            <img src="" width="200px"/>
+        <div style="display: flex; align-items: center">
+            <img src="/resources/img/left-arrow.png" width="20px" style="margin-left: 15px"/>
+            <div class="progressbar">
+                <span class="progress"></span>
+            </div>
         </div>
     </div>
     <div class="middle">
@@ -33,7 +58,3 @@
         </div>
     </div>
 </div>
-<script>
-</script>
-</body>
-</html>
