@@ -52,6 +52,9 @@ body {
     margin-right: 0;
 }
 
+.menu-item:hover{
+    color: #75A989;
+}
 .login-register {
     display: flex;
     align-items: center;

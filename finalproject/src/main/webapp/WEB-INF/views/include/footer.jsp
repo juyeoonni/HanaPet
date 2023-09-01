@@ -5,7 +5,7 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <div>
     <img src="/resources/img/footer.png"; width="1519px"/>
