@@ -17,8 +17,8 @@
             <img src="../../../resources/img/main_logo.png" style="width:170px;">
         </a>
         <div class="menu">
-            <a href="/product" class="menu-item hvr-underline-from-center"> 상품</a>
-            <a href="/petstory-start" class="menu-item hvr-underline-from-center"> 펫스토리</a>
+            <a href="/product" class="menu-item hvr-underline-from-center"> 펫적금 </a>
+            <a href="/insurance-product" class="menu-item hvr-underline-from-center"> 펫보험 </a>
             <a href="/petcalendar" class="menu-item hvr-underline-from-center"> 펫캘린더</a>
             <a href="/mypet" class="menu-item hvr-underline-from-center"> 마이페이지</a>
         </div>

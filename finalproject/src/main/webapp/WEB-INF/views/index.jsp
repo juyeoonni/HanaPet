@@ -189,7 +189,7 @@
             $('.modal-c .top2').css('display', 'block');
             $('.modal-c .middle').css('display', 'block');
             $('.modal-c .end').css('display', 'block');
-        }, 1000);
+        }, 1200);
     }
 </script>
 

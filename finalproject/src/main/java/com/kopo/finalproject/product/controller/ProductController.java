@@ -31,7 +31,7 @@ public class ProductController {
     @RequestMapping("/product")
     public ModelAndView product() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("product");
+        mav.setViewName("saving-product");
         return mav;
     }
 
