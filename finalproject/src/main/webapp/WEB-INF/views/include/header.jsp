@@ -6,8 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../../../resources/css/common.css">
     <link rel="stylesheet" href="../../../../resources/css/header.css">
-    <link href="css/hover.css" rel="stylesheet" media="all">
-    <link rel="stylesheet" href="../../../../resources/css/hover.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
