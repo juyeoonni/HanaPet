@@ -12,4 +12,11 @@ public class InsuranceController {
         mav.setViewName("insurance-product");
         return mav;
     }
+
+    @RequestMapping("/insurance-detail")
+    public ModelAndView insuranceDetail(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("insurance-detail");
+        return mav;
+    }
 }

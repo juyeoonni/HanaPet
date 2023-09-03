@@ -72,11 +72,11 @@
         margin-bottom: 9px;
     }
 
-    .disabled{
+    .disabled {
         color: #E1E6DE;
     }
 
-    .money p{
+    .money p {
         margin-top: 20px;
         font-weight: bold;
         font-family: font-medium;
@@ -84,7 +84,7 @@
         color: #008485;
     }
 
-    .money .des{
+    .money .des {
         margin-top: -20px;
         margin-bottom: 40px;
         font-size: 16px;
@@ -111,6 +111,9 @@
     }
 
 </style>
+
+
+<body>
 <div class="card"><img src="resources/img/insurance-logo.png"/>
     <div class="card-content">
         <div class="desc">입통원비가 따로 보장되는</div>
@@ -153,16 +156,17 @@
                                                                                                     value="1년형"
                                                                                                     checked>1년형</label><label
                             for="3year" class="sc-KfMfS lauCaU disabled"><input type="radio" name="period" id="3year"
-                                                                       disabled="" class="sc-gHLcSH bRNyiY"
-                                                                       value="3년형">3년형</label></div>
+                                                                                disabled="" class="sc-gHLcSH bRNyiY"
+                                                                                value="3년형">3년형</label></div>
                     <div class="sc-cHPgQl eHGAsI"><label for="lump" class="sc-KfMfS lauCaU"><input type="radio"
                                                                                                    name="payment"
                                                                                                    id="lump"
                                                                                                    class="sc-gHLcSH bRNyiY"
                                                                                                    value="일시납" checked>일시납</label><label
-                            for="monthly" class="sc-KfMfS lauCaU disabled"><input type="radio" name="payment" id="monthly"
-                                                                         disabled=""
-                                                                         class="sc-gHLcSH bRNyiY" value="월납">월납</label>
+                            for="monthly" class="sc-KfMfS lauCaU disabled"><input type="radio" name="payment"
+                                                                                  id="monthly"
+                                                                                  disabled=""
+                                                                                  class="sc-gHLcSH bRNyiY" value="월납">월납</label>
                     </div>
                 </div>
                 <div class="money"><p>일시납
@@ -170,7 +174,7 @@
                     403,620원</p>
                     <p class="des">기존 보험료 대비 10% 할인</p></div>
                 <div class="buttons">
-                    <button class="detail-btn">자세히 보기</button>
+                    <button class="detail-btn" id="detail-btn">자세히 보기</button>
                     <button class="join-btn">가입하기</button>
                 </div>
             </div>
@@ -210,8 +214,8 @@
                                                                                                      value="1년형"
                                                                                                      checked>1년형</label><label
                             for="3year0" class="sc-KfMfS lauCaU disabled"><input type="radio" name="period0" id="3year0"
-                                                                        disabled="" class="sc-gHLcSH bRNyiY"
-                                                                        value="3년형">3년형</label></div>
+                                                                                 disabled="" class="sc-gHLcSH bRNyiY"
+                                                                                 value="3년형">3년형</label></div>
                     <div class="sc-cHPgQl eHGAsI"><label for="lump0" class="sc-KfMfS lauCaU"><input type="radio"
                                                                                                     name="payment0"
                                                                                                     id="lump0"
@@ -256,16 +260,17 @@
                                                                                                      value="1년형"
                                                                                                      checked>1년형</label><label
                             for="3year1" class="sc-KfMfS lauCaU disabled"><input type="radio" name="period1" id="3year1"
-                                                                        disabled="" class="sc-gHLcSH bRNyiY"
-                                                                        value="3년형">3년형</label></div>
+                                                                                 disabled="" class="sc-gHLcSH bRNyiY"
+                                                                                 value="3년형">3년형</label></div>
                     <div class="sc-cHPgQl eHGAsI"><label for="lump1" class="sc-KfMfS lauCaU"><input type="radio"
                                                                                                     name="payment1"
                                                                                                     id="lump1"
                                                                                                     class="sc-gHLcSH bRNyiY"
                                                                                                     value="일시납" checked>일시납</label><label
-                            for="monthly1" class="sc-KfMfS lauCaU disabled"><input type="radio" name="payment1" id="monthly1"
-                                                                          class="sc-gHLcSH bRNyiY" value="월납"
-                                                                          disabled="">월납</label>
+                            for="monthly1" class="sc-KfMfS lauCaU disabled"><input type="radio" name="payment1"
+                                                                                   id="monthly1"
+                                                                                   class="sc-gHLcSH bRNyiY" value="월납"
+                                                                                   disabled="">월납</label>
                     </div>
                 </div>
                 <div class="money"><p>일시납 5,330원</p>
@@ -311,22 +316,24 @@
             </div>
             <div class="right"><p class="bold">보험료 납입 옵션</p>
                 <div class="check-option">
-                    <div class="sc-cHPgQl eHGAsI"><label for="1year2" class="sc-KfMfS lauCaU disabled"><input type="radio"
-                                                                                                     name="period"
-                                                                                                     id="1year2"
-                                                                                                     disabled=""
-                                                                                                     class="sc-gHLcSH bRNyiY"
-                                                                                                     value="1년형"
+                    <div class="sc-cHPgQl eHGAsI"><label for="1year2" class="sc-KfMfS lauCaU disabled"><input
+                            type="radio"
+                            name="period"
+                            id="1year2"
+                            disabled=""
+                            class="sc-gHLcSH bRNyiY"
+                            value="1년형"
                     >1년형</label><label
                             for="3year2" class="sc-KfMfS lauCaU"><input type="radio" name="period" id="3year2"
                                                                         class="sc-gHLcSH bRNyiY"
                                                                         value="3년형" checked>3년형</label></div>
-                    <div class="sc-cHPgQl eHGAsI"><label for="lump2" class="sc-KfMfS lauCaU disabled"><input type="radio"
-                                                                                                    name="payment"
-                                                                                                    id="lump2"
-                                                                                                    disabled=""
-                                                                                                    class="sc-gHLcSH bRNyi"
-                                                                                                    value="일시납">일시납</label><label
+                    <div class="sc-cHPgQl eHGAsI"><label for="lump2" class="sc-KfMfS lauCaU disabled"><input
+                            type="radio"
+                            name="payment"
+                            id="lump2"
+                            disabled=""
+                            class="sc-gHLcSH bRNyi"
+                            value="일시납">일시납</label><label
                             for="monthly2" class="sc-KfMfS lauCaU"><input type="radio" name="payment" id="monthly2"
 
                                                                           class="sc-gHLcSH bRNyiY" value="월납" checked>월납</label>
@@ -381,19 +388,21 @@
                                                                                                      name="period"
                                                                                                      id="1year3"
                                                                                                      class="sc-gHLcSH bRNyiY"
-                                                                                                     value="1년형" checked >1년형</label><label
+                                                                                                     value="1년형"
+                                                                                                     checked>1년형</label><label
                             for="3year3" class="sc-KfMfS lauCaU disabled"><input type="radio" name="period" id="3year3"
-                                                                        class="sc-gHLcSH bRNyiY"
-                                                                        disabled=""
-                                                                        value="3년형">3년형</label></div>
+                                                                                 class="sc-gHLcSH bRNyiY"
+                                                                                 disabled=""
+                                                                                 value="3년형">3년형</label></div>
                     <div class="sc-cHPgQl eHGAsI"><label for="lump3" class="sc-KfMfS lauCaU"><input type="radio"
                                                                                                     name="payment"
                                                                                                     id="lump3"
                                                                                                     class="sc-gHLcSH bRNyiY"
                                                                                                     value="일시납" checked>일시납</label><label
-                            for="monthly3" class="sc-KfMfS lauCaU disabled"><input type="radio" name="payment" id="monthly3"
-                                                                          disabled="" class="sc-gHLcSH bRNyiY"
-                                                                          value="월납">월납</label>
+                            for="monthly3" class="sc-KfMfS lauCaU disabled"><input type="radio" name="payment"
+                                                                                   id="monthly3"
+                                                                                   disabled="" class="sc-gHLcSH bRNyiY"
+                                                                                   value="월납">월납</label>
                     </div>
                 </div>
                 <div class="money"><p>일시납
@@ -408,3 +417,9 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("detail-btn").addEventListener("click", function () {
+        window.location.href = "/insurance-detail";
+    });
+</script>
+</body>
