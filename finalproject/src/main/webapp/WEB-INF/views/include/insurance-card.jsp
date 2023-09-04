@@ -275,12 +275,12 @@
                                    name="payment0"
                                    id="lump0"
                                    class="sc-gHLcSH bRNyiY"
-                                   value="일시납" checked>일시납
+                                   value="일시납">일시납
                         </label>
                         <label
                                 for="monthly0" class="sc-KfMfS lauCaU">
                             <input type="radio" name="payment0" id="monthly0"
-                                   class="sc-gHLcSH bRNyiY" value="월납">월납
+                                   class="sc-gHLcSH bRNyiY" value="월납" checked>월납
                         </label>
                     </div>
                 </div>
