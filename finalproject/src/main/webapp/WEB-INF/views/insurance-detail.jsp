@@ -83,21 +83,25 @@
         .IXARV {
             display: flex;
             justify-content: normal;
-            flex-wrap: wrap;
-            padding: 0px;
+            padding: 10px;
             margin-bottom: -0.5rem;
+            justify-content: space-between;
+        }
+
+        .next {
+            display: flex;
+            margin: 60px 100px 0px 100px;
+            justify-content: center;
         }
 
         .ejNQei {
             width: 10rem;
-            margin: 0px 6.4rem 3rem 0px;
         }
 
         .eLifJ {
             display: flex;
             -webkit-box-align: center;
             align-items: center;
-            margin-bottom: 0.6rem;
         }
 
         .binzhv {
@@ -105,6 +109,12 @@
             display: flex;
             -webkit-box-align: center;
             align-items: center;
+        }
+
+        .binzhv span {
+            font-size: 16px;
+            font-family: font-medium;
+            margin-bottom: 3px;
         }
 
         .bqRDfZ {
@@ -125,12 +135,22 @@
             display: flex;
         }
 
+        .hpKSpo {
+            width: 25px;
+            height: 25px;
+            margin-right: 0.6rem;
+            border-radius: 0.2rem;
+            border: 0.1rem solid rgb(187, 187, 187);
+            background-color: white;
+            appearance: none;
+            cursor: pointer;
+        }
+
         .hpKSpo:checked {
             position: relative;
             display: inline-block;
-            width: 1.7rem;
-            height: 1.7rem;
-            border: 0.1rem solid rgb(255, 170, 0);
+            width: 25px;
+            height: 25px;
             border-radius: 0.2rem;
             color: black;
         }
@@ -141,32 +161,34 @@
             position: absolute;
             left: -0.1rem;
             top: -0.1rem;
-            width: 1.7rem;
-            height: 1.7rem;
+            width: 25px;
+            height: 25px;
             text-align: center;
             border-radius: 0.2rem;
-            background: rgb(255, 170, 0);
+            background: #75A989;
             color: white;
             font-size: 1rem;
         }
 
         .cRXURy {
-            background-color: rgb(106, 206, 170);
-            width: 30%;
-            height: 5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 3rem 0px 2rem;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 0.8rem;
-            color: white;
+            margin-top: 60px;
+            background-color: #75A989;
+            border: none;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            text-align: center;
+            width: 200px;
+            border-radius: 10px;
+            font-size: 18px;
+            padding: 10px 20px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            outline: none;
         }
 
         .HdAuc {
-            font-size: 22px;
+            font-size: 25px;
             font-width: bold;
+            padding: 50px 100px 0px 100px;
         }
 
         .bqRDfZ {
@@ -187,46 +209,10 @@
             display: flex;
             -webkit-box-align: center;
             align-items: center;
-            font-size: 1.5rem;
-            color: rgb(0, 0, 0);
+            font-size: 20px;
+            font-family: font-medium;
             font-weight: bold;
             cursor: pointer;
-        }
-
-        .hpKSpo {
-            width: 1.7rem;
-            height: 1.7rem;
-            margin-right: 0.6rem;
-            border-radius: 0.2rem;
-            border: 0.1rem solid rgb(187, 187, 187);
-            background-color: white;
-            appearance: none;
-            cursor: pointer;
-        }
-
-        .hpKSpo:checked {
-            position: relative;
-            display: inline-block;
-            width: 1.7rem;
-            height: 1.7rem;
-            border: 0.1rem solid rgb(255, 170, 0);
-            border-radius: 0.2rem;
-            color: black;
-        }
-
-        .hpKSpo:checked::before {
-            content: "✔";
-            display: block;
-            position: absolute;
-            left: -0.1rem;
-            top: -0.1rem;
-            width: 1.7rem;
-            height: 1.7rem;
-            text-align: center;
-            border-radius: 0.2rem;
-            background: rgb(255, 170, 0);
-            color: white;
-            font-size: 1rem;
         }
 
         .issDsc {
@@ -234,8 +220,8 @@
             display: flex;
             -webkit-box-align: center;
             align-items: center;
-            font-size: 1.5rem;
-            color: rgb(187, 187, 187);
+            font-size: 20px;
+            color: #B6D2C1;
             font-weight: normal;
             cursor: pointer;
         }
@@ -246,25 +232,59 @@
             flex-wrap: wrap;
             -webkit-box-align: center;
             align-items: center;
+            justify-content: space-between; /* 요소들을 가로로 균등 배치 */
         }
 
         .iEeHUW {
-            width: 29rem;
-            margin-bottom: 2rem;
+            margin-bottom: 10px;
             display: flex;
             -webkit-box-pack: justify;
             justify-content: space-between;
-            margin-right: 4rem;
+            width: 48%; /* 각 요소가 2개씩 들어가도록 너비 조절 */
+            padding: 15px;
+            border: 1px solid #BFDFCB;
+            border-radius: 10px;
         }
 
-        .sc-gDeeJ, .HdAuc, .dNvInI {
+        .iEeHUW div:nth-child(1) {
+            font-weight: bold;
+        }
+
+        .iEeHUW div {
+            width: 13.5rem;
+            font-size: 17px;
+            line-height: 1.4;
+        }
+
+        .sc-gDeeJ {
             padding: 0px 100px 0px 100px;
+        }
+
+        .dNvInI {
+            font-size: 25px;
+            font-width: bold;
+            padding: 60px 100px 0px 100px;
         }
 
         .accordion {
             padding: 10px 100px 10px 100px;
         }
 
+        .accordion-body {
+            padding: 50px;
+        }
+
+        .accordion-button {
+            background-color: #75A989 !important;
+        }
+
+        .accordion-button span {
+            color: white !important;
+        }
+
+        .kEjGyx {
+            margin-top: 40px;
+        }
 
     </style>
 </head>
@@ -345,6 +365,7 @@
                 <p class="sc-knuRna gHBZMy">3만원</p></div>
         </div>
         <hr>
+        <br>
         <div class="sc-kTGBUR bqRDfZ">
             <div>
                 <div class="sc-hbjaKc dIsvBm">
@@ -353,7 +374,8 @@
                                                                                                          id="1year"
                                                                                                          name="period"
                                                                                                          class="sc-ekGZSs hpKSpo"
-                                                                                                         value="1년형">1년형</label><label
+                                                                                                         value="1년형"
+                                                                                                         checked>1년형</label><label
                                 for="3year" class="sc-bwANAz issDsc"><input type="radio" id="3year" name="period"
                                                                             class="sc-ekGZSs hpKSpo" value="3년형"
                                                                             disabled="">3년형</label></div>
@@ -361,11 +383,11 @@
                 </div>
                 <div class="sc-hbjaKc dIsvBm">
                     <div class="sc-jhfVAM clruKV">
-                        <div class="sc-enyVUO ksyVmd"><label for="lump" class="sc-bwANAz issDsc"
-                                                             style="color: rgb(0, 0, 0); font-weight: bold;"><input
+                        <div class="sc-enyVUO ksyVmd"><label for="lump" class="sc-bwANAz iiZsJI"
+                                                             style="font-weight: bold;"><input
                                 type="radio" id="lump" name="payment" class="sc-ekGZSs hpKSpo"
-                                value="일시납">일시납</label><label
-                                for="monthly" class="sc-bwANAz issDsc" style="color: rgb(187, 187, 187);"><input
+                                value="일시납" checked>일시납</label><label
+                                for="monthly" class="sc-bwANAz issDsc"><input
                                 type="radio" id="monthly" name="payment" class="sc-ekGZSs hpKSpo" value="월납"
                                 disabled="">월납</label>
                         </div>
@@ -373,9 +395,6 @@
                 </div>
             </div>
         </div>
-        <button class="sc-hWlEnr cRXURy">가입하기</button>
-
-
     </div>
 
     <p class="HdAuc">담보항목별 상세설명</p>
@@ -390,17 +409,27 @@
             <div id="collapseAgree1" class="accordion-collapse collapse" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion1">
                 <div class="accordion-body">
-                    <div class="accordion-body">
-                        <div class="sc-ewDcJz kEbIyS">
-                            <div class="sc-ehMyHa iEeHUW"><span>대기기간</span><span>30일</span></div>
-                            <div class="sc-ehMyHa iEeHUW"><span>자기부담금</span><span>3만원</span></div>
-                            <div class="sc-ehMyHa iEeHUW"><span>보장범위 / 한도</span><span>1회 150만원, 연 2회</span></div>
-                            <div class="sc-ehMyHa iEeHUW"><span>보상비율</span><span>70%</span></div>
+                    <div class="sc-ewDcJz kEbIyS">
+                        <div class="sc-ehMyHa iEeHUW">
+                            <div>대기기간</div>
+                            <div>30일</div>
                         </div>
-                        <div class="sc-djvmMF kEjGyx" style="opacity: 1;"><span
-                                style="font-size:14px"><strong>[수술비]</strong><br> - 보장금액 : 1회 150만원, 연 2회<br> - 대기기간 : 30일<br> - 자기부담금 : 3만원<br> - 보상비율 : 70%<br> <br> <br> 제1조(보상하는 손해)<br> <br> ① 회사는 보험기간 중 보험증권에 기재된 반려동물에게 상해 또는&nbsp;질병(이하 "사고"라 합니다)이 발생하여 그 치료를 직접적인 목적으로 국내에서 수의사에게 치료를 받은 때에는 피보험자가 부담한 반려동물의 치료비를 이 약관에 따라 피보험자에게 치료비 보험금으로 보상하여 드립니다.&nbsp;단, 갱신계약의 경우에는 최초 보험가입시점 이후의 사고에 의한 경우에는 보험금을 지급합니다.<br> <br> ② 반려동물이 제1항의 사고로 치료를 받던 중에 보험기간이 만료된 경우에도 만료일부터 180일 이내의 치료비는 보상하여 드립니다. 다만 사고일 또는 발병일부터 365일 이내의 치료인 경우에 한합니다.</span>
-                            <div></div>
+                        <div class="sc-ehMyHa iEeHUW">
+                            <div>자기부담금</div>
+                            <div>3만원</div>
                         </div>
+                        <div class="sc-ehMyHa iEeHUW">
+                            <div>보장범위 / 한도</div>
+                            <div>1회 150만원, 연 2회</div>
+                        </div>
+                        <div class="sc-ehMyHa iEeHUW">
+                            <div>보상비율</div>
+                            <div>70%</div>
+                        </div>
+                    </div>
+                    <div class="sc-djvmMF kEjGyx" style="opacity: 1;"><span
+                            style="font-size:17px;">[수술비]<br> - 보장금액 : 1회 150만원, 연 2회<br> - 대기기간 : 30일<br> - 자기부담금 : 3만원<br> - 보상비율 : 70%<br> <br> <br> 제1조(보상하는 손해)<br> <br> ① 회사는 보험기간 중 보험증권에 기재된 반려동물에게 상해 또는&nbsp;질병(이하 "사고"라 합니다)이 발생하여 그 치료를 직접적인 목적으로 국내에서 수의사에게 치료를 받은 때에는 피보험자가 부담한 반려동물의 치료비를 이 약관에 따라 피보험자에게 치료비 보험금으로 보상하여 드립니다.&nbsp;단, 갱신계약의 경우에는 최초 보험가입시점 이후의 사고에 의한 경우에는 보험금을 지급합니다.<br> <br> ② 반려동물이 제1항의 사고로 치료를 받던 중에 보험기간이 만료된 경우에도 만료일부터 180일 이내의 치료비는 보상하여 드립니다. 다만 사고일 또는 발병일부터 365일 이내의 치료인 경우에 한합니다.</span>
+                        <div></div>
                     </div>
                 </div>
             </div>
@@ -412,27 +441,36 @@
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseAgree2" aria-expanded="true" aria-controls="collapseAgree2">
-                    <span style="font-size: 18px;">치료비 (입원)</span>
+                    <span style="font-size: 17px;">치료비 (입원)</span>
                 </button>
             </h2>
             <div id="collapseAgree2" class="accordion-collapse collapse" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion">
                 <div class="accordion-body">
-                    <div class="accordion-body">
-                        <div class="sc-iXxrte fCQhDx">
-                            <div class="sc-hKpBwk bblNaH" style="opacity: 1;">
-                                <div class="sc-ewDcJz kEbIyS">
-                                    <div class="sc-ehMyHa iEeHUW"><span>대기기간</span><span>30일</span></div>
-                                    <div class="sc-ehMyHa iEeHUW"><span>자기부담금</span><span>3만원</span></div>
-                                    <div class="sc-ehMyHa iEeHUW"><span>보장범위 / 한도</span><span>1일 15만원, 연 20일</span>
-                                    </div>
-                                    <div class="sc-ehMyHa iEeHUW"><span>보상비율</span><span>70%</span></div>
+                    <div class="sc-iXxrte fCQhDx">
+                        <div class="sc-hKpBwk bblNaH" style="opacity: 1;">
+                            <div class="sc-ewDcJz kEbIyS">
+                                <div class="sc-ehMyHa iEeHUW">
+                                    <div>대기기간</div>
+                                    <div>30일</div>
+                                </div>
+                                <div class="sc-ehMyHa iEeHUW">
+                                    <div>자기부담금</div>
+                                    <div>3만원</div>
+                                </div>
+                                <div class="sc-ehMyHa iEeHUW">
+                                    <div>보장범위 / 한도</div>
+                                    <div>1일 15만원, 연 20일</div>
+                                </div>
+                                <div class="sc-ehMyHa iEeHUW">
+                                    <div>보상비율</div>
+                                    <div>70%</div>
                                 </div>
                             </div>
-                            <div class="sc-djvmMF kEjGyx" style="opacity: 1;"><span
-                                    style="font-size:14px"><strong>[치료비(입원)]</strong><br> - 보장금액 : 1일 15만원, 연 20일<br> - 대기기간 : 30일<br> - 자기부담금 : 3만원<br> - 보상비율 : 70%<br> <br> <br> 제1조(보상하는 손해)<br> ① 회사는 보험기간 중 보험증권에 기재된 반려동물에게 상해 또는&nbsp;질병(이하 "사고"라 합니다)이 발생하여 그 치료를 직접적인 목적으로 국내에서 수의사에게 치료를 받은 때에는 피보험자가 부담한 반려동물의 치료비를 이 약관에 따라 피보험자에게 치료비 보험금으로 보상하여 드립니다.&nbsp;단, 갱신계약의 경우에는 최초 보험가입시점 이후의 사고에 의한 경우에는 보험금을 지급합니다.<br> <br> ② 반려동물이 제1항의 사고로 치료를 받던 중에 보험기간이 만료된 경우에도 만료일부터 180일 이내의 치료비는 보상하여 드립니다. 다만 사고일 또는 발병일부터 365일 이내의 치료인 경우에 한합니다.</span>
-                                <div></div>
-                            </div>
+                        </div>
+                        <div class="sc-djvmMF kEjGyx" style="opacity: 1;"><span
+                                style="font-size:17px">[치료비(입원)]<br> - 보장금액 : 1일 15만원, 연 20일<br> - 대기기간 : 30일<br> - 자기부담금 : 3만원<br> - 보상비율 : 70%<br> <br> <br> 제1조(보상하는 손해)<br> ① 회사는 보험기간 중 보험증권에 기재된 반려동물에게 상해 또는&nbsp;질병(이하 "사고"라 합니다)이 발생하여 그 치료를 직접적인 목적으로 국내에서 수의사에게 치료를 받은 때에는 피보험자가 부담한 반려동물의 치료비를 이 약관에 따라 피보험자에게 치료비 보험금으로 보상하여 드립니다.&nbsp;단, 갱신계약의 경우에는 최초 보험가입시점 이후의 사고에 의한 경우에는 보험금을 지급합니다.<br> <br> ② 반려동물이 제1항의 사고로 치료를 받던 중에 보험기간이 만료된 경우에도 만료일부터 180일 이내의 치료비는 보상하여 드립니다. 다만 사고일 또는 발병일부터 365일 이내의 치료인 경우에 한합니다.</span>
+                            <div></div>
                         </div>
                     </div>
                 </div>
@@ -501,13 +539,17 @@
     </div>
 
 
-    <div class="sc-hmLeec dNvInI"><p class="sc-hTtIkV bKXcYK">보험약관 다운로드</p>
+    <div class="sc-hmLeec dNvInI">보험약관 다운로드
         <div class="sc-gspIFj cCzenJ"><span>보험약관 다운받기</span>
             <button class="downbtn" style="padding: 5px 10px; border:none;"
                     onclick="window.open('/signInfoPDF', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');">
                 pdf 다운로드
             </button>
         </div>
+    </div>
+
+    <div class="next">
+        <button class="sc-hWlEnr cRXURy">다음으로</button>
     </div>
 </div>
 <script>

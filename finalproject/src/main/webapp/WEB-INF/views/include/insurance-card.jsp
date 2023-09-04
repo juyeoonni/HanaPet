@@ -91,7 +91,7 @@
         margin-top: 20px;
         font-weight: bold;
         font-family: font-medium;
-        font-size: 28px;
+        font-size: 29px;
         color: #75A989;
     }
 
