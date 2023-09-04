@@ -12,4 +12,11 @@ public class MainController {
         mav.setViewName("index");
         return mav;
     }
+
+    @RequestMapping("/signInfoPDF")
+    public ModelAndView pdf() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("include/signInfoPDF");
+        return mav;
+    }
 }

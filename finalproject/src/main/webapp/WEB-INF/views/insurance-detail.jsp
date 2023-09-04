@@ -501,15 +501,15 @@
     </div>
 
 
-        <div class="sc-hmLeec dNvInI"><p class="sc-hTtIkV bKXcYK">보험약관 다운로드</p>
-            <div class="sc-gspIFj cCzenJ"><span>보험약관 다운받기</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="13.2" height="12.2" viewBox="0 0 13.2 12.2"
-                     class="sc-czShuu hsXvsS">
-                    <g id="Icon_feather-download" data-name="Icon feather-download" transform="translate(-3.9 -3.9)">
-                        <path id="\uD328\uC2A4_50" data-name="\uD328\uC2A4 50"
-            </div>
+    <div class="sc-hmLeec dNvInI"><p class="sc-hTtIkV bKXcYK">보험약관 다운로드</p>
+        <div class="sc-gspIFj cCzenJ"><span>보험약관 다운받기</span>
+            <button class="downbtn" style="padding: 5px 10px; border:none;"
+                    onclick="window.open('/signInfoPDF', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');">
+                pdf 다운로드
+            </button>
         </div>
     </div>
+</div>
 <script>
     function goBack() {
         window.location.href = "/insurance-product";
