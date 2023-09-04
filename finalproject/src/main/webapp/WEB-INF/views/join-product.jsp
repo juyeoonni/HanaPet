@@ -1,78 +1,268 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
 <head>
     <title>Join-Product</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../../resources/css/common.css">
-    <!-- 부트스트랩 CSS 링크 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/common.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+
+        .first-section {
+            text-align: center;
+        }
+
+        #productCategory {
+            font-size: 31px;
+            margin-bottom: 15px;
+        }
+
+        #productDescription {
+            font-family: font-medium;
+            margin-bottom: 15px;
+        }
+
+        .line {
+            background: #CFDBC8;
+            border-radius: 80px;
+            width: auto;
+            height: 2.5px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-family: font-medium;
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* 테이블 전체 스타일 */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        /* 테이블 행 스타일 */
+        tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* 테이블 셀 스타일 */
+        td {
+            padding: 20px 0px 20px 30px;
+            text-align: left;
+            font-family: font-medium;
+        }
+
+        /* 라벨 셀 스타일 */
+        td.form-label {
+            font-weight: bold;
+            width: 190px;
+        }
+
+        /* 입력 필드 스타일 */
+        .input-form {
+            width: 400px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+        /* 드롭다운 스타일 */
+        .form-select {
+            width: 400px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* 확인 버튼 스타일 */
+        .Button {
+            display: inline-block;
+            text-align: center;
+            width: 150px;
+            font-size: 18px;
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            background: #75A989;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            outline: none;
+        }
+
+        #joinButton {
+
+            margin-top: 50px;
+        }
+
+        #confirmButton {
+            margin-left: 40px;
+        }
+
+        /* 오류 메시지 스타일 */
+        .text-danger {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* 라디오 버튼 스타일 */
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        /*select.form-select {*/
+        /*    -webkit-appearance: none;*/
+        /*    -moz-appearance: none;*/
+        /*    appearance: none;*/
+        /*    background-repeat: no-repeat;*/
+        /*    background-position: right center;*/
+        /*    padding-right: 30px; !* 화살표 여백 조절 *!*/
+        /*}*/
+
+        tbody tr:nth-child(1) {
+            border-top: 3px solid #75A989;
+        }
+
+        tbody tr:nth-last-child(1) {
+            border-bottom: 3px solid #75A989;
+        }
+
+        /* 홀수 번째 td 배경색 스타일 */
+        td:nth-child(odd) {
+            background-color: #E1E6DE;
+        }
+
+        ::placeholder {
+            color: #BFDFCB;
+        }
+
+    </style>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
 <div class="body">
-    <h2 class="mb-4">${param.category} 상품 가입</h2>
+    <%@ include file="include/product-header.jsp" %>
+    <div class="title">적금 상품 가입</div>
     <form>
-        <!-- 펫 정보 -->
-        <div class="mb-3">
-            <label for="petSelection" class="form-label">누구를 위한 적금인가요?</label>
-            <select class="form-select" id="petSelection" required>
-                <option value="" disabled selected>강아지를 선택해주세요.</option>
-                <!-- Ajax로 옵션 추가될 예정 -->
-            </select>
-        </div>
 
-        <!-- 출금 계좌 정보 -->
-        <div class="mb-3">
-            <label for="accountNumberSelection" class="form-label">어떤 계좌와 연결할까요?</label>
-            <select class="form-select" id="accountNumberSelection" required>
-                <option value="" disabled selected>연결하실 계좌를 선택해주세요.</option>
-                <!-- Ajax로 옵션 추가될 예정 -->
-            </select>
-        </div>
-
-        <!-- 계좌 비밀번호 -->
-        <div class="mb-3">
-            <label for="accountPassword" class="form-label">계좌 비밀번호</label>
-            <input type="password" class="form-control" id="accountPassword" placeholder="계좌 비밀번호를 입력해주세요."
-                   required>
-            <button id="confirmButton">확인</button>
-        </div>
-
-        <!-- 상품 정보 -->
-        <div class="mb-3">
-            <label for="joinAmount" class="form-label">얼마를 입금할까요?</label>
-            <input type="number" class="form-control" id="joinAmount" placeholder="금액을 입력해주세요." required>
-            <p id="conditionMessage1" class="mt-2 text-danger"></p>
-        </div>
-
-        <div class="mb-3">
-            <label for="joinPeriod" class="form-label">적금 기간</label>
-            <input type="number" class="form-control" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required>
-            <p id="conditionMessage2" class="mt-2 text-danger"></p>
-        </div>
-
-        <div class="mb-3">
-            <label for="transferCycle" class="form-label">자동이체 주기</label>
-            <select class="form-select" id="transferCycle" required>
-                <option value="" disabled selected>자동이체 주기를 선택해주세요</option>
-                <option value="monthly">매달</option>
-                <option value="weekly">매주</option>
-            </select>
-        </div>
+        <br>
+        <div>기본 정보</div>
+        <br>
+        <table class="table">
+            <tr>
+                <td class="form-label">출금 계좌번호</td>
+                <td>
+                    <div style="display: flex">
+                        <select class="form-select" id="accountNumberSelection" required>
+                            <!-- Ajax로 옵션 추가될 예정 -->
+                        </select>
+                        <div>
+                            <div style="display: flex">
+                                <div>현재 잔액:</div>
+                                <div class="balance"></div>
+                            </div>
+                            <div style="display: flex">
+                                <div>출금 가능 금액:</div>
+                                <div class="balance"></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label">계좌 비밀번호</td>
+                <td>
+                    <div style="display: flex">
+                        <input type="password" class="input-form" id="accountPassword" placeholder="계좌 비밀번호를 입력해주세요."
+                               required>
+                        <button class="Button" id="confirmButton">확인</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div>상품 정보</div>
+        <br>
+        <table class="table">
+            <tr>
+                <td class="form-label">반려견 정보</td>
+                <td>
+                    <select class="form-select" id="petSelection" required>
+                        <!-- Ajax로 옵션 추가될 예정 -->
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label">가입 기간</td>
+                <td>
+                    <input type="number" class="input-form" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required>개월
+                    <p id="conditionMessage2" class="mt-2 text-danger"></p>
+                    <p id="endDateMessage"></p>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label">가입 금액</td>
+                <td>
+                    <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요." required>원
+                    <p id="conditionMessage1" class="mt-2 text-danger"></p>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label">이체 주기</td>
+                <td>
+                    <div class="form" id="transferCycle" required>
+                        <input type="radio" id="period1" name="period" value="weekly"><label for="period1">매주</label>
+                        <input type="radio" id="period2" name="period" value="monthly"><label for="period2">매월</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label">자동이체 SMS 통보</td>
+                <td>
+                    <div class="form" id="transferSMS" required>
+                        <input type="radio" id="transferSMSyes" name="transferSMS" value="yes"><label
+                            for="transferSMSyes">신청함</label>
+                        <input type="radio" id="transferSMSno" name="transferSMS" value="no"><label for="transferSMSno">신청안함</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label">적금 만기 SMS 통보</td>
+                <td>
+                    <div class="form" id="finishSMS" required>
+                        <input type="radio" id="finishSMSyes" name="finishSMS" value="yes"><label
+                            for="finishSMSyes">신청함</label>
+                        <input type="radio" id="finishSMSno" name="finishSMS" value="no"><label
+                            for="finishSMSno">신청안함</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         <!-- 조건 충족 여부에 따른 가입 버튼 -->
-        <button type="submit" class="btn btn-primary" id="joinButton" onclick="location.href='/card';">가입하기</button>
+        <div style="text-align: center">
+            <button type="submit" class="Button" id="joinButton" onclick="location.href='/card';">가입하기</button>
+        </div>
     </form>
 </div>
 </body>
 
-<!-- 부트스트랩 JS 링크 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
 <%
     String guest_id = (String) session.getAttribute("guest_id");
 %>
@@ -175,6 +365,7 @@
                 message2 += '최소 기간을 넘겨야 합니다. ';
             }
 
+            console.log(message1)
             conditionMessage1.textContent = message1;
             conditionMessage2.textContent = message2;
         }
@@ -196,6 +387,20 @@
                 event.preventDefault(); // 조건을 만족하지 않을 경우 폼 제출 및 페이지 이동 중지
             }
         });
+
+        // 세션에서 제품 정보 가져오기
+        const productInfo = JSON.parse(sessionStorage.getItem("selectedProduct"));
+
+        // 제품 정보를 화면에 표시
+        if (productInfo) {
+            $("#productImg").attr("src", "/resources/img/" + productInfo.image);
+            $("#productCategory").text(productInfo.category + " 펫 적금");
+            $("#productDescription").text(productInfo.description);
+            $("#productRate").text("이자율: " + productInfo.rate);
+            $("#productMinPeriod").text("최소 기간: " + productInfo.min_period);
+            $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance);
+        }
     });
+
+
 </script>
-</html>
