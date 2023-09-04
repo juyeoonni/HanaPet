@@ -7,6 +7,10 @@
 
     .card {
         padding: 30px;
+        margin-bottom: 30px;
+        border: 3px solid #BFDFCB; /* 5px 크기의 #BFDFCB 테두리 설정 */
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
     }
 
     .desc {
@@ -104,14 +108,18 @@
 
     .join-btn {
         background-color: #75A989;
-        border: 0.1rem solid #75A989;
+        border: none;
         color: rgb(255, 255, 255);
         cursor: pointer;
         text-align: center;
         width: 200px;
-        border-radius: 0.5rem;
-        padding: 10px;
+        border-radius: 10px;
+        font-size: 18px;
+        padding: 10px 20px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        outline: none;
     }
+
 
 </style>
 

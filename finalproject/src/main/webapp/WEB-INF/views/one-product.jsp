@@ -66,9 +66,6 @@
             outline: none;
         }
 
-        /*.join:hover {*/
-        /*}*/
-
         .first-section {
             text-align: center;
         }
@@ -177,7 +174,7 @@
             <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#productAccordion">
                 <!--accordion-collapse: 펼쳐지거나 접힐 때의 상태를 설정/ collapse: 접혀있음, show: 펼쳐진 상태-->
-                <div class="accordion-body" style="background-color: #E1E6DE;"> <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
+                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;"> <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
                     <div id="productRate" class="product-info"></div> <!--product-info: 각 항목의 상세 정보-->
                     <div id="productMinPeriod" class="product-info"></div>
                     <div id="productMinBalance" class="product-info"></div>
@@ -208,7 +205,7 @@
             </h2>
             <div id="collapseAgree1" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion1">
-                <div class="accordion-body" style="background-color: #E1E6DE;">
+                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
                     <div class="accordion-body">
                         <p style="text-align: right; margin-bottom: 30px; font-size: 12px;">개정준법감시인 심의필
                             제2022-약관-104호(2022.06.23)</p>
@@ -270,7 +267,7 @@
             </h2>
             <div id="collapseAgree2" class="accordion-collapse collapse" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion">
-                <div class="accordion-body" style="background-color: #E1E6DE;">
+                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
                     <div class="accordion-body">
                         <p style="text-align: right; margin-bottom: 30px; font-size: 12px;">개정준법감시인 심사필번호
                             제2021-약관-121호(2021.03.22)</p>
@@ -305,7 +302,7 @@
             </h2>
             <div id="collapseAgree3" class="accordion-collapse collapse" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion3">
-                <div class="accordion-body" style="background-color: #E1E6DE;">
+                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
                     <div class="accordion-body">
                         <p style="text-align: right;">개정준법감시인 심사필번호 제2021-약관-121호(2021.03.22)</p>
                     </div>
@@ -325,7 +322,7 @@
             </h2>
             <div id="collapseAgree4" class="accordion-collapse collapse" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion3">
-                <div class="accordion-body" style="background-color: #E1E6DE;">
+                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
                     <div class="accordion-body">
                         <p style="text-align: right;">개정준법감시인 심사필번호 제2021-약관-121호(2021.03.22)</p>
                     </div>
