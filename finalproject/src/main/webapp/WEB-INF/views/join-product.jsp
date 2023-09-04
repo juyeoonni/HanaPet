@@ -106,7 +106,6 @@
         }
 
         #joinButton {
-
             margin-top: 50px;
         }
 
@@ -126,15 +125,6 @@
             margin-right: 5px;
         }
 
-        /*select.form-select {*/
-        /*    -webkit-appearance: none;*/
-        /*    -moz-appearance: none;*/
-        /*    appearance: none;*/
-        /*    background-repeat: no-repeat;*/
-        /*    background-position: right center;*/
-        /*    padding-right: 30px; !* 화살표 여백 조절 *!*/
-        /*}*/
-
         tbody tr:nth-child(1) {
             border-top: 3px solid #75A989;
         }
@@ -152,7 +142,7 @@
             color: #BFDFCB;
         }
 
-        #endDateMessage{
+        #endDateMessage {
             font-size: 17px;
         }
 
@@ -164,7 +154,6 @@
     <%@ include file="include/product-header.jsp" %>
     <div class="title">적금 상품 가입</div>
     <form>
-
         <br>
         <div>기본 정보</div>
         <br>
@@ -176,7 +165,7 @@
                         <select class="form-select" id="accountNumberSelection" required onchange="updateBalance()">
                             <!-- Ajax로 옵션 추가될 예정 -->
                         </select>
-                        <div>
+                        <div style="margin-left: 40px">
                             <div style="display: flex">
                                 <div>현재 잔액:</div>
                                 <div id="current_balance"></div>
@@ -232,7 +221,7 @@
                 <td>
                     <div class="form" id="transferCycle" required>
                         <input type="radio" id="period1" name="period" value="weekly"><label for="period1">매주</label>
-                        <input type="radio" id="period2" name="period" value="monthly"><label for="period2">매월</label>
+                        <input type="radio" id="period2" name="period" value="monthly" checked><label for="period2">매월</label>
                     </div>
                 </td>
             </tr>
@@ -240,7 +229,7 @@
                 <td class="form-label">자동이체 SMS 통보</td>
                 <td>
                     <div class="form" id="transferSMS" required>
-                        <input type="radio" id="transferSMSyes" name="transferSMS" value="yes"><label
+                        <input type="radio" id="transferSMSyes" name="transferSMS" value="yes" checked><label
                             for="transferSMSyes">신청함</label>
                         <input type="radio" id="transferSMSno" name="transferSMS" value="no"><label for="transferSMSno">신청안함</label>
                     </div>
@@ -250,7 +239,7 @@
                 <td class="form-label">적금 만기 SMS 통보</td>
                 <td>
                     <div class="form" id="finishSMS" required>
-                        <input type="radio" id="finishSMSyes" name="finishSMS" value="yes"><label
+                        <input type="radio" id="finishSMSyes" name="finishSMS" value="yes" checked><label
                             for="finishSMSyes">신청함</label>
                         <input type="radio" id="finishSMSno" name="finishSMS" value="no"><label
                             for="finishSMSno">신청안함</label>
@@ -261,7 +250,7 @@
 
         <!-- 조건 충족 여부에 따른 가입 버튼 -->
         <div style="text-align: center">
-            <button type="submit" class="Button" id="joinButton" onclick="location.href='/card';">가입하기</button>
+            <button type="button" class="Button" id="joinButton">가입하기</button>
         </div>
     </form>
 </div>
@@ -271,6 +260,9 @@
     String guest_id = (String) session.getAttribute("guest_id");
 %>
 <script>
+    let flag1 = false;
+    let flag2 = false;
+
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>';
 
@@ -321,7 +313,7 @@
         });
 
         // Ajax로 예금 계좌 비밀번호 일치 확인
-        $("#confirmButton").click(function () {
+        $("#confirmButton").click(function (event) {
             // 선택된 계좌 옵션의 text 가져오기
             const account_number = $("#accountNumberSelection option:selected").text();
             // 입력한 계좌 비밀번호 가져오기
@@ -339,14 +331,17 @@
                 success: function (data) {
                     if (data < 1) { // 비번 틀린 경우
                         console.log("비밀번호 불일치");
+                        flag1 = false;
                     } else { // 비번 일치하는 경우
                         console.log("비밀번호 일치");
+                        flag1 = true;
                     }
                 },
                 error: function (xhr, status, error) {
                     console.error('Error fetching account list:', error);
                 }
             });
+            event.preventDefault();
         });
 
         const joinAmountInput = document.getElementById('joinAmount');
@@ -354,12 +349,14 @@
         const conditionMessage1 = document.getElementById('conditionMessage1');
         const conditionMessage2 = document.getElementById('conditionMessage2');
 
+        const minBalance = parseFloat('${param.min_balance}');
+        const minPeriod = parseFloat('${param.min_period}');
+
         // 가입 버튼 활성화/비활성화 함수
         function toggleJoinButton() {
+
             const joinAmount = parseFloat(joinAmountInput.value);
             const joinPeriod = parseFloat(joinPeriodInput.value);
-            const minBalance = parseFloat('${param.min_balance}');
-            const minPeriod = parseFloat('${param.min_period}');
             let message1 = '';
             let message2 = '';
 
@@ -371,9 +368,10 @@
                 message2 += '최소 기간을 넘겨야 합니다. ';
             }
 
-            console.log(message1)
             conditionMessage1.textContent = message1;
             conditionMessage2.textContent = message2;
+
+            flag2 = joinAmount >= minBalance && joinPeriod >= minPeriod;
         }
 
         function endDate() {
@@ -407,19 +405,6 @@
         joinPeriodInput.addEventListener('input', toggleJoinButton);
         joinPeriodInput.addEventListener('input', endDate);
 
-        // 폼 제출 시 조건 확인 후 페이지 이동 막기
-        $('form').submit(function (event) {
-            const joinAmount = parseFloat(joinAmountInput.value);
-            const joinPeriod = parseFloat(joinPeriodInput.value);
-            const minBalance = parseFloat('${param.min_balance}');
-            const minPeriod = parseFloat('${param.min_period}');
-
-            if (joinAmount >= minBalance && joinPeriod >= minPeriod) {
-                return true; // 조건을 만족할 경우 폼 제출 및 페이지 이동
-            } else {
-                event.preventDefault(); // 조건을 만족하지 않을 경우 폼 제출 및 페이지 이동 중지
-            }
-        });
 
         // 세션에서 제품 정보 가져오기
         const productInfo = JSON.parse(sessionStorage.getItem("selectedProduct"));
@@ -435,7 +420,6 @@
         }
     });
 
-
     function updateBalance() {
         // select 요소에서 선택한 값을 가져오기
         const selectedValue = document.getElementById("accountNumberSelection").value;
@@ -444,5 +428,13 @@
         document.getElementById("able_balance").textContent = selectedValue;
     }
 
+    document.getElementById('joinButton').addEventListener('click', function (event) {
+        if (flag1 && flag2) {
+            window.location.href = '/card'; // 페이지 이동 처리
+        } else {
+            alert("조건을 모두 충족해야 합니다.");
+            event.preventDefault(); // 조건을 만족하지 않을 경우 폼 제출 및 페이지 이동 중지
+        }
+    });
 
 </script>
