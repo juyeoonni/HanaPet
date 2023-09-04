@@ -152,6 +152,10 @@
             color: #BFDFCB;
         }
 
+        #endDateMessage{
+            font-size: 17px;
+        }
+
     </style>
 </head>
 <body>
@@ -169,17 +173,17 @@
                 <td class="form-label">출금 계좌번호</td>
                 <td>
                     <div style="display: flex">
-                        <select class="form-select" id="accountNumberSelection" required>
+                        <select class="form-select" id="accountNumberSelection" required onchange="updateBalance()">
                             <!-- Ajax로 옵션 추가될 예정 -->
                         </select>
                         <div>
                             <div style="display: flex">
                                 <div>현재 잔액:</div>
-                                <div class="balance"></div>
+                                <div id="current_balance"></div>
                             </div>
                             <div style="display: flex">
                                 <div>출금 가능 금액:</div>
-                                <div class="balance"></div>
+                                <div id="able_balance"></div>
                             </div>
                         </div>
                     </div>
@@ -212,15 +216,15 @@
                 <td class="form-label">가입 기간</td>
                 <td>
                     <input type="number" class="input-form" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required>개월
-                    <p id="conditionMessage2" class="mt-2 text-danger"></p>
-                    <p id="endDateMessage"></p>
+                    <div id="conditionMessage2" class="mt-2 text-danger"></div>
+                    <div id="endDateMessage"></div>
                 </td>
             </tr>
             <tr>
                 <td class="form-label">가입 금액</td>
                 <td>
                     <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요." required>원
-                    <p id="conditionMessage1" class="mt-2 text-danger"></p>
+                    <div id="conditionMessage1" class="mt-2 text-danger"></div>
                 </td>
             </tr>
             <tr>
@@ -304,10 +308,12 @@
                 const accountNumberSelection = document.getElementById('accountNumberSelection');
                 data.forEach(function (account) {
                     const option = document.createElement('option');
-                    option.value = account.account_number;
+                    option.value = account.balance;
                     option.textContent = account.account_number;
                     accountNumberSelection.appendChild(option);
                 });
+                document.getElementById("current_balance").textContent = data[0].balance;
+                document.getElementById("able_balance").textContent = data[0].balance;
             },
             error: function (xhr, status, error) {
                 console.error('Error fetching account list:', error);
@@ -316,10 +322,10 @@
 
         // Ajax로 예금 계좌 비밀번호 일치 확인
         $("#confirmButton").click(function () {
-            // 선택된 계좌 옵션의 값 가져오기
-            var account_number = $("#accountNumberSelection").val();
+            // 선택된 계좌 옵션의 text 가져오기
+            const account_number = $("#accountNumberSelection option:selected").text();
             // 입력한 계좌 비밀번호 가져오기
-            var account_pw = $("#accountPassword").val();
+            const account_pw = $("#accountPassword").val();
 
             $.ajax({
                 url: '/checkdepositaccountpw',
@@ -370,9 +376,36 @@
             conditionMessage2.textContent = message2;
         }
 
+        function endDate() {
+            const minPeriod = parseFloat('${param.min_period}');
+            const joinPeriod = parseInt(joinPeriodInput.value);
+            const endDate = calculateEndDate(joinPeriod);
+            const endDateMessage = document.getElementById('endDateMessage');
+            let message3 = '';
+            if (joinPeriod >= minPeriod) {
+                message3 += "적금 만기 예정일은 " + endDate + " 입니다.";
+            }
+            endDateMessage.textContent = message3;
+        }
+
+        function calculateEndDate(months) {
+            var today = new Date(); // 현재 날짜 가져오기
+            var endDate = new Date(today); // 현재 날짜를 복사하여 사용
+
+            endDate.setMonth(today.getMonth() + months); // 월을 더해 몇 개월 후의 날짜 계산
+
+            // 날짜 포맷 설정 (예: "YYYY-MM-DD")
+            var year = endDate.getFullYear();
+            var month = String(endDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1을 해주고 2자리로 포맷
+            var day = String(endDate.getDate()).padStart(2, '0'); // 일자를 2자리로 포맷
+
+            return year + '년 ' + month + '월 ' + day + '일';
+        }
+
         // 입력 값 변경 시 가입 버튼 상태 업데이트
         joinAmountInput.addEventListener('input', toggleJoinButton);
         joinPeriodInput.addEventListener('input', toggleJoinButton);
+        joinPeriodInput.addEventListener('input', endDate);
 
         // 폼 제출 시 조건 확인 후 페이지 이동 막기
         $('form').submit(function (event) {
@@ -401,6 +434,15 @@
             $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance);
         }
     });
+
+
+    function updateBalance() {
+        // select 요소에서 선택한 값을 가져오기
+        const selectedValue = document.getElementById("accountNumberSelection").value;
+        // 선택한 값을 #current_balance 요소에 표시
+        document.getElementById("current_balance").textContent = selectedValue;
+        document.getElementById("able_balance").textContent = selectedValue;
+    }
 
 
 </script>
