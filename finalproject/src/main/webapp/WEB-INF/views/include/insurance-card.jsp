@@ -30,30 +30,37 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* 3개의 열을 생성합니다. */
         gap: 20px; /* 열 사이의 간격을 조절할 수 있습니다. */
-        margin-right: 100px;
+        margin-right: 75px;
     }
 
     .title {
+        width: 12rem;
+        padding-bottom: 5px;
+    }
+
+    .title div:nth-child(1) {
         font-size: 15px;
+        margin-bottom: 5px;
+        padding-bottom: -5px;
+    }
+
+    .title div:nth-child(2) {
+        font-size: 16px;
+        margin-bottom: 5px;
         font-family: font-medium;
+        color: #B6D2C1;
     }
 
-    .des {
-        font-size: 15px;
-        color: #75A989;
-        margin-top: -10px;
+    .title div:nth-child(3) {
+        font-size: 20px;
+        font-family: font-medium;
+        font-weight: bold;
     }
 
-    .plus {
-        margin-left: 50px;
-    }
-
-    .minus {
-        margin-left: -10px;
-    }
-
-    .top {
-        margin-top: 20px;
+    /* 선택된 체크박스의 색상 */
+    input[type="checkbox"]:checked {
+        background-color: #75A989; /* 선택된 상태일 때 배경 색상 변경 */
+        border: 2px solid #75A989; /* 선택된 상태일 때 테두리 색상 변경 */
     }
 
     .bold {
@@ -76,42 +83,37 @@
         color: #E1E6DE;
     }
 
-    .money p {
+    .money p:nth-child(1) {
         margin-top: 20px;
         font-weight: bold;
         font-family: font-medium;
-        font-size: 31px;
-        color: #008485;
+        font-size: 28px;
+        color: #75A989;
     }
 
-    .money .des {
-        margin-top: -20px;
+    .money p:nth-child(2) {
+        margin-top: -10px;
         margin-bottom: 40px;
-        font-size: 16px;
-        color: #75A989;
+        font-size: 14px;
+        color: #324D3D;
     }
 
     .buttons {
         display: flex;
     }
 
-    .detail-btn {
-        margin-right: 20px;
-    }
-
-    .join-btn, .detail-btn {
+    .join-btn {
         background-color: #75A989;
         border: 0.1rem solid #75A989;
         color: rgb(255, 255, 255);
         cursor: pointer;
         text-align: center;
-        width: 120px;
+        width: 200px;
         border-radius: 0.5rem;
         padding: 10px;
     }
 
 </style>
-
 
 <body>
 <div class="card"><img src="resources/img/insurance-logo.png"/>
@@ -122,60 +124,86 @@
         </div>
         <div class="content-detail">
             <div class="left">
-                <div class="title"><p>수술비</p>
-                    <p class="des">1회 150만원, 연 2회</p>
-                    <p class="bold">3,000,000원</p></div>
-                <div class="title plus"><p>치료비(입원)</p>
-                    <p class="des">1일 15만원, 연 20일</p>
-                    <p class="bold">3,000,000원</p></div>
-                <div class="title plus"><p>치료비(통원)</p>
-                    <p class="des">1회 15만원, 연 20회</p>
-                    <p class="bold">3,000,000원</p></div>
-                <div class="title top"><p>피부 확장보장</p>
-                    <p class="des">치료비 보장에 포함</p>
-                    <p class="bold">보장</p></div>
-                <div class="title plus top"><p>구강확장보장</p>
-                    <p class="des">치료비 보장에 포함</p>
-                    <p class="bold">보장</p></div>
-                <div class="title plus top"><p>슬관절 확장보장</p>
-                    <p class="des">수술비 보장에 포함</p>
-                    <p class="bold">보장</p></div>
-                <div class="title top"><p>배상책임</p>
-                    <p class="des">500만원 (1년 한도)</p>
-                    <p class="bold">5,000,000원</p></div>
-                <div class="title plus top"><p>사망 위로금</p>
-                    <p class="des">15만원 (1회 한도)</p>
-                    <p class="bold">150,000원</p></div>
+                <div class="title">
+                    <div>수술비</div>
+                    <div>1회 150만원, 연 2회</div>
+                    <div>3,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>치료비(입원)</div>
+                    <div>1일 15만원, 연 20일</div>
+                    <div>3,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>치료비(통원)</div>
+                    <div>1회 15만원, 연 20회</div>
+                    <div>3,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>피부 확장보장</div>
+                    <div>치료비 보장에 포함</div>
+                    <div>보장</div>
+                </div>
+                <div class="title">
+                    <div>구강확장보장</div>
+                    <div>치료비 보장에 포함</div>
+                    <div>보장</div>
+                </div>
+                <div class="title">
+                    <div>슬관절 확장보장</div>
+                    <div>수술비 보장에 포함</div>
+                    <div>보장</div>
+                </div>
+                <div class="title">
+                    <div>배상책임</div>
+                    <div>500만원 (1년 한도)</div>
+                    <div>5,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>사망 위로금</div>
+                    <div>15만원 (1회 한도)</div>
+                    <div>150,000원</div>
+                </div>
             </div>
-            <div class="right"><p class="bold">보험료 납입 옵션</p>
+            <div class="right">
+                <p class="bold">보험료 납입 옵션</p>
                 <div class="check-option">
-                    <div class="sc-cHPgQl eHGAsI"><label for="1year" class="sc-KfMfS lauCaU"><input type="radio"
-                                                                                                    name="period"
-                                                                                                    id="1year"
-                                                                                                    class="sc-gHLcSH bRNyiY"
-                                                                                                    value="1년형"
-                                                                                                    checked>1년형</label><label
-                            for="3year" class="sc-KfMfS lauCaU disabled"><input type="radio" name="period" id="3year"
-                                                                                disabled="" class="sc-gHLcSH bRNyiY"
-                                                                                value="3년형">3년형</label></div>
-                    <div class="sc-cHPgQl eHGAsI"><label for="lump" class="sc-KfMfS lauCaU"><input type="radio"
-                                                                                                   name="payment"
-                                                                                                   id="lump"
-                                                                                                   class="sc-gHLcSH bRNyiY"
-                                                                                                   value="일시납" checked>일시납</label><label
-                            for="monthly" class="sc-KfMfS lauCaU disabled"><input type="radio" name="payment"
-                                                                                  id="monthly"
-                                                                                  disabled=""
-                                                                                  class="sc-gHLcSH bRNyiY" value="월납">월납</label>
+                    <div class="sc-cHPgQl eHGAsI">
+                        <label for="1year" class="sc-KfMfS lauCaU">
+                            <input type="radio"
+                                   name="period"
+                                   id="1year"
+                                   class="sc-gHLcSH bRNyiY"
+                                   value="1년형"
+                                   checked>1년형
+                        </label>
+                        <label for="3year" class="sc-KfMfS lauCaU disabled">
+                            <input type="radio" name="period" id="3year"
+                                   disabled="" class="sc-gHLcSH bRNyiY"
+                                   value="3년형">3년형
+                        </label>
+                    </div>
+                    <div class="sc-cHPgQl eHGAsI"><label for="lump" class="sc-KfMfS lauCaU">
+                        <input type="radio"
+                               name="payment"
+                               id="lump"
+                               class="sc-gHLcSH bRNyiY"
+                               value="일시납" checked>일시납</label>
+                        <label
+                                for="monthly" class="sc-KfMfS lauCaU disabled">
+                            <input type="radio" name="payment"
+                                   id="monthly"
+                                   disabled=""
+                                   class="sc-gHLcSH bRNyiY" value="월납">월납
+                        </label>
                     </div>
                 </div>
-                <div class="money"><p>일시납
-
-                    403,620원</p>
-                    <p class="des">기존 보험료 대비 10% 할인</p></div>
+                <div class="money">
+                    <p>일시납 403,620원</p>
+                    <p>기존 보험료 대비 10% 할인</p></div>
                 <div class="buttons">
-                    <button class="detail-btn" id="detail-btn">자세히 보기</button>
-                    <button class="join-btn">가입하기</button>
+                    <button class="join-btn" id="join-btn">가입하기</button>
+
                 </div>
             </div>
         </div>
@@ -189,47 +217,70 @@
         <div class="name">하이펫애견보험 종합형 플랜</div>
         <div class="content-detail">
             <div class="left">
-                <div class="title"><p>치료비</p>
-                    <p class="des">사고/질병당 50만원, 연 1,000만원</p>
-                    <p class="bold">10,000,000원</p></div>
-                <div class="title plus"><p>피부질환</p>
-                    <p class="des">치료비 보장에 포함</p>
-                    <p class="bold">보장</p></div>
-                <div class="title minus"><p>구강질환</p>
-                    <p class="des">치료비 보장에 포함</p>
-                    <p class="bold">보장</p></div>
-                <div class="title top"><p>배상책임</p>
-                    <p class="des">1사고당 500만원, 연 500만원</p>
-                    <p class="bold">5,000,000원</p></div>
-                <div class="title plus top"><p>애견장례비</p>
-                    <p class="des">15만원 (1회 한도)</p>
-                    <p class="bold">150,000원</p></div>
+                <div class="title">
+                    <div>치료비</div>
+                    <div>사고/질병당 50만원, 연 1,000만원</div>
+                    <div>10,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>피부질환</div>
+                    <div>치료비 보장에 포함</div>
+                    <div>보장</div>
+                </div>
+                <div class="title">
+                    <div>구강질환</div>
+                    <div>치료비 보장에 포함</div>
+                    <div>보장</div>
+                </div>
+                <div class="title">
+                    <div>배상책임</div>
+                    <div>1사고당 500만원, 연 500만원</div>
+                    <div>5,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>애견장례비</div>
+                    <div>15만원 (1회 한도)</div>
+                    <div>150,000원</div>
+                </div>
             </div>
-            <div class="right"><p class="bold">보험료 납입 옵션</p>
+            <div class="right">
+                <p class="bold">보험료 납입 옵션</p>
                 <div class="check-option">
-                    <div class="sc-cHPgQl eHGAsI"><label for="1year0" class="sc-KfMfS lauCaU"><input type="radio"
-                                                                                                     name="period0"
-                                                                                                     id="1year0"
-                                                                                                     class="sc-gHLcSH bRNyiY"
-                                                                                                     value="1년형"
-                                                                                                     checked>1년형</label><label
-                            for="3year0" class="sc-KfMfS lauCaU disabled"><input type="radio" name="period0" id="3year0"
-                                                                                 disabled="" class="sc-gHLcSH bRNyiY"
-                                                                                 value="3년형">3년형</label></div>
-                    <div class="sc-cHPgQl eHGAsI"><label for="lump0" class="sc-KfMfS lauCaU"><input type="radio"
-                                                                                                    name="payment0"
-                                                                                                    id="lump0"
-                                                                                                    class="sc-gHLcSH bRNyiY"
-                                                                                                    value="일시납">일시납</label><label
-                            for="monthly0" class="sc-KfMfS lauCaU"><input type="radio" name="payment0" id="monthly0"
-                                                                          class="sc-gHLcSH bRNyiY" value="월납" checked>월납</label>
+                    <div class="sc-cHPgQl eHGAsI">
+                        <label for="1year0" class="sc-KfMfS lauCaU">
+                            <input type="radio"
+                                   name="period0"
+                                   id="1year0"
+                                   class="sc-gHLcSH bRNyiY"
+                                   value="1년형"
+                                   checked>1년형
+                        </label>
+                        <label for="3year0" class="sc-KfMfS lauCaU disabled">
+                            <input type="radio" name="period0" id="3year0"
+                                   disabled="" class="sc-gHLcSH bRNyiY"
+                                   value="3년형">3년형
+                        </label>
+                    </div>
+                    <div class="sc-cHPgQl eHGAsI">
+                        <label for="lump0" class="sc-KfMfS lauCaU">
+                            <input type="radio"
+                                   name="payment0"
+                                   id="lump0"
+                                   class="sc-gHLcSH bRNyiY"
+                                   value="일시납" checked>일시납
+                        </label>
+                        <label
+                                for="monthly0" class="sc-KfMfS lauCaU">
+                            <input type="radio" name="payment0" id="monthly0"
+                                   class="sc-gHLcSH bRNyiY" value="월납">월납
+                        </label>
                     </div>
                 </div>
                 <div class="money"><p> 월납 31,246원</p>
-                    <p class="des">기존 보험료 대비 10% 할인</p></div>
+                    <p>기존 보험료 대비 10% 할인</p></div>
                 <div class="buttons">
-                    <button class="detail-btn">자세히 보기</button>
                     <button class="join-btn">가입하기</button>
+
                 </div>
             </div>
         </div>
@@ -244,12 +295,16 @@
         </div>
         <div class="content-detail">
             <div class="left">
-                <div class="title top"><p>배상책임</p>
-                    <p class="des">1사고당 500만원, 1년 한도</p>
-                    <p class="bold">5,000,000원</p></div>
-                <div class="title plus top"><p>애견장례비</p>
-                    <p class="des">15만원 (1회 한도)</p>
-                    <p class="bold">150,000원</p></div>
+                <div class="title">
+                    <div>배상책임</div>
+                    <div>1사고당 500만원, 1년 한도</div>
+                    <div>5,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>애견장례비</div>
+                    <div>15만원 (1회 한도)</div>
+                    <div>150,000원</div>
+                </div>
             </div>
             <div class="right"><p class="bold">보험료 납입 옵션</p>
                 <div class="check-option">
@@ -274,10 +329,10 @@
                     </div>
                 </div>
                 <div class="money"><p>일시납 5,330원</p>
-                    <p class="des">기존 보험료 대비 10% 할인</p></div>
+                    <p>기존 보험료 대비 10% 할인</p></div>
                 <div class="buttons">
-                    <button class="detail-btn">자세히 보기</button>
                     <button class="join-btn">가입하기</button>
+
                 </div>
             </div>
         </div>
@@ -292,49 +347,63 @@
         </div>
         <div class="content-detail">
             <div class="left">
-                <div class="title"><p>수술비</p>
-                    <p class="des">의료비 보장에 포함</p>
-                    <p class="bold">보장</p></div>
-                <div class="title plus"><p>통원의료비 (수술 포함)</p>
-                    <p class="des">1일 15만원, 연 500만원</p>
-                    <p class="bold">5,000,000원</p></div>
-                <div class="title plus"><p>입원의료비 (수술 포함)</p>
-                    <p class="des">1일 15만원, 연 500만원</p>
-                    <p class="bold">5,000,000원</p></div>
-                <div class="title top"><p>피부 확장보장</p>
-                    <p class="des">의료비 보장에 포함</p>
-                    <p class="bold">보장</p></div>
-                <div class="title plus top"><p>구강 확장보장</p>
-                    <p class="des">의료비 보장에 포함</p>
-                    <p class="bold">보장</p></div>
-                <div class="title plus top"><p>슬관절 확장보장</p>
-                    <p class="des">의료비 보장에 포함</p>
-                    <p class="bold">보장</p></div>
-                <div class="title top"><p>배상책임</p>
-                    <p class="des">1,000만원 (1년 한도)</p>
-                    <p class="bold">10,000,000원</p></div>
+                <div class="title">
+                    <div>수술비</div>
+                    <div>의료비 보장에 포함</div>
+                    <div>보장</div>
+                </div>
+                <div class="title ">
+                    <div>통원의료비 (수술 포함)</div>
+                    <div>1일 15만원, 연 500만원</div>
+                    <div>5,000,000원</div>
+                </div>
+                <div class="title ">
+                    <div>입원의료비 (수술 포함)</div>
+                    <div>1일 15만원, 연 500만원</div>
+                    <div>5,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>피부 확장보장</div>
+                    <div>의료비 보장에 포함</div>
+                    <div>보장</div>
+                </div>
+                <div class="title">
+                    <div>구강 확장보장</div>
+                    <div>의료비 보장에 포함</div>
+                    <div>보장</div>
+                </div>
+                <div class="title">
+                    <div>슬관절 확장보장</div>
+                    <div>의료비 보장에 포함</div>
+                    <div>보장</div>
+                </div>
+                <div class="title">
+                    <div>배상책임</div>
+                    <div>1,000만원 (1년 한도)</div>
+                    <div>10,000,000원</div>
+                </div>
             </div>
             <div class="right"><p class="bold">보험료 납입 옵션</p>
                 <div class="check-option">
                     <div class="sc-cHPgQl eHGAsI"><label for="1year2" class="sc-KfMfS lauCaU disabled"><input
                             type="radio"
-                            name="period"
+                            name="period2"
                             id="1year2"
                             disabled=""
                             class="sc-gHLcSH bRNyiY"
                             value="1년형"
                     >1년형</label><label
-                            for="3year2" class="sc-KfMfS lauCaU"><input type="radio" name="period" id="3year2"
+                            for="3year2" class="sc-KfMfS lauCaU"><input type="radio" name="period2" id="3year2"
                                                                         class="sc-gHLcSH bRNyiY"
                                                                         value="3년형" checked>3년형</label></div>
                     <div class="sc-cHPgQl eHGAsI"><label for="lump2" class="sc-KfMfS lauCaU disabled"><input
                             type="radio"
-                            name="payment"
+                            name="payment2"
                             id="lump2"
                             disabled=""
-                            class="sc-gHLcSH bRNyi"
+                            class="sc-gHLcSH bRNyiY"
                             value="일시납">일시납</label><label
-                            for="monthly2" class="sc-KfMfS lauCaU"><input type="radio" name="payment" id="monthly2"
+                            for="monthly2" class="sc-KfMfS lauCaU"><input type="radio" name="payment2" id="monthly2"
 
                                                                           class="sc-gHLcSH bRNyiY" value="월납" checked>월납</label>
                     </div>
@@ -342,10 +411,10 @@
                 <div class="money"><p>월납
 
                     48,440원</p>
-                    <p class="des">기존 보험료 대비 10% 할인</p></div>
+                    <p>기존 보험료 대비 10% 할인</p></div>
                 <div class="buttons">
-                    <button class="detail-btn">자세히 보기</button>
                     <button class="join-btn">가입하기</button>
+
                 </div>
             </div>
         </div>
@@ -362,63 +431,73 @@
         </div>
         <div class="content-detail">
             <div class="left">
-                <div class="title"><p>수술치료비</p>
-                    <p class="des">1회 150만원, 연 2회</p>
-                    <p class="bold">3,000,000원</p></div>
-                <div class="title"><p>입원치료비</p>
-                    <p class="des">1일 15만원, 연 20일</p>
-                    <p class="bold">3,000,000원</p></div>
-                <div class="title plus"><p>통원치료비</p>
-                    <p class="des">1회 15만원, 연 20회</p>
-                    <p class="bold">3,000,000원</p></div>
-                <div class="title top"><p>배상책임</p>
-                    <p class="des">500만원 (1년 한도)</p>
-                    <p class="bold">5,000,000원</p></div>
-                <div class="title top"><p>유실견 찾기 지원금</p>
-                    <p class="des">15만원 (1회 한도)</p>
-                    <p class="bold">150,000원</p></div>
-                <div class="title plus top"><p>애견장례비</p>
-                    <p class="des">15만원 (1회 한도)</p>
-                    <p class="bold">150,000원</p></div>
+                <div class="title">
+                    <div>수술치료비</div>
+                    <div>1회 150만원, 연 2회</div>
+                    <div>3,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>입원치료비</div>
+                    <div>1일 15만원, 연 20일</div>
+                    <div>3,000,000원</div>
+                </div>
+                <div class="title ">
+                    <div>통원치료비</div>
+                    <div>1회 15만원, 연 20회</div>
+                    <div>3,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>배상책임</div>
+                    <div>500만원 (1년 한도)</div>
+                    <div>5,000,000원</div>
+                </div>
+                <div class="title">
+                    <div>유실견 찾기 지원금</div>
+                    <div>15만원 (1회 한도)</div>
+                    <div>150,000원</div>
+                </div>
+                <div class="title">
+                    <div>애견장례비</div>
+                    <div>15만원 (1회 한도)</div>
+                    <div>150,000원</div>
+                </div>
 
             </div>
             <div class="right"><p class="bold">보험료 납입 옵션</p>
                 <div class="check-option">
                     <div class="sc-cHPgQl eHGAsI"><label for="1year3" class="sc-KfMfS lauCaU"><input type="radio"
-                                                                                                     name="period"
+                                                                                                     name="period3"
                                                                                                      id="1year3"
                                                                                                      class="sc-gHLcSH bRNyiY"
                                                                                                      value="1년형"
                                                                                                      checked>1년형</label><label
-                            for="3year3" class="sc-KfMfS lauCaU disabled"><input type="radio" name="period" id="3year3"
+                            for="3year3" class="sc-KfMfS lauCaU disabled"><input type="radio" name="period3" id="3year3"
                                                                                  class="sc-gHLcSH bRNyiY"
                                                                                  disabled=""
                                                                                  value="3년형">3년형</label></div>
                     <div class="sc-cHPgQl eHGAsI"><label for="lump3" class="sc-KfMfS lauCaU"><input type="radio"
-                                                                                                    name="payment"
+                                                                                                    name="payment3"
                                                                                                     id="lump3"
                                                                                                     class="sc-gHLcSH bRNyiY"
                                                                                                     value="일시납" checked>일시납</label><label
-                            for="monthly3" class="sc-KfMfS lauCaU disabled"><input type="radio" name="payment"
+                            for="monthly3" class="sc-KfMfS lauCaU disabled"><input type="radio" name="payment3"
                                                                                    id="monthly3"
                                                                                    disabled="" class="sc-gHLcSH bRNyiY"
                                                                                    value="월납">월납</label>
                     </div>
                 </div>
-                <div class="money"><p>일시납
-
-                    293,700원</p>
-                    <p class="des">기존 보험료 대비 10% 할인</p></div>
+                <div class="money"><p>일시납 293,700원</p>
+                    <p>기존 보험료 대비 10% 할인</p></div>
                 <div class="buttons">
-                    <button class="detail-btn">자세히 보기</button>
                     <button class="join-btn">가입하기</button>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    document.getElementById("detail-btn").addEventListener("click", function () {
+    document.getElementById("join-btn").addEventListener("click", function () {
         window.location.href = "/insurance-detail";
     });
 </script>

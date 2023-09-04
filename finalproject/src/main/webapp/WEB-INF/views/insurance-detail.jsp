@@ -19,7 +19,6 @@
     <style>
         .jKVTZV {
             margin-bottom: 3rem;
-            cursor: pointer;
             display: flex;
             -webkit-box-align: center;
             align-items: center;
@@ -35,10 +34,15 @@
             margin-bottom: 10px;
         }
 
+        .jKVTZV img {
+            cursor: pointer;
+        }
+
         .jKVTZV span {
             margin-left: 10px;
-            font-size: 18px;
+            font-size: 16px;
             font-family: font-medium;
+            cursor: pointer;
         }
 
         .eCtMMK {
@@ -49,7 +53,6 @@
 
         .kOrroZ p {
             font-size: 18px;
-            /*margin-bottom: 10px;*/
         }
 
         .gwCdmv {
@@ -58,7 +61,7 @@
             margin-right: 48px;
         }
 
-        .gwCdmv div:nth-child(1){
+        .gwCdmv div:nth-child(1) {
             font-size: 15px;
             margin-bottom: 5px;
             padding-bottom: -5px;
@@ -68,7 +71,7 @@
             font-size: 16px;
             margin-bottom: 5px;
             font-family: font-medium;
-            color: #B6D2C1 ;
+            color: #B6D2C1;
         }
 
         .gwCdmv div:nth-child(3) {
@@ -161,7 +164,7 @@
             color: white;
         }
 
-        .HdAuc{
+        .HdAuc {
             font-size: 22px;
             font-width: bold;
         }
@@ -253,50 +256,69 @@
             justify-content: space-between;
             margin-right: 4rem;
         }
+
+        .sc-gDeeJ, .HdAuc, .dNvInI {
+            padding: 0px 100px 0px 100px;
+        }
+
+        .accordion {
+            padding: 10px 100px 10px 100px;
+        }
+
+
     </style>
 </head>
 <body>
 <jsp:include page="include/header.jsp"/>
 <div class="body">
     <div class="sc-fFtkDt jKVTZV">
-        <img src="resources/img/left-arrow.png" width="20px"/>
-        <span>보험목록으로 돌아가기</span></div>
+        <img src="resources/img/left-arrow.png" width="17px" onclick="goBack()"/>
+        <span onclick="goBack()">보험목록으로 돌아가기</span></div>
     <div class="sc-gDeeJ cmNFit">
         <div class="sc-cjbZfG kofJdj">
             <div class="sc-igHpSv kOrroZ"><p>입통원비가 따로 보장되는 </p>
                 <p style="font-size: 30px; font-family: font-medium; font-weight: bold">프로미 반려동물보험 One형 플랜 </p></div>
             <img src="resources/img/insurance-logo.png" width="160px" height="41.87px"></div>
-        <hr><br>
+        <hr>
+        <br>
         <div class="sc-hxWoir eCtMMK">
-            <div class="sc-gfbRpc gwCdmv"><div>수술비</div>
+            <div class="sc-gfbRpc gwCdmv">
+                <div>수술비</div>
                 <div>1회 150만원, 연 2회</div>
                 <div>3,000,000원</div>
             </div>
-            <div class="sc-gfbRpc gwCdmv"><div>치료비 (입원)</div>
+            <div class="sc-gfbRpc gwCdmv">
+                <div>치료비 (입원)</div>
                 <div>1일 15만원, 연 20일</div>
                 <div>3,000,000원</div>
             </div>
-            <div class="sc-gfbRpc gwCdmv"><div>치료비 (통원)</div>
+            <div class="sc-gfbRpc gwCdmv">
+                <div>치료비 (통원)</div>
                 <div>1회 15만원, 연 20회</div>
                 <div>3,000,000원</div>
             </div>
-            <div class="sc-gfbRpc gwCdmv"><div>피부 확장보장</div>
+            <div class="sc-gfbRpc gwCdmv">
+                <div>피부 확장보장</div>
                 <div>치료비 보장에 포함</div>
                 <div>보장</div>
             </div>
-            <div class="sc-gfbRpc gwCdmv"><div>구강 확장보장</div>
+            <div class="sc-gfbRpc gwCdmv">
+                <div>구강 확장보장</div>
                 <div>치료비 보장에 포함</div>
                 <div>보장</div>
             </div>
-            <div class="sc-gfbRpc gwCdmv"><div>슬관절 확장보장</div>
+            <div class="sc-gfbRpc gwCdmv">
+                <div>슬관절 확장보장</div>
                 <div>수술비 보장에 포함</div>
                 <div>보장</div>
             </div>
-            <div class="sc-gfbRpc gwCdmv"><div>배상책임</div>
+            <div class="sc-gfbRpc gwCdmv">
+                <div>배상책임</div>
                 <div>500만원 (1년 한도)</div>
                 <div>5,000,000원</div>
             </div>
-            <div class="sc-gfbRpc gwCdmv"><div>사망 위로금</div>
+            <div class="sc-gfbRpc gwCdmv">
+                <div>사망 위로금</div>
                 <div>15만원 (1회 한도)</div>
                 <div>150,000원</div>
             </div>
@@ -416,66 +438,67 @@
                 </div>
             </div>
         </div>
-        <div class="accordion" id="agreeAccordion3">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseAgree3" aria-expanded="true" aria-controls="collapseAgree2">
-                        <span>치료비 (통원)</span>
-                    </button>
-                </h2>
-            </div>
+    </div>
+    <div class="accordion" id="agreeAccordion3">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAgree3" aria-expanded="true" aria-controls="collapseAgree2">
+                    <span>치료비 (통원)</span>
+                </button>
+            </h2>
         </div>
-        <div class="accordion" id="agreeAccordion4">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseAgree4" aria-expanded="true" aria-controls="collapseAgree2">
-                        <span>피부 확장보장</span>
-                    </button>
-                </h2>
-            </div>
+    </div>
+    <div class="accordion" id="agreeAccordion4">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAgree4" aria-expanded="true" aria-controls="collapseAgree2">
+                    <span>피부 확장보장</span>
+                </button>
+            </h2>
         </div>
-        <div class="accordion" id="agreeAccordion5">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseAgree5" aria-expanded="true" aria-controls="collapseAgree2">
-                        <span>구강 확장보장</span>
-                    </button>
-                </h2>
-            </div>
+    </div>
+    <div class="accordion" id="agreeAccordion5">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAgree5" aria-expanded="true" aria-controls="collapseAgree2">
+                    <span>구강 확장보장</span>
+                </button>
+            </h2>
         </div>
-        <div class="accordion" id="agreeAccordion6">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseAgree6" aria-expanded="true" aria-controls="collapseAgree2">
-                        <span>슬관절 확장보장</span>
-                    </button>
-                </h2>
-            </div>
+    </div>
+    <div class="accordion" id="agreeAccordion6">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAgree6" aria-expanded="true" aria-controls="collapseAgree2">
+                    <span>슬관절 확장보장</span>
+                </button>
+            </h2>
         </div>
-        <div class="accordion" id="agreeAccordion7">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseAgree7" aria-expanded="true" aria-controls="collapseAgree2">
-                        <span>배상책임</span>
-                    </button>
-                </h2>
-            </div>
+    </div>
+    <div class="accordion" id="agreeAccordion7">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAgree7" aria-expanded="true" aria-controls="collapseAgree2">
+                    <span>배상책임</span>
+                </button>
+            </h2>
         </div>
-        <div class="accordion" id="agreeAccordion8">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseAgree8" aria-expanded="true" aria-controls="collapseAgree2">
-                        <span>사망 위로금</span>
-                    </button>
-                </h2>
-            </div>
+    </div>
+    <div class="accordion" id="agreeAccordion8">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAgree8" aria-expanded="true" aria-controls="collapseAgree2">
+                    <span>사망 위로금</span>
+                </button>
+            </h2>
         </div>
+    </div>
 
 
         <div class="sc-hmLeec dNvInI"><p class="sc-hTtIkV bKXcYK">보험약관 다운로드</p>
@@ -484,22 +507,14 @@
                      class="sc-czShuu hsXvsS">
                     <g id="Icon_feather-download" data-name="Icon feather-download" transform="translate(-3.9 -3.9)">
                         <path id="\uD328\uC2A4_50" data-name="\uD328\uC2A4 50"
-                              d="M16.5,22.5v2.77a1.36,1.36,0,0,1-1.333,1.385H5.833A1.36,1.36,0,0,1,4.5,25.27V22.5"
-                              transform="translate(0 -11.156)" fill="none" stroke="#bbb" stroke-linecap="round"
-                              stroke-linejoin="round" stroke-width="1.2"></path>
-                        <path id="\uD328\uC2A4_51" data-name="\uD328\uC2A4 51" d="M10.5,15l3.23,3.463L16.959,15"
-                              transform="translate(-3.23 -6.442)" fill="none" stroke="#bbb" stroke-linecap="round"
-                              stroke-linejoin="round" stroke-width="1.2"></path>
-                        <path id="\uD328\uC2A4_52" data-name="\uD328\uC2A4 52" d="M18,12.021V4.5"
-                              transform="translate(-7.5)"
-                              fill="none" stroke="#bbb" stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="1.2"></path>
-                    </g>
-                </svg>
             </div>
         </div>
     </div>
+<script>
+    function goBack() {
+        window.location.href = "/insurance-product";
+    }
+</script>
 
 
-</div>
 </body>
