@@ -16,6 +16,7 @@ public class Savingaccount {
     private int current_balance;
     private String saving_name;
     private int pet_id;
+    private int join_period;
     private double progress_rate;
 
     public Savingaccount() {

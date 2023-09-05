@@ -36,7 +36,7 @@ public class SavingaccountController {
     @PostMapping("/create-savingaccounts")
     public ResponseEntity<String> createSavingaccount(@RequestBody HashMap<String, String> data) {
         System.out.println("여기요!!!" + data);
-//        savingaccountService.createSavingAccounts(data);
+        savingaccountService.createSavingAccounts(data);
         return ResponseEntity.ok("적금 생성 성공");
     }
 }

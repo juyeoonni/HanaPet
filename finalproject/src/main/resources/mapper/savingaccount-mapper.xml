@@ -14,8 +14,8 @@
     </select>
 
     <insert id="createSavingAccounts" parameterType="HashMap">
-        INSERT INTO saving_account(account_number, end_date, category, opener_id, saving_name, pet_id)
-        VALUES (#{account_number}, TO_DATE(#{end_date}, 'YYYY-MM-DD'), #{category}, #{opener_id}, #{saving_name}, #{pet_id})
+        INSERT INTO saving_account(account_number, join_period, end_date, category, opener_id, saving_name, pet_id, current_balance)
+        VALUES (#{account_number}, #{join_period}, TO_DATE(#{end_date}, 'YYYY-MM-DD'), #{category}, #{opener_id}, #{saving_name}, #{pet_id}, #{current_balance})
     </insert>
 
 </mapper>

@@ -490,20 +490,16 @@
             // 먼저 계좌 번호 생성
             const accountNumber = createAccountNumber();
 
-            // 가입 기간 (월)을 가져오기
-            const joinPeriodMonths = parseInt(document.getElementById('joinPeriod').value);
-
-            // 만료 날짜 계산
-            const endDate = calculateEndDate(joinPeriodMonths);
-
             // 필요한 데이터를 객체로 만들어 전송
             const requestData = {
                 account_number: accountNumber,
-                end_date: endDate,
+                join_period: joinPeriodInput.value,
+                end_date: calculateEndDate(parseInt(joinPeriodInput.value)),
                 category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,
                 opener_id: '<%= guest_id %>',
                 saving_name: document.getElementById('accountName').value,
-                pet_id: document.getElementById("petSelection").value
+                pet_id: document.getElementById("petSelection").value,
+                current_balance: joinAmountInput.value
             };
 
             // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!
