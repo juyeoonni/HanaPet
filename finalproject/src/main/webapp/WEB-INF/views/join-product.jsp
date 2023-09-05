@@ -70,7 +70,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-
+            margin-right: 5px;
         }
 
         input[type="number"]::-webkit-inner-spin-button,
@@ -94,6 +94,7 @@
             display: inline-block;
             text-align: center;
             width: 150px;
+            height: 44px;
             font-size: 18px;
             padding: 10px 20px;
             color: #fff;
@@ -142,10 +143,26 @@
             color: #BFDFCB;
         }
 
-        #endDateMessage {
+        #endDateMessage, #pwMessage {
+            margin-top: 5px;
             font-size: 17px;
+            color: #75A989;
         }
 
+        .color{
+            margin-left: 40px;
+        }
+
+        #current_balance, #able_balance, .color div div{
+            font-size: 17px;
+            color: #75A989;
+            margin-right: 6px;
+            font-family: font-medium;
+        }
+
+        ::placeholder{
+            font-family: font-medium;
+        }
     </style>
 </head>
 <body>
@@ -165,13 +182,13 @@
                         <select class="form-select" id="accountNumberSelection" required onchange="updateBalance()">
                             <!-- Ajax로 옵션 추가될 예정 -->
                         </select>
-                        <div style="margin-left: 40px">
+                        <div class="color">
                             <div style="display: flex">
-                                <div>현재 잔액:</div>
+                                <div >현재 잔액: </div>
                                 <div id="current_balance"></div>
                             </div>
                             <div style="display: flex">
-                                <div>출금 가능 금액:</div>
+                                <div>출금 가능 금액: </div>
                                 <div id="able_balance"></div>
                             </div>
                         </div>
@@ -182,8 +199,12 @@
                 <td class="form-label">계좌 비밀번호</td>
                 <td>
                     <div style="display: flex">
-                        <input type="password" class="input-form" id="accountPassword" placeholder="계좌 비밀번호를 입력해주세요."
-                               required>
+                        <div>
+                            <input type="password" class="input-form" id="accountPassword"
+                                   placeholder="계좌 비밀번호를 입력해주세요."
+                                   required>
+                            <div id="pwMessage"></div>
+                        </div>
                         <button class="Button" id="confirmButton">확인</button>
                     </div>
                 </td>
@@ -204,7 +225,7 @@
             <tr>
                 <td class="form-label">가입 기간</td>
                 <td>
-                    <input type="number" class="input-form" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required>개월
+                    <input type="number" class="input-form" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required><span>개월</span>
                     <div id="conditionMessage2" class="mt-2 text-danger"></div>
                     <div id="endDateMessage"></div>
                 </td>
@@ -212,7 +233,7 @@
             <tr>
                 <td class="form-label">가입 금액</td>
                 <td>
-                    <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요." required>원
+                    <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요." required><span>월</span>
                     <div id="conditionMessage1" class="mt-2 text-danger"></div>
                 </td>
             </tr>
@@ -221,7 +242,8 @@
                 <td>
                     <div class="form" id="transferCycle" required>
                         <input type="radio" id="period1" name="period" value="weekly"><label for="period1">매주</label>
-                        <input type="radio" id="period2" name="period" value="monthly" checked><label for="period2">매월</label>
+                        <input type="radio" id="period2" name="period" value="monthly" checked><label
+                            for="period2">매월</label>
                     </div>
                 </td>
             </tr>
@@ -330,10 +352,10 @@
                 dataType: 'json',
                 success: function (data) {
                     if (data < 1) { // 비번 틀린 경우
-                        console.log("비밀번호 불일치");
+                        document.getElementById('pwMessage').textContent = "비밀번호가 틀립니다.";
                         flag1 = false;
                     } else { // 비번 일치하는 경우
-                        console.log("비밀번호 일치");
+                        document.getElementById('pwMessage').textContent = "비밀번호가 일치합니다.";
                         flag1 = true;
                     }
                 },
@@ -423,16 +445,24 @@
     function updateBalance() {
         // select 요소에서 선택한 값을 가져오기
         const selectedValue = document.getElementById("accountNumberSelection").value;
-        // 선택한 값을 #current_balance 요소에 표시
+
+        // 선택한 값을 # 요소에 표시
         document.getElementById("current_balance").textContent = selectedValue;
         document.getElementById("able_balance").textContent = selectedValue;
+
+        // 계좌 비밀번호 입력창 reset
+        document.getElementById('accountPassword').value = "";
+        document.getElementById('pwMessage').textContent = "";
+        flag1 = false;
+
     }
 
     document.getElementById('joinButton').addEventListener('click', function (event) {
         if (flag1 && flag2) {
             window.location.href = '/card'; // 페이지 이동 처리
         } else {
-            alert("조건을 모두 충족해야 합니다.");
+            if (!flag1) alert("계좌 비밀번호를 확인해주세요.");
+            else alert("가입 조건을 확인해주세요.");
             event.preventDefault(); // 조건을 만족하지 않을 경우 폼 제출 및 페이지 이동 중지
         }
     });
