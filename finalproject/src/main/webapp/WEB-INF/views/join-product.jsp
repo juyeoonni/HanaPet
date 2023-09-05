@@ -52,7 +52,7 @@
 
         /* 테이블 셀 스타일 */
         td {
-            padding: 20px 0px 20px 30px;
+            padding: 20px 0px 20px 40px;
             text-align: left;
             font-family: font-medium;
         }
@@ -258,6 +258,12 @@
                 </td>
             </tr>
             <tr>
+                <td class="form-label">적금 계좌명</td>
+                <td>
+                    <input type="text" class="input-form" id="accountName" placeholder="적금 계좌명을 입력해주세요." required>
+                </td>
+            </tr>
+            <tr>
                 <td class="form-label">가입 기간</td>
                 <td>
                     <input type="number" class="input-form" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required><span>개월</span>
@@ -269,7 +275,7 @@
                 <td class="form-label">가입 금액</td>
                 <td>
                     <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
-                           required><span>월</span>
+                           required><span>원</span>
                     <div id="conditionMessage1" class="mt-2 text-danger"></div>
                 </td>
             </tr>
@@ -321,6 +327,7 @@
 <script>
     let flag1 = false;
     let flag2 = false;
+    let endDateFormat = null;
 
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>';
@@ -337,7 +344,7 @@
                 const petSelection = document.getElementById('petSelection');
                 data.forEach(function (pet) {
                     const option = document.createElement('option');
-                    option.value = pet.name;
+                    option.value = pet.pet_id;
                     option.textContent = pet.name;
                     petSelection.appendChild(option);
                 });
@@ -446,17 +453,17 @@
         }
 
         function calculateEndDate(months) {
-            var today = new Date(); // 현재 날짜 가져오기
-            var endDate = new Date(today); // 현재 날짜를 복사하여 사용
+            const today = new Date(); // 현재 날짜 가져오기
+            const endDateFormat = new Date(today); // 현재 날짜를 복사하여 사용
 
-            endDate.setMonth(today.getMonth() + months); // 월을 더해 몇 개월 후의 날짜 계산
+            endDateFormat.setMonth(today.getMonth() + months); // 월을 더해 몇 개월 후의 날짜 계산
 
             // 날짜 포맷 설정 (예: "YYYY-MM-DD")
-            var year = endDate.getFullYear();
-            var month = String(endDate.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1을 해주고 2자리로 포맷
-            var day = String(endDate.getDate()).padStart(2, '0'); // 일자를 2자리로 포맷
+            const year = endDateFormat.getFullYear();
+            const month = String(endDateFormat.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1을 해주고 2자리로 포맷
+            const day = String(endDateFormat.getDate()).padStart(2, '0'); // 일자를 2자리로 포맷
 
-            return year + '년 ' + month + '월 ' + day + '일';
+            return year + '-' + month + '-' + day;
         }
 
         // 입력 값 변경 시 가입 버튼 상태 업데이트
@@ -477,6 +484,77 @@
             $("#productMinPeriod").text("최소 기간: " + productInfo.min_period);
             $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance);
         }
+
+
+        function postServer() {
+            // 먼저 계좌 번호 생성
+            const accountNumber = createAccountNumber();
+
+            // 가입 기간 (월)을 가져오기
+            const joinPeriodMonths = parseInt(document.getElementById('joinPeriod').value);
+
+            // 만료 날짜 계산
+            const endDate = calculateEndDate(joinPeriodMonths);
+
+            // 필요한 데이터를 객체로 만들어 전송
+            const requestData = {
+                account_number: accountNumber,
+                end_date: endDate,
+                category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,
+                opener_id: '<%= guest_id %>',
+                saving_name: document.getElementById('accountName').value,
+                pet_id: document.getElementById("petSelection").value
+            };
+
+            // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            console.log(requestData);
+            $.ajax({
+                url: "/create-savingaccounts",
+                type: "POST",
+                data: JSON.stringify(requestData),
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response)
+                    if (response === "적금 생성 성공") {
+                        window.location.href = '/card'; // 페이지 이동 처리
+                    } else {
+                        console.error("insert 실패");
+                    }
+                },
+                error: function () {
+                    console.log("Error post.");
+                }
+            });
+        }
+
+        document.getElementById('joinButton').addEventListener('click', function (event) {
+            const accountName = document.getElementById("accountName").value; // 입력 필드의 값을 가져옵니다.
+
+            if (flag1 && flag2 && !(accountName.trim() === "")) {
+                postServer();
+
+            } else {
+                if (!flag1) alert("계좌 비밀번호를 확인해주세요.");
+                else if (accountName.trim() === "") alert("적금 계좌명을 입력해주세요.");
+                else alert("가입 조건을 확인해주세요.");
+                event.preventDefault(); // 조건을 만족하지 않을 경우 폼 제출 및 페이지 이동 중지
+            }
+        });
+
+        function createAccountNumber() {
+            let accountNumber = '';
+            const digits = '0123456789';
+            const random = Math.random;
+
+            for (let i = 0; i < 14; i++) {
+                const digit = Math.floor(random() * 10); // 0부터 9까지의 난수 생성
+                accountNumber += digits[digit];
+            }
+
+            return accountNumber;
+        }
+
     });
 
     function updateBalance() {
@@ -494,14 +572,5 @@
 
     }
 
-    document.getElementById('joinButton').addEventListener('click', function (event) {
-        if (flag1 && flag2) {
-            window.location.href = '/card'; // 페이지 이동 처리
-        } else {
-            if (!flag1) alert("계좌 비밀번호를 확인해주세요.");
-            else alert("가입 조건을 확인해주세요.");
-            event.preventDefault(); // 조건을 만족하지 않을 경우 폼 제출 및 페이지 이동 중지
-        }
-    });
 
 </script>

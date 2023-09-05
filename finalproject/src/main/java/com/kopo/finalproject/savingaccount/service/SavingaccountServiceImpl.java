@@ -21,4 +21,9 @@ public class SavingaccountServiceImpl implements SavingaccountService {
     public List<Savingaccount> getAllSavingAccountsOfPetOfGuest(HashMap<String, String> data) {
         return savingaccountMapper.getAllSavingAccountsOfPetOfGuest(data);
     }
+
+    @Override
+    public void createSavingAccounts(HashMap<String, String> data) {
+        savingaccountMapper.createSavingAccounts(data);
+    }
 }

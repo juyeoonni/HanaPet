@@ -9,4 +9,5 @@ import java.util.List;
 @Mapper
 public interface SavingaccountMapper {
     List<Savingaccount> getAllSavingAccountsOfPetOfGuest(HashMap<String,String> data);
+    void createSavingAccounts(HashMap<String, String> data);
 }

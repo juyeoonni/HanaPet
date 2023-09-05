@@ -5,9 +5,7 @@ import com.kopo.finalproject.savingaccount.service.SavingaccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -35,4 +33,10 @@ public class SavingaccountController {
         return mav;
     }
 
+    @PostMapping("/create-savingaccounts")
+    public ResponseEntity<String> createSavingaccount(@RequestBody HashMap<String, String> data) {
+        System.out.println("여기요!!!" + data);
+//        savingaccountService.createSavingAccounts(data);
+        return ResponseEntity.ok("적금 생성 성공");
+    }
 }
