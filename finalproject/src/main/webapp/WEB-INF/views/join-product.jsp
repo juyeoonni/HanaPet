@@ -101,13 +101,13 @@
             border: none;
             cursor: pointer;
             background: #75A989;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             outline: none;
         }
 
         #joinButton {
             margin-top: 50px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
 
         #confirmButton {
@@ -149,20 +149,55 @@
             color: #75A989;
         }
 
-        .color{
+        .color {
             margin-left: 40px;
         }
 
-        #current_balance, #able_balance, .color div div{
+        #current_balance, #able_balance, .color div div {
             font-size: 17px;
             color: #75A989;
             margin-right: 6px;
             font-family: font-medium;
         }
 
-        ::placeholder{
+        ::placeholder {
             font-family: font-medium;
         }
+
+        .pe input[type=radio] {
+            display: none;
+        }
+
+        .pe input[type=radio] + label {
+            display: inline-block;
+            text-align: center;
+            width: 150px;
+            height: 36px;
+            font-size: 18px;
+            border: none;
+            border: 1px solid #75A989;
+            cursor: pointer;
+            background: #ffffff;
+            border-radius: 10px;
+            padding-top: 8px;
+            margin-right: 20px;
+        }
+
+        .pe input[type=radio]:checked + label {
+            display: inline-block;
+            text-align: center;
+            width: 150px;
+            height: 36px;
+            font-size: 18px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            background: #75A989;
+            border-radius: 10px;
+            outline: none;
+            padding-top: 8px;
+        }
+
     </style>
 </head>
 <body>
@@ -184,11 +219,11 @@
                         </select>
                         <div class="color">
                             <div style="display: flex">
-                                <div >현재 잔액: </div>
+                                <div>현재 잔액:</div>
                                 <div id="current_balance"></div>
                             </div>
                             <div style="display: flex">
-                                <div>출금 가능 금액: </div>
+                                <div>출금 가능 금액:</div>
                                 <div id="able_balance"></div>
                             </div>
                         </div>
@@ -233,24 +268,26 @@
             <tr>
                 <td class="form-label">가입 금액</td>
                 <td>
-                    <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요." required><span>월</span>
+                    <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
+                           required><span>월</span>
                     <div id="conditionMessage1" class="mt-2 text-danger"></div>
                 </td>
             </tr>
             <tr>
                 <td class="form-label">이체 주기</td>
                 <td>
-                    <div class="form" id="transferCycle" required>
-                        <input type="radio" id="period1" name="period" value="weekly"><label for="period1">매주</label>
-                        <input type="radio" id="period2" name="period" value="monthly" checked><label
-                            for="period2">매월</label>
+                    <div class="pe" id="transferCycle" required>
+                        <input type="radio" id="period1" name="period" value="매주">
+                        <label for="period1">매주</label>
+                        <input type="radio" id="period2" name="period" value="매월" checked>
+                        <label for="period2">매월</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td class="form-label">자동이체 SMS 통보</td>
                 <td>
-                    <div class="form" id="transferSMS" required>
+                    <div class="pe" id="transferSMS" required>
                         <input type="radio" id="transferSMSyes" name="transferSMS" value="yes" checked><label
                             for="transferSMSyes">신청함</label>
                         <input type="radio" id="transferSMSno" name="transferSMS" value="no"><label for="transferSMSno">신청안함</label>
@@ -260,7 +297,7 @@
             <tr>
                 <td class="form-label">적금 만기 SMS 통보</td>
                 <td>
-                    <div class="form" id="finishSMS" required>
+                    <div class="pe" id="finishSMS" required>
                         <input type="radio" id="finishSMSyes" name="finishSMS" value="yes" checked><label
                             for="finishSMSyes">신청함</label>
                         <input type="radio" id="finishSMSno" name="finishSMS" value="no"><label
