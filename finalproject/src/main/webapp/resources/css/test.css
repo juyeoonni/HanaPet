@@ -59,14 +59,18 @@
     width: 260px;
     height: 45px;
     background: #FAC6CE;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 1px 12px 0px rgb(0 0 0 /20%);
     border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 18px;
     text-decoration: none;
     color: white;
     border: none;
+
+    .contents {
+        padding: 0px 50px;
+    }
 }
 
