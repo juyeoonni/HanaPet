@@ -1,22 +1,13 @@
-
+<link rel="stylesheet" href="/resources/css/test.css">
 <style>
-    .progressbar {
-        width: 400px;
-        height: 15px;
-        border-radius: 10px;
-        overflow: hidden;
-        background: #ccc;
-        position: relative;
-    }
-
     .progressbar::after {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
-        height: 15px;
+        height: 20px;
         width: 0;
-        background: #BFDFCB;
+        background: #FAC6CE;
         animation: progress 1s ease forwards;
     }
 
@@ -27,13 +18,6 @@
         100% {
             width: 100%; /* 25%의 너비를 지정 */
         }
-    }
-
-    .progress {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 99;
     }
 
     .top1 {
@@ -49,49 +33,46 @@
 <div class="modal-c">
     <div class="top1">
         <div style="display: flex; align-items: center">
-            <img src="/resources/img/left-arrow.png" width="20px" style="margin-left: 15px"/>
+            <img src="/resources/img/left-arrow-test.png" width="30px"/>
             <div class="progressbar">
                 <span class="progress"></span>
             </div>
         </div>
     </div>
     <div class="top2">
-        <img src="/resources/img/dog.png" width="200px"/>
+        <img src="/resources/img/test-result.png" width="710px"/>
     </div>
     <div class="middle">
-        <div>펫보험 + 적금추천</div>
         <hr>
         <div class="iQ__s6Fi4hhs t-1 ResultCardText" style="color: rgb(0, 0, 0);"><p
-                style="text-align:center; line-height:2;"><span style="font-weight: bold; color: rgb(123, 91, 161);">펫보험과 적금을 섞어서 대비해봐요!</span>
+                style="text-align:center; line-height:2;"><span
+                style="font-weight: bold; font-size: 26px; color: #F4AFB7">펫보험과 적금을 섞어서 대비해봐요!</span>
         </p>
-            <p style="text-align:center; line-height:2;">혹시 모를 일에 대비하여 상대적으로&nbsp;저렴할 때 펫보험을 가입해&nbsp;
-                <span>대비하고&nbsp;</span><span>적금도 동시에 준비해&nbsp;</span><span>안전성을 챙기는 것을&nbsp;</span><span>추천</span><span
-                > 드립니다.</span>
+            <p style="text-align:center; line-height:2;">혹시 모를 일에 대비하여 상대적으로&nbsp;저렴할 때 펫보험을 가입해&nbsp;대비하고&nbsp;적금도 동시에
+                준비해&nbsp;안전성을 <br>챙기는 것을&nbsp;추천드립니다.
             </p>
-            <p data-we-empty-p="" style="text-align:center; line-height:2;"><br></p>
-            <p data-we-empty-p="" style="text-align:center; line-height:2;">반려견이 사고나 예기치 못한 수술을&nbsp;<span>진행할 시 입원, 수술등의 비용으로 생활에&nbsp;</span>
-                <span>큰 부담이 될 수 있기 때문에 우리 아이가 아플 때&nbsp;</span><span>비용 때문에 치료를 망설이지 않도록&nbsp;</span><span>미리 대비해보세요!</span>
+            <p data-we-empty-p="" style="text-align:center; line-height:2;">반려견이 사고나 예기치 못한 수술을&nbsp;진행할 시 입원, 수술등의 비용으로
+                생활에&nbsp;큰 부담이 될 수 있기 때문에 우리 아이가 아플 때&nbsp;비용 때문에 치료를 망설이지 않도록&nbsp;미리 대비해보세요!
             </p>
             <p data-we-empty-p="" style="text-align:center; line-height:2;">
-                <span><br>저희가 제안드린 부분은 절대적인 정답이 아니니&nbsp;</span>
-                <span>반려인분의 상황에 따라 잘 따져보고 결정하시길&nbsp;</span><span>바랍니다. 💭</span>
+                저희가 제안드린 부분은 절대적인 정답이 아니니 반려인분의 상황에 따라 잘 따져보고 결정하시길&nbsp;바랍니다. 💭
             </p>
-            <p data-we-empty-p="" style="text-align:center; line-height:2;"><span><br></span>
+            <p data-we-empty-p="" style="text-align:center; line-height:2;">------
             </p>
-            <p data-we-empty-p="" style="text-align:center; line-height:2;"><span>------</span>
+            <p data-we-empty-p="" style="text-align:center; line-height:2; font-weight: bold; color: #F4AFB7">펫적금이란?
             </p>
-            <p data-we-empty-p="" style="text-align:center; line-height:2;"><span>펫적금이란?</span>
-            </p>
-            <p data-we-empty-p="" style="text-align:center; line-height:2;"><span>펫적금은 반려동물을 키우는 가정들을 위한 새로운 금융상품입니다. 일반적인 적금과 비슷하지만, 이자율이 더 높은 경우 혹은 펫 관련 서비스 할인 혜택 등의 추가 혜택이 있습니다. 또한, 펫적금에서 모은 돈은 반려동물의 건강관리나 교육 등에 사용할 수 있도록 제한이 없다는 특징이 있습니다 :-)</span>
+            <p data-we-empty-p="" style="text-align:center; line-height:2;">펫적금은 반려동물을 키우는 가정들을 위한 새로운 금융상품입니다. 일반적인 적금과
+                비슷하지만,<br>이자율이 더 높은 경우 혹은 펫 관련 서비스 할인 혜택 등의 추가 혜택이 있습니다. <br>또한, 펫적금에서 모은 돈은 반려동물의 건강관리나 교육 등에 사용할 수 있도록
+                <br>제한이 없다는 특징이 있습니다 :-)
             </p>
         </div>
     </div>
+    <br>
     <div class="end">
         <a href="/test/start" class="button-link">테스트 다시하개!
         </a>
-        <a href="/product">
-            <button>추천 상품 보러가개!</button>
-        </a>
+        <button onclick="window.location.href='/product'" class="button-link">추천 상품 보러가개!</button>
     </div>
+    <br>
 </div>
 

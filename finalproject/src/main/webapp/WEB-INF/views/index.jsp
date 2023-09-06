@@ -43,7 +43,7 @@
         }
 
         .m {
-            padding: 35px;
+            padding: 25px;
             display: none;
             background: #FFFFFF;
             position: fixed;
@@ -52,14 +52,17 @@
             transform: translate(-50%, -50%); /* 화면 정중앙으로 위치 조정 */
             z-index: 9999;
             width: 60%;
-            max-height: 80vh; /* 모달 창의 최대 높이를 화면 높이의 80%로 설정 */
+            max-height: 90vh; /* 모달 창의 최대 높이를 화면 높이의 80%로 설정 */
             overflow-y: auto; /* 내부 스크롤을 auto로 변경 */
+            border: 3.5px solid #FAC6CE;
+            border-radius: 20px;
         }
 
         /* 바깥 스크린 스크롤 비활성화 */
         .modal-open {
             overflow: hidden;
         }
+
 
     </style>
 </head>
@@ -74,7 +77,7 @@
 
                 <div id="myModal" class="m">
                     <div class="modal-content">
-                        <span class="close">&times;</span>
+                        <div class="close" style="cursor: pointer">&times;</div>
                         <div id="modalContent"></div>
                     </div>
                 </div>
@@ -92,55 +95,10 @@
         %>
         <div></div>
         <%} else {%>
-
-        <%--        <div class="section">--%>
-        <%--            <p>평생을 함께하는 가족인 반려견을 위한 특별한 금융 플랫폼, 그것이 "펫 금융 프로젝트"입니다. 반려견을 가족으로 여기고 그 노후를 위한 준비를 함께 할 수 있는 이 플랫폼은 오직--%>
-        <%--                돈의 문제만이 아닌, 가족 모두가 소통하고 협력하는 곳입니다.</p>--%>
-        <%--        </div>--%>
-
-        <%--        <div class="section">--%>
-        <%--            <p>"나랑 평생 함께하개"는 당신의 가족과 반려견, 그리고 소중한 적금을 통해 더 특별한 순간을 만들어 나갑니다. 더 많은 행복과 소중한 추억을 함께 나누어보세요!</p>--%>
-        <%--        </div>--%>
         <%}%>
     </div>
 </div>
 <script>
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     const animate_zoomIn = document.querySelectorAll('.scroll-zoomIn');
-    //     const animate_fadeInUp = document.querySelectorAll('.scroll-fadeInUp');
-    //     const animate_slideInLeft = document.querySelectorAll('.scroll-slideInLeft')
-    //     const halfViewportHeight = window.innerHeight / 3; // 절반의 뷰포트 높이
-    //
-    //     function isElementInViewport(el) {
-    //         const rect = el.getBoundingClientRect();
-    //         return (
-    //             rect.top >= -halfViewportHeight &&
-    //             rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + halfViewportHeight
-    //         );
-    //     }
-    //
-    //     function handleScroll() {
-    //         animate_zoomIn.forEach(elem => {
-    //             if (isElementInViewport(elem)) {
-    //                 elem.classList.add('animate__animated', 'animate__zoomIn', 'slow', '5');
-    //             }
-    //         });
-    //         animate_fadeInUp.forEach(elem => {
-    //             if (isElementInViewport(elem)) {
-    //                 elem.classList.add('animate__animated', 'animate__fadeInUp', 'slow', '5');
-    //             }
-    //         });
-    //         animate_slideInLeft.forEach(elem => {
-    //             if (isElementInViewport(elem)) {
-    //                 elem.classList.add('animate__animated', 'animate__slideInLeft', 'slow', '7');
-    //             }
-    //         });
-    //     }
-    //
-    //     window.addEventListener('scroll', handleScroll);
-    //     handleScroll();
-    // });
-
     document.addEventListener("DOMContentLoaded", function () {
         const openModalButton = document.getElementById("openModalButton");
         const m = document.getElementById("myModal");
@@ -188,7 +146,9 @@
             $('.modal-c .top1').css('display', 'none');
             $('.modal-c .top2').css('display', 'block');
             $('.modal-c .middle').css('display', 'block');
-            $('.modal-c .end').css('display', 'block');
+            $('.modal-c .end').css('display', 'flex');
+            $('.modal-c .end').css('justify-content', 'center');
+            $('.modal-c .end').css('gap', '25px');
         }, 1200);
     }
 </script>
