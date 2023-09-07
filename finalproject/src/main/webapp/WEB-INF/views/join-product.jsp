@@ -5,200 +5,8 @@
     <title>Join-Product</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/resources/css/common.css">
+    <link rel="stylesheet" href="/resources/css/join-product.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <style>
-
-        .first-section {
-            text-align: center;
-        }
-
-        #productCategory {
-            font-size: 31px;
-            margin-bottom: 15px;
-        }
-
-        #productDescription {
-            font-family: font-medium;
-            margin-bottom: 15px;
-        }
-
-        .line {
-            background: #CFDBC8;
-            border-radius: 80px;
-            width: auto;
-            height: 2.5px;
-            margin-bottom: 20px;
-        }
-
-        .title {
-            font-family: font-medium;
-            font-size: 25px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* 테이블 전체 스타일 */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        /* 테이블 행 스타일 */
-        tr {
-            border-bottom: 1px solid #ddd;
-        }
-
-        /* 테이블 셀 스타일 */
-        td {
-            padding: 20px 0px 20px 40px;
-            text-align: left;
-            font-family: font-medium;
-        }
-
-        /* 라벨 셀 스타일 */
-        td.form-label {
-            font-weight: bold;
-            width: 190px;
-        }
-
-        /* 입력 필드 스타일 */
-        .input-form {
-            width: 400px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-right: 5px;
-        }
-
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            appearance: none;
-            margin: 0;
-        }
-
-        /* 드롭다운 스타일 */
-        .form-select {
-            width: 400px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        /* 확인 버튼 스타일 */
-        .Button {
-            display: inline-block;
-            text-align: center;
-            width: 150px;
-            height: 44px;
-            font-size: 18px;
-            padding: 10px 20px;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            background: #75A989;
-            border-radius: 10px;
-            outline: none;
-        }
-
-        #joinButton {
-            margin-top: 50px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-
-        #confirmButton {
-            margin-left: 40px;
-        }
-
-        /* 오류 메시지 스타일 */
-        .text-danger {
-            color: #dc3545;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        /* 라디오 버튼 스타일 */
-        input[type="radio"] {
-            margin-right: 5px;
-        }
-
-        tbody tr:nth-child(1) {
-            border-top: 3px solid #75A989;
-        }
-
-        tbody tr:nth-last-child(1) {
-            border-bottom: 3px solid #75A989;
-        }
-
-        /* 홀수 번째 td 배경색 스타일 */
-        td:nth-child(odd) {
-            background-color: #E1E6DE;
-        }
-
-        ::placeholder {
-            color: #BFDFCB;
-        }
-
-        #endDateMessage, #pwMessage {
-            margin-top: 5px;
-            font-size: 17px;
-            color: #75A989;
-        }
-
-        .color {
-            margin-left: 40px;
-        }
-
-        #current_balance, #able_balance, .color div div {
-            font-size: 17px;
-            color: #75A989;
-            margin-right: 6px;
-            font-family: font-medium;
-        }
-
-        ::placeholder {
-            font-family: font-medium;
-        }
-
-        .pe input[type=radio] {
-            display: none;
-        }
-
-        .pe input[type=radio] + label {
-            display: inline-block;
-            text-align: center;
-            width: 150px;
-            height: 36px;
-            font-size: 18px;
-            border: none;
-            border: 1px solid #75A989;
-            cursor: pointer;
-            background: #ffffff;
-            border-radius: 10px;
-            padding-top: 8px;
-            margin-right: 20px;
-        }
-
-        .pe input[type=radio]:checked + label {
-            display: inline-block;
-            text-align: center;
-            width: 150px;
-            height: 36px;
-            font-size: 18px;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            background: #75A989;
-            border-radius: 10px;
-            outline: none;
-            padding-top: 8px;
-        }
-
-    </style>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
@@ -214,7 +22,7 @@
                 <td class="form-label">출금 계좌번호</td>
                 <td>
                     <div style="display: flex">
-                        <select class="form-select" id="accountNumberSelection" required onchange="updateBalance()">
+                        <select class="form-dropdown" id="accountNumberSelection" required onchange="updateBalance()">
                             <!-- Ajax로 옵션 추가될 예정 -->
                         </select>
                         <div class="color">
@@ -252,7 +60,7 @@
             <tr>
                 <td class="form-label">반려견 정보</td>
                 <td>
-                    <select class="form-select" id="petSelection" required>
+                    <select class="form-dropdown" id="petSelection" required>
                         <!-- Ajax로 옵션 추가될 예정 -->
                     </select>
                 </td>
@@ -318,6 +126,10 @@
             <button type="button" class="Button" id="joinButton">가입하기</button>
         </div>
     </form>
+
+    <div id="myModal" class="modal">
+        <%@ include file="card-box.jsp" %>
+    </div>
 </div>
 </body>
 
@@ -513,7 +325,7 @@
                 success: function (response) {
                     console.log(response)
                     if (response === "적금 생성 성공") {
-                        window.location.href = '/card'; // 페이지 이동 처리
+                        modal.style.display = "block";
                     } else {
                         console.error("insert 실패");
                     }
@@ -524,6 +336,7 @@
             });
         }
 
+        const modal = document.getElementById("myModal");
         document.getElementById('joinButton').addEventListener('click', function (event) {
             const accountName = document.getElementById("accountName").value; // 입력 필드의 값을 가져옵니다.
 
@@ -536,6 +349,14 @@
                 else alert("가입 조건을 확인해주세요.");
                 event.preventDefault(); // 조건을 만족하지 않을 경우 폼 제출 및 페이지 이동 중지
             }
+        });
+
+        // 모달 내에서 확인 버튼을 클릭하면 모달을 닫는 이벤트 핸들러
+        const confirmButton = document.getElementById("confirmBtn");
+
+        confirmButton.addEventListener("click", () => {
+            modal.style.display = "none"; // 모달을 화면에서 숨김
+            window.location.href = '/card'; // 페이지 이동 처리
         });
 
         function createAccountNumber() {
@@ -567,6 +388,5 @@
         flag1 = false;
 
     }
-
 
 </script>
