@@ -4,7 +4,8 @@
 }
 
 * {
-    font-family: 'font-bold';
+    font-family: 'font-medium';
+    /*font-weight: bold;*/
     font-size: 19px;
     color: #324D3D;
 }
@@ -24,13 +25,4 @@ header {
     align-items: center;
     text-align: center;
     justify-content: space-around;
-}
-
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
 }
