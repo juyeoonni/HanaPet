@@ -1,201 +1,22 @@
+<%@ page import="java.util.HashMap" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head>
     <title>Calendar</title>
-    <style>
-        /* Reset some default styles */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Main container for the calendar */
-        .calendar {
-            display: flex;
-            position: relative;
-            padding: 60px 200px 100px 200px;
-            background-color: #fff;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        /* .calendar-left 스타일링 추가 */
-        .calendar-left {
-            flex: 1;
-            position: relative;
-            background-color: white;
-            transition: transform 0.5s ease;
-            z-index: 2; /* calendar-right 앞에 위치하도록 설정 */
-        }
-
-        /* .calendar-right 스타일링 추가 */
-        .calendar-right {
-            flex: 1;
-            visibility: hidden;
-            position: absolute;
-            top: 100px;
-            right: 0;
-            transform: translateX(-160%); /* 처음에 calendar-left 아래로 숨겨짐 */
-            transition: transform 0.5s ease;
-            z-index: 1; /* calendar-left 뒤에 위치하도록 설정 */
-        }
-
-        /* Calendar header with Previous, Month Name, and Next buttons */
-        .calendar-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        /* Days of the week */
-        .calendar-days {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            color: #999;
-            font-size: 14px;
-        }
-
-        /* Individual day of the week */
-        .day {
-            flex-basis: calc(100% / 7);
-            text-align: center;
-        }
-
-        /* Container for dates */
-        .calendar-dates {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-        }
-
-        /* Style for the event dot */
-        .event-dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background-color: #4CAF50; /* You can change the color to your preference */
-            border-radius: 50%;
-            margin-left: 2px;
-            margin-right: 2px;
-        }
-
-
-        /* Individual date */
-        .date {
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        /* Highlight date on hover */
-        .date:hover {
-            background-color: #f2f2f2;
-        }
-
-        /* Highlight present day */
-        .present {
-            background-color: #59a6f5;
-            color: #fff;
-        }
-
-        /* Highlight today's date */
-        .date.today {
-            background-color: #4CAF50;
-            color: #fff;
-        }
-
-        /* Highlight selected date with a border */
-        .date.selected {
-            background-color: #f2f2f2;
-        }
-
-        /* Form container */
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Form group */
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        /* Form label */
-        .form-label {
-            font-weight: bold;
-        }
-
-        /* Form input */
-        .form-input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        /* Form select */
-        .form-select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        /* Form submit button */
-        .form-submit {
-            background-color: #59a6f5;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* 모달 스타일 */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            width: 50%;
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        #openModalButton {
-            margin-top: 20px;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="/resources/css/common.css">
+    <link rel="stylesheet" href="/resources/css/calendar.css">
 </head>
 <body>
-<%@ include file="include/header.jsp" %>
+<jsp:include page="include/header.jsp"/>
+
+<div class="title">펫 캘린더</div>
 <div class="calendar">
     <div class="calendar-left">
         <div class="calendar-header">
-            <button class="btn btn-prev" onclick="prevMonth()">Previous</button>
-            <h1 id="currentMonth"></h1>
-            <button class="btn btn-next" onclick="nextMonth()">Next</button>
+            <button class="btn btn-prev" onclick="prevMonth()"><</button>
+            <div id="currentMonth"></div>
+            <button class="btn btn-next" onclick="nextMonth()"> ></button>
         </div>
         <div class="calendar-days">
             <div class="day">Sun</div>
@@ -223,7 +44,7 @@
     </div>
     <div class="calendar-right">
         <div class="form-container">
-            <h2>일정</h2>
+            <h2>일정🗓️️</h2>
             <form id="eventForm">
                 <div class="form-group">
                     <span class="form-text" id="eventDate"></span>
@@ -246,6 +67,7 @@
 <script>
     // Initialize the current date
     const currentDate = new Date();
+    const petImg = {};
 
     // Function to get the days in a month
     function getDaysInMonth(month, year) {
@@ -315,7 +137,6 @@
                 eventsList.appendChild(eventItem);
             });
             dateElement.appendChild(eventsList);
-
             calendarDatesContainer.appendChild(dateElement);
         }
     }
@@ -432,31 +253,29 @@
         data.forEach((item, index) => {
             const eventDate = new Date(item.event_date);
             const day = eventDate.getDate();
-            const petId = item.pet_id;
-
-            const colorsByPet = {
-                1: "red",   // Example color for pet_id 1
-                2: "green"  // Example color for pet_id 2
-            };
-
-            const color = colorsByPet[petId] || "blue"; // Default color if pet_id not found
+            const petImage = petImg[item.pet_id];
 
             dateElements.forEach(dateElement => {
                 const date = dateElement.dataset.date;
                 if (date == day) {
-                    const dot = createDot(color); // Pass the color to createDot function
-                    dateElement.appendChild(dot);
+                    const img = createImage(petImage);
+                    dateElement.appendChild(img);
                 }
             });
         });
     }
 
-    // Function to create a dot element with a specified color
-    function createDot(color) {
-        const dot = document.createElement("span");
-        dot.className = "event-dot";
-        dot.style.backgroundColor = color; // Set the background color of the dot
-        return dot;
+    function createImage(imgUrl) {
+        const img = document.createElement("img");
+        img.src = "/resources/img/" + imgUrl;
+        img.width = 35;
+        img.height = 35;
+
+        img.style.filter = "drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25))";
+        img.style.borderRadius = "50%";
+        img.style.clipPath = "circle(50% at 50% 50%)";
+
+        return img;
     }
 
     // Handle event form submission
@@ -600,6 +419,8 @@
 
                     const petOptions = Array.from(document.getElementById("petSelection").options);
                     petIds = petOptions.map(option => option.value);
+
+                    petImg[pet.pet_id] = pet.image;
 
                     const month = currentDate.getMonth() + 1;
                     fetchMonthEvents(currentDate.getFullYear() % 100, month < 10 ? "0" + month : "" + month, option.value);
