@@ -44,17 +44,16 @@
     </div>
     <div class="calendar-right">
         <div class="form-container">
-            <h2>일정🗓️️</h2>
+            <div id="calendar-title">일정🗓️️</div>
+            <hr>
             <form id="eventForm">
                 <div class="form-group">
-                    <span class="form-text" id="eventDate"></span>
+                    <span class="events" id="eventDate"></span>
                 </div>
             </form>
             <div id="eventsListContainer">
                 <!-- Display events for the selected date here -->
             </div>
-
-
         </div>
     </div>
 </div>
@@ -151,12 +150,12 @@
         renderCalendar(currentDate.getMonth() + 1);
     }
 
+    const calendarRight = document.querySelector(".calendar-right");
+    const calendarLeft = document.querySelector(".calendar-left");
+
     // 일정을 표시하고 오른쪽 패널을 보여주는 함수
     function showEventPanel() {
-        const calendarRight = document.querySelector(".calendar-right");
-        const calendarLeft = document.querySelector(".calendar-left");
-
-        calendarRight.style.transform = "translateX(-130%)";
+        calendarRight.style.transform = "translateX(-70%)";
         calendarLeft.style.flex = "0.7";
         calendarRight.style.flex = "0.3";
         calendarRight.style.visibility = "visible"
@@ -164,9 +163,6 @@
 
     // 오른쪽 패널을 다시 숨기는 함수
     function hideEventPanel() {
-        const calendarRight = document.querySelector(".calendar-right");
-        const calendarLeft = document.querySelector(".calendar-left");
-
         calendarRight.style.transform = "translateX(-160%)"; // 처음 숨겨진 위치로 이동
         // flex 속성을 부드럽게 변경하여 커지는 효과 생성
         calendarLeft.style.transition = "flex 0.5s ease"; // 0.3초 동안 ease 가속도로 flex 변화
@@ -253,23 +249,23 @@
         data.forEach((item, index) => {
             const eventDate = new Date(item.event_date);
             const day = eventDate.getDate();
-            const petImage = petImg[item.pet_id];
+            const petImage = petImg[item.pet_id][0];
 
             dateElements.forEach(dateElement => {
                 const date = dateElement.dataset.date;
                 if (date == day) {
-                    const img = createImage(petImage);
+                    const img = createImage(petImage, 40);
                     dateElement.appendChild(img);
                 }
             });
         });
     }
 
-    function createImage(imgUrl) {
+    function createImage(imgUrl, radius) {
         const img = document.createElement("img");
         img.src = "/resources/img/" + imgUrl;
-        img.width = 35;
-        img.height = 35;
+        img.width = radius;
+        img.height = radius;
 
         img.style.filter = "drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.25))";
         img.style.borderRadius = "50%";
@@ -351,14 +347,30 @@
             const petEvents = allPetEvents[petId];
             if (petEvents.length > 0) {
                 check = false;
+
+                const petInfoDiv = document.createElement("div");
+                petInfoDiv.style.display = "flex"; // flex 레이아웃 사용
+                petInfoDiv.style.alignItems = "center"; // 수직 가운데 정렬
+                petInfoDiv.style.gap = "10px"; // 아이템 사이의 간격 설정
+
+                const petIdItem = document.createElement("p");
+                petIdItem.innerText = petImg[petId][1]; // 이름
+                petIdItem.style.fontSize = "26px";
+                petInfoDiv.appendChild(petIdItem);
+
+                const petImgItem = createImage(petImg[petId][0], 50)
+                petInfoDiv.appendChild(petImgItem);
+                eventsListContainer.appendChild(petInfoDiv);
+
+                // <ul> 엘리먼트를 생성하여 이벤트 목록 추가
                 const eventsList = document.createElement("ul");
                 petEvents.forEach(event => {
                     const eventItem = document.createElement("li");
                     eventItem.innerText = event.content;
                     eventsList.appendChild(eventItem);
                 });
-
                 eventsListContainer.appendChild(eventsList);
+
             }
             showEventPanel();
         }
@@ -420,7 +432,7 @@
                     const petOptions = Array.from(document.getElementById("petSelection").options);
                     petIds = petOptions.map(option => option.value);
 
-                    petImg[pet.pet_id] = pet.image;
+                    petImg[pet.pet_id] = [pet.image, pet.name];
 
                     const month = currentDate.getMonth() + 1;
                     fetchMonthEvents(currentDate.getFullYear() % 100, month < 10 ? "0" + month : "" + month, option.value);
