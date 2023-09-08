@@ -1,11 +1,19 @@
 @font-face {
-    font-family: 'font-bold';
-    src: url('../font/Hana2-Bold.ttf');
+    font-family: 'font-light';
+    src: url('../font/NEXON Light.ttf');
 }
 
+@font-face {
+    font-family: 'font-bold';
+    src: url('../font/NEXON Bold.ttf');
+}
+
+@font-face {
+    font-family: 'font-medium';
+    src: url('../font/NEXON Medium.ttf');
+}
 * {
     font-family: 'font-medium';
-    /*font-weight: bold;*/
     font-size: 19px;
     color: #324D3D;
 }
