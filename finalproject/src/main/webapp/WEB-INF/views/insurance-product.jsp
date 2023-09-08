@@ -11,11 +11,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
+        .menu-item{
+            padding-top: 12px !important;
+        }
         .menu-title {
             text-align: center;
             font-size: 30px;
-            margin-bottom: 37px;
-            margin-top: 3px;
+            margin-bottom: 40px;
         }
 
         .middle-box {

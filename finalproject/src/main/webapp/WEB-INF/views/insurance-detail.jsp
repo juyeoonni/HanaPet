@@ -549,7 +549,8 @@
     </div>
 
     <div class="next">
-        <button class="sc-hWlEnr cRXURy">다음으로</button>
+        <button class="sc-hWlEnr cRXURy" onclick="window.location.href='/join-insurance'">다음으로</button>
+
     </div>
 </div>
 <script>
