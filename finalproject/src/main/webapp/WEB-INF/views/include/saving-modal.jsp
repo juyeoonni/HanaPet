@@ -1,16 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 <head>
-    <link rel="stylesheet" href="/resources/css/card-box.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/modal.css">
 </head>
 <div class="category">
-    <img src="/resources/img/product-의료건강.svg" width="45px" style="
-    padding-left: 5px;
-    padding-top: 3px;
-    margin-right: 15px;
-">
+    <img src="/resources/img/product-의료건강.svg" width="45px"
+         style="padding-left: 5px; padding-top: 3px; margin-right: 15px;">
     <span>의료/건강</span>
 </div>
 

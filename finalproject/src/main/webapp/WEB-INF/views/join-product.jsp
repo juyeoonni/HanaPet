@@ -128,7 +128,7 @@
     </form>
 
     <div id="myModal" class="modal">
-        <%@ include file="card-box.jsp" %>
+        <%@ include file="include/saving-modal.jsp" %>
     </div>
 </div>
 </body>

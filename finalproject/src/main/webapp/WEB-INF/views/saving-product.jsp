@@ -5,7 +5,7 @@
 <head>
     <title>Product</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../../resources/css/common.css">
+    <link rel="stylesheet" href="/resources/css/common.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .middle-box {
@@ -60,7 +60,7 @@
     </div>
     <div class="middle-box">
         <span>전체 7개 적금</span>
-        <span style="font-size: 16px; font-family: font-regular">(조회 기준일자: 2023-08-29, 우대금리포함)</span>
+        <span style="font-size: 16px;">(조회 기준일자: 2023-08-29, 우대금리포함)</span>
     </div>
     <div class="grid-container">
     </div>

@@ -49,11 +49,4 @@ public class ProductController {
         mav.setViewName("join-product");
         return mav;
     }
-
-    @RequestMapping("/card")
-    public ModelAndView login() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("card-box");
-        return mav;
-    }
 }

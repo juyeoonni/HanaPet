@@ -52,6 +52,10 @@
             padding-left: 10px;
             text-align: start;
         }
+
+        #myModal{
+            height: 390px;
+        }
     </style>
 </head>
 <%@ include file="include/header.jsp" %>
@@ -139,7 +143,7 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header"><%--@declare id="agree"--%><label for="agree"
                                                                                                style="width:100%">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseAgree1" aria-expanded="true"
                                             aria-controls="collapseAgree1">
                                         <input type="checkbox" name="agree" value="1"
@@ -148,7 +152,7 @@
                                     </button>
                                 </label>
                                 </h2>
-                                <div id="collapseAgree1" class="accordion-collapse collapse show"
+                                <div id="collapseAgree1" class="accordion-collapse collapse"
                                      aria-labelledby="headingProduct"
                                      data-bs-parent="#agreeAccordion1">
                                     <div class="accordion-body"
@@ -281,6 +285,10 @@
     <div style="text-align: center; margin-top: 50px">
         <button type="button" class="Button" id="joinButton">가입하기</button>
     </div>
+
+    <div id="myModal" class="modal">
+        <%@ include file="include/insurance-modal.jsp" %>
+    </div>
 </div>
 <script>
     const agreeChkAll = document.querySelector('input[name=agree_all]');
@@ -290,5 +298,60 @@
         for (let i = 0; i < agreeChk.length; i++) {
             agreeChk[i].checked = e.target.checked;
         }
+    });
+
+    $("#joinButton").click(function () {
+        // 선택된 약관 동의 여부 확인
+        const isAgreed = document.getElementById("agree_all").checked;
+        if (!isAgreed) {
+            alert("약관에 동의해주세요.");
+        } else {
+            joinInsurance();
+        }
+    });
+
+    function joinInsurance(){
+        modal.style.display = "block";
+
+        <%--const requestData = {--%>
+        <%--    account_number: accountNumber,--%>
+        <%--    join_period: joinPeriodInput.value,--%>
+        <%--    end_date: calculateEndDate(parseInt(joinPeriodInput.value)),--%>
+        <%--    category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,--%>
+        <%--    opener_id: '<%= guest_id %>',--%>
+        <%--    saving_name: document.getElementById('accountName').value,--%>
+        <%--    pet_id: document.getElementById("petSelection").value,--%>
+        <%--    current_balance: joinAmountInput.value--%>
+        <%--};--%>
+
+        <%--console.log(requestData);--%>
+        <%--$.ajax({--%>
+        <%--    url: "/create-savingaccounts",--%>
+        <%--    type: "POST",--%>
+        <%--    data: JSON.stringify(requestData),--%>
+        <%--    contentType: 'application/json',--%>
+        <%--    success: function (response) {--%>
+        <%--        console.log(response)--%>
+        <%--        if (response === "적금 생성 성공") {--%>
+        <%--            modal.style.display = "block";--%>
+        <%--        } else {--%>
+        <%--            console.error("insert 실패");--%>
+        <%--        }--%>
+        <%--    },--%>
+        <%--    error: function () {--%>
+        <%--        console.log("Error post.");--%>
+        <%--    }--%>
+        <%--});--%>
+    }
+
+    const modal = document.getElementById("myModal");
+
+
+    // 모달 내에서 확인 버튼을 클릭하면 모달을 닫는 이벤트 핸들러
+    const confirmButton = document.getElementById("confirmBtn");
+
+    confirmButton.addEventListener("click", () => {
+        modal.style.display = "none"; // 모달을 화면에서 숨김
+        window.location.href = '/card'; // 페이지 이동 처리
     });
 </script>
