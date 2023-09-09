@@ -102,9 +102,9 @@
                 <td class="form-label">자동이체 SMS 통보</td>
                 <td>
                     <div class="pe" id="transferSMS" required>
-                        <input type="radio" id="transferSMSyes" name="transferSMS" value="yes" checked><label
+                        <input type="radio" id="transferSMSyes" name="transferSMS" value="Y" checked><label
                             for="transferSMSyes">신청함</label>
-                        <input type="radio" id="transferSMSno" name="transferSMS" value="no"><label for="transferSMSno">신청안함</label>
+                        <input type="radio" id="transferSMSno" name="transferSMS" value="N"><label for="transferSMSno">신청안함</label>
                     </div>
                 </td>
             </tr>
@@ -112,9 +112,9 @@
                 <td class="form-label">적금 만기 SMS 통보</td>
                 <td>
                     <div class="pe" id="finishSMS" required>
-                        <input type="radio" id="finishSMSyes" name="finishSMS" value="yes" checked><label
+                        <input type="radio" id="finishSMSyes" name="finishSMS" value="Y" checked><label
                             for="finishSMSyes">신청함</label>
-                        <input type="radio" id="finishSMSno" name="finishSMS" value="no"><label
+                        <input type="radio" id="finishSMSno" name="finishSMS" value="N"><label
                             for="finishSMSno">신청안함</label>
                     </div>
                 </td>
@@ -298,9 +298,35 @@
         }
 
 
-        function postServer() {
+        function joinSavingLogic() {
             // 먼저 계좌 번호 생성
             const accountNumber = createAccountNumber();
+
+            // 라디오 버튼 그룹을 가져옵니다.
+            var radioButtons = document.getElementsByName('transferSMS');
+
+            // 선택된 값을 저장할 변수를 선언합니다.
+            var selectedValue = '';
+
+            // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
+            for (var i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    selectedValue = radioButtons[i].value;
+                    break; // 선택된 값을 찾으면 반복을 종료합니다.
+                }
+            }
+            var radioButtons2 = document.getElementsByName('finishSMS');
+
+            // 선택된 값을 저장할 변수를 선언합니다.
+            var selectedValue2 = '';
+
+            // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
+            for (var i = 0; i < radioButtons2.length; i++) {
+                if (radioButtons2[i].checked) {
+                    selectedValue2 = radioButtons2[i].value;
+                    break; // 선택된 값을 찾으면 반복을 종료합니다.
+                }
+            }
 
             // 필요한 데이터를 객체로 만들어 전송
             const requestData = {
@@ -308,17 +334,21 @@
                 join_period: joinPeriodInput.value,
                 end_date: calculateEndDate(parseInt(joinPeriodInput.value)),
                 category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,
-                opener_id: '<%= guest_id %>',
+                guest_id: '<%= guest_id %>',
                 saving_name: document.getElementById('accountName').value,
                 pet_id: document.getElementById("petSelection").value,
-                current_balance: joinAmountInput.value
+                sms_transfer: selectedValue,
+                sms_maturity: selectedValue2,
+                // amount:  document.getElementById('joinAmount').value,
+                contribute_amount: '0',
+                contribute_ratio: '0.0'
             };
 
             // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!
 
             console.log(requestData);
             $.ajax({
-                url: "/create-savingaccounts",
+                url: "/join-savingaccounts",
                 type: "POST",
                 data: JSON.stringify(requestData),
                 contentType: 'application/json',
@@ -341,7 +371,7 @@
             const accountName = document.getElementById("accountName").value; // 입력 필드의 값을 가져옵니다.
 
             if (flag1 && flag2 && !(accountName.trim() === "")) {
-                postServer();
+                joinSavingLogic();
 
             } else {
                 if (!flag1) alert("계좌 비밀번호를 확인해주세요.");

@@ -33,10 +33,9 @@ public class SavingaccountController {
         return mav;
     }
 
-    @PostMapping("/create-savingaccounts")
+    @PostMapping("/join-savingaccounts")
     public ResponseEntity<String> createSavingaccount(@RequestBody HashMap<String, String> data) {
-        System.out.println("여기요!!!" + data);
-        savingaccountService.createSavingAccounts(data);
+        savingaccountService.joinSavingAccounts(data);
         return ResponseEntity.ok("적금 생성 성공");
     }
 }
