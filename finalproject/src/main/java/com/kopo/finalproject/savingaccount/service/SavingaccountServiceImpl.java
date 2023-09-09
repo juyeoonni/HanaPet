@@ -30,7 +30,7 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             // 1. 적금 계좌 테이블 생성 (insert)
             savingaccountMapper.createSavingAccounts(data);
             // 2. 적금 참여 테이블 생성 (insert)
-            //savingaccountMapper.joinSaving(data);
+            savingaccountMapper.joinSaving(data);
 //            // 3. 자동이체 테이블 생성 (insert)
 //            savingaccountMapper.insertAutoTransfer(data);
 //            // 4. 예금 계좌 테이블 수정 (update) - 돈 빠져나가기

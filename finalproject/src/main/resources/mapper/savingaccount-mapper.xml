@@ -20,9 +20,9 @@
 
     <insert id="joinSaving" parameterType="HashMap">
         INSERT INTO join_saving(guest_id, account_number, accept_status, join_date, sms_transfer, sms_maturity,
-                                contribute_amount, contribute_ratio)
+                                contribution_amount, contribution_ratio)
         VALUES (#{guest_id}, #{account_number}, 'Y', SYSDATE, #{sms_transfer},
-                #{sms_maturity}, #{contribute_amount}, #{contribute_ratio})
+                #{sms_maturity}, #{contribution_amount}, #{contribution_ratio})
     </insert>
 
     <insert id="insertAutoTransfer" parameterType="HashMap">
