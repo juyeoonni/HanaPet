@@ -362,8 +362,8 @@
                 deposit_account_number: selectedAccountNumber,
                 period: selectedValue3,
                 amount: document.getElementById('joinAmount').value,
-                contribution_amount: '0',
-                contribution_ratio: '0.0',
+                contribution_amount: document.getElementById('joinAmount').value,
+                contribution_ratio: 100,
                 progress_rate: (1/joinPeriodInput.value).toFixed(2)
             };
 
