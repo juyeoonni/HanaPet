@@ -35,7 +35,7 @@
     </update>
 
     <update id="deposit" parameterType="HashMap">
-        UPDATE saving_account SET balance = balance + #{amount}, progress_rate = progress_rate + #{progress_rate}  WHERE account_number = #{account_number}
+        UPDATE saving_account SET current_balance = current_balance + #{amount}, progress_rate = #{progress_rate}  WHERE account_number = #{account_number}
     </update>
 
 </mapper>
