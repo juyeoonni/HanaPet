@@ -22,6 +22,10 @@ public interface SavingaccountMapper {
 
     void insertTransferHistory(HashMap<String, String> data);
 
-    void updateContribute(HashMap<String, String> data);
+    String getTransferId(HashMap<String, String> data);
+
+    String getBalance(String accountNumber);
+
+    String getTransferNo(String transfer_id);
 
 }
