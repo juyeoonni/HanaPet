@@ -328,6 +328,26 @@
                 }
             }
 
+            const radioButtons3 = document.getElementsByName('period');
+
+            // 선택된 값을 저장할 변수를 선언합니다.
+            let selectedValue3 = '';
+
+            // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
+            for (var i = 0; i < radioButtons3.length; i++) {
+                if (radioButtons3[i].checked) {
+                    selectedValue3 = radioButtons3[i].value;
+                    break; // 선택된 값을 찾으면 반복을 종료합니다.
+                }
+            }
+
+            // accountNumberSelection 요소에서 현재 선택된 옵션을 가져옵니다.
+            const selectedOption = document.getElementById('accountNumberSelection').options[document.getElementById('accountNumberSelection').selectedIndex];
+
+            // 선택된 예금 계좌 번호를 가져옵니다.
+            const selectedAccountNumber = selectedOption.textContent;
+
+
             // 필요한 데이터를 객체로 만들어 전송
             const requestData = {
                 account_number: accountNumber,
@@ -339,7 +359,9 @@
                 pet_id: document.getElementById("petSelection").value,
                 sms_transfer: selectedValue,
                 sms_maturity: selectedValue2,
-                // amount:  document.getElementById('joinAmount').value,
+                deposit_account_number: selectedAccountNumber,
+                period: selectedValue3,
+                amount: document.getElementById('joinAmount').value,
                 contribution_amount: '0',
                 contribution_ratio: '0.0'
             };

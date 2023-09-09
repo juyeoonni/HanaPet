@@ -26,8 +26,8 @@
     </insert>
 
     <insert id="insertAutoTransfer" parameterType="HashMap">
-        INSERT INTO auto_transfer(guest_id, account_number_out, account_number_in, amount, period, start_date)
-        VALUES (#{guest_id}, #{deposit_account_number}, #{account_number}, #{amount}, #{period}, #{start_date})
+        INSERT INTO auto_transfer(guest_id, account_number_out, account_number_in, transfer_amount, transfer_period, start_date)
+        VALUES (#{guest_id}, #{deposit_account_number}, #{account_number}, #{amount}, #{period}, SYSDATE)
     </insert>
 
     <update id="withdraw" parameterType="HashMap">
