@@ -12,65 +12,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
-</head>
 
-<%--<div class="body">--%>
-<%--    <div class="title">--%>
-<%--        마이 펫<br>--%>
-<%--        유림님은 2마리의 반려견과 함께 하고 있어요!--%>
-<%--    </div>--%>
-<%--    <div class="accordion" id="accordionPanelsStayOpenExample">--%>
-<%--        <div class="accordion-item">--%>
-<%--            <h2 class="accordion-header">--%>
-<%--                <button class="accordion-button" type="button" data-bs-toggle="collapse"--%>
-<%--                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"--%>
-<%--                        aria-controls="panelsStayOpen-collapseOne">--%>
-<%--                    Accordion Item #1--%>
-<%--                </button>--%>
-<%--            </h2>--%>
-<%--            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">--%>
-<%--                <div class="accordion-body">--%>
-<%--                    <strong>This is the first item's accordion body.</strong> It is shown by default--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div class="accordion-item">--%>
-<%--            <h2 class="accordion-header">--%>
-<%--                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"--%>
-<%--                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"--%>
-<%--                        aria-controls="panelsStayOpen-collapseTwo">--%>
-<%--                    Accordion Item #2--%>
-<%--                </button>--%>
-<%--            </h2>--%>
-<%--            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">--%>
-<%--                <div class="accordion-body">--%>
-<%--                    <strong>This is the second item's accordion body.</strong> It is hidden by default--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div class="accordion-item">--%>
-<%--            <h2 class="accordion-header">--%>
-<%--                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"--%>
-<%--                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"--%>
-<%--                        aria-controls="panelsStayOpen-collapseThree">--%>
-<%--                    Accordion Item #3--%>
-<%--                </button>--%>
-<%--            </h2>--%>
-<%--            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">--%>
-<%--                <div class="accordion-body">--%>
-<%--                    <strong>This is the third item's accordion body.</strong> It is hidden by default--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
+    <script src="/resources/js/apiKey.js"></script>
+
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
+            integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
+            crossorigin="anonymous"></script>
+    <script>
+        Kakao.init(config.KAKAO_JAVASCRIPT_KEY); // 사용하려는 앱의 JavaScript 키 입력
+    </script>
+</head>
 
 <body>
 <%@ include file="include/header.jsp" %>
-<div class = "body">
+<div class="body">
     <div class="accordion" id="accordionPanelsStayOpenExample">
         <!-- Placeholder for the accordion items -->
     </div>
+    <a id="kakaotalk-sharing-btn" href="javascript:;">
+        <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
+             alt="카카오톡 공유 보내기 버튼"/>
+    </a>
 </div>
 
 <%
@@ -153,6 +115,30 @@
         });
     });
 
+    Kakao.Share.createDefaultButton({
+        container: '#kakaotalk-sharing-btn',
+        objectType: 'feed',
+        content: {
+            title: 'HanaPet 공유 적금에 초대되었어요!',
+            description: '토리를 위해 공유 적금에 참여해보세요🐶',
+            imageUrl:
+                'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+            link: {
+                // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                mobileWebUrl: 'http://localhost:8080/mypet',
+                webUrl: 'http://localhost:8080/mypet',
+            },
+        },
+        buttons: [
+            {
+                title: '웹으로 보기',
+                link: {
+                    mobileWebUrl: 'http://localhost:8080/mypet',
+                    webUrl: 'http://localhost:8080/mypet',
+                },
+            }
+        ],
+    });
 </script>
 
 </body>
