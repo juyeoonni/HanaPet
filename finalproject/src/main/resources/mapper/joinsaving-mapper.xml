@@ -14,4 +14,30 @@
         INSERT INTO join_saving(guest_id, account_number, accept_status)
         VALUES (#{guest_id}, #{account_number}, 'N')
     </insert>
+
+    <select id="selectInvited" parameterType="String"
+            resultType="com.kopo.finalproject.joinsaving.model.dto.JoinSaving">
+        SELECT *
+        FROM join_saving
+        WHERE guest_id = #{guest_id}
+    </select>
+
+    <select id="getInvitedInfo" resultType="com.kopo.finalproject.dto.Invite">
+
+        select g2.name           as openerName,
+               js.guest_id       as invitedGuestId,
+               js.account_number as accountNumber,
+               js.join_date      as inviteDate,
+               sa.saving_name    as savingName,
+               p.name            as petName,
+               p.image           as petImg,
+               sa.category       as category
+        from guest g
+                 join join_saving js on g.guest_id = js.guest_id
+                 join saving_account sa on sa.account_number = js.account_number
+                 join pet p on p.pet_id = sa.pet_id
+                 join guest g2 on g2.guest_id = sa.opener_id
+        where g.guest_id = #{guest_id}
+          and js.accept_status = 'N'
+    </select>
 </mapper>

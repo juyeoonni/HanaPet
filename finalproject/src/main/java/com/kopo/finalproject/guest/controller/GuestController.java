@@ -2,6 +2,7 @@ package com.kopo.finalproject.guest.controller;
 
 import com.kopo.finalproject.guest.model.dto.Guest;
 import com.kopo.finalproject.guest.service.GuestService;
+import com.kopo.finalproject.joinsaving.service.JoinSavingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,13 @@ import java.util.HashMap;
 @Controller
 class GuestController {
     private final GuestService guestService;
+    private final JoinSavingService joinSavingService;
+    HttpSession session;
 
     @Autowired
-    public GuestController(GuestService guestService) {
+    public GuestController(GuestService guestService, JoinSavingService joinSavingService) {
         this.guestService = guestService;
+        this.joinSavingService = joinSavingService;
     }
 
     @PostMapping("/login-guest")
@@ -30,8 +34,8 @@ class GuestController {
         HttpSession session = request.getSession();
         System.out.println(loginData);
         if (loginMember != null) {
-            session.setAttribute("name", loginMember.getName());
             session.setAttribute("guest_id", loginMember.getGuest_id());
+            session.setAttribute("name", loginMember.getName());
             return ResponseEntity.ok("로그인 성공");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("로그인 실패");

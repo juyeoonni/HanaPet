@@ -1,5 +1,7 @@
 package com.kopo.finalproject.savingaccount.controller;
 
+import com.kopo.finalproject.pet.model.dto.Pet;
+import com.kopo.finalproject.pet.service.PetService;
 import com.kopo.finalproject.savingaccount.model.dto.Savingaccount;
 import com.kopo.finalproject.savingaccount.service.SavingaccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +10,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
 @Controller
 public class SavingaccountController {
+    @Autowired
     private final SavingaccountService savingaccountService;
 
     @Autowired
-    public SavingaccountController(SavingaccountService savingaccountService) {
+    private final PetService petService;
+
+    public SavingaccountController(SavingaccountService savingaccountService, PetService petService) {
         this.savingaccountService = savingaccountService;
+        this.petService = petService;
     }
 
     @GetMapping("/savingaccounts")
@@ -27,9 +34,11 @@ public class SavingaccountController {
     }
 
     @RequestMapping("/mypet")
-    public ModelAndView product() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("mypet");
+    public ModelAndView product(HttpSession session) {
+        ModelAndView mav = new ModelAndView("mypet");
+        String id = (String) session.getAttribute("guest_id");
+        List<Pet> pets = petService.getAllPetsOfGuest(id);
+        mav.addObject("pets", pets);
         return mav;
     }
 

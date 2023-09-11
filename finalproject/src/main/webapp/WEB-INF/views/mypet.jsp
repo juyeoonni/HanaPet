@@ -25,10 +25,14 @@
 
 <body>
 <%@ include file="include/header.jsp" %>
+
 <div class="body">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-        <!-- Placeholder for the accordion items -->
-    </div>
+    <c:forEach var="pet" items="${pets}">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            ${pet.name}
+        </div>
+    </c:forEach>
+
     <a id="kakaotalk-sharing-btn" href="javascript:;" onclick="send()">
         <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
              alt="카카오톡 공유 보내기 버튼"/>
@@ -39,85 +43,7 @@
     </div>
 </div>
 
-<%
-    String guest_id = (String) session.getAttribute("guest_id");
-%>
-
 <script>
-    $(document).ready(function () {
-        var guest_id = '<%= guest_id %>'; // Java 값을 JavaScript 변수로 전달
-
-        $.ajax({
-            url: "/pets",
-            type: "GET",
-            data: {
-                guest_id: guest_id
-            },
-            dataType: "json",
-            success: function (petsData) {
-                console.log(guest_id);
-                console.log(petsData);
-                var promises = [];
-
-                petsData.forEach(function (pet) {
-                    var accordionItem = $("<div>").addClass("accordion-item");
-                    var accordionHeader = $("<h2>").addClass("accordion-header");
-                    var accordionButton = $("<button>").addClass("accordion-button")
-                        .attr("type", "button")
-                        .attr("data-bs-toggle", "collapse")
-                        .attr("data-bs-target", "#accordionItem" + pet.pet_id)
-                        .attr("aria-expanded", "false")
-                        .attr("aria-controls", "accordionItem" + pet.pet_id)
-                        .html('<div class="button-content" style="display: flex; justify-content: space-between; align-items: center; width: 90%">'
-                            + '<div class="left">'
-                            + '<span class="petimg"></span>'
-                            + '<span class="petname">' + pet.name + '</span>'
-                            + '</div>'
-                            + '<div class="right">'
-                            + '<div>' + pet.gender + '|' + pet.month_age + '개월 ' + pet.breed + '</div>'
-                            + '<div>3개의 적금 보유</div>'
-                            + '</div>'
-                            + '</div>');
-                    var accordionCollapse = $("<div>").addClass("accordion-collapse collapse show") // 처음에 show로 펼쳐주기
-                        .attr("id", "accordionItem" + pet.pet_id);
-                    var accordionBody = $("<div>").addClass("accordion-body");
-
-                    var savingAccountPromise = $.ajax({
-                        url: "/savingaccounts",
-                        type: "GET",
-                        data: {
-                            opener_id: guest_id,
-                            pet_id: pet.pet_id
-                        },
-                        dataType: "json"
-                    }).then(function (savingaccounts) {
-                        savingaccounts.forEach(function (account) {
-                            var accountInfo = $("<p>").text("Account Number: " + account.account_number + ", Balance: " + account.current_balance);
-                            accordionBody.append(accountInfo);
-                        });
-                    }).fail(function () {
-                        console.log("Error fetching savingaccounts data.");
-                    });
-
-                    promises.push(savingAccountPromise);
-
-                    accordionCollapse.append(accordionBody);
-                    accordionHeader.append(accordionButton);
-                    accordionItem.append(accordionHeader, accordionCollapse);
-
-                    $("#accordionPanelsStayOpenExample").append(accordionItem);
-                });
-
-                $.when.apply($, promises).then(function () {
-                    console.log("All Ajax requests completed.");
-                });
-            },
-            error: function () {
-                console.log("Error fetching pets data.");
-            }
-        });
-    });
-
     Kakao.Share.createDefaultButton({
         container: '#kakaotalk-sharing-btn',
         objectType: 'feed',
@@ -169,7 +95,6 @@
                 console.log("Error post.");
             }
         });
-
     }
 </script>
 

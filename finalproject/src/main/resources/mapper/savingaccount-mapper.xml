@@ -34,5 +34,14 @@
         WHERE account_number = #{account_number}
     </select>
 
+    <!-- 계좌 번호로 정보 조회 -->
+    <select id="getSavingAccountByAccountNumber"
+            parameterType="String"
+            resultType="com.kopo.finalproject.savingaccount.model.dto.Savingaccount">
+        SELECT *
+        FROM saving_account
+        WHERE account_number = #{account_number}
+    </select>
+
 
 </mapper>

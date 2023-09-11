@@ -17,5 +17,6 @@ public interface SavingaccountMapper {
 
     String getBalance(String accountNumber);
 
+    Savingaccount getSavingAccountByAccountNumber(String account_number);
 
 }

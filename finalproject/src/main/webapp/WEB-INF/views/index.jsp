@@ -1,7 +1,8 @@
+<%@ page import="com.kopo.finalproject.joinsaving.model.dto.JoinSaving" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
 <head>
     <title>Document</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -10,11 +11,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
 
-        #banners {
+        .banners {
             display: flex;
         }
 
-        #banner2 {
+        .banner2 {
             background: #BFDFCB;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
@@ -24,7 +25,7 @@
             margin-bottom: 14px;
         }
 
-        #banner3 {
+        .banner3 {
             background: #F2D8DD;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
@@ -62,17 +63,39 @@
         .modal-open {
             overflow: hidden;
         }
-
-
     </style>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
 <div class="body">
-    <div id="banners">
+    <% String guest_id = (String) session.getAttribute("guest_id");
+        if (guest_id == null) { %>
+    <div class="banners">
         <%@ include file="include/banner.jsp" %>
         <div class="banner-right">
-            <div id="banner2">
+            <div class="banner2">
+                <button id="openModalButton2">모달 열기</button>
+
+                <div id="myModal2" class="m">
+                    <div class="modal-content">
+                        <div class="close" style="cursor: pointer">&times;</div>
+                        <div id="modalContent2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="banner3">
+                로그인 안됨
+            </div>
+        </div>
+    </div>
+    <div class="middle-box">
+    </div>
+    <%
+    } else {%>
+    <div class="banners">
+        <%@ include file="include/banner.jsp" %>
+        <div class="banner-right">
+            <div class="banner2">
                 <button id="openModalButton">모달 열기</button>
 
                 <div id="myModal" class="m">
@@ -82,21 +105,18 @@
                     </div>
                 </div>
             </div>
-            <div id="banner3">
+            <div class="banner3">
             </div>
         </div>
     </div>
     <div class="middle-box">
-
     </div>
-    <div>
-        <%
-            if ((String) session.getAttribute("name") != null) {
-        %>
-        <div></div>
-        <%} else {%>
-        <%}%>
-    </div>
+    <a href="/invited">
+        <button>초대장 확인</button>
+    </a>
+    <%
+        }
+    %>
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -151,8 +171,11 @@
             $('.modal-c .end').css('gap', '25px');
         }, 1200);
     }
+
+    function getSavingAccount() {
+
+    }
 </script>
 
 </body>
 <%@ include file="include/footer.jsp" %>
-</html>

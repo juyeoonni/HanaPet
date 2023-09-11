@@ -14,7 +14,7 @@ public class JoinSavingController {
     private final JoinSavingService joinSavingService;
 
     @Autowired
-    public JoinSavingController(JoinSavingService joinSavingService){
+    public JoinSavingController(JoinSavingService joinSavingService) {
         this.joinSavingService = joinSavingService;
     }
 
@@ -23,4 +23,5 @@ public class JoinSavingController {
         joinSavingService.inviteSaving(data);
         return ResponseEntity.ok("적금 초대 성공");
     }
+
 }

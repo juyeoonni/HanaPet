@@ -74,4 +74,9 @@ public class SavingaccountServiceImpl implements SavingaccountService {
         }
 
     }
+
+    @Override
+    public Savingaccount getSavingAccountByAccountNumber(String account_number) {
+        return savingaccountMapper.getSavingAccountByAccountNumber(account_number);
+    }
 }
