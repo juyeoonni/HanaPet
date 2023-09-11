@@ -40,9 +40,10 @@
                             '${info.category}',
                             '${info.description}',
                             '${info.rate}',
-                            '${info.minPeriod}',
                             '${info.minBalance}',
-                            '${info.productImg}'
+                            '${info.productImg}',
+                            '${info.endDate}',
+                            '${info.joinPeriod}'
                             )">적금 가입하기
                     </button>
                 </div>
@@ -56,20 +57,23 @@
         category,
         description,
         rate,
-        min_period,
         min_balance,
-        image
+        image,
+        endDate,
+        joinPeriod
     ) {
+
         const productInfo = {
             category: category,
             description: description,
             rate: rate,
-            min_period: min_period,
             min_balance: min_balance,
-            image: image
+            image: image,
+            endDate: endDate,
+            joinPeriod: joinPeriod
         };
         sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
-        window.location.href = "/one-product";
+        window.location.href = "/invited-one-product";
     }
 
 </script>

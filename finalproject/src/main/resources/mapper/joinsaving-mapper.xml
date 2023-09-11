@@ -34,9 +34,10 @@
                sa.category       as category,
                psp.rate          as rate,
                psp.description   as description,
-               psp.min_period    as minPeriod,
                psp.min_balance   as minBalance,
-               psp.image         as productImg
+               psp.image         as productImg,
+               sa.end_date       as endDate,
+               sa.join_period    as joinPeriod
         from guest g
                  join join_saving js on g.guest_id = js.guest_id
                  join saving_account sa on sa.account_number = js.account_number

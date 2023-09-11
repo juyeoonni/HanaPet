@@ -43,6 +43,12 @@ public class ProductController {
         return mav;
     }
 
+    @RequestMapping("/invited-one-product")
+    public ModelAndView invitedoneProduct() {
+        ModelAndView mav = new ModelAndView("invited-one-product");
+        return mav;
+    }
+
     @RequestMapping("/join-product")
     public ModelAndView joinProduct() {
         ModelAndView mav = new ModelAndView();
