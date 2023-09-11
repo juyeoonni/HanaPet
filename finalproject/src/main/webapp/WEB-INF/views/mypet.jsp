@@ -121,8 +121,7 @@
         content: {
             title: 'HanaPet 공유 적금에 초대되었어요!',
             description: '토리를 위해 공유 적금에 참여해보세요🐶',
-            imageUrl:
-                'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+            imageUrl: 'https://postfiles.pstatic.net/MjAyMzA5MTBfMTg2/MDAxNjk0MzM0MzI1NTIy.4l3dX_IM59DAvZREh6SKYk8pxBVd6kttYnha-5qNyuUg.a-pIK9JsI0PZPa1grgYGbTeQUtMjVL4aE-xGA-q3j80g.PNG.yulim_choi/A4_-_1.png?type=w966',
             link: {
                 // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
                 mobileWebUrl: 'http://localhost:8080/mypet',
@@ -131,7 +130,7 @@
         },
         buttons: [
             {
-                title: '웹으로 보기',
+                title: '적금 참여하기',
                 link: {
                     mobileWebUrl: 'http://localhost:8080/mypet',
                     webUrl: 'http://localhost:8080/mypet',

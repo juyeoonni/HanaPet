@@ -19,48 +19,12 @@
                 #{saving_name}, #{pet_id})
     </insert>
 
-    <insert id="joinSaving" parameterType="HashMap">
-        INSERT INTO join_saving(guest_id, account_number, accept_status, join_date, sms_transfer, sms_maturity,
-                                contribution_amount, contribution_ratio)
-        VALUES (#{guest_id}, #{account_number}, 'Y', SYSDATE, #{sms_transfer},
-                #{sms_maturity}, #{contribution_amount}, #{contribution_ratio})
-    </insert>
-
-    <insert id="insertAutoTransfer" parameterType="HashMap">
-        INSERT INTO auto_transfer(guest_id, account_number_out, account_number_in, transfer_amount, transfer_period,
-                                  start_date)
-        VALUES (#{guest_id}, #{deposit_account_number}, #{account_number}, #{amount}, #{period}, SYSDATE)
-    </insert>
-
-    <update id="withdraw" parameterType="HashMap">
-        UPDATE deposit_account
-        SET balance = balance - #{amount}
-        WHERE account_number = #{deposit_account_number}
-    </update>
-
     <update id="deposit" parameterType="HashMap">
         UPDATE saving_account
         SET current_balance = current_balance + #{amount},
             progress_rate   = #{progress_rate}
         WHERE account_number = #{account_number}
     </update>
-
-    <select id="getTransferId"
-            parameterType="HashMap"
-            resultType="String">
-        SELECT auto_transfer_id
-        FROM auto_transfer
-        WHERE guest_id = #{guest_id}
-          AND account_number_in = #{account_number}
-    </select>
-
-    <select id="getTransferNo"
-            parameterType="String"
-            resultType="String">
-        SELECT transfer_number
-        FROM transfer_history
-        WHERE auto_transfer_id = #{transfer_id}
-    </select>
 
     <select id="getBalance"
             parameterType="HashMap"
@@ -69,11 +33,6 @@
         FROM saving_account
         WHERE account_number = #{account_number}
     </select>
-
-    <insert id="insertTransferHistory" parameterType="HashMap">
-        INSERT INTO TRANSFER_HISTORY(auto_transfer_id, transfer_number, transfer_date, balance_after_transfer, guest_id)
-        VALUES (#{transferId}, #{transferNo}, SYSDATE, #{current_balance}, #{guest_id})
-    </insert>
 
 
 </mapper>

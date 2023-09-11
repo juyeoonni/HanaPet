@@ -8,5 +8,6 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
 
+    // 모든 적금 상품 불러오기 select
     List<Product> getAllProduct();
 }

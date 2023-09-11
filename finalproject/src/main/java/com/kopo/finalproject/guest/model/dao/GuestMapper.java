@@ -10,7 +10,6 @@ import java.util.List;
 public interface GuestMapper {
     List<Guest> getAllGuest();
 
-    Guest selectNameOfGuest(String guest_id);
-
+    // 로그인하기 (select)
     Guest loginGuest(HashMap<String, String> loginData);
 }

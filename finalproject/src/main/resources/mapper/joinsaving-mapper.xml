@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kopo.finalproject.joinsaving.model.dao.JoinSavingMapper">
+    <insert id="joinSaving" parameterType="HashMap">
+        INSERT INTO join_saving(guest_id, account_number, accept_status, sms_transfer, sms_maturity,
+                                contribution_amount, contribution_ratio)
+        VALUES (#{guest_id}, #{account_number}, 'Y', #{sms_transfer},
+                #{sms_maturity}, #{contribution_amount}, #{contribution_ratio})
+    </insert>
+</mapper>

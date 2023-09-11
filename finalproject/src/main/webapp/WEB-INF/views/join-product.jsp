@@ -347,7 +347,6 @@
             // 선택된 예금 계좌 번호를 가져옵니다.
             const selectedAccountNumber = selectedOption.textContent;
 
-
             // 필요한 데이터를 객체로 만들어 전송
             const requestData = {
                 account_number: accountNumber,
@@ -366,8 +365,6 @@
                 contribution_ratio: 100,
                 progress_rate: (1/joinPeriodInput.value).toFixed(2)
             };
-
-            // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!
 
             console.log(requestData);
             $.ajax({

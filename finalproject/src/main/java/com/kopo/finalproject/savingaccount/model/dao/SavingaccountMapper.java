@@ -12,20 +12,10 @@ public interface SavingaccountMapper {
 
     void createSavingAccounts(HashMap<String, String> data);
 
-    void joinSaving(HashMap<String, String> data);
-
-    void insertAutoTransfer(HashMap<String, String> data);
-
-    void withdraw(HashMap<String, String> data);
 
     void deposit(HashMap<String, String> data);
 
-    void insertTransferHistory(HashMap<String, String> data);
-
-    String getTransferId(HashMap<String, String> data);
-
     String getBalance(String accountNumber);
 
-    String getTransferNo(String transfer_id);
 
 }

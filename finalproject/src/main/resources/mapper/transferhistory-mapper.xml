@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kopo.finalproject.transferhistory.model.dao.TransferHistoryMapper">
+
+    <select id="getTransferNo"
+            parameterType="String"
+            resultType="String">
+        SELECT transfer_number
+        FROM transfer_history
+        WHERE auto_transfer_id = #{transfer_id}
+    </select>
+
+    <insert id="insertTransferHistory" parameterType="HashMap">
+        INSERT INTO TRANSFER_HISTORY(auto_transfer_id, transfer_number, balance_after_transfer, guest_id)
+        VALUES (#{transferId}, #{transferNo}, #{current_balance}, #{guest_id})
+    </insert>
+
+</mapper>

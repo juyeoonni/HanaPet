@@ -16,6 +16,15 @@
             resultType="Integer">
         SELECT count(*)
         FROM deposit_account
-        WHERE guest_id = #{guest_id} and account_number = #{account_number} and account_pw = #{account_pw}
+        WHERE guest_id = #{guest_id}
+          and account_number = #{account_number}
+          and account_pw = #{account_pw}
     </select>
+
+    <update id="withdraw" parameterType="HashMap">
+        UPDATE deposit_account
+        SET balance = balance - #{amount}
+        WHERE account_number = #{deposit_account_number}
+    </update>
+
 </mapper>
