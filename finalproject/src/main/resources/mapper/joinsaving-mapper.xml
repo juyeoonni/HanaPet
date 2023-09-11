@@ -31,12 +31,18 @@
                sa.saving_name    as savingName,
                p.name            as petName,
                p.image           as petImg,
-               sa.category       as category
+               sa.category       as category,
+               psp.rate          as rate,
+               psp.description   as description,
+               psp.min_period    as minPeriod,
+               psp.min_balance   as minBalance,
+               psp.image         as productImg
         from guest g
                  join join_saving js on g.guest_id = js.guest_id
                  join saving_account sa on sa.account_number = js.account_number
                  join pet p on p.pet_id = sa.pet_id
                  join guest g2 on g2.guest_id = sa.opener_id
+                 join pet_saving_product psp on psp.category = sa.category
         where g.guest_id = #{guest_id}
           and js.accept_status = 'N'
     </select>

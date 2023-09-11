@@ -9,7 +9,7 @@
     padding: 0px 10px;
 }
 
-.category span{
+.category span {
     color: white;
     font-size: 30px;
     font-weight: bold;
@@ -24,19 +24,19 @@
     text-align: center;
 }
 
-.small{
+.small {
     margin: 0px 100px;
 }
 
-.first-content{
+.first-content {
     padding: 15px 0px;
 }
 
-.second-content{
+.second-content {
     padding: 10px 0px 30px 0px;
 }
 
-a button {
+button {
     /* main */
     background: #75A989;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);

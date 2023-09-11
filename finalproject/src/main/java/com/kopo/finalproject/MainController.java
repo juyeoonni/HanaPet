@@ -1,16 +1,12 @@
 package com.kopo.finalproject;
 
 import com.kopo.finalproject.dto.Invite;
-import com.kopo.finalproject.joinsaving.model.dto.JoinSaving;
 import com.kopo.finalproject.joinsaving.service.JoinSavingService;
-import com.kopo.finalproject.savingaccount.model.dto.Savingaccount;
-import com.kopo.finalproject.savingaccount.service.SavingaccountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -43,7 +39,7 @@ public class MainController {
         if (inviteInfo.isEmpty()) {
             mav.setViewName("index");
         } else {
-            mav.setViewName("include/invited-saving-modal");
+            mav.setViewName("include/invited-saving-card");
         }
         mav.addObject("inviteInfo", inviteInfo);
         return mav;
