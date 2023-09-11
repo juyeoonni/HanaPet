@@ -38,9 +38,13 @@ public class MainController {
     @RequestMapping("/invited")
     public ModelAndView invited(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("include/invited-saving-modal");
         List<Invite> inviteInfo = joinSavingService.getInvitedInfo((String) session.getAttribute("guest_id"));
-        System.out.println("제발" + inviteInfo);
+
+        if (inviteInfo.isEmpty()) {
+            mav.setViewName("index");
+        } else {
+            mav.setViewName("include/invited-saving-modal");
+        }
         mav.addObject("inviteInfo", inviteInfo);
         return mav;
     }
