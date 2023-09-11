@@ -13,6 +13,14 @@
 <div class="body">
     <%@ include file="include/product-header.jsp" %>
     <div class="title">적금 상품 가입</div>
+
+    <%
+        String savingName = request.getParameter("savingName");
+        String petName = request.getParameter("petName");
+        String joinPeriod = request.getParameter("joinPeriod");
+        String endDate = request.getParameter("endDate");
+    %>
+
     <form>
         <br>
         <div>기본 정보</div>
@@ -60,23 +68,42 @@
             <tr>
                 <td class="form-label">반려견 정보</td>
                 <td>
+                    <% if (petName != null) { %>
+                    <%=petName%>
+                    <%} else {%>
                     <select class="form-dropdown" id="petSelection" required>
-                        <!-- Ajax로 옵션 추가될 예정 -->
                     </select>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
             <tr>
                 <td class="form-label">적금 계좌명</td>
                 <td>
+                    <% if (savingName != null) { %>
+                    <%=savingName%>
+                    <%} else {%>
                     <input type="text" class="input-form" id="accountName" placeholder="적금 계좌명을 입력해주세요." required>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
             <tr>
                 <td class="form-label">가입 기간</td>
+
                 <td>
+                    <% if (joinPeriod != null) { %>
+                    <%=joinPeriod%>개월
+                    <div id="endDateMessage"> 적금 만기 예정일은 <%=endDate.split(" ")[0]%> 입니다.</div>
+                    <%} else {%>
                     <input type="number" class="input-form" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required><span>개월</span>
                     <div id="conditionMessage2" class="mt-2 text-danger"></div>
                     <div id="endDateMessage"></div>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
             <tr>
@@ -144,27 +171,30 @@
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>';
 
-        // Ajax로 강아지 목록 가져와서 옵션 추가
-        $.ajax({
-            url: '/pets',
-            method: 'GET',
-            data: {
-                guest_id: guest_id
-            },
-            dataType: 'json',
-            success: function (data) {
-                const petSelection = document.getElementById('petSelection');
-                data.forEach(function (pet) {
-                    const option = document.createElement('option');
-                    option.value = pet.pet_id;
-                    option.textContent = pet.name;
-                    petSelection.appendChild(option);
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error('Error fetching pet list:', error);
-            }
-        });
+        if ('<%=petName%>' == null) {
+            // Ajax로 강아지 목록 가져와서 옵션 추가
+            $.ajax({
+                url: '/pets',
+                method: 'GET',
+                data: {
+                    guest_id: guest_id
+                },
+                dataType: 'json',
+                success: function (data) {
+                    const petSelection = document.getElementById('petSelection');
+                    data.forEach(function (pet) {
+                        const option = document.createElement('option');
+                        option.value = pet.pet_id;
+                        option.textContent = pet.name;
+                        petSelection.appendChild(option);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching pet list:', error);
+                }
+            });
+        }
+
 
         // Ajax로 예금 계좌 목록 가져와서 옵션 추가
         $.ajax({
@@ -232,25 +262,20 @@
 
         // 가입 버튼 활성화/비활성화 함수
         function toggleJoinButton() {
-
             const joinAmount = parseFloat(joinAmountInput.value);
-            const joinPeriod = parseFloat(joinPeriodInput.value);
-            let message1 = '';
-            let message2 = '';
+            const joinPeriod = joinPeriodInput ? parseFloat(joinPeriodInput.value) : null;
 
-            if (joinAmount < minBalance) {
-                message1 += '최소 금액을 넘겨야 합니다. ';
-            }
-
-            if (joinPeriod < minPeriod) {
-                message2 += '최소 기간을 넘겨야 합니다. ';
-            }
+            let message1 = joinAmount < minBalance ? '최소 금액을 넘겨야 합니다. ' : '';
+            let message2 = joinPeriod < minPeriod ? '최소 기간을 넘겨야 합니다. ' : '';
 
             conditionMessage1.textContent = message1;
-            conditionMessage2.textContent = message2;
+            if (conditionMessage2) {
+                conditionMessage2.textContent = message2;
+            }
 
-            flag2 = joinAmount >= minBalance && joinPeriod >= minPeriod;
+            flag2 = joinAmount >= minBalance && (joinPeriod == null ? true : (joinPeriod >= minPeriod));
         }
+
 
         function endDate() {
             const minPeriod = parseFloat('${param.min_period}');
@@ -279,9 +304,11 @@
         }
 
         // 입력 값 변경 시 가입 버튼 상태 업데이트
+        if (joinPeriodInput) {
+            joinPeriodInput.addEventListener('input', toggleJoinButton);
+            joinPeriodInput.addEventListener('input', endDate);
+        }
         joinAmountInput.addEventListener('input', toggleJoinButton);
-        joinPeriodInput.addEventListener('input', toggleJoinButton);
-        joinPeriodInput.addEventListener('input', endDate);
 
 
         // 세션에서 제품 정보 가져오기
@@ -347,6 +374,7 @@
             // 선택된 예금 계좌 번호를 가져옵니다.
             const selectedAccountNumber = selectedOption.textContent;
 
+
             // 필요한 데이터를 객체로 만들어 전송
             const requestData = {
                 account_number: accountNumber,
@@ -363,8 +391,10 @@
                 amount: document.getElementById('joinAmount').value,
                 contribution_amount: document.getElementById('joinAmount').value,
                 contribution_ratio: 100,
-                progress_rate: (1/joinPeriodInput.value).toFixed(2)
+                progress_rate: (1 / joinPeriodInput.value).toFixed(2)
             };
+
+            // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!
 
             console.log(requestData);
             $.ajax({
@@ -386,12 +416,26 @@
             });
         }
 
+        function joinInvitedSavingLogic() {
+
+        }
+
         const modal = document.getElementById("myModal");
+        let accountName = "";
         document.getElementById('joinButton').addEventListener('click', function (event) {
-            const accountName = document.getElementById("accountName").value; // 입력 필드의 값을 가져옵니다.
+            if ('<%=savingName%>' == null) {
+                accountName = document.getElementById("accountName").value; // 입력 필드의 값을 가져옵니다.
+            } else {
+                accountName = '<%=savingName%>'
+            }
 
             if (flag1 && flag2 && !(accountName.trim() === "")) {
-                joinSavingLogic();
+                if ('<%=petName%>' == null) {
+                    joinSavingLogic();
+                } else {
+                    console.log("들어옴")
+                    joinInvitedSavingLogic();
+                }
 
             } else {
                 if (!flag1) alert("계좌 비밀번호를 확인해주세요.");

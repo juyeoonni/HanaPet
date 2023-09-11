@@ -43,7 +43,9 @@
                             '${info.minBalance}',
                             '${info.productImg}',
                             '${info.endDate}',
-                            '${info.joinPeriod}'
+                            '${info.joinPeriod}',
+                            '${info.savingName}',
+                            '${info.petName}'
                             )">적금 가입하기
                     </button>
                 </div>
@@ -60,7 +62,9 @@
         min_balance,
         image,
         endDate,
-        joinPeriod
+        joinPeriod,
+        savingName,
+        petName
     ) {
 
         const productInfo = {
@@ -70,7 +74,10 @@
             min_balance: min_balance,
             image: image,
             endDate: endDate,
-            joinPeriod: joinPeriod
+            joinPeriod: joinPeriod,
+            savingName: savingName,
+            petName: petName,
+
         };
         sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
         window.location.href = "/invited-one-product";

@@ -148,11 +148,14 @@
                         <p style="font-weight: bold; margin-bottom: 10px;">제1조 적용범위</p>
                         <p style="margin-bottom: 20px;">이 약관은 공유 적금 거래에 적용한다.</p>
                         <p style="font-weight: bold; margin-bottom: 10px;">제2조 만기 지급</p>
-                        <p style="margin-bottom: 20px; font-weight: bold;"> ① 적립식 적금 계약의 만기 시점에는 모든 예치금은 계약을 개설한 예금주에게 반환됩니다. 이로서, 예금주는 적금
+                        <p style="margin-bottom: 20px; font-weight: bold;"> ① 적립식 적금 계약의 만기 시점에는 모든 예치금은 계약을 개설한 예금주에게
+                            반환됩니다. 이로서, 예금주는 적금
                             계약에 따른 모든 권리를 주장하고, 은행은 이를 존중하며 예금주에게 지급할 책임을 집니다.</p>
-                        <p style="margin-bottom: 20px; font-weight: bold;">② 만기 지급액은 적립식 적금 계약 내용 및 이 약관에 근거하여 정산됩니다. 이 계약은 예금주의 투자와 노력에 대한
+                        <p style="margin-bottom: 20px; font-weight: bold;">② 만기 지급액은 적립식 적금 계약 내용 및 이 약관에 근거하여 정산됩니다. 이
+                            계약은 예금주의 투자와 노력에 대한
                             보상으로, 만기일에는 예금주가 적립한 모든 자금이 돌아오게 됩니다.</p>
-                        <p style="margin-bottom: 20px; font-weight: bold;">③ 은행은 이 약관에 따라 예금주에게 만기 지급액을 신속하게 지급할 의무를 가집니다. 예금주는 해당 지급액을
+                        <p style="margin-bottom: 20px; font-weight: bold;">③ 은행은 이 약관에 따라 예금주에게 만기 지급액을 신속하게 지급할 의무를
+                            가집니다. 예금주는 해당 지급액을
                             예금주의 지정한 계좌로 받게 될 것이며, 이로써 계약 내용에 따라 은행은 예금주의 모든 권리를 이행하게 됩니다.</p>
 
                         <p style="font-weight: bold; margin-bottom: 10px;">제3조 실명거래</p>
@@ -306,8 +309,11 @@
 
     <form id="joinForm" action="/join-product">
         <input type="hidden" id="category" name="category">
-        <input type="hidden" id="min_period" name="min_period">
+        <input type="hidden" id="savingName" name="savingName">
         <input type="hidden" id="min_balance" name="min_balance">
+        <input type="hidden" id="petName" name="petName">
+        <input type="hidden" id="joinPeriod" name="joinPeriod">
+        <input type="hidden" id="endDate" name="endDate">
         <input class="join" value="가입하기" readonly>
     </form>
 </div>
@@ -336,16 +342,13 @@
                 alert("약관에 동의해주세요.");
             } else {
                 // 서버로 전송할 데이터 구성
-                const productData = {
-                    category: productInfo.category,
-                    min_period: productInfo.min_period,
-                    min_balance: productInfo.min_balance
-                };
-
                 // hidden 필드에 데이터 설정
-                $("#category").val(productData.category);
-                $("#min_period").val(productData.min_period);
-                $("#min_balance").val(productData.min_balance);
+                $("#category").val(productInfo.category);
+                $("#min_balance").val(productInfo.min_balance);
+                $("#savingName").val(productInfo.savingName);
+                $("#petName").val(productInfo.petName);
+                $("#joinPeriod").val(productInfo.joinPeriod);
+                $("#endDate").val(productInfo.endDate);
 
                 // form 제출
                 $("#joinForm").submit();
