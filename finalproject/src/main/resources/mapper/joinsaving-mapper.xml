@@ -9,4 +9,9 @@
         VALUES (#{guest_id}, #{account_number}, 'Y', #{sms_transfer},
                 #{sms_maturity}, #{contribution_amount}, #{contribution_ratio})
     </insert>
+
+    <insert id="inviteSaving" parameterType="HashMap">
+        INSERT INTO join_saving(guest_id, account_number, accept_status)
+        VALUES (#{guest_id}, #{account_number}, 'N')
+    </insert>
 </mapper>

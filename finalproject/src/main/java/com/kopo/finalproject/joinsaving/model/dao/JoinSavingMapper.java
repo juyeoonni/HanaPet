@@ -10,4 +10,7 @@ public interface JoinSavingMapper {
 
     // 적금 참여 insert
     void joinSaving(HashMap<String, String> data);
+
+    // 적금 초대 insert
+    void inviteSaving(HashMap<String, String> data);
 }

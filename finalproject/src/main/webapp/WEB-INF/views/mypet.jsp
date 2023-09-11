@@ -29,15 +29,18 @@
     <div class="accordion" id="accordionPanelsStayOpenExample">
         <!-- Placeholder for the accordion items -->
     </div>
-    <a id="kakaotalk-sharing-btn" href="javascript:;">
+    <a id="kakaotalk-sharing-btn" href="javascript:;" onclick="send()">
         <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
              alt="카카오톡 공유 보내기 버튼"/>
     </a>
+
+    <div id="myModal" class="modal">
+        <%@ include file="include/saving-modal.jsp" %>
+    </div>
 </div>
 
 <%
     String guest_id = (String) session.getAttribute("guest_id");
-    // 여기서 필요한 세션값과 변수들을 설정하세요
 %>
 
 <script>
@@ -137,7 +140,37 @@
                 },
             }
         ],
+        serverCallbackArgs: {
+            key: 'value', // 사용자 정의 파라미터 설정
+        },
     });
+
+    function send() {
+        const requestData = {
+            guest_id: 'guest2',
+            account_number: '123-215-981-74261'
+        };
+
+        console.log(requestData);
+        $.ajax({
+            url: "/invite-saving",
+            type: "POST",
+            data: JSON.stringify(requestData),
+            contentType: 'application/json',
+            success: function (response) {
+                console.log(response)
+                if (response === "적금 초대 성공") {
+                    modal.style.display = "block";
+                } else {
+                    console.error("적금 초대 실패");
+                }
+            },
+            error: function () {
+                console.log("Error post.");
+            }
+        });
+
+    }
 </script>
 
 </body>
