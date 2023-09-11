@@ -126,18 +126,57 @@
         <span style="font-size: 23px; text-align: center;">모두 동의합니다.</span>
     </label>
 
-
     <div class="accordion" id="agreeAccordion1">
         <div class="accordion-item">
             <h2 class="accordion-header"><%--@declare id="agree"--%><label for="agree" style="width:100%">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseAgree" aria-expanded="true" aria-controls="collapseAgree">
+                    <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
+                    <span style="font-size: 18px; color: white">&nbsp공유 적금 기본 약관<strong
+                            style="font-weight: bold;"> (필수)</strong> </span>
+                </button>
+            </label>
+            </h2>
+            <div id="collapseAgree" class="accordion-collapse collapse" aria-labelledby="headingProduct"
+                 data-bs-parent="#agreeAccordion1">
+                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                    <div class="accordion-body">
+                        <p style="text-align: right; margin-bottom: 30px; font-size: 12px;">개정준법감시인 심의필
+                            제2022-약관-104호(2022.06.23)</p>
+                        <p style="text-align: center; font-size: 20px; font-weight: bold; margin-bottom: 50px;">공유 적금
+                            기본약관</p>
+                        <p style="font-weight: bold; margin-bottom: 10px;">제1조 적용범위</p>
+                        <p style="margin-bottom: 20px;">이 약관은 공유 적금 거래에 적용한다.</p>
+                        <p style="font-weight: bold; margin-bottom: 10px;">제2조 만기 지급</p>
+                        <p style="margin-bottom: 20px; font-weight: bold;"> ① 적립식 적금 계약의 만기 시점에는 모든 예치금은 계약을 개설한 예금주에게 반환됩니다. 이로서, 예금주는 적금
+                            계약에 따른 모든 권리를 주장하고, 은행은 이를 존중하며 예금주에게 지급할 책임을 집니다.</p>
+                        <p style="margin-bottom: 20px; font-weight: bold;">② 만기 지급액은 적립식 적금 계약 내용 및 이 약관에 근거하여 정산됩니다. 이 계약은 예금주의 투자와 노력에 대한
+                            보상으로, 만기일에는 예금주가 적립한 모든 자금이 돌아오게 됩니다.</p>
+                        <p style="margin-bottom: 20px; font-weight: bold;">③ 은행은 이 약관에 따라 예금주에게 만기 지급액을 신속하게 지급할 의무를 가집니다. 예금주는 해당 지급액을
+                            예금주의 지정한 계좌로 받게 될 것이며, 이로써 계약 내용에 따라 은행은 예금주의 모든 권리를 이행하게 됩니다.</p>
+
+                        <p style="font-weight: bold; margin-bottom: 10px;">제3조 실명거래</p>
+                        <p style="margin-bottom: 8px;">① 거래처는 실명으로 거래하여야 한다.</p>
+                        <p style="line-height: 1.2; margin-bottom: 15px;">② 은행은 거래처의 실명확인을 위하여 주민등록증ㆍ사업자등록증 등 실명확인증표 또는
+                            그밖에
+                            필요한 서류의 제시나 제출을 요구할 수 있고, 거래처는 이에 따라야 한다.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion" id="agreeAccordion1">
+        <div class="accordion-item">
+            <h2 class="accordion-header"><%--@declare id="agree"--%><label for="agree" style="width:100%">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseAgree1" aria-expanded="true" aria-controls="collapseAgree1">
                     <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
                     <span style="font-size: 18px; color: white">&nbsp적금거래기본 약관</span>
                 </button>
             </label>
             </h2>
-            <div id="collapseAgree1" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
+            <div id="collapseAgree1" class="accordion-collapse collapse" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion1">
                 <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
                     <div class="accordion-body">
