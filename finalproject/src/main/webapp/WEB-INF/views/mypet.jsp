@@ -74,7 +74,7 @@
     function send() {
         const requestData = {
             guest_id: 'guest2',
-            account_number: '123-215-981-74261'
+            account_number: '65262725367112'
         };
 
         console.log(requestData);

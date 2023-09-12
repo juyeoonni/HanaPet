@@ -78,7 +78,7 @@
                     .css({
                         "display": "flex",
                         "justify-content": "center",
-                        "cursor":"pointer"
+                        "cursor": "pointer"
                     })
                     .click(function () {
                         // 시작하기 버튼 클릭 시 제품 정보를 세션에 저장
@@ -87,7 +87,9 @@
                             description: product.description,
                             rate: product.rate,
                             min_period: product.min_period,
+                            max_period: product.max_period,
                             min_balance: product.min_balance,
+                            max_balance: product.max_balance,
                             image: product.image
                         };
                         sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
@@ -97,7 +99,11 @@
                     });
 
                 var header = $("<div>").addClass("header")
-                    .append($("<span>").text(product.category).css({"font-family":"font-medium","font-weight":"bold","font-size":"27px"}));
+                    .append($("<span>").text(product.category).css({
+                        "font-family": "font-medium",
+                        "font-weight": "bold",
+                        "font-size": "27px"
+                    }));
                 var box = $("<div>").addClass("box")
                     .css({
                         "display": "flex",
@@ -107,7 +113,12 @@
                     .append($("<img>").attr("src", "/resources/img/" + product.image).addClass("product-image"))
                     .append($("<div>").addClass("footer")
                         .css("align-self", "center")
-                        .append($("<div>").html("최대 연<br>" + product.rate + "%").css({"margin-left": "20px","font-size":"25px", "font-family":"font-medium","font-weight":"bold"}))
+                        .append($("<div>").html("최대 연<br>" + product.rate + "%").css({
+                            "margin-left": "20px",
+                            "font-size": "25px",
+                            "font-family": "font-medium",
+                            "font-weight": "bold"
+                        }))
                     );
                 var middle = $("<div>").addClass("middle").text(product.description);
 

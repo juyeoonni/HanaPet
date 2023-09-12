@@ -35,6 +35,7 @@
                psp.rate          as rate,
                psp.description   as description,
                psp.min_balance   as minBalance,
+               psp.max_balance   as maxBalance,
                psp.image         as productImg,
                sa.end_date       as endDate,
                sa.join_period    as joinPeriod

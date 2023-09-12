@@ -19,6 +19,7 @@ public class Invite {
     private String rate;
     private String description;
     private String minBalance;
+    private String maxBalance;
     private String productImg;
     private String endDate;
     private String joinPeriod;

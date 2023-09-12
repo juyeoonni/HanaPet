@@ -114,7 +114,7 @@
                     <div class="product-info">이자 지급 방법: 만기일시지급식 : 만기(후)해지시 이자를 지급</div>
                     <div class="product-info">적립 방법: 자유적립식</div>
                     <div id="productRate" class="product-info"></div>
-                    <div id="productMinBalance" class="product-info"></div>
+                    <div id="productBalance" class="product-info"></div>
                     <div id="productJoinPeriod" class="product-info"></div>
                     <div id="productEndDate" class="product-info"></div>
                 </div>
@@ -311,6 +311,7 @@
         <input type="hidden" id="category" name="category">
         <input type="hidden" id="savingName" name="savingName">
         <input type="hidden" id="min_balance" name="min_balance">
+        <input type="hidden" id="max_balance" name="max_balance">
         <input type="hidden" id="petName" name="petName">
         <input type="hidden" id="joinPeriod" name="joinPeriod">
         <input type="hidden" id="endDate" name="endDate">
@@ -330,7 +331,7 @@
             $("#productCategory").text(productInfo.category + " 펫 적금");
             $("#productDescription").text(productInfo.description);
             $("#productRate").text("이자율: " + productInfo.rate);
-            $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance + "원");
+            $("#productBalance").text("가입 금액: " + productInfo.min_balance + "원 이상 " + productInfo.max_balance + "원 이하");
             $("#productEndDate").text("적금 예상 만기일: " + productInfo.endDate.split(" ")[0]);
             $("#productJoinPeriod").text("가입 기간: " + productInfo.joinPeriod + "개월");
 
@@ -346,6 +347,7 @@
                 // hidden 필드에 데이터 설정
                 $("#category").val(productInfo.category);
                 $("#min_balance").val(productInfo.min_balance);
+                $("#max_balance").val(productInfo.max_balance);
                 $("#savingName").val(productInfo.savingName);
                 $("#petName").val(productInfo.petName);
                 $("#joinPeriod").val(productInfo.joinPeriod);
