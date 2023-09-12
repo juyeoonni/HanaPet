@@ -82,15 +82,15 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             // 1. 적금 참여 테이블 수정 (update) - 수락여부 변경, 참여일, sms 등록 2개
             joinSavingMapper.updateInvited(data);
 
-//            // 2. 자동이체 테이블 생성 (insert) - 모든 데이터
-//            autoTransferMapper.insertAutoTransfer(data);
-//
-//            // 3. 예금 계좌 테이블 수정 (update) - 돈 빠져나가기
-//            depositaccountMapper.withdraw(data);
-//
-//            // 4. 적금 계좌 테이블 수정 (update) - (현재 금액) 돈 들어오기 , 알아서 진행률 변경됨
-//            savingaccountMapper.deposit(data);
-//
+            // 2. 자동이체 테이블 생성 (insert) - 모든 데이터
+            autoTransferMapper.insertAutoTransfer(data);
+
+            // 3. 예금 계좌 테이블 수정 (update) - 돈 빠져나가기
+            depositaccountMapper.withdraw(data);
+
+            // 4. 적금 계좌 테이블 수정 (update) - (현재 금액) 돈 들어오기 , 알아서 진행률 변경됨
+            savingaccountMapper.deposit(data);
+
 //            // 자동이체 ID 가져오기 (이체 내역 insert를 위한)
 //            String transferId = autoTransferMapper.getTransferId(data);
 //            data.put("transferId", transferId);

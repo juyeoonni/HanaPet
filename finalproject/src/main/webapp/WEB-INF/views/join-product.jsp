@@ -392,7 +392,6 @@
                 amount: document.getElementById('joinAmount').value,
                 contribution_amount: document.getElementById('joinAmount').value,
                 contribution_ratio: 100,
-                progress_rate: (1 / joinPeriodInput.value).toFixed(2),
                 final_amount: String(parseInt(document.getElementById('joinAmount').value) * parseInt(joinPeriodInput.value))
             };
 
