@@ -13,5 +13,5 @@ public interface SavingaccountService {
     // 적금 생성 플로우
     void joinSavingAccounts(HashMap<String, String> data);
 
-    Savingaccount getSavingAccountByAccountNumber(String account_number);
+    void joinInvited(HashMap<String, String> data);
 }

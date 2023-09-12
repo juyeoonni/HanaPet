@@ -19,6 +19,7 @@
         String petName = request.getParameter("petName");
         String joinPeriod = request.getParameter("joinPeriod");
         String endDate = request.getParameter("endDate");
+        String accountNumber = request.getParameter("accountNumber");
     %>
 
     <form>
@@ -171,7 +172,7 @@
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>';
 
-        if ('<%=petName%>' == null) {
+        if ('<%=petName%>' == 'null') {
             // Ajax로 강아지 목록 가져와서 옵션 추가
             $.ajax({
                 url: '/pets',
@@ -391,7 +392,8 @@
                 amount: document.getElementById('joinAmount').value,
                 contribution_amount: document.getElementById('joinAmount').value,
                 contribution_ratio: 100,
-                progress_rate: (1 / joinPeriodInput.value).toFixed(2)
+                progress_rate: (1 / joinPeriodInput.value).toFixed(2),
+                final_amount: String(parseInt(document.getElementById('joinAmount').value) * parseInt(joinPeriodInput.value))
             };
 
             // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -417,6 +419,82 @@
         }
 
         function joinInvitedSavingLogic() {
+            // 라디오 버튼 그룹을 가져옵니다.
+            var radioButtons = document.getElementsByName('transferSMS');
+
+            // 선택된 값을 저장할 변수를 선언합니다.
+            var selectedValue = '';
+
+            // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
+            for (var i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    selectedValue = radioButtons[i].value;
+                    break; // 선택된 값을 찾으면 반복을 종료합니다.
+                }
+            }
+            var radioButtons2 = document.getElementsByName('finishSMS');
+
+            // 선택된 값을 저장할 변수를 선언합니다.
+            var selectedValue2 = '';
+
+            // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
+            for (var i = 0; i < radioButtons2.length; i++) {
+                if (radioButtons2[i].checked) {
+                    selectedValue2 = radioButtons2[i].value;
+                    break; // 선택된 값을 찾으면 반복을 종료합니다.
+                }
+            }
+
+            const radioButtons3 = document.getElementsByName('period');
+
+            // 선택된 값을 저장할 변수를 선언합니다.
+            let selectedValue3 = '';
+
+            // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
+            for (var i = 0; i < radioButtons3.length; i++) {
+                if (radioButtons3[i].checked) {
+                    selectedValue3 = radioButtons3[i].value;
+                    break; // 선택된 값을 찾으면 반복을 종료합니다.
+                }
+            }
+
+            // accountNumberSelection 요소에서 현재 선택된 옵션을 가져옵니다.
+            const selectedOption = document.getElementById('accountNumberSelection').options[document.getElementById('accountNumberSelection').selectedIndex];
+
+            // 선택된 예금 계좌 번호를 가져옵니다.
+            const selectedAccountNumber = selectedOption.textContent;
+
+            // 필요한 데이터를 객체로 만들어 전송
+            const requestData = {
+                guest_id: '<%= guest_id %>',
+                account_number: '<%=accountNumber%>',
+                sms_transfer: selectedValue,
+                sms_maturity: selectedValue2,
+                deposit_account_number: selectedAccountNumber,
+                amount: document.getElementById('joinAmount').value,
+                period: selectedValue3,
+                category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,
+            };
+
+            console.log(requestData);
+
+            $.ajax({
+                url: "/join-invited",
+                type: "POST",
+                data: JSON.stringify(requestData),
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response)
+                    if (response === "초대 적금 가입 성공") {
+                        modal.style.display = "block";
+                    } else {
+                        console.error("초대 적금 가입 실패");
+                    }
+                },
+                error: function () {
+                    console.log("Error post.");
+                }
+            });
 
         }
 
@@ -430,7 +508,7 @@
             }
 
             if (flag1 && flag2 && !(accountName.trim() === "")) {
-                if ('<%=petName%>' == null) {
+                if ('<%=petName%>' == 'null') {
                     joinSavingLogic();
                 } else {
                     console.log("들어옴")
@@ -445,7 +523,7 @@
             }
         });
 
-        // 모달 내에서 확인 버튼을 클릭하면 모달을 닫는 이벤트 핸들러
+        //모달 내에서 확인 버튼을 클릭하면 모달을 닫는 이벤트 핸들러
         const confirmButton = document.getElementById("confirmBtn");
 
         confirmButton.addEventListener("click", () => {

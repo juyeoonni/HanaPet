@@ -45,7 +45,8 @@
                             '${info.endDate}',
                             '${info.joinPeriod}',
                             '${info.savingName}',
-                            '${info.petName}'
+                            '${info.petName}',
+                            '${info.accountNumber}'
                             )">적금 가입하기
                     </button>
                 </div>
@@ -64,7 +65,8 @@
         endDate,
         joinPeriod,
         savingName,
-        petName
+        petName,
+        accountNumber
     ) {
 
         const productInfo = {
@@ -77,7 +79,7 @@
             joinPeriod: joinPeriod,
             savingName: savingName,
             petName: petName,
-
+            accountNumber: accountNumber
         };
         sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
         window.location.href = "/invited-one-product";

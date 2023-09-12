@@ -171,10 +171,6 @@
             $('.modal-c .end').css('gap', '25px');
         }, 1200);
     }
-
-    function getSavingAccount() {
-
-    }
 </script>
 
 </body>

@@ -18,4 +18,6 @@ public interface JoinSavingMapper {
     void inviteSaving(HashMap<String, String> data);
 
     List<Invite> getInvitedInfo(String guest_id);
+
+    void updateInvited(HashMap<String, String> data);
 }

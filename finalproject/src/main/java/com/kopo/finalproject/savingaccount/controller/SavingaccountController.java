@@ -47,4 +47,13 @@ public class SavingaccountController {
         savingaccountService.joinSavingAccounts(data);
         return ResponseEntity.ok("적금 생성 성공");
     }
+
+    @PostMapping("/join-invited")
+    public ResponseEntity<String> joinInvited(@RequestBody HashMap<String, String> data) {
+        savingaccountService.joinInvited(data);
+        return ResponseEntity.ok("초대 적금 가입 성공");
+    }
+
+
+
 }

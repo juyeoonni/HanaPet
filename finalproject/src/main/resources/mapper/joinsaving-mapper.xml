@@ -47,4 +47,17 @@
         where g.guest_id = #{guest_id}
           and js.accept_status = 'N'
     </select>
+
+
+    <update id="updateInvited" parameterType="HashMap">
+        UPDATE join_saving
+        SET accept_status       = 'Y',
+            join_date           = CAST(SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul' AS DATE),
+            sms_transfer        = #{sms_transfer},
+            sms_maturity        = #{sms_maturity},
+            contribution_amount = 0,
+            contribution_ratio  = 0
+        WHERE guest_id = #{guest_id}
+          and account_number = #{account_number}
+    </update>
 </mapper>
