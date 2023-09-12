@@ -27,4 +27,11 @@
         WHERE account_number = #{deposit_account_number}
     </update>
 
+    <select id="getBalance" parameterType="String"
+            resultType="String">
+        SELECT balance
+        FROM deposit_account
+        WHERE account_number = #{deposit_account_number}
+    </select>
+
 </mapper>

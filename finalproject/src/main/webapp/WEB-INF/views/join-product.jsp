@@ -260,31 +260,33 @@
 
         const minBalance = parseFloat('${param.min_balance}');
         const minPeriod = parseFloat('${param.min_period}');
+        const maxBalance = parseFloat('${param.max_balance}');
+        const maxPeriod = parseFloat('${param.max_period}');
+
 
         // 가입 버튼 활성화/비활성화 함수
         function toggleJoinButton() {
             const joinAmount = parseFloat(joinAmountInput.value);
             const joinPeriod = joinPeriodInput ? parseFloat(joinPeriodInput.value) : null;
 
-            let message1 = joinAmount < minBalance ? '최소 금액을 넘겨야 합니다. ' : '';
-            let message2 = joinPeriod < minPeriod ? '최소 기간을 넘겨야 합니다. ' : '';
+            let message1 = (joinAmount < minBalance || joinAmount > maxBalance) ? '가입 금액을 확인해주세요.' : '';
+            let message2 = (joinPeriod < minPeriod || joinPeriod > maxPeriod) ? '가입 기간을 확인해주세요.' : '';
 
             conditionMessage1.textContent = message1;
             if (conditionMessage2) {
                 conditionMessage2.textContent = message2;
             }
 
-            flag2 = joinAmount >= minBalance && (joinPeriod == null ? true : (joinPeriod >= minPeriod));
+            flag2 = joinAmount >= minBalance && joinAmount <= maxBalance && (joinPeriod == null ? true : (joinPeriod >= minPeriod && joinPeriod <= maxPeriod));
         }
 
 
         function endDate() {
-            const minPeriod = parseFloat('${param.min_period}');
             const joinPeriod = parseInt(joinPeriodInput.value);
             const endDate = calculateEndDate(joinPeriod);
             const endDateMessage = document.getElementById('endDateMessage');
             let message3 = '';
-            if (joinPeriod >= minPeriod) {
+            if (joinPeriod >= minPeriod && joinPeriod <= maxPeriod) {
                 message3 += "적금 만기 예정일은 " + endDate + " 입니다.";
             }
             endDateMessage.textContent = message3;

@@ -142,7 +142,7 @@
     <div class="bottom-centered-div">특징</div>
 </span>
         <span class="circle2">
-    <div class="centered-div"> 3개월 이상</div>
+    <div class="centered-div"> 6개월 이상<br>72개월 이하</div>
     <div class="bottom-centered-div">기간</div>
 </span>
         <span class="circle3">
@@ -174,13 +174,13 @@
             <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#productAccordion">
                 <!--accordion-collapse: 펼쳐지거나 접힐 때의 상태를 설정/ collapse: 접혀있음, show: 펼쳐진 상태-->
-                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;"> <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
+                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                    <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
                     <div id="productRate" class="product-info"></div> <!--product-info: 각 항목의 상세 정보-->
-                    <div id="productMinPeriod" class="product-info"></div>
-                    <div id="productMinBalance" class="product-info"></div>
+                    <div id="producBalance" class="product-info"></div>
                     <div class="product-info">상품 특징: 만 3세 이하 펫 우대 적금</div>
                     <div class="product-info">가입 대상: 반려견을 등록한 모든 Hanna Pet 손님</div>
-                    <div class="product-info">가입 기간: 3개월 이상</div>
+                    <div id="productPeriod" class="product-info"></div>
                     <div class="product-info">가입 금액: 매월 5000원 이상 ~ 100만원 이하</div>
                     <div class="product-info">이자 지급 방법: 만기일시지급식 : 만기(후)해지시 이자를 지급</div>
                     <div class="product-info">적립 방법: 자유적립식</div>
@@ -195,7 +195,7 @@
 
     <div class="accordion" id="agreeAccordion1">
         <div class="accordion-item">
-            <h2 class="accordion-header"><label for="agree" style="width:100%">
+            <h2 class="accordion-header"><%--@declare id="agree"--%><label for="agree" style="width:100%">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseAgree1" aria-expanded="true" aria-controls="collapseAgree1">
                     <input type="checkbox" name="agree" value="1" style="width: 16px; height: 15px;">
@@ -334,7 +334,9 @@
     <form id="joinForm" action="/join-product">
         <input type="hidden" id="category" name="category">
         <input type="hidden" id="min_period" name="min_period">
+        <input type="hidden" id="max_period" name="max_period">
         <input type="hidden" id="min_balance" name="min_balance">
+        <input type="hidden" id="max_balance" name="max_balance">
         <input class="join" value="가입하기" readonly>
     </form>
 </div>
@@ -346,12 +348,12 @@
 
         // 제품 정보를 화면에 표시
         if (productInfo) {
-            $("#productImg").attr("src", "/resources/img/"+productInfo.image);
+            $("#productImg").attr("src", "/resources/img/" + productInfo.image);
             $("#productCategory").text(productInfo.category + " 펫 적금");
             $("#productDescription").text(productInfo.description);
             $("#productRate").text("이자율: " + productInfo.rate);
-            $("#productMinPeriod").text("최소 기간: " + productInfo.min_period);
-            $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance);
+            $("#productPeriod").text("가입 기간: " + productInfo.min_period + "개월 이상 " + productInfo.max_period + "개월 이하");
+            $("#productBalance").text("가입 금액: " + productInfo.min_balance + "원 이상 " + productInfo.max_balance + "원 이하");
         }
 
         $("#joinForm").click(function () {
@@ -364,13 +366,17 @@
                 const productData = {
                     category: productInfo.category,
                     min_period: productInfo.min_period,
-                    min_balance: productInfo.min_balance
+                    max_period: productInfo.max_period,
+                    min_balance: productInfo.min_balance,
+                    max_balance: productInfo.max_balance
                 };
 
                 // hidden 필드에 데이터 설정
                 $("#category").val(productData.category);
                 $("#min_period").val(productData.min_period);
+                $("#max_period").val(productData.max_period);
                 $("#min_balance").val(productData.min_balance);
+                $("#max_balance").val(productData.max_balance);
 
                 // form 제출
                 $("#joinForm").submit();

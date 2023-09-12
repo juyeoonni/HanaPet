@@ -13,6 +13,8 @@ public class Product {
     private String description;
     private int min_period;
     private int min_balance;
+    private int max_period;
+    private int max_balance;
     private String image;
 
     public Product() {

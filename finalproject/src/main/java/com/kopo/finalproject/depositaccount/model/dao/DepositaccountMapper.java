@@ -17,4 +17,6 @@ public interface DepositaccountMapper {
 
     // 예금 계좌에서 인출하기 (update)
     void withdraw(HashMap<String, String> data);
+
+    String getBalance(String account_number);
 }

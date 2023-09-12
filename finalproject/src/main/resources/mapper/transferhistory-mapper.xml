@@ -4,17 +4,13 @@
 
 <mapper namespace="com.kopo.finalproject.transferhistory.model.dao.TransferHistoryMapper">
 
-    <select id="getTransferNo"
-            parameterType="String"
-            resultType="String">
-        SELECT transfer_number
-        FROM transfer_history
-        WHERE auto_transfer_id = #{transfer_id}
-    </select>
-
-    <insert id="insertTransferHistory" parameterType="HashMap">
-        INSERT INTO TRANSFER_HISTORY(auto_transfer_id, transfer_number, balance_after_transfer, guest_id)
-        VALUES (#{transferId}, #{transferNo}, #{current_balance}, #{guest_id})
+    <insert id="insertDepositHistory" parameterType="HashMap">
+        INSERT INTO transfer_history_d(account_number_in, account_number_out, guest_id, amount, balance_after_transfer)
+        VALUES (#{account_number}, #{deposit_account_number}, #{guest_id}, #{amount}, #{current_balance_d})
     </insert>
 
+    <insert id="insertSavingHistory" parameterType="HashMap">
+        INSERT INTO transfer_history_s(account_number_in, account_number_out, guest_id, amount, balance_after_transfer)
+        VALUES (#{account_number}, #{deposit_account_number}, #{guest_id}, #{amount}, #{current_balance_s})
+    </insert>
 </mapper>

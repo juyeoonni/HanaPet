@@ -30,14 +30,6 @@
           AND account_number_in = #{account_number}
     </select>
 
-    <select id="getTransferNo"
-            parameterType="String"
-            resultType="String">
-        SELECT transfer_number
-        FROM transfer_history
-        WHERE auto_transfer_id = #{transfer_id}
-    </select>
-
     <select id="getBalance"
             parameterType="HashMap"
             resultType="String">
