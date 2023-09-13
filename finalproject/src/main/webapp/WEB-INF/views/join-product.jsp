@@ -327,6 +327,23 @@
             $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance);
         }
 
+        function getWeeksBetweenDates(endDate) {
+            // 오늘부터 목표 날짜(date)까지의 기간을 계산
+            const oneDay = 24 * 60 * 60 * 1000; // 1일의 밀리초 수
+            startDate = new Date();
+            endDate = new Date(endDate);
+            const daysDifference = Math.round((endDate - startDate) / oneDay);
+
+            // 매주 동일한 요일에 돈을 넣을 수 있는 횟수 계산
+            let contributions = Math.floor(daysDifference / 7);
+
+            // 오늘이 목표 요일 이후인 경우 한 번 더 넣을 수 있음
+            if (startDate.getDay() <= daysDifference % 7) {
+                contributions++;
+            }
+
+            return contributions;
+        }
 
         function joinSavingLogic() {
             // 먼저 계좌 번호 생성
@@ -371,18 +388,19 @@
                 }
             }
 
-            // accountNumberSelection 요소에서 현재 선택된 옵션을 가져옵니다.
             const selectedOption = document.getElementById('accountNumberSelection').options[document.getElementById('accountNumberSelection').selectedIndex];
-
-            // 선택된 예금 계좌 번호를 가져옵니다.
             const selectedAccountNumber = selectedOption.textContent;
-
+            const amount = document.getElementById('joinAmount').value
+            const end_date = calculateEndDate(parseInt(joinPeriodInput.value));
+            const join_period = joinPeriodInput.value;
+            const final_amount_month = String(parseInt(amount) * parseInt(join_period));
+            const final_amount_week = String(getWeeksBetweenDates(end_date) * parseInt(amount));
 
             // 필요한 데이터를 객체로 만들어 전송
             const requestData = {
                 account_number: accountNumber,
-                join_period: joinPeriodInput.value,
-                end_date: calculateEndDate(parseInt(joinPeriodInput.value)),
+                join_period: join_period,
+                end_date: end_date,
                 category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,
                 guest_id: '<%= guest_id %>',
                 saving_name: document.getElementById('accountName').value,
@@ -391,10 +409,10 @@
                 sms_maturity: selectedValue2,
                 deposit_account_number: selectedAccountNumber,
                 period: selectedValue3,
-                amount: document.getElementById('joinAmount').value,
-                contribution_amount: document.getElementById('joinAmount').value,
+                amount: amount,
+                contribution_amount: amount,
                 contribution_ratio: 100,
-                final_amount: String(parseInt(document.getElementById('joinAmount').value) * parseInt(joinPeriodInput.value))
+                final_amount: (selectedValue3 === "매월") ? final_amount_month : final_amount_week
             };
 
             // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!
