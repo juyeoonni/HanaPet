@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../../resources/css/common.css">
     <link rel="stylesheet" href="../../../resources/css/login-register.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/resources/js/apiKey.js"></script>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
@@ -53,6 +54,9 @@
             </div>
         </div>
         <!-- END SIGN IN -->
+        <button class="button-container" onclick="kakaoLogin();" style="margin-left: 200px">
+            <span class="login-button">간편 로그인</span>
+        </button>
     </div>
     <!-- END FORM SECTION -->
     <!-- CONTENT SECTION -->
@@ -72,6 +76,11 @@
 </div>
 </body>
 <script>
+    function kakaoLogin() {
+        // 카카오톡 로그인 창 띄우기
+        window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=' + config.KAKAO_JAVASCRIPT_KEY + '&redirect_uri=http://localhost:8080/kakao-login&response_type=code';
+    };
+
     let container = document.getElementById('container')
 
     toggle = () => {

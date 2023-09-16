@@ -2,11 +2,12 @@ package com.kopo.finalproject.guest.controller;
 
 import com.kopo.finalproject.guest.model.dto.Guest;
 import com.kopo.finalproject.guest.service.GuestService;
-import com.kopo.finalproject.joinsaving.service.JoinSavingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +20,10 @@ import java.util.HashMap;
 @Controller
 class GuestController {
     private final GuestService guestService;
-    private final JoinSavingService joinSavingService;
-    HttpSession session;
 
     @Autowired
-    public GuestController(GuestService guestService, JoinSavingService joinSavingService) {
+    public GuestController(GuestService guestService) {
         this.guestService = guestService;
-        this.joinSavingService = joinSavingService;
     }
 
     @PostMapping("/login-guest")
@@ -56,15 +54,42 @@ class GuestController {
         return mav;
     }
 
-    @RequestMapping(value = "/logout")
-    public ModelAndView deleteGuest(HttpSession session) {
-        String guest_id = (String) session.getAttribute("guest_id");
-        System.out.println(guest_id);
+    @GetMapping(value = "/kakao-login", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ModelAndView getKakaoUserInfo(String code, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
-        session.invalidate();
+        HttpSession session = request.getSession();
+
+        //토큰 생성 함수
+        String access_token = guestService.getKakaoToken(code);
+
+        //사용자 정보 조회 함수
+        Guest member = guestService.getKakaoUserInfo(access_token);
+
+        //사용자 여부 확인 함수
+        Guest memberInfo = guestService.selectEmailOneMember(member.getEmail());
+        if (memberInfo != null) {
+            session.setAttribute("accessToken", access_token);
+            session.setAttribute("member", memberInfo);
+            mav.setViewName("message");
+            mav.addObject("msg", "로그인 성공");
+            mav.addObject("loc", "/");
+            session.setAttribute("guest_id", memberInfo.getGuest_id());
+            session.setAttribute("name", memberInfo.getName());
+        } else {
+        }
+        return mav;
+    }
+
+    @GetMapping(value = "/logout")
+    public ModelAndView deleteMember(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        ModelAndView mav = new ModelAndView();
+        if (session != null) {
+            session.invalidate();
+        }
         mav.addObject("msg", "로그아웃 성공");
         mav.addObject("loc", "/");
-        mav.setViewName("message");
+        mav.setViewName("/message");
         return mav;
     }
 }

@@ -38,3 +38,4 @@ out/
 
 ### Key 값 ###
 src/main/webapp/resources/js/apiKey.js
+config.properties

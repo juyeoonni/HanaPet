@@ -12,4 +12,6 @@ public interface GuestMapper {
 
     // 로그인하기 (select)
     Guest loginGuest(HashMap<String, String> loginData);
+
+    Guest selectEmailOneMember(String email);
 }

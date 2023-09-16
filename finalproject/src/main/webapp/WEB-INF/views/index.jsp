@@ -113,6 +113,7 @@
     </div>
     <a href="/invited">
         <button>초대장 확인</button>
+        <%=session.getAttribute("member")%>
     </a>
     <%
         }
