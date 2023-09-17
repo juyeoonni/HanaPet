@@ -2,13 +2,14 @@ package com.kopo.finalproject;
 
 import com.kopo.finalproject.dto.Invite;
 import com.kopo.finalproject.joinsaving.service.JoinSavingService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -48,6 +49,12 @@ public class MainController {
         mav.setViewName("include/invited-password-card");
         if (accountNumber != null) session.setAttribute("accountNumber", accountNumber);
         return mav;
+    }
+
+    // 초대 거절 시 세션 삭제
+    @GetMapping(value = "/delete-session")
+    public void deleteAccountNumber(HttpSession session) {
+        session.removeAttribute("accountNumber");
     }
 
 //    @RequestMapping("/dashboard")

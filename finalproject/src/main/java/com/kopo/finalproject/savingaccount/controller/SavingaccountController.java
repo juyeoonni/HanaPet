@@ -49,11 +49,9 @@ public class SavingaccountController {
     }
 
     @PostMapping("/join-invited")
-    public ResponseEntity<String> joinInvited(@RequestBody HashMap<String, String> data) {
+    public ResponseEntity<String> joinInvited(@RequestBody HashMap<String, String> data, HttpSession session) {
         savingaccountService.joinInvited(data);
+        session.removeAttribute("accountNumber");
         return ResponseEntity.ok("초대 적금 가입 성공");
     }
-
-
-
 }

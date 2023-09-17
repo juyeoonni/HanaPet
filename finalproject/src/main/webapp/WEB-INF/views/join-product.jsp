@@ -493,6 +493,8 @@
                 amount: document.getElementById('joinAmount').value,
                 period: selectedValue3,
                 category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,
+                contribution_amount: 0,
+                contribution_ratio: 0,
             };
 
             console.log(requestData);

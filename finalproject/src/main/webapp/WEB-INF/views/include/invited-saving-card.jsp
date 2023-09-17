@@ -36,6 +36,7 @@
                     <img src="/resources/img/${info.petImg}"/>
                 </div>
                 <div class="third-content">
+                    <button onclick="reject()">거절하기</button>
                     <button onclick="joinProduct(
                             '${info.category}',
                             '${info.description}',
@@ -70,7 +71,6 @@
         petName,
         accountNumber
     ) {
-
         const productInfo = {
             category: category,
             description: description,
@@ -88,4 +88,11 @@
         window.location.href = "/invited-one-product";
     }
 
+    function reject() {
+        $.ajax({
+            url: "/delete-session", // 세션 삭제 처리
+            type: "GET",
+            always: window.location.href = "/"
+        });
+    }
 </script>
