@@ -5,8 +5,8 @@
 <head>
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../../resources/css/common.css">
-    <link rel="stylesheet" href="../../../resources/css/login-register.css">
+    <link rel="stylesheet" href="resources/css/common.css">
+    <link rel="stylesheet" href="resources/css/login-register.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/resources/js/apiKey.js"></script>
 </head>
@@ -18,11 +18,10 @@
         <div class="col align-items-center flex-col sign-up">
         </div>
         <!-- SIGN IN -->
-        <div class="col align-items-center flex-col sign-in" style="
-    padding-left: 50px;
-">
+        <div class="col align-items-center flex-col sign-in" style="padding-left: 50px; padding-top: 70px;">
             <div class="form-wrapper align-items-center">
                 <div class="form sign-in">
+                    <img src="resources/img/kakao_login_btn.png" onclick="kakaoLogin();"/>
                     <form id="loginForm" method="post"> <!-- 로그인 폼 시작 -->
                         <div class="input-group">
                             <i class='bx bxs-user'></i>
@@ -54,9 +53,7 @@
             </div>
         </div>
         <!-- END SIGN IN -->
-        <button class="button-container" onclick="kakaoLogin();" style="margin-left: 200px">
-            <span class="login-button">간편 로그인</span>
-        </button>
+
     </div>
     <!-- END FORM SECTION -->
     <!-- CONTENT SECTION -->
