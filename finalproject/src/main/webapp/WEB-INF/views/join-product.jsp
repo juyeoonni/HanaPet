@@ -124,7 +124,9 @@
                 <td>
                     <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
                            required><span>원</span>
+                    <span onclick="endAmount()" style="cursor:pointer; margin-left: 30px;">계산</span>
                     <div id="conditionMessage1" class="mt-2 text-danger"></div>
+                    <div id="endAmountMessage" style="margin-top: 20px;"></div>
                 </td>
             </tr>
             <tr>
@@ -169,6 +171,40 @@
     let flag1 = false;
     let flag2 = false;
     let endDateFormat = null;
+
+    function calculateTotalInterest() {
+        // 시작 날짜와 종료 날짜를 JavaScript Date 객체로 변환
+        const startDate = new Date();
+        const endDate = new Date($("#endDateMessage").text().split(" ")[3]);
+        const amount = document.getElementById('joinAmount').value;
+
+        // 월별 입금 금액 및 연 이자율 설정
+        const monthlyInterestRate = (2.5 / 100) / 12;
+
+        // 기간 계산 (월 단위)
+        const months = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+
+        // 총 이자 계산
+        let totalInterest = 0.0;
+        for (let i = 1; i <= months; i++) {
+            totalInterest += (amount * monthlyInterestRate * i);
+        }
+
+        return totalInterest;
+    }
+
+    function endAmount() {
+        const interest = calculateTotalInterest();
+        const endAmountMessage = document.getElementById('endAmountMessage');
+        const joinAmount = document.getElementById('joinAmount').value;
+        const joinPeriod = document.getElementById('joinPeriod').value;
+        const principal = joinAmount * joinPeriod;
+        const real = Math.floor(principal + interest * 0.846);
+
+        let message3 = '원금 ' + joinAmount + '원을 ' + joinPeriod + '개월 동안 적금 시 원금 ' + principal + '원, 이자 ' + interest + '원\n일반 세율 가입 시 총 ' + real + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
+
+        endAmountMessage.textContent = message3;
+    }
 
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>';
@@ -293,6 +329,7 @@
             endDateMessage.textContent = message3;
         }
 
+
         function calculateEndDate(months) {
             const today = new Date(); // 현재 날짜 가져오기
             const endDateFormat = new Date(today); // 현재 날짜를 복사하여 사용
@@ -413,7 +450,8 @@
                 amount: amount,
                 contribution_amount: amount,
                 contribution_ratio: 100,
-                final_amount: (selectedValue3 === "매월") ? final_amount_month : final_amount_week
+                final_amount: (selectedValue3 === "매월") ? final_amount_month : final_amount_week,
+                interest_amount: calculateTotalInterest()
             };
 
             // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!

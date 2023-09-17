@@ -18,7 +18,8 @@ public class Savingaccount {
     private int pet_id;
     private int join_period;
     private double progress_rate;
-    private int end_balance;
+    private int end_amount;
+    private int interest_amount;
 
     public Savingaccount() {
     }

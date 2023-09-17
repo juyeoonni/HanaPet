@@ -16,9 +16,9 @@
     <!-- 적금 계좌 테이블 생성 -->
     <insert id="createSavingAccounts" parameterType="HashMap">
         INSERT INTO saving_account(account_number, join_period, end_date, category, opener_id, saving_name, pet_id,
-                                   final_amount)
+                                   final_amount, interest_amount)
         VALUES (#{account_number}, #{join_period}, TO_DATE(#{end_date}, 'YYYY-MM-DD'), #{category}, #{guest_id},
-                #{saving_name}, #{pet_id}, #{final_amount})
+                #{saving_name}, #{pet_id}, #{final_amount}, #{interest_amount})
     </insert>
 
     <!-- 자동이체 시 적금 계좌에 돈 입금됨 -->

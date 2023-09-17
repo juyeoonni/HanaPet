@@ -132,9 +132,9 @@ td:nth-child(odd) {
     color: #BFDFCB;
 }
 
-#endDateMessage, #pwMessage {
+#endDateMessage, #pwMessage, #endAmountMessage {
     margin-top: 5px;
-    font-size: 17px;
+    font-size: 16px;
     color: #75A989;
 }
 
