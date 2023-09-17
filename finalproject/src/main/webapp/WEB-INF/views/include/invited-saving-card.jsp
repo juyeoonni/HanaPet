@@ -23,7 +23,7 @@
             <div class="category small">
                 <img src="/resources/img/invitation.svg" width="40px"
                      style="padding-left: 5px; padding-top: 3px; margin-right: 15px;">
-                <span>공유 적금 초대 (${info.inviteDate.split(" ")[0]}) </span>
+                <span>공유 적금 초대 </span>
             </div>
             <div class="contents small">
                 <div class="first-content">

@@ -8,8 +8,6 @@ import java.util.HashMap;
 public interface TransferHistoryMapper {
 
     // 이체 내역 넣기 (insert)
-    void insertDepositHistory(HashMap<String, String> data);
-
-    void insertSavingHistory(HashMap<String, String> data);
+    void insertHistory(HashMap<String, String> data);
 
 }

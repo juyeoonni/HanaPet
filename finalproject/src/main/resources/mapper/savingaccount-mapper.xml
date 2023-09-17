@@ -13,12 +13,15 @@
           AND pet_id = #{pet_id}
     </select>
 
+    <!-- 적금 계좌 테이블 생성 -->
     <insert id="createSavingAccounts" parameterType="HashMap">
-        INSERT INTO saving_account(account_number, join_period, end_date, category, opener_id, saving_name, pet_id, final_amount)
+        INSERT INTO saving_account(account_number, join_period, end_date, category, opener_id, saving_name, pet_id,
+                                   final_amount)
         VALUES (#{account_number}, #{join_period}, TO_DATE(#{end_date}, 'YYYY-MM-DD'), #{category}, #{guest_id},
                 #{saving_name}, #{pet_id}, #{final_amount})
     </insert>
 
+    <!-- 자동이체 시 적금 계좌에 돈 입금됨 -->
     <update id="deposit" parameterType="HashMap">
         UPDATE saving_account
         SET current_balance = current_balance + #{amount}

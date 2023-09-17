@@ -29,7 +29,7 @@
 <div class="body">
     <c:forEach var="pet" items="${pets}">
         <div class="accordion" id="accordionPanelsStayOpenExample">
-            ${pet.name}
+                ${pet.name}
         </div>
     </c:forEach>
 
@@ -49,20 +49,20 @@
         objectType: 'feed',
         content: {
             title: 'HanaPet 공유 적금에 초대되었어요!',
-            description: '토리를 위해 공유 적금에 참여해보세요🐶',
+            description: '토리를 위해 공유 적금에 참여해보세요!🐶 비밀번호는 381924입니다.',
             imageUrl: 'https://postfiles.pstatic.net/MjAyMzA5MTBfMTg2/MDAxNjk0MzM0MzI1NTIy.4l3dX_IM59DAvZREh6SKYk8pxBVd6kttYnha-5qNyuUg.a-pIK9JsI0PZPa1grgYGbTeQUtMjVL4aE-xGA-q3j80g.PNG.yulim_choi/A4_-_1.png?type=w966',
             link: {
                 // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-                mobileWebUrl: 'http://localhost:8080/mypet',
-                webUrl: 'http://localhost:8080/mypet',
+                mobileWebUrl: 'http://localhost:8080/',
+                webUrl: 'http://localhost:8080/',
             },
         },
         buttons: [
             {
                 title: '적금 참여하기',
                 link: {
-                    mobileWebUrl: 'http://localhost:8080/mypet',
-                    webUrl: 'http://localhost:8080/mypet',
+                    mobileWebUrl: 'http://localhost:8080/invited-pw?account-number=65262725367112',
+                    webUrl: 'http://localhost:8080/invited-pw?account-number=65262725367112',
                 },
             }
         ],

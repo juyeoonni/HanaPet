@@ -91,7 +91,15 @@
     <div class="middle-box">
     </div>
     <%
-    } else {%>
+    } else {
+        // 세션에서 accountNumber 값을 가져옴
+        String accountNumber = (String) session.getAttribute("accountNumber");
+
+        // accountNumber가 null이 아닌 경우 /invited로 리디렉션
+        if (accountNumber != null) {
+            response.sendRedirect("/invited");
+        } else {
+    %>
     <div class="banners">
         <%@ include file="include/banner.jsp" %>
         <div class="banner-right">
@@ -113,10 +121,11 @@
     </div>
     <a href="/invited">
         <button>초대장 확인</button>
-        <%=session.getAttribute("member")%>
+        <%=session.getAttribute("accountNumber")%>
     </a>
     <%
         }
+    }
     %>
 </div>
 <script>

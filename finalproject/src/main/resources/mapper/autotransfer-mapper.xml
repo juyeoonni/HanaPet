@@ -3,23 +3,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kopo.finalproject.autotransfer.model.dao.AutoTransferMapper">
-    <insert id="insertAutoTransfer" parameterType="HashMap">
-        INSERT INTO auto_transfer(guest_id, account_number_out, account_number_in, transfer_amount, transfer_period)
-        VALUES (#{guest_id}, #{deposit_account_number}, #{account_number}, #{amount}, #{period})
-    </insert>
-
-    <update id="withdraw" parameterType="HashMap">
-        UPDATE deposit_account
-        SET balance = balance - #{amount}
-        WHERE account_number = #{deposit_account_number}
-    </update>
-
-    <update id="deposit" parameterType="HashMap">
-        UPDATE saving_account
-        SET current_balance = current_balance + #{amount},
-            progress_rate   = #{progress_rate}
-        WHERE account_number = #{account_number}
-    </update>
 
     <select id="getTransferId"
             parameterType="HashMap"
@@ -38,10 +21,6 @@
         WHERE account_number = #{account_number}
     </select>
 
-    <insert id="insertTransferHistory" parameterType="HashMap">
-        INSERT INTO TRANSFER_HISTORY(auto_transfer_id, transfer_number, transfer_date, balance_after_transfer, guest_id)
-        VALUES (#{transferId}, #{transferNo}, SYSDATE, #{current_balance}, #{guest_id})
-    </insert>
 
 
 </mapper>
