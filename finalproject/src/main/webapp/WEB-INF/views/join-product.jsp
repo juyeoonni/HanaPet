@@ -92,6 +92,17 @@
                 </td>
             </tr>
             <tr>
+                <td class="form-label">이체 주기</td>
+                <td>
+                    <div class="pe" id="transferCycle" required>
+                        <input type="radio" id="period1" name="period" value="매주" checked>
+                        <label for="period1">매주</label>
+                        <input type="radio" id="period2" name="period" value="매월">
+                        <label for="period2">매월</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
                 <td class="form-label">가입 기간</td>
 
                 <td>
@@ -99,7 +110,8 @@
                     <%=joinPeriod%>개월
                     <div id="endDateMessage"> 적금 만기 예정일은 <%=endDate.split(" ")[0]%> 입니다.</div>
                     <%} else {%>
-                    <input type="number" class="input-form" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required><span>개월</span>
+                    <input type="number" class="input-form" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required><span
+                        id="period_text"></span>
                     <div id="conditionMessage2" class="mt-2 text-danger"></div>
                     <div id="endDateMessage"></div>
                     <%
@@ -113,17 +125,6 @@
                     <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
                            required><span>원</span>
                     <div id="conditionMessage1" class="mt-2 text-danger"></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="form-label">이체 주기</td>
-                <td>
-                    <div class="pe" id="transferCycle" required>
-                        <input type="radio" id="period1" name="period" value="매주">
-                        <label for="period1">매주</label>
-                        <input type="radio" id="period2" name="period" value="매월" checked>
-                        <label for="period2">매월</label>
-                    </div>
                 </td>
             </tr>
             <tr>
@@ -581,5 +582,26 @@
         flag1 = false;
 
     }
+
+    // 라디오 버튼 상태 변경 시 호출되는 함수
+    function updateJoinPeriodLabel() {
+        const radioWeekly = document.getElementById("period1");
+        const periodText = document.getElementById("period_text");
+
+        if (radioWeekly.checked) {
+            periodText.innerText = "주";
+        } else {
+            periodText.innerText = "개월";
+        }
+    }
+
+    // 페이지 로드 시 초기 호출
+    updateJoinPeriodLabel();
+
+    // 라디오 버튼 상태 변경 이벤트 핸들러 등록
+    const radioButtons = document.getElementsByName("period");
+    radioButtons.forEach((radio) => {
+        radio.addEventListener("change", updateJoinPeriodLabel);
+    });
 
 </script>
