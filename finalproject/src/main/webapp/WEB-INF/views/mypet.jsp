@@ -33,7 +33,7 @@
         </div>
     </c:forEach>
 
-    <a id="kakaotalk-sharing-btn" href="javascript:;" onclick="send()">
+    <a id="kakaotalk-sharing-btn" href="javascript:;">
         <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
              alt="카카오톡 공유 보내기 버튼"/>
     </a>
@@ -61,8 +61,8 @@
             {
                 title: '적금 참여하기',
                 link: {
-                    mobileWebUrl: 'http://localhost:8080/invited-pw?account-number=65262725367112',
-                    webUrl: 'http://localhost:8080/invited-pw?account-number=65262725367112',
+                    mobileWebUrl: 'http://localhost:8080/invited-pw?account-number=03688448916355',
+                    webUrl: 'http://localhost:8080/invited-pw?account-number=03688448916355',
                 },
             }
         ],
@@ -70,32 +70,6 @@
             key: 'value', // 사용자 정의 파라미터 설정
         },
     });
-
-    function send() {
-        const requestData = {
-            guest_id: 'guest2',
-            account_number: '65262725367112'
-        };
-
-        console.log(requestData);
-        $.ajax({
-            url: "/invite-saving",
-            type: "POST",
-            data: JSON.stringify(requestData),
-            contentType: 'application/json',
-            success: function (response) {
-                console.log(response)
-                if (response === "적금 초대 성공") {
-                    modal.style.display = "block";
-                } else {
-                    console.error("적금 초대 실패");
-                }
-            },
-            error: function () {
-                console.log("Error post.");
-            }
-        });
-    }
 </script>
 
 </body>

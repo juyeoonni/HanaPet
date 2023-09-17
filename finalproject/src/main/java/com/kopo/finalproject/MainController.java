@@ -36,16 +36,9 @@ public class MainController {
     @RequestMapping("/invited")
     public ModelAndView invited(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-
-//        List<Invite> inviteInfo = joinSavingService.getInvitedInfo((String) session.getAttribute("guest_id"));
-//
-//        if (inviteInfo.isEmpty()) {
-//            mav.setViewName("index");
-//        } else {
-//            mav.setViewName("include/invited-saving-card");
-//        }
-//        mav.addObject("inviteInfo", inviteInfo);
+        List<Invite> inviteInfo = joinSavingService.getInvitedInfo((String) session.getAttribute("accountNumber"));
         mav.setViewName("include/invited-saving-card");
+        mav.addObject("inviteInfo", inviteInfo);
         return mav;
     }
 
@@ -53,7 +46,7 @@ public class MainController {
     public ModelAndView invitedPw(@RequestParam(name = "account-number", required = false) String accountNumber, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("include/invited-password-card");
-        if(accountNumber != null) session.setAttribute("accountNumber", accountNumber);
+        if (accountNumber != null) session.setAttribute("accountNumber", accountNumber);
         return mav;
     }
 
