@@ -4,6 +4,7 @@ import com.kopo.finalproject.depositaccount.model.dao.DepositaccountMapper;
 import com.kopo.finalproject.guest.model.dao.GuestMapper;
 import com.kopo.finalproject.joinsaving.model.dao.JoinSavingMapper;
 import com.kopo.finalproject.savingaccount.model.dao.SavingaccountMapper;
+import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
 import com.kopo.finalproject.savingaccount.model.dto.Savingaccount;
 import com.kopo.finalproject.transferhistory.model.dao.TransferHistoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public class SavingaccountServiceImpl implements SavingaccountService {
     }
 
     @Override
-    public List<Savingaccount> getAllSavingAccountsOfPetOfGuest(HashMap<String, String> data) {
+    public List<MyAccountsOfPet> getAllSavingAccountsOfPetOfGuest(HashMap<String, String> data) {
+        System.out.println("여기요2");
         return savingaccountMapper.getAllSavingAccountsOfPetOfGuest(data);
     }
 

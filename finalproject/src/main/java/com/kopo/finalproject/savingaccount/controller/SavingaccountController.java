@@ -2,6 +2,7 @@ package com.kopo.finalproject.savingaccount.controller;
 
 import com.kopo.finalproject.pet.model.dto.Pet;
 import com.kopo.finalproject.pet.service.PetService;
+import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
 import com.kopo.finalproject.savingaccount.model.dto.Savingaccount;
 import com.kopo.finalproject.savingaccount.service.SavingaccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,9 @@ public class SavingaccountController {
     }
 
     @GetMapping("/savingaccounts")
-    public ResponseEntity<List<Savingaccount>> getSavingaccount(@RequestParam HashMap<String, String> data) {
-        List<Savingaccount> savingaccounts = savingaccountService.getAllSavingAccountsOfPetOfGuest(data); // 데이터베이스에서 모든 제품 정보 가져오기
+    public ResponseEntity<List<MyAccountsOfPet>> getSavingaccount(@RequestParam HashMap<String, String> data) {
+        List<MyAccountsOfPet> savingaccounts = savingaccountService.getAllSavingAccountsOfPetOfGuest(data); // 데이터베이스에서 모든 제품 정보 가져오기
+        System.out.println("여기" + data);
         return ResponseEntity.ok(savingaccounts);
     }
 

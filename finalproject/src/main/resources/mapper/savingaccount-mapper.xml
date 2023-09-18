@@ -4,11 +4,26 @@
 
 <mapper namespace="com.kopo.finalproject.savingaccount.model.dao.SavingaccountMapper">
     <!-- 계좌 전체 조회 -->
+    <!--    <select id="getAllSavingAccountsOfPetOfGuest"-->
+    <!--            parameterType="HashMap"-->
+    <!--            resultType="com.kopo.finalproject.savingaccount.model.dto.Savingaccount">-->
+    <!--        SELECT *-->
+    <!--        FROM saving_account-->
+    <!--        WHERE opener_id = #{opener_id}-->
+    <!--          AND pet_id = #{pet_id}-->
+    <!--    </select>-->
+
     <select id="getAllSavingAccountsOfPetOfGuest"
             parameterType="HashMap"
-            resultType="com.kopo.finalproject.savingaccount.model.dto.Savingaccount">
-        SELECT *
-        FROM saving_account
+            resultType="com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet">
+        SELECT sa.account_number  as accountNumber,
+               sa.opener_id       as openerId,
+               sa.current_balance as balance,
+               sa.saving_name     as savingName,
+               sa.progress_rate   as progressRate,
+               psd.image          as categoryImg
+        FROM saving_account sa
+                 join pet_saving_product psd on psd.category = sa.category
         WHERE opener_id = #{opener_id}
           AND pet_id = #{pet_id}
     </select>
@@ -46,5 +61,6 @@
         FROM saving_account
         WHERE account_number = #{account_number}
     </select>
+
 
 </mapper>
