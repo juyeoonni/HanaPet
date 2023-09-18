@@ -1,6 +1,7 @@
 package com.kopo.finalproject.savingaccount.service;
 
 import com.kopo.finalproject.depositaccount.model.dao.DepositaccountMapper;
+import com.kopo.finalproject.guest.model.dao.GuestMapper;
 import com.kopo.finalproject.joinsaving.model.dao.JoinSavingMapper;
 import com.kopo.finalproject.savingaccount.model.dao.SavingaccountMapper;
 import com.kopo.finalproject.savingaccount.model.dto.Savingaccount;
@@ -16,17 +17,18 @@ import java.util.List;
 public class SavingaccountServiceImpl implements SavingaccountService {
     private final SavingaccountMapper savingaccountMapper;
     private final DepositaccountMapper depositaccountMapper;
-
     private final TransferHistoryMapper transferHistoryMapper;
-
     private final JoinSavingMapper joinSavingMapper;
+    private final GuestMapper guestMapper;
+
 
     @Autowired
-    public SavingaccountServiceImpl(SavingaccountMapper savingaccountMapper, DepositaccountMapper depositaccountMapper, TransferHistoryMapper transferHistoryMapper, JoinSavingMapper joinSavingMapper) {
+    public SavingaccountServiceImpl(SavingaccountMapper savingaccountMapper, DepositaccountMapper depositaccountMapper, TransferHistoryMapper transferHistoryMapper, JoinSavingMapper joinSavingMapper, GuestMapper guestMapper) {
         this.savingaccountMapper = savingaccountMapper;
         this.depositaccountMapper = depositaccountMapper;
         this.transferHistoryMapper = transferHistoryMapper;
         this.joinSavingMapper = joinSavingMapper;
+        this.guestMapper = guestMapper;
     }
 
     @Override
@@ -72,6 +74,7 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             // 2. 예금 계좌 테이블 수정 (update) - 돈 빠져나가기
             depositaccountMapper.withdraw(data);
             // 3. 적금 계좌 테이블 수정 (update) - (현재 금액) 돈 들어오기 , 알아서 진행률 변경됨, finalAmount랑 interestAmount 바꾸기
+            System.out.println("유ㅣㄻ"+ data.get("final_amount"));
             savingaccountMapper.deposit(data);
 
             // 적금 계좌 잔액 가져오기 (이체 내역 insert를 위한)
@@ -82,6 +85,8 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             data.put("current_balance_d", balance);
             // 4. 이체 내역 테이블 생성 (insert) - 내역 기록
             transferHistoryMapper.insertHistory(data);
+            // 5. 손님-반려견 테이블 생성 (insert)
+            guestMapper.insertPet(data);
 
         } catch (Exception e) {
             throw new RuntimeException("joinSavingAccounts 작업 중 오류 발생: " + e.getMessage());

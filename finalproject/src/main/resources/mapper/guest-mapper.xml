@@ -24,4 +24,9 @@
         where email = #{email}
     </select>
 
+    <insert id="insertPet" parameterType="HashMap">
+        INSERT INTO guest_pet (guest_id, pet_id)
+        VALUES (#{guest_id}, (SELECT pet_id FROM pet WHERE name = #{pet_name}))
+    </insert>
+
 </mapper>

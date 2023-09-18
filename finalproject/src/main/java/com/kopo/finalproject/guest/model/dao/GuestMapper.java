@@ -14,4 +14,6 @@ public interface GuestMapper {
     Guest loginGuest(HashMap<String, String> loginData);
 
     Guest selectEmailOneMember(String email);
+
+    void insertPet(HashMap<String, String> data);
 }

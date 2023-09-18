@@ -524,7 +524,8 @@
                 category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,
                 contribution_amount: document.getElementById('joinAmount').value,
                 final_amount: finalAmount,
-                interest_amount: interest
+                interest_amount: interest,
+                pet_name: '<%=petName%>'
             };
 
             console.log(requestData);
