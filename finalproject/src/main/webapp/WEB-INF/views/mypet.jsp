@@ -24,10 +24,11 @@
     <style>
 
 
-        .top-container, .left-container{
+        .top-container, .left-container {
             display: flex;
             justify-content: space-between;
         }
+
         .button-container {
             text-align: end;
         }
@@ -68,40 +69,35 @@
 
     </div>
 
-    <a id="kakaotalk-sharing-btn" href="javascript:;">
-        <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-             alt="카카오톡 공유 보내기 버튼"/>
-    </a>
-
     <div class="accordion" id="accordionPanelsStayOpenExample">
         <!-- Placeholder for the accordion items -->
     </div>
 
 
-<%--    <div>--%>
-<%--        <div>--%>
-<%--            <img/>--%>
-<%--            <div>--%>
-<%--                <div>적금 이름--%>
-<%--                </div>--%>
-<%--                <div>진행률</div>--%>
-<%--            </div>--%>
+    <%--    <div>--%>
+    <%--        <div>--%>
+    <%--            <img/>--%>
+    <%--            <div>--%>
+    <%--                <div>적금 이름--%>
+    <%--                </div>--%>
+    <%--                <div>진행률</div>--%>
+    <%--            </div>--%>
 
-<%--            <div>--%>
-<%--                <div>계좌번호</div>--%>
-<%--                <div>잔액</div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div>--%>
-<%--            <button>--%>
-<%--                공유하기--%>
-<%--            </button>--%>
-<%--            <button>--%>
-<%--                자세히 보기--%>
-<%--            </button>--%>
-<%--        </div>--%>
+    <%--            <div>--%>
+    <%--                <div>계좌번호</div>--%>
+    <%--                <div>잔액</div>--%>
+    <%--            </div>--%>
+    <%--        </div>--%>
+    <%--        <div>--%>
+    <%--            <button>--%>
+    <%--                공유하기--%>
+    <%--            </button>--%>
+    <%--            <button>--%>
+    <%--                자세히 보기--%>
+    <%--            </button>--%>
+    <%--        </div>--%>
 
-<%--    </div>--%>
+    <%--    </div>--%>
 
 </div>
 
@@ -159,27 +155,6 @@
                         },
                         dataType: "json"
                     }).then(function (myAccountsOfPet) {
-                        // myAccountsOfPet.forEach(function (account) {
-                        //     // 필요한 정보 추출
-                        //     var categoryImg = account.categoryImg;
-                        //     var saving_name = account.savingName;
-                        //     var balance = account.balance;
-                        //     var account_number = account.accountNumber;
-                        //     var openerId = account.openerId;
-                        //
-                        //     // 이미지 요소 생성
-                        //     var imgElement = $('<img style="width: 60px; height:60px;">').attr('src', 'resources/img/' + categoryImg).addClass('category-img');
-                        //
-                        //     // 계좌 정보를 담은 HTML 요소 생성
-                        //     var accountInfo = $('<div>').addClass('account-info');
-                        //     accountInfo.append($('<p>').text('Saving Name: ' + saving_name));
-                        //     accountInfo.append($('<p>').text('Balance: ' + balance));
-                        //     accountInfo.append($('<p>').text('Account Number: ' + account_number));
-                        //     accountInfo.append($('<p>').text('Opener ID: ' + openerId));
-                        //
-                        //     // 계좌 정보와 이미지를 accordionBody에 추가
-                        //     accordionBody.append(imgElement, accountInfo);
-                        // });
 
                         myAccountsOfPet.forEach(function (account) {
                             // 필요한 정보 추출
@@ -214,8 +189,23 @@
                             rightContainer.append(accountNumberDiv, balanceDiv);
 
                             // "공유하기" 버튼 생성
-                            var shareButton = $('<button>').text('공유하기');
-                            buttonContainer.append(shareButton);
+                            // "공유하기" 버튼 대신 <a> 요소와 이미지 생성
+                            // var kakaoLink = $('<a>').attr('id', 'kakaotalk-sharing-btn').attr('href', 'javascript:;').css('cursor', 'pointer').css('pointer-events', 'auto');
+                            // var kakaoImage = $('<img id="kt">').attr('src', 'https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png').attr('alt', '카카오톡 공유 보내기 버튼');
+                            //
+                            // // <a> 요소에 이미지 추가
+                            // kakaoLink.append(kakaoImage);
+
+
+                            // "공유하기" 버튼 생성
+                            var kakaoLink = $('<a>').attr('id', 'kakaotalk-sharing-btn-' + pet.pet_id).attr('href', 'javascript:;').css('cursor', 'pointer').css('pointer-events', 'auto');
+                            var kakaoImage = $('<img>').attr('id', 'kt-' + pet.pet_id).attr('src', 'https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png').attr('alt', '카카오톡 공유 보내기 버튼');
+
+                            // <a> 요소에 이미지 추가
+                            kakaoLink.append(kakaoImage);
+
+                            // "공유하기" 버튼 대신 <a> 요소를 buttonContainer에 추가
+                            buttonContainer.append(kakaoLink);
 
                             // "자세히 보기" 버튼 생성
                             var detailsButton = $('<button>').text('자세히 보기');
@@ -229,8 +219,37 @@
 
                             // 생성한 컨테이너를 화면에 추가
                             accordionBody.append(container);
-                        });
 
+                            // Kakao 공유 버튼을 생성하고 설정
+                            kakaoLink.on('click', function () {
+                                Kakao.Share.createDefaultButton({
+                                    container: '#kakaotalk-sharing-btn-' + pet.pet_id,
+                                    objectType: 'feed',
+                                    content: {
+                                        title: 'HanaPet 공유 적금에 초대되었어요!',
+                                        description: '토리를 위해 공유 적금에 참여해보세요!🐶 비밀번호는 381924입니다.',
+                                        imageUrl: 'https://postfiles.pstatic.net/MjAyMzA5MTBfMTg2/MDAxNjk0MzM0MzI1NTIy.4l3dX_IM59DAvZREh6SKYk8pxBVd6kttYnha-5qNyuUg.a-pIK9JsI0PZPa1grgYGbTeQUtMjVL4aE-xGA-q3j80g.PNG.yulim_choi/A4_-_1.png?type=w966',
+                                        link: {
+                                            // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                                            mobileWebUrl: 'http://localhost:8080/',
+                                            webUrl: 'http://localhost:8080/',
+                                        },
+                                    },
+                                    buttons: [
+                                        {
+                                            title: '적금 참여하기',
+                                            link: {
+                                                mobileWebUrl: 'http://localhost:8080/invited-pw?account-number=03688448916355',
+                                                webUrl: 'http://localhost:8080/invited-pw?account-number=03688448916355',
+                                            },
+                                        }
+                                    ],
+                                    serverCallbackArgs: {
+                                        key: 'value', // 사용자 정의 파라미터 설정
+                                    },
+                                });
+                            });
+                        });
 
                     }).fail(function () {
                         console.log("Error fetching savingaccounts data.");
@@ -245,7 +264,6 @@
 
                     $("#accordionPanelsStayOpenExample").append(accordionItem);
                 });
-
                 $.when.apply($, promises).then(function () {
                     console.log("All Ajax requests completed.");
                 });
@@ -254,34 +272,8 @@
                 console.log("Error fetching pets data.");
             }
         });
-    });
 
 
-    Kakao.Share.createDefaultButton({
-        container: '#kakaotalk-sharing-btn',
-        objectType: 'feed',
-        content: {
-            title: 'HanaPet 공유 적금에 초대되었어요!',
-            description: '토리를 위해 공유 적금에 참여해보세요!🐶 비밀번호는 381924입니다.',
-            imageUrl: 'https://postfiles.pstatic.net/MjAyMzA5MTBfMTg2/MDAxNjk0MzM0MzI1NTIy.4l3dX_IM59DAvZREh6SKYk8pxBVd6kttYnha-5qNyuUg.a-pIK9JsI0PZPa1grgYGbTeQUtMjVL4aE-xGA-q3j80g.PNG.yulim_choi/A4_-_1.png?type=w966',
-            link: {
-                // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-                mobileWebUrl: 'http://localhost:8080/',
-                webUrl: 'http://localhost:8080/',
-            },
-        },
-        buttons: [
-            {
-                title: '적금 참여하기',
-                link: {
-                    mobileWebUrl: 'http://localhost:8080/invited-pw?account-number=03688448916355',
-                    webUrl: 'http://localhost:8080/invited-pw?account-number=03688448916355',
-                },
-            }
-        ],
-        serverCallbackArgs: {
-            key: 'value', // 사용자 정의 파라미터 설정
-        },
     });
 
 
