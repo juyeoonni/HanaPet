@@ -99,6 +99,9 @@
                         <label for="period1">매주</label>
                         <input type="radio" id="period2" name="period" value="매월">
                         <label for="period2">매월</label>
+                        <% if (savingName != null) {%>
+                        <div style="font-size: 15px; color: #75A989; margin-top: 20px">* 일 단위로 이자를 계산합니다.</div>
+                        <% } %>
                     </div>
                 </td>
             </tr>
@@ -124,7 +127,11 @@
                 <td>
                     <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
                            required><span>원</span>
+                    <% if (savingName != null) { %>
+                    <span onclick="endAmountWeek()" style="cursor:pointer; margin-left: 30px;">주로 계산</span>
+                    <% } else { %>
                     <span onclick="endAmount()" style="cursor:pointer; margin-left: 30px;">계산</span>
+                    <% } %>
                     <div id="conditionMessage1" class="mt-2 text-danger"></div>
                     <div id="endAmountMessage" style="margin-top: 20px;"></div>
                 </td>
@@ -190,7 +197,47 @@
             totalInterest += (amount * monthlyInterestRate * i);
         }
 
-        return totalInterest;
+        return Math.floor(totalInterest);
+    }
+
+    const ed = "<%= endDate %>";
+
+    function calculateInterestDaily() {
+        // 시작 날짜와 종료 날짜를 JavaScript Date 객체로 변환
+        const startDate = new Date();
+        startDate.setHours(0, 0, 0, 0);
+        const endDate = new Date(ed);
+        const amount = parseFloat(document.getElementById('joinAmount').value); // 입력된 값을 부동 소수점 숫자로 변환
+
+        // 연 이자율을 일 단위 이자율로 변환
+        const dailyInterestRate = (5 / 100) / 365; // 연 이자율을 365일로 나누어 일 단위로 계산
+
+        // 기간 계산 (일 단위)
+        const millisecondsPerDay = 24 * 60 * 60 * 1000;
+        const days = Math.floor((endDate - startDate) / millisecondsPerDay); // 오늘 날짜 포함, 종료 날짜 제외
+
+        // console.log("여기입니다. " + startDate + "  " + endDate + "   " + amount + "  " + millisecondsPerDay + "  " + days);
+
+        // 총 이자 계산
+        // 예를 들어 9/18 ~ 10/17 만기라면
+        // 1. 9/18 ~ 10/17까지 총 29일 => (amount * dailyInterestRate * 29일)
+        // 2. 9/25 ~ 10/17까지 총 22일 => (amount * dailyInterestRate * 22일)
+        // ...
+        // 5. 10/16 ~ 10/17까지 총 1일 => (amount * dailyInterestRate * 1일)
+        // 공식 : (amount *  dailyInterestRate) * (29 + 22 + 15 + 8 + 1)
+        // (29 + 22 + 15 + 8 + 1) 이 부분을 표현하면 n부터 7씩 빼면서 더이상 못 뺄 때까지 더하는 공식 -> calculateSum(n)
+        const totalInterest = amount * dailyInterestRate * calculateSum(days);
+
+        return Math.floor(totalInterest); // 정수로 버림된 총 이자를 반환
+    }
+
+    function calculateSum(n) {
+        let sum = 0;
+        while (n >= 1) {
+            sum += n;
+            n -= 7;
+        }
+        return sum;
     }
 
     function endAmount() {
@@ -204,6 +251,41 @@
         let message3 = '원금 ' + joinAmount + '원을 ' + joinPeriod + '개월 동안 적금 시 원금 ' + principal + '원, 이자 ' + interest + '원\n일반 세율 가입 시 총 ' + real + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
 
         endAmountMessage.textContent = message3;
+    }
+
+    function endAmountWeek() {
+        const interest = calculateInterestDaily();
+        const endAmountMessage = document.getElementById('endAmountMessage');
+        const joinAmount = document.getElementById('joinAmount').value;
+        const principal = joinAmount * calculateWeeksBetweenDates();
+        //const real = Math.floor((interest + 기존의 이자) * 0.846) + principal + 기존의 금액);
+        const real = Math.floor(interest * 0.846 + principal);
+
+        console.log("혼자 했을 때의 원금 " + principal + " 이자 " + interest);
+        let message3 = '기존의 적금 가입자의 이자 금액과 더불어 일반 세율 가입 시 총 ' + real + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
+
+        endAmountMessage.textContent = message3;
+    }
+
+    // 오늘부터 적금 만기일까지 주 단위로 납입을 몇번 하는지
+    function calculateWeeksBetweenDates() {
+        const startDate = new Date();
+        const endDate = new Date(ed);
+
+        const millisecondsPerDay = 24 * 60 * 60 * 1000; // 1일의 밀리초 수
+        const daysBetween = Math.floor((endDate - startDate) / millisecondsPerDay);
+
+        const targetDayOfWeek = startDate.getDay(); // 시작 날짜의 요일을 가져옴
+
+        let weeks = 0;
+        for (let i = 0; i < daysBetween; i++) {
+            if (startDate.getDay() === targetDayOfWeek) {
+                weeks++;
+            }
+            startDate.setDate(startDate.getDate() + 1); // 다음 날짜로 이동
+        }
+
+        return weeks;
     }
 
     $(document).ready(function () {
