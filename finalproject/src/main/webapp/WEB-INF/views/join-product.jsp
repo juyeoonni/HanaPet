@@ -20,6 +20,8 @@
         String joinPeriod = request.getParameter("joinPeriod");
         String endDate = request.getParameter("endDate");
         String accountNumber = request.getParameter("accountNumber");
+        String finalAmount = request.getParameter("finalAmount");
+        String interestAmount = request.getParameter("interestAmount");
     %>
 
     <form>
@@ -128,7 +130,7 @@
                     <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
                            required><span>원</span>
                     <% if (savingName != null) { %>
-                    <span onclick="endAmountWeek()" style="cursor:pointer; margin-left: 30px;">주로 계산</span>
+                    <span onclick="endAmountWeek()" style="cursor:pointer; margin-left: 30px;">계산</span>
                     <% } else { %>
                     <span onclick="endAmount()" style="cursor:pointer; margin-left: 30px;">계산</span>
                     <% } %>
@@ -210,7 +212,7 @@
         const amount = parseFloat(document.getElementById('joinAmount').value); // 입력된 값을 부동 소수점 숫자로 변환
 
         // 연 이자율을 일 단위 이자율로 변환
-        const dailyInterestRate = (5 / 100) / 365; // 연 이자율을 365일로 나누어 일 단위로 계산
+        const dailyInterestRate = (2.5 / 100) / 365; // 연 이자율을 365일로 나누어 일 단위로 계산
 
         // 기간 계산 (일 단위)
         const millisecondsPerDay = 24 * 60 * 60 * 1000;
@@ -253,16 +255,24 @@
         endAmountMessage.textContent = message3;
     }
 
+    const interestAmountString = "<%= interestAmount %>"; // 서버 사이드 코드를 통해 받은 문자열
+    const interestAmountInt = parseInt(interestAmountString, 10); // 문자열을 10진수로 파싱
+    const finalAmountString = "<%= finalAmount %>"; // 서버 사이드 코드를 통해 받은 문자열
+    const finalAmountInt = parseInt(finalAmountString, 10); // 문자열을 10진수로 파싱
+
+    let finalAmount = null;
+    let interestAmount = null;
+
     function endAmountWeek() {
-        const interest = calculateInterestDaily();
+        const aloneInterest = calculateInterestDaily();
         const endAmountMessage = document.getElementById('endAmountMessage');
         const joinAmount = document.getElementById('joinAmount').value;
-        const principal = joinAmount * calculateWeeksBetweenDates();
-        //const real = Math.floor((interest + 기존의 이자) * 0.846) + principal + 기존의 금액);
-        const real = Math.floor(interest * 0.846 + principal);
+        const alonePrincipal = joinAmount * calculateWeeksBetweenDates();
+        finalAmount = alonePrincipal + finalAmountInt;
+        interestAmount = Math.floor((aloneInterest + interestAmountInt) * 0.846);
+        const real = finalAmount + interestAmount;
 
-        console.log("혼자 했을 때의 원금 " + principal + " 이자 " + interest);
-        let message3 = '기존의 적금 가입자의 이자 금액과 더불어 일반 세율 가입 시 총 ' + real + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
+        let message3 = '* 기존 적금의 만기 시 원금은 ' + finalAmountString + '원, 이자는 ' + interestAmountString + '원 입니다. 손님이 추가로 가입할 시 총 원금은 ' + finalAmount + '원이며 총 이자는 ' + interestAmount + '원 입니다. 일반 세율 가입 시 총 ' + real + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
 
         endAmountMessage.textContent = message3;
     }
@@ -616,6 +626,8 @@
                 category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,
                 contribution_amount: 0,
                 contribution_ratio: 0,
+                final_amount: finalAmount,
+                interest_amount: interestAmount
             };
 
             console.log(requestData);

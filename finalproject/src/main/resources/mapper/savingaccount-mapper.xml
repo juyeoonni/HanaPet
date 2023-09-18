@@ -21,10 +21,12 @@
                 #{saving_name}, #{pet_id}, #{final_amount}, #{interest_amount})
     </insert>
 
-    <!-- 자동이체 시 적금 계좌에 돈 입금됨 -->
+    <!-- 자동이체 시 적금 계좌에 돈 입금됨 + finalAmount랑 interestAmount 변경하기 -->
     <update id="deposit" parameterType="HashMap">
         UPDATE saving_account
-        SET current_balance = current_balance + #{amount}
+        SET current_balance = current_balance + #{amount},
+            final_amount    = #{final_amount},
+            interest_amount = #{interest_amount}
         WHERE account_number = #{account_number}
     </update>
 

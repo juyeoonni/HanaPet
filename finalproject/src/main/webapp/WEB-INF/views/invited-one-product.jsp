@@ -316,6 +316,8 @@
         <input type="hidden" id="joinPeriod" name="joinPeriod">
         <input type="hidden" id="endDate" name="endDate">
         <input type="hidden" id="accountNumber" name="accountNumber">
+        <input type="hidden" id="finalAmount" name="finalAmount">
+        <input type="hidden" id="interestAmount" name="interestAmount">
         <input class="join" value="가입하기" readonly>
     </form>
 </div>
@@ -353,6 +355,8 @@
                 $("#joinPeriod").val(productInfo.joinPeriod);
                 $("#endDate").val(productInfo.endDate);
                 $("#accountNumber").val(productInfo.accountNumber);
+                $("#finalAmount").val(productInfo.finalAmount);
+                $("#interestAmount").val(productInfo.interestAmount);
 
                 // form 제출
                 $("#joinForm").submit();

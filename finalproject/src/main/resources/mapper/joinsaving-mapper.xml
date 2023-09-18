@@ -20,21 +20,23 @@
 
     <select id="getInvitedInfo" parameterType="String" resultType="com.kopo.finalproject.dto.Invite">
 
-        select g2.name           as openerName,
-               js.guest_id       as invitedGuestId,
-               js.account_number as accountNumber,
-               js.join_date      as inviteDate,
-               sa.saving_name    as savingName,
-               p.name            as petName,
-               p.image           as petImg,
-               sa.category       as category,
-               psp.rate          as rate,
-               psp.description   as description,
-               psp.min_balance   as minBalance,
-               psp.max_balance   as maxBalance,
-               psp.image         as productImg,
-               sa.end_date       as endDate,
-               sa.join_period    as joinPeriod
+        select g2.name            as openerName,
+               js.guest_id        as invitedGuestId,
+               js.account_number  as accountNumber,
+               js.join_date       as inviteDate,
+               sa.saving_name     as savingName,
+               p.name             as petName,
+               p.image            as petImg,
+               sa.category        as category,
+               psp.rate           as rate,
+               psp.description    as description,
+               psp.min_balance    as minBalance,
+               psp.max_balance    as maxBalance,
+               psp.image          as productImg,
+               sa.end_date        as endDate,
+               sa.join_period     as joinPeriod,
+               sa.final_amount    as finalAmount,
+               sa.interest_amount as interestAmount
         from guest g
                  join join_saving js on g.guest_id = js.guest_id
                  join saving_account sa on sa.account_number = js.account_number

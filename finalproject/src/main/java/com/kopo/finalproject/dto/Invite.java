@@ -23,5 +23,8 @@ public class Invite {
     private String productImg;
     private String endDate;
     private String joinPeriod;
+    private String finalAmount;
+    private String interestAmount;
+
 
 }

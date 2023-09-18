@@ -71,7 +71,7 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             joinSavingMapper.joinSaving(data);
             // 2. 예금 계좌 테이블 수정 (update) - 돈 빠져나가기
             depositaccountMapper.withdraw(data);
-            // 3. 적금 계좌 테이블 수정 (update) - (현재 금액) 돈 들어오기 , 알아서 진행률 변경됨
+            // 3. 적금 계좌 테이블 수정 (update) - (현재 금액) 돈 들어오기 , 알아서 진행률 변경됨, finalAmount랑 interestAmount 바꾸기
             savingaccountMapper.deposit(data);
 
             // 적금 계좌 잔액 가져오기 (이체 내역 insert를 위한)
@@ -82,10 +82,6 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             data.put("current_balance_d", balance);
             // 4. 이체 내역 테이블 생성 (insert) - 내역 기록
             transferHistoryMapper.insertHistory(data);
-
-            // 수정 -> 매주일 때, final amount 곱하기
-            // 5. final amount 변경
-            //savingaccountMapper.updateFinalAmount(data);
 
             // 6. 이체 됐으니 적금 참여 테이블 기여도, 기여금액 바꾸기
             //joinSavingMapper.updateContribution(data);
