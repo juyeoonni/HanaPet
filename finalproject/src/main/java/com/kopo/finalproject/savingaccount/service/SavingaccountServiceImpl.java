@@ -67,7 +67,7 @@ public class SavingaccountServiceImpl implements SavingaccountService {
     @Transactional
     public void joinInvited(HashMap<String, String> data) {
         try {
-            // 1. 적금 참여 테이블 생성
+            // 1. 적금 참여 테이블 생성 -> 기여도는 트리거로 자동 업데이트됨
             joinSavingMapper.joinSaving(data);
             // 2. 예금 계좌 테이블 수정 (update) - 돈 빠져나가기
             depositaccountMapper.withdraw(data);
@@ -82,10 +82,6 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             data.put("current_balance_d", balance);
             // 4. 이체 내역 테이블 생성 (insert) - 내역 기록
             transferHistoryMapper.insertHistory(data);
-
-            // 6. 이체 됐으니 적금 참여 테이블 기여도, 기여금액 바꾸기
-            //joinSavingMapper.updateContribution(data);
-
 
         } catch (Exception e) {
             throw new RuntimeException("joinSavingAccounts 작업 중 오류 발생: " + e.getMessage());
