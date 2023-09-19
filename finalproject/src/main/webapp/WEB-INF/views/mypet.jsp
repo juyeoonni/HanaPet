@@ -22,7 +22,11 @@
         Kakao.init(config.KAKAO_JAVASCRIPT_KEY); // 사용하려는 앱의 JavaScript 키 입력
     </script>
     <style>
-
+        .menu-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 40px;
+        }
 
         .top-container, .left-container {
             display: flex;
@@ -32,6 +36,51 @@
         .button-container {
             text-align: end;
         }
+
+        .middle-box {
+            background: #75A989;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+            border-radius: 10px 10px 0px 0px;
+            width: auto;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 30px;
+        }
+
+        #top-box {
+            width: 100%;
+            height: 120px;
+            margin-top: 10px;
+            background: #E1E6DE;
+            /*box-shadow: 4px 4px 15px 1px rgba(0, 0, 0, 0.2);*/
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .text-right {
+            text-align: end;
+        }
+
+        .accordion-button {
+            background-color: white !important;
+            border: 2px solid #E1E6DE;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .smallsize {
+            font-size: 15px;
+        }
+
+        .accordion-body {
+            padding: 15px !important;
+        }
+
+        .account-container {
+            padding: 20px 0px;
+            border-bottom: 2px solid #E1E6DE !important;
+        }
     </style>
 
 </head>
@@ -40,8 +89,8 @@
 <%@ include file="include/header.jsp" %>
 
 <div class="body">
-    <div> 마이 페이지</div>
-    <div>
+    <div class="menu-title"> 마이 페이지</div>
+    <div class="middle-box">
         <div>
             <button>
                 반려견 적금
@@ -61,7 +110,7 @@
         <div>
             총 2마리의 반려견과 함께 총 3개의 계좌를 보유하고 있습니다.
         </div>
-        <div>
+        <div class="text-right">
             총 잔액 18456,123원
         </div>
     </div>
@@ -72,33 +121,6 @@
     <div class="accordion" id="accordionPanelsStayOpenExample">
         <!-- Placeholder for the accordion items -->
     </div>
-
-
-    <%--    <div>--%>
-    <%--        <div>--%>
-    <%--            <img/>--%>
-    <%--            <div>--%>
-    <%--                <div>적금 이름--%>
-    <%--                </div>--%>
-    <%--                <div>진행률</div>--%>
-    <%--            </div>--%>
-
-    <%--            <div>--%>
-    <%--                <div>계좌번호</div>--%>
-    <%--                <div>잔액</div>--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--        <div>--%>
-    <%--            <button>--%>
-    <%--                공유하기--%>
-    <%--            </button>--%>
-    <%--            <button>--%>
-    <%--                자세히 보기--%>
-    <%--            </button>--%>
-    <%--        </div>--%>
-
-    <%--    </div>--%>
-
 </div>
 
 <%
@@ -108,6 +130,7 @@
 
 <script>
     $(document).ready(function () {
+
         var guest_id = '<%= guest_id %>'; // Java 값을 JavaScript 변수로 전달
 
         $.ajax({
@@ -136,6 +159,9 @@
                             + '<div class="left">'
                             + '<span class="petimg">' + imageElement.prop('outerHTML') + '</span>'
                             + '<span class="petname">' + pet.name + '</span>'
+                            + '</div>'
+                            + '<div class="smallsize">'
+                            + '총 잔액 91,848562원'
                             + '</div>'
                             + '<div class="right">'
                             + '<div>' + pet.gender + '|' + pet.month_age + '개월 ' + pet.breed + '</div>'
@@ -179,32 +205,17 @@
                             var Div = $('<div>');
                             // 적금 이름과 진행률 추가
                             var nameDiv = $('<div>').text(saving_name);
-                            var progressDiv = $('<div>').text('진행률: ' + progress_rate);
+                            var progressDiv = $('<div>').text(progress_rate);
                             Div.append(nameDiv, progressDiv);
                             leftContainer.append(Div);
 
                             // 계좌 번호와 잔액 추가
-                            var accountNumberDiv = $('<div>').text('계좌번호: ' + account_number);
-                            var balanceDiv = $('<div>').text('잔액: ' + balance);
+                            var accountNumberDiv = $('<div>').text(account_number.slice(0, 15) + '*');
+                            var balanceDiv = $('<div>').text('잔액 ' + balance);
                             rightContainer.append(accountNumberDiv, balanceDiv);
 
                             // "공유하기" 버튼 생성
-                            // "공유하기" 버튼 대신 <a> 요소와 이미지 생성
-                            // var kakaoLink = $('<a>').attr('id', 'kakaotalk-sharing-btn').attr('href', 'javascript:;').css('cursor', 'pointer').css('pointer-events', 'auto');
-                            // var kakaoImage = $('<img id="kt">').attr('src', 'https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png').attr('alt', '카카오톡 공유 보내기 버튼');
-                            //
-                            // // <a> 요소에 이미지 추가
-                            // kakaoLink.append(kakaoImage);
-
-
-                            // "공유하기" 버튼 생성
-                            var kakaoLink = $('<a>').attr('id', 'kakaotalk-sharing-btn-' + pet.pet_id).attr('href', 'javascript:;').css('cursor', 'pointer').css('pointer-events', 'auto');
-                            var kakaoImage = $('<img>').attr('id', 'kt-' + pet.pet_id).attr('src', 'https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png').attr('alt', '카카오톡 공유 보내기 버튼');
-
-                            // <a> 요소에 이미지 추가
-                            kakaoLink.append(kakaoImage);
-
-                            // "공유하기" 버튼 대신 <a> 요소를 buttonContainer에 추가
+                            var kakaoLink = $('<button>').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
                             buttonContainer.append(kakaoLink);
 
                             // "자세히 보기" 버튼 생성
@@ -212,7 +223,6 @@
                             buttonContainer.append(detailsButton);
 
                             // 생성한 컨테이너들을 상위 컨테이너에 추가
-
                             topContainer.append(leftContainer, rightContainer);
                             container.append(topContainer);
                             container.append(buttonContainer);
@@ -222,25 +232,26 @@
 
                             // Kakao 공유 버튼을 생성하고 설정
                             kakaoLink.on('click', function () {
+                                const sharedUrl = 'http://localhost:8080/invited-pw?account-number=' + account.accountNumber;
+
                                 Kakao.Share.createDefaultButton({
-                                    container: '#kakaotalk-sharing-btn-' + pet.pet_id,
+                                    container: '#kakaotalk-sharing-btn-' + account_number,
                                     objectType: 'feed',
                                     content: {
                                         title: 'HanaPet 공유 적금에 초대되었어요!',
-                                        description: '토리를 위해 공유 적금에 참여해보세요!🐶 비밀번호는 381924입니다.',
+                                        description: pet.name + '를 위해 공유 적금에 참여해보세요!🐶 비밀번호는 381924입니다.',
                                         imageUrl: 'https://postfiles.pstatic.net/MjAyMzA5MTBfMTg2/MDAxNjk0MzM0MzI1NTIy.4l3dX_IM59DAvZREh6SKYk8pxBVd6kttYnha-5qNyuUg.a-pIK9JsI0PZPa1grgYGbTeQUtMjVL4aE-xGA-q3j80g.PNG.yulim_choi/A4_-_1.png?type=w966',
                                         link: {
-                                            // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-                                            mobileWebUrl: 'http://localhost:8080/',
-                                            webUrl: 'http://localhost:8080/',
+                                            mobileWebUrl: sharedUrl,
+                                            webUrl: sharedUrl,
                                         },
                                     },
                                     buttons: [
                                         {
                                             title: '적금 참여하기',
                                             link: {
-                                                mobileWebUrl: 'http://localhost:8080/invited-pw?account-number=03688448916355',
-                                                webUrl: 'http://localhost:8080/invited-pw?account-number=03688448916355',
+                                                mobileWebUrl: sharedUrl,
+                                                webUrl: sharedUrl,
                                             },
                                         }
                                     ],
