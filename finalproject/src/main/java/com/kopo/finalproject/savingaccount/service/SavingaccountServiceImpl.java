@@ -5,7 +5,8 @@ import com.kopo.finalproject.guest.model.dao.GuestMapper;
 import com.kopo.finalproject.joinsaving.model.dao.JoinSavingMapper;
 import com.kopo.finalproject.savingaccount.model.dao.SavingaccountMapper;
 import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
-import com.kopo.finalproject.savingaccount.model.dto.Savingaccount;
+import com.kopo.finalproject.savingaccount.model.dto.MyPageDetailInfo;
+import com.kopo.finalproject.savingaccount.model.dto.MyPageHistoryInfo;
 import com.kopo.finalproject.transferhistory.model.dao.TransferHistoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,15 @@ public class SavingaccountServiceImpl implements SavingaccountService {
         } catch (Exception e) {
             throw new RuntimeException("joinSavingAccounts 작업 중 오류 발생: " + e.getMessage());
         }
+    }
+
+    @Override
+    public List<MyPageDetailInfo> getDetailInfo(String accountNumber) {
+        return savingaccountMapper.getDetailInfo(accountNumber);
+    }
+    @Override
+    public List<MyPageHistoryInfo> getHistoryInfo(String accountNumber) {
+        return savingaccountMapper.getHistoryInfo(accountNumber);
     }
 
     @Override

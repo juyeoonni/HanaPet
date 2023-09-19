@@ -261,7 +261,8 @@
 
                             // 버튼에 클릭 이벤트 리스너 추가
                             detailsButton.on('click', function () {
-                                window.location.href = '/mypet-saving/detail'; // 원하는 다음 페이지의 URL로 변경
+                                var nextPageUrl = '/mypet-saving/detail?accountNumber=' + encodeURIComponent(account_number);
+                                window.location.href = nextPageUrl;
                             });
 
                             buttonContainer.append(detailsButton);

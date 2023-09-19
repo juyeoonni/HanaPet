@@ -46,14 +46,44 @@
         WHERE account_number = #{account_number}
     </select>
 
-    <!-- 계좌 번호로 정보 조회 -->
-    <select id="getSavingAccountByAccountNumber"
-            parameterType="String"
-            resultType="com.kopo.finalproject.savingaccount.model.dto.Savingaccount">
-        SELECT *
-        FROM saving_account
-        WHERE account_number = #{account_number}
+    <select id="getDetailInfo">
+        select js.guest_id            as guestId,
+               sa.account_number      as accountNumber,
+               sa.opening_date        as openingDate,
+               sa.end_date            as endDate,
+               psd.category           as category,
+               psd.image              as categoryImg,
+               sa.opener_id           as openerId,
+               sa.current_balance     as balance,
+               sa.saving_name         as savingName,
+               pet.name               as petName,
+               sa.progress_rate       as progressRate,
+               sa.final_amount        as finalAmount,
+               sa.interest_amount     as interestAmount,
+               js.join_date           as joinDate,
+               js.contribution_amount as contributionAmount,
+               js.contribution_ratio  as contributionRatio,
+               js.transfer_amount     as transferAmount,
+               js.transfer_period     as transferPeriod
+        from saving_account sa
+                 join join_saving js on sa.account_number = js.account_number
+                 join pet_saving_product psd on psd.category = sa.category
+                 join pet on pet.pet_id = sa.pet_id
+        where sa.account_number = #{accountNumber}
     </select>
 
 
+    <select id="getHistoryInfo">
+        select distinct th.auto_transfer_id   as id,
+                        da.guest_id           as guestId,
+                        th.account_number_in  as accountNumberIn,
+                        th.account_number_out as accountNumberOut,
+                        th.transfer_date      as transferDate,
+                        th.amount             as amount,
+                        th.balance_after_in   as balanceAfterIn
+        from transfer_history th
+                 join deposit_account da on da.account_number = th.account_number_out
+        where th.account_number_in = #{accountNumber}
+        order by id desc
+    </select>
 </mapper>

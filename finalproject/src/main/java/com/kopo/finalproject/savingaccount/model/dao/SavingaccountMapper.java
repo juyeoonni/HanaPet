@@ -1,6 +1,8 @@
 package com.kopo.finalproject.savingaccount.model.dao;
 
 import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
+import com.kopo.finalproject.savingaccount.model.dto.MyPageDetailInfo;
+import com.kopo.finalproject.savingaccount.model.dto.MyPageHistoryInfo;
 import com.kopo.finalproject.savingaccount.model.dto.Savingaccount;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,6 +20,8 @@ public interface SavingaccountMapper {
 
     String getBalance(String accountNumber);
 
-    Savingaccount getSavingAccountByAccountNumber(String account_number);
+    List<MyPageDetailInfo> getDetailInfo(String accountNumber);
+
+    List<MyPageHistoryInfo> getHistoryInfo(String accountNumber);
 
 }
