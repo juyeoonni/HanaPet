@@ -119,13 +119,9 @@
     </div>
     <div class="middle-box">
     </div>
-    <a href="/invited">
-        <button>초대장 확인</button>
-        <%=session.getAttribute("accountNumber")%>
-    </a>
     <%
+            }
         }
-    }
     %>
 </div>
 <script>

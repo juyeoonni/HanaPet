@@ -6,6 +6,14 @@
     <title>Calendar</title>
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/calendar.css">
+    <script src="/resources/js/apiKey.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
+            integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
+            crossorigin="anonymous"></script>
+    <script>
+        Kakao.init(config.KAKAO_JAVASCRIPT_KEY); // 사용하려는 앱의 JavaScript 키 입력
+    </script>
 </head>
 <body>
 <jsp:include page="include/header.jsp"/>
@@ -36,8 +44,10 @@
             <div class="modal" id="myModal">
                 <div class="modal-content">
                     <%@ include file="include/modal.jsp" %>
-                    <button id="closeModalButton">Close</button>
-                    <button class="form-submit" type="button" id="addEventButton">일정 등록</button>
+                    <div style="display:flex;">
+                        <button id="closeModalButton">Close</button>
+                        <button class="form-submit" type="button" id="addEventButton">일정 등록</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,6 +70,7 @@
 
 <%
     String guest_id = (String) session.getAttribute("guest_id");
+    String access_token = (String) session.getAttribute("accessToken");
     // 여기서 필요한 세션값과 변수들을 설정하세요
 %>
 
@@ -308,7 +319,7 @@
                         document.getElementById("calendar_start_date").value = "";
                         document.getElementById("calendar_end_date").value = "";
                         document.getElementById("eventDescription").value = "";
-
+                        sendKakaoTalkMessage();
                         console.log("insert 성공");
                         const modal = document.getElementById("myModal");
                         modal.style.display = "none";
@@ -444,6 +455,69 @@
         });
         renderCalendar(currentDate.getMonth());
     });
+
+    // KakaoTalk 메시지 보내기 함수
+    function sendKakaoTalkMessage() {
+        //
+        // Kakao.API.request({
+        //     url: '/v1/api/talk/friends',
+        // })
+        //     .then(function (response) {
+        //         console.log(response);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+        //
+
+        // 메시지 받을 친구의 UUID
+        const receiverUuid = "VmNRZF1uWmNQfE1_Tn5GcUB4TGBRYVJrXj4";
+        const access_token = 'Bearer ' + '<%= access_token %>';
+
+        console.log("토큰" + access_token)
+
+        // 캘린더 메시지 템플릿 데이터 설정
+        const messageTemplate = {
+            object_type: "calendar",
+            content: {
+                title: "일정 제목",
+                description: "일정 설명",
+                image_url: "https://이미지URL.com/calendar.png",
+                link: {
+                    web_url: "http://localhost:8080/", // 웹 URL
+                    mobile_web_url: "http://localhost:8080/", // 모바일 웹 URL
+                },
+            },
+            buttons: [
+                {
+                    title: "일정 정보 보기",
+                    link: {
+                        web_url: "http://localhost:8080/", // 일정 정보 웹 페이지 URL
+                        mobile_web_url: "http://localhost:8080/", // 모바일 일정 정보 웹 페이지 URL
+                    },
+                },
+            ],
+            id_type: "event",
+            id: "일정 고유 ID",
+        };
+
+        // KakaoTalk 메시지 전송 요청
+        Kakao.API.request({
+            url: "/v1/api/talk/friends/message/default/send",
+            data: {
+                receiver_uuids: [receiverUuid],
+                template_object: messageTemplate
+            }
+        })
+            .then(function (response) {
+                console.log("카카오톡 메시지 전송 성공:", response);
+                // 여기에 성공 시 실행할 코드를 추가하세요.
+            })
+            .catch(function (error) {
+                console.error("카카오톡 메시지 전송 오류:", error);
+                // 여기에 오류 시 실행할 코드를 추가하세요.
+            });
+    }
 
 </script>
 </body>
