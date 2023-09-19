@@ -16,6 +16,7 @@ public class Pet {
     private String image;
     private int month_age;
     private String age_group;
+    private String age;
 
     public Pet() {
     }

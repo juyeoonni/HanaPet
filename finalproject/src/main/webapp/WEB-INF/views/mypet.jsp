@@ -22,6 +22,33 @@
         Kakao.init(config.KAKAO_JAVASCRIPT_KEY); // 사용하려는 앱의 JavaScript 키 입력
     </script>
     <style>
+
+        /* 막대 그래프 컨테이너 스타일 */
+        .progress-bar-container {
+            width: 100%;
+            height: 35px; /* 막대 그래프의 높이 조절 */
+            background-color: #ccc; /* 막대 그래프 바의 배경색 */
+            border-radius: 50px; /* 모서리를 둥글게 만듭니다. */
+            margin-bottom: 5px; /* 각 막대 그래프 사이에 간격 추가 */
+        }
+
+        /* 막대 그래프 바 초기 스타일 */
+        .progress-bar {
+            height: 100%;
+            background-color: #4CAF50; /* 막대 그래프의 색상 */
+            text-align: center;
+            line-height: 20px; /* 텍스트를 수직으로 중앙 정렬 */
+            color: #fff; /* 텍스트 색상 */
+            border-radius: 50px; /* 왼쪽 모서리만 둥글게 만듭니다. */
+            width: 0; /* 초기 너비를 0으로 설정 */
+            transition: width 1s ease-in-out; /* 너비 변화에 대한 애니메이션 설정 */
+        }
+
+        /* 막대 그래프 진행률 텍스트 스타일 */
+        .progress-text {
+            margin-left: 5px; /* 텍스트와 막대 그래프 사이의 간격 추가 */
+        }
+
         .menu-title {
             text-align: center;
             font-size: 30px;
@@ -160,11 +187,10 @@
                             + '<span class="petimg">' + imageElement.prop('outerHTML') + '</span>'
                             + '<span class="petname">' + pet.name + '</span>'
                             + '</div>'
-                            + '<div class="smallsize">'
-                            + '총 잔액 91,848562원'
+                            + '<div class="smallsize" id="total-' + pet.pet_id + '">'
                             + '</div>'
                             + '<div class="right">'
-                            + '<div>' + pet.gender + '|' + pet.month_age + '개월 ' + pet.breed + '</div>'
+                            + '<div>' + pet.gender + '|' + pet.age + '살 ' + pet.breed + '</div>'
                             + '<div>2개의 적금 보유</div>'
                             + '</div>'
                             + '</div>');
@@ -182,6 +208,8 @@
                         dataType: "json"
                     }).then(function (myAccountsOfPet) {
 
+                        let total_balance = 0;
+
                         myAccountsOfPet.forEach(function (account) {
                             // 필요한 정보 추출
                             var categoryImg = account.categoryImg;
@@ -190,6 +218,16 @@
                             var account_number = account.accountNumber;
                             var openerId = account.openerId;
                             var progress_rate = account.progressRate;
+
+
+                            console.log("밸런스" + balance);
+                            total_balance += parseInt(balance);
+
+                            console.log("최종" + total_balance)
+
+                            // 막대 그래프 생성 및 업데이트 로직을 추가하세요.
+                            var progressBar = createProgressBar(progress_rate); // 막대 그래프 생성 함수
+
 
                             // 주요 컨테이너 생성
                             var container = $('<div>').addClass('account-container');
@@ -205,13 +243,13 @@
                             var Div = $('<div>');
                             // 적금 이름과 진행률 추가
                             var nameDiv = $('<div>').text(saving_name);
-                            var progressDiv = $('<div>').text(progress_rate);
-                            Div.append(nameDiv, progressDiv);
+                            // var progressDiv = $('<div>').text(progress_rate);
+                            Div.append(nameDiv, progressBar);
                             leftContainer.append(Div);
 
                             // 계좌 번호와 잔액 추가
                             var accountNumberDiv = $('<div>').text(account_number.slice(0, 15) + '*');
-                            var balanceDiv = $('<div>').text('잔액 ' + balance);
+                            var balanceDiv = $('<div>').text('잔액 ' + balance + '원');
                             rightContainer.append(accountNumberDiv, balanceDiv);
 
                             // "공유하기" 버튼 생성
@@ -254,19 +292,14 @@
                                                 webUrl: sharedUrl,
                                             },
                                         }
-                                    ],
-                                    serverCallbackArgs: {
-                                        key: 'value', // 사용자 정의 파라미터 설정
-                                    },
+                                    ]
                                 });
                             });
                         });
-
+                        $("#total-" + pet.pet_id).text("총 잔액 " + total_balance + "원");
                     }).fail(function () {
                         console.log("Error fetching savingaccounts data.");
                     });
-
-
                     promises.push(savingAccountPromise);
 
                     accordionCollapse.append(accordionBody);
@@ -287,6 +320,25 @@
 
     });
 
+    function createProgressBar(progressRate) {
+        // 막대 그래프 컨테이너를 생성합니다.
+        var progressBarContainer = $("<div>").addClass("progress-bar-container");
+
+        // 막대 그래프 바를 생성합니다.
+        var progressBar = $("<div>").addClass("progress-bar");
+
+        // 막대 그래프의 스타일을 설정합니다.
+        progressBar.css("width", progressRate + "%");
+
+        // 막대 그래프에 진행률을 표시하는 텍스트를 생성합니다.
+        var progressText = $("<div>").addClass("progress-text").text(progressRate + "%");
+
+        // 막대 그래프 바와 진행률 텍스트를 막대 그래프 컨테이너에 추가합니다.
+        progressBarContainer.append(progressBar, progressText);
+
+        // 막대 그래프 컨테이너를 반환합니다.
+        return progressBarContainer;
+    }
 
 </script>
 
