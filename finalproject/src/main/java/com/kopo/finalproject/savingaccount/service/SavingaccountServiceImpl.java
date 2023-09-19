@@ -76,7 +76,6 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             // 2. 예금 계좌 테이블 수정 (update) - 돈 빠져나가기
             depositaccountMapper.withdraw(data);
             // 3. 적금 계좌 테이블 수정 (update) - (현재 금액) 돈 들어오기 , 알아서 진행률 변경됨, finalAmount랑 interestAmount 바꾸기
-            System.out.println("유ㅣㄻ"+ data.get("final_amount"));
             savingaccountMapper.deposit(data);
 
             // 적금 계좌 잔액 가져오기 (이체 내역 insert를 위한)
@@ -88,8 +87,9 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             // 4. 이체 내역 테이블 생성 (insert) - 내역 기록
             transferHistoryMapper.insertHistory(data);
             // 5. 손님-반려견 테이블 생성 (insert)
-            guestMapper.insertPet(data);
-
+            if (guestMapper.checkDuplicate(data) == 0) {
+                guestMapper.insertPet(data);
+            }
         } catch (Exception e) {
             throw new RuntimeException("joinSavingAccounts 작업 중 오류 발생: " + e.getMessage());
         }

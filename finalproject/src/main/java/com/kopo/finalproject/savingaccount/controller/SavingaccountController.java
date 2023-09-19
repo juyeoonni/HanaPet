@@ -3,7 +3,6 @@ package com.kopo.finalproject.savingaccount.controller;
 import com.kopo.finalproject.pet.model.dto.Pet;
 import com.kopo.finalproject.pet.service.PetService;
 import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
-import com.kopo.finalproject.savingaccount.model.dto.Savingaccount;
 import com.kopo.finalproject.savingaccount.service.SavingaccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +34,19 @@ public class SavingaccountController {
         return ResponseEntity.ok(savingaccounts);
     }
 
-    @RequestMapping("/mypet")
-    public ModelAndView product(HttpSession session) {
-        ModelAndView mav = new ModelAndView("mypet");
+    @RequestMapping("/mypet-saving")
+    public ModelAndView mypetSaving(HttpSession session) {
+        ModelAndView mav = new ModelAndView("mypet-saving");
+        String id = (String) session.getAttribute("guest_id");
+        List<Pet> pets = petService.getAllPetsOfGuest(id);
+        mav.addObject("pets", pets);
+        return mav;
+    }
+
+    // 마이페이지 반려견 적금 자세히 보기
+    @RequestMapping("/mypet-saving/detail")
+    public ModelAndView mypetSavingDetail(HttpSession session) {
+        ModelAndView mav = new ModelAndView("mypet-saving-detail");
         String id = (String) session.getAttribute("guest_id");
         List<Pet> pets = petService.getAllPetsOfGuest(id);
         mav.addObject("pets", pets);

@@ -26,7 +26,7 @@
         <a href="/">
             <button>HOME으로</button>
         </a>
-        <a href="/mypet">
+        <a href="/mypet-saving">
             <button>마이페이지로</button>
         </a>
     </div>

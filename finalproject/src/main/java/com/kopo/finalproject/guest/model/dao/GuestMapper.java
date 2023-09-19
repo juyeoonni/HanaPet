@@ -15,5 +15,7 @@ public interface GuestMapper {
 
     Guest selectEmailOneMember(String email);
 
+    int checkDuplicate(HashMap<String, String> data);
+
     void insertPet(HashMap<String, String> data);
 }

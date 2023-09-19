@@ -202,7 +202,7 @@
                         url: "/savingaccounts",
                         type: "GET",
                         data: {
-                            opener_id: guest_id,
+                            guest_id: guest_id,
                             pet_id: pet.pet_id
                         },
                         dataType: "json"
@@ -258,6 +258,12 @@
 
                             // "자세히 보기" 버튼 생성
                             var detailsButton = $('<button>').text('자세히 보기');
+
+                            // 버튼에 클릭 이벤트 리스너 추가
+                            detailsButton.on('click', function () {
+                                window.location.href = '/mypet-saving/detail'; // 원하는 다음 페이지의 URL로 변경
+                            });
+
                             buttonContainer.append(detailsButton);
 
                             // 생성한 컨테이너들을 상위 컨테이너에 추가
