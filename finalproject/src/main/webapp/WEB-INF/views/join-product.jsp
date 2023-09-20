@@ -1,3 +1,4 @@
+<%@ page import="com.kopo.finalproject.guest.model.dto.Guest" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -175,6 +176,8 @@
 
 <%
     String guest_id = (String) session.getAttribute("guest_id");
+    String guest_name = (String) session.getAttribute("name");
+    String phone = (String) session.getAttribute("phone");
 %>
 <script>
     let flag1 = false;
@@ -443,7 +446,7 @@
                     final_amount: (selectedValue3 === "매월") ? final_amount_month : final_amount_week,
                     interest_amount: calculateTotalInterest()
                 };
-
+                let account_number = selectedAccountNumber.toString().slice(0, 3) + '******' + selectedAccountNumber.toString().slice(12, 17);
                 // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 console.log(requestData);
@@ -455,7 +458,12 @@
                     success: function (response) {
                         console.log(response)
                         if (response === "적금 생성 성공") {
-                            sendSmsRequest()
+                            if (requestData.sms_transfer) {
+                                let content = '[HanaPet]' + '<%=guest_name%>님의 출금계좌 ' + account_number + ' ' + selectedValue3 + ' ' + requestData.amount + '원 자동이체가 등록되었습니다.';
+                                sendSmsRequest(content)
+                                content = '[HanaPet] 출금계좌 ' + account_number + ' ' + requestData.amount + '원 자동이체 완료.';
+                                sendSmsRequest(content)
+                            }
                             modal.style.display = "block";
                         } else {
                             console.error("insert 실패");
@@ -467,11 +475,11 @@
                 });
             }
 
-            function sendSmsRequest() {
 
+            function sendSmsRequest(content) {
                 const requestData = {
-                    recipientPhoneNumber: '01020271810',
-                    content: '[HanaPet] 출금계좌 497*******1827 90000원 자동이체 완료.' // 메시지 내용을 형식에 맞게 수정
+                    recipientPhoneNumber: '<%=phone%>',
+                    content: content
                 };
 
                 // 서버로 POST 요청을 보냅니다.
@@ -558,6 +566,7 @@
                     pet_name: '<%=petName%>'
                 };
 
+                let account_number = selectedAccountNumber.toString().slice(0, 3) + '*******' + selectedAccountNumber.toString().slice(10, 14);
                 console.log(requestData);
 
                 $.ajax({
@@ -568,6 +577,13 @@
                     success: function (response) {
                         console.log(response)
                         if (response === "초대 적금 가입 성공") {
+                            if (requestData.sms_transfer) {
+                                let content = '[HanaPet]' + '<%=guest_name%>님의 출금계좌 ' + account_number + ' ' + selectedValue3 + ' ' + requestData.amount + '원 자동이체가 등록되었습니다.';
+                                sendSmsRequest(content)
+                                content = '[HanaPet] 출금계좌 ' + account_number + ' ' + requestData.amount + '원 자동이체 완료.';
+                                sendSmsRequest(content)
+                            }
+                            modal.style.display = "block";
                             modal.style.display = "block";
                         } else {
                             console.error("초대 적금 가입 실패");
