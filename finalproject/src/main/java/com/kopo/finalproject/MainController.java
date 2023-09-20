@@ -24,7 +24,10 @@ public class MainController {
     @RequestMapping("/")
     public ModelAndView index(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        List<Pet> pets = petService.getAllPetsOfGuest((String)session.getAttribute("guest_id"));
+        List<Pet> pets = null;
+        if(session.getAttribute("guest_id")!=null){
+            pets = petService.getAllPetsOfGuest((String)session.getAttribute("guest_id"));
+        }
         mav.addObject("pets",pets);
         System.out.println(pets);
         mav.setViewName("index");

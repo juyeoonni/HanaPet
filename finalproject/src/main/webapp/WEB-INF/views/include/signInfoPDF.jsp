@@ -49,11 +49,12 @@
         }
 
         td {
-            border-right: 1px solid darkgray;
-            border-bottom: 1px solid darkgray;
+            border: 1px solid darkgray;
         }
 
-
+        .container {
+            padding: 30px;
+        }
     </style>
 </head>
 <body>
@@ -61,69 +62,78 @@
 <div id='mask_wrap2'>
     <div id="wrap2">
         <div id="capture">
-
             <div class="container">
-                <img src="/resources/img/insurance-logo.png" style="width: 100%">
+                <img src="/resources/img/pdf.png" style="width: 100%">
                 <h4 class="mt-4 fw-bold">신청인 정보</h4>
-                <table class="mb-5">
+                <table border="1" width="100%" class="mb-5" style="font-family: 'Pretendard-Regular';">
                     <tr>
                         <td class="text-center" style="width:200px;">성명</td>
-                        <td class="text-start" style="padding-left: 20px;">${ loginVO.name }</td>
+                        <td class="text-start" style="padding-left: 20px;">최유림</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">주민등록번호</td>
-                        <td class="text-start" style="padding-left: 20px;">${ loginVO.jumin1 }-${ loginVO.jumin2 }</td>
+                        <td class="text-start" style="padding-left: 20px;">981223-2371629</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">자택주소</td>
                         <td class="text-start"
-                            style="padding-left: 20px;">${ loginVO.mainAddr } ${ loginVO.detailAddr }</td>
+                            style="padding-left: 20px;">경기도 광명시 도덕공원로 59
+                        </td>
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">연락처</td>
-                        <td class="text-start" style="padding-left: 20px;">${ loginVO.tel }</td>
+                        <td class="text-start" style="padding-left: 20px;">010-2027-1810</td>
                     </tr>
+                    <tr>
+                        <td class="text-center" style="width:200px;">반려견 이름</td>
+                        <td class="text-start" style="padding-left: 20px;">010-2027-1810</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="width:200px;">반려견 생년월일</td>
+                        <td class="text-start" style="padding-left: 20px;">2018년 02월 12일</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="width:200px;">반려견 품종</td>
+                        <td class="text-start" style="padding-left: 20px;">푸들</td>
+                    </tr>
+
                 </table>
 
                 <h4 class="mt-4 fw-bold">보험 정보</h4>
-                <c:forEach items="${ signpaper }" var="signpaper" varStatus="loop">
 
-                    <table border="1" width="100%" class="mb-5" style="font-family: 'Pretendard-Regular';">
-                        <tr>
-                            <td class="text-center" style="width:200px;">회사명</td>
-                            <td class="text-start" style="padding-left: 20px;">${ signpaper['COMPANY_NAME'] }</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" style="width:200px;">보험명</td>
-                            <td class="text-start" style="padding-left: 20px;">${ signpaper['INSURANCE_NAME'] }</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" style="width:200px;">보험종류</td>
-                            <td class="text-start" style="padding-left: 20px;">${ signpaper['INSURANCE_TYPE'] }</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" style="width:200px;">보험료</td>
-                            <td class="text-start" style="padding-left: 20px;"><fmt:formatNumber
-                                    value="${ signpaper['INSURANCE_FEE'] }" pattern="#,### 원"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" style="width:200px;">가입날짜</td>
-                            <td class="text-start" style="padding-left: 20px;"><fmt:formatDate
-                                    value="${ signpaper['JOIN_DATE'] }" pattern="yyyy-MM-dd"/></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" style="width:200px;">비고</td>
-                            <td class="text-start" style="padding-left: 20px;">${ signpaper['REMARK'] }</td>
-                        </tr>
+                <table border="1" width="100%" class="mb-5" style="font-family: 'Pretendard-Regular';">
+                    <tr>
+                        <td class="text-center" style="width:200px;">회사명</td>
+                        <td class="text-start" style="padding-left: 20px;">하나펫손해보험</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="width:200px;">보험명</td>
+                        <td class="text-start" style="padding-left: 20px;">프로미 반려동물보험 One형 플랜</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="width:200px;">보험종류</td>
+                        <td class="text-start" style="padding-left: 20px;">질병보험</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="width:200px;">보험료</td>
+                        <td class="text-start" style="padding-left: 20px;">403,620원</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="width:200px;">가입날짜</td>
+                        <td class="text-start" style="padding-left: 20px;">2023-10-09</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="width:200px;">비고</td>
+                        <td class="text-start" style="padding-left: 20px;">입통원비가 따로 보장되는 보험</td>
+                    </tr>
 
-                    </table>
-                </c:forEach>
+                </table>
 
                 <p style="color: red">* 상기 사항은 사실과 틀림없음을 확인합니다.</p>
                 <p>※ 전산 발급된 것만 유효하며, 수기작성, 정정, 가필, 복사된 것은 무효입니다.</p>
                 <p>※ 기재내용은 기준일(24시) 시점으로 작성되어있습니다.</p>
-                <div class="text-end">
-                    <img alt="" src="/resources/img/insurance-logo.png" style="width:200px;">
+                <div style="text-align: center">
+                    <img alt="" src="/resources/img/insurance-logo.png" style="width:150px; ">
                 </div>
             </div>
 

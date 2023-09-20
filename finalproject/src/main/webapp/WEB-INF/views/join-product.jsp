@@ -483,25 +483,25 @@
                 };
 
                 // 서버로 POST 요청을 보냅니다.
-                fetch('/user/sms', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(requestData)
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        // 서버에서 받은 응답을 처리합니다.
-                        console.log(data);
-                        console.log("됐다")
-                        // 여기에서 원하는 동작을 수행할 수 있습니다.
-                    })
-                    .catch(error => {
-                        // 오류가 발생한 경우 처리합니다.
-                        console.error('Error sending SMS request:', error);
-                        alert('인증번호 전송 중 오류가 발생했습니다.');
-                    });
+                // fetch('/user/sms', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify(requestData)
+                // })
+                //     .then(response => response.json())
+                //     .then(data => {
+                //         // 서버에서 받은 응답을 처리합니다.
+                //         console.log(data);
+                //         console.log("됐다")
+                //         // 여기에서 원하는 동작을 수행할 수 있습니다.
+                //     })
+                //     .catch(error => {
+                //         // 오류가 발생한 경우 처리합니다.
+                //         console.error('Error sending SMS request:', error);
+                //         alert('인증번호 전송 중 오류가 발생했습니다.');
+                //     });
             }
 
             function joinInvitedSavingLogic() {
