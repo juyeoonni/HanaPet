@@ -2,27 +2,31 @@ package com.kopo.finalproject;
 
 import com.kopo.finalproject.dto.Invite;
 import com.kopo.finalproject.joinsaving.service.JoinSavingService;
-import org.springframework.http.ResponseEntity;
+import com.kopo.finalproject.pet.model.dto.Pet;
+import com.kopo.finalproject.pet.service.PetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
 public class MainController {
     private final JoinSavingService joinSavingService;
+    private final PetService petService;
 
-    public MainController(JoinSavingService joinSavingService) {
+    public MainController(JoinSavingService joinSavingService, PetService petService) {
         this.joinSavingService = joinSavingService;
+        this.petService = petService;
     }
 
     @RequestMapping("/")
-    public ModelAndView index() {
+    public ModelAndView index(HttpSession session) {
         ModelAndView mav = new ModelAndView();
+        List<Pet> pets = petService.getAllPetsOfGuest((String)session.getAttribute("guest_id"));
+        mav.addObject("pets",pets);
+        System.out.println(pets);
         mav.setViewName("index");
         return mav;
     }

@@ -114,6 +114,7 @@
                 </div>
             </div>
             <div class="banner3">
+                <button id="insurance-recommend">추천 보험</button>
             </div>
         </div>
     </div>
@@ -136,6 +137,15 @@
             document.body.classList.add("modal-open"); // 바깥 스크린 스크롤 비활성화
             loadPage("test/start");
         });
+
+        var url = "/insurance-recommend?"
+        document.getElementById("insurance-recommend").addEventListener("click", function () {
+            <c:forEach var="pet" items="${pets}">
+            url += 'breed=' + '${pet.breed}' + '&';
+            </c:forEach>
+            window.location.href = url;
+        })
+
 
         closeSpan.addEventListener("click", function () {
             m.style.display = "none";
