@@ -16,47 +16,42 @@
     </style>
 
 </head>
-
-<body>
-<%@ include file="include/header.jsp" %>
+<jsp:include page="include/header.jsp"/>
 
 <div class="body">
     <div class="chart-container1">
-        <div class="chart-container1-1">
-            <div class="chart-head">${breedData[0].breed}</div>
-            <div style="width: 400px">
-                <canvas id="memberChart"></canvas>
+        <c:forEach var="dataList" items="${breedData}">
+            <div class="chart-container1-1">
+                <div class="chart-head">${dataList[0].breed}</div>
+                <div style="width: 400px">
+                    <canvas id="memberChart_${dataList[0].breed}"></canvas>
+                </div>
             </div>
-        </div>
-        <%--        <div class="chart-container1-2">--%>
-        <%--            <div class="chart-head">5년간 카드가입수 추이</div>--%>
-        <%--            <canvas id="cardChart" width="400" height="200"></canvas>--%>
-        <%--        </div>--%>
+        </c:forEach>
     </div>
 </div>
-<%
-    String guest_id = (String) session.getAttribute("guest_id");
-    // 여기서 필요한 세션값과 변수들을 설정하세요
-%>
 
 <script>
-    let ctx1 = document.getElementById('memberChart').getContext('2d');
-    let labels1 = [];
-    let data1 = [];
+    <c:forEach var="dataList" items="${breedData}">
+    var ctx = document.getElementById(`memberChart_${dataList[0].breed}`).getContext('2d');
+    var labels = [];
+    var data = [];
 
-    <c:forEach var="item" items="${breedData}">
-    labels1.push("${item.disease}");
-    data1.push(${item.percentage});
+    <c:forEach var="item" items="${dataList}">
+    labels.push("${item.disease}");
+    data.push(${item.percentage});
     </c:forEach>
-    labels1.push("그외");
-    let total = data1.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    data1.push(100 - total);
-    let myChart1 = new Chart(ctx1, {
+
+    labels.push("그외");
+    var total = data.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    data.push(100 - total);
+
+    var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: labels1,
+            labels: labels,
             datasets: [{
-                data: data1,
+                data: data,
                 borderColor: '#fff',
                 borderWidth: 1,
                 backgroundColor: [
@@ -83,8 +78,7 @@
             }
         }
     });
-
-
+    </c:forEach>
 </script>
 
 </body>

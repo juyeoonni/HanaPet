@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class InsuranceController {
@@ -41,14 +43,19 @@ public class InsuranceController {
     }
 
     @GetMapping("/insurance-recommend")
-    public ModelAndView insuranceRecommend(@RequestParam String breed) {
+    public ModelAndView insuranceRecommend(@RequestParam List<String> breed) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("breedData", insuranceService.getBreedData(breed));
-        System.out.println(insuranceService.getBreedData(breed));
+
+        List<List<BreedData>> breedDataList = new ArrayList<>(); // 결과를 저장할 리스트
+
+        for (String individualBreed : breed) {
+            List<BreedData> individualResult = insuranceService.getBreedData(individualBreed);
+            breedDataList.add(individualResult);
+        }
+
+        mav.addObject("breedData", breedDataList); // 결과를 뷰에 전달
         mav.setViewName("insurance-recommend");
 
         return mav;
     }
-
-
 }
