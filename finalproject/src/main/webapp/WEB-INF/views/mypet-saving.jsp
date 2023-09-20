@@ -108,6 +108,27 @@
             padding: 20px 0px;
             border-bottom: 2px solid #E1E6DE !important;
         }
+
+        /* 기본 버튼 스타일 */
+        .custom-btn {
+            background-color: #75A989;
+            border: 1px solid #fff;
+            color: #fff; /* 텍스트 색상을 흰색으로 지정 */
+        }
+
+        /* 선택된 버튼 스타일 */
+        .custom-btn:checked {
+            background-color: #BFDFCB !important; /* 선택된 버튼의 배경색 변경 */
+            border: 1px solid #fff; /* 선택된 버튼의 테두리 스타일 변경 */
+            color: #fff; /* 선택된 버튼의 텍스트 색상을 흰색으로 유지 */
+        }
+
+        /* 호버 상태일 때의 스타일 */
+        .custom-btn:hover {
+            background-color: #BFDFCB; /* 호버 상태일 때 배경색 변경 */
+            border: 1px solid #fff; /* 호버 상태일 때 테두리 스타일 변경 */
+            color: #fff; /* 호버 상태일 때 텍스트 색상을 흰색으로 유지 */
+        }
     </style>
 
 </head>
@@ -117,18 +138,15 @@
 
 <div class="body">
     <div class="menu-title"> 마이 페이지</div>
-    <div class="middle-box">
-        <div>
-            <button>
-                반려견 적금
-            </button>
-            <button>
-                반려견 보험
-            </button>
-            <button>
-                내 계좌
-            </button>
-        </div>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="width: 100%;">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+        <label class="btn custom-btn " for="btnradio1"> 반려견 적금</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+        <label class="btn custom-btn " for="btnradio2">반려견 보험</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+        <label class="btn custom-btn " for="btnradio3">내 계좌</label>
     </div>
     <div id="top-box">
         <div>
