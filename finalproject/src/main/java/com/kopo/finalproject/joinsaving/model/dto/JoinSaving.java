@@ -11,6 +11,7 @@ public class JoinSaving {
     private String guest_id;
     private String account_number;
     private String join_date;
+    private String deposit_account_number;
     private String accept_status;
     private String sms_transfer;
     private String sms_maturity;

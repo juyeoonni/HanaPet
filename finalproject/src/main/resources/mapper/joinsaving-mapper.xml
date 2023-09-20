@@ -5,9 +5,9 @@
 <mapper namespace="com.kopo.finalproject.joinsaving.model.dao.JoinSavingMapper">
     <!-- 적금 가입 -->
     <insert id="joinSaving" parameterType="HashMap">
-        INSERT INTO join_saving(guest_id, account_number, sms_transfer, sms_maturity,
+        INSERT INTO join_saving(guest_id, account_number, deposit_account_number, sms_transfer, sms_maturity,
                                 contribution_amount, transfer_amount, transfer_period)
-        VALUES (#{guest_id}, #{account_number}, #{sms_transfer},
+        VALUES (#{guest_id}, #{account_number}, #{deposit_account_number}, #{sms_transfer},
                 #{sms_maturity}, #{contribution_amount}, #{amount}, #{period})
     </insert>
 
