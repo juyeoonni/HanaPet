@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kopo.finalproject.insurance.controller.InsuranceMapper">
+    <select id="getBreedData" resultType="com.kopo.finalproject.insurance.controller.BreedData"
+            parameterType="String">
+    <![CDATA[
+        WITH TotalDiseaseCounts AS (SELECT PET_BREED AS X, DISEASE AS Y, COUNT(*) AS count
+        FROM HOSPITAL_HISTORY
+        GROUP BY PET_BREED, DISEASE
+            ),
+            TotalRankedDiseases AS (
+        SELECT X, Y, count, ROW_NUMBER() OVER (PARTITION BY X ORDER BY count DESC) AS r
+        FROM TotalDiseaseCounts
+            )
+                , TotalTop3Diseases AS (
+        SELECT X, Y, count
+        FROM TotalRankedDiseases
+        WHERE r <= 3
+            )
+            , TotalCounts AS (
+        SELECT X, SUM (count) AS total_count
+        FROM TotalDiseaseCounts
+        GROUP BY X
+            )
+        SELECT TotalTop3Diseases.X                                              AS breed,
+               TotalTop3Diseases.Y                                              AS disease,
+               ROUND((TotalTop3Diseases.count / TotalCounts.total_count * 100)) AS percentage
+        FROM TotalTop3Diseases
+                 JOIN TotalCounts ON TotalTop3Diseases.X = TotalCounts.X
+        WHERE TotalTop3Diseases.X = #{breed}
+        ORDER BY TotalTop3Diseases.X, percentage DESC
+        ]]>
+</select>
+
+</mapper>
