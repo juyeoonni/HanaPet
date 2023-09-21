@@ -24,6 +24,12 @@
         where email = #{email}
     </select>
 
+    <select id="getPhone" parameterType="String" resultType="String">
+        SELECT phone
+        FROM guest
+        where guest_id = #{guest_id}
+    </select>
+
     <select id="checkDuplicate" parameterType="HashMap" resultType="int">
         SELECT COUNT(*)
         FROM guest_pet
@@ -35,4 +41,6 @@
         INSERT INTO guest_pet (guest_id, pet_id)
         VALUES (#{guest_id}, (SELECT pet_id FROM pet WHERE name = #{pet_name}))
     </insert>
+
+
 </mapper>

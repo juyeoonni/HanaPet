@@ -3,7 +3,9 @@ package com.kopo.finalproject.autotransfer.service;
 import com.kopo.finalproject.autotransfer.model.dao.AutoTransferMapper;
 import com.kopo.finalproject.autotransfer.model.dto.Scheduler;
 import com.kopo.finalproject.depositaccount.model.dao.DepositaccountMapper;
+import com.kopo.finalproject.guest.model.dao.GuestMapper;
 import com.kopo.finalproject.joinsaving.model.dao.JoinSavingMapper;
+import com.kopo.finalproject.naverSMS.SMSService;
 import com.kopo.finalproject.savingaccount.model.dao.SavingaccountMapper;
 import com.kopo.finalproject.transferhistory.model.dao.TransferHistoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +24,23 @@ public class AutoTransferServiceImpl implements AutoTransferService {
     private final DepositaccountMapper depositaccountMapper;
     private final SavingaccountMapper savingaccountMapper;
     private final TransferHistoryMapper transferHistoryMapper;
-
     private final JoinSavingMapper joinSavingMapper;
+    private final GuestMapper guestMapper;
+
 
     private HashMap<String, String> data = new HashMap<>();
 
+    private final SMSService smsService;
+
     @Autowired
-    public AutoTransferServiceImpl(AutoTransferMapper autoTransferMapper, DepositaccountMapper depositaccountMapper, SavingaccountMapper savingaccountMapper, TransferHistoryMapper transferHistoryMapper, JoinSavingMapper joinSavingMapper) {
+    public AutoTransferServiceImpl(AutoTransferMapper autoTransferMapper, DepositaccountMapper depositaccountMapper, SavingaccountMapper savingaccountMapper, TransferHistoryMapper transferHistoryMapper, JoinSavingMapper joinSavingMapper, GuestMapper guestMapper, SMSService smsService) {
         this.autoTransferMapper = autoTransferMapper;
         this.depositaccountMapper = depositaccountMapper;
         this.savingaccountMapper = savingaccountMapper;
         this.transferHistoryMapper = transferHistoryMapper;
         this.joinSavingMapper = joinSavingMapper;
+        this.guestMapper = guestMapper;
+        this.smsService = smsService;
     }
 
     @Override
@@ -71,6 +78,11 @@ public class AutoTransferServiceImpl implements AutoTransferService {
 
             // 4. 이체 내역 테이블 생성 (insert) - 내역 기록
             transferHistoryMapper.insertHistory(data);
+
+            // 문자 보내기
+            String content = "[HanaPet] 출금계좌 " + schedule.getDepositAccountNumber() + ' ' + schedule.getTransferAmount() + "원 자동이체 완료.";
+            smsService.sendSms(guestMapper.getPhone(schedule.getGuestId()), content);
+
         } catch (Exception e) {
             throw new RuntimeException("자동이체 작업 중 오류 발생: " + e.getMessage());
         }

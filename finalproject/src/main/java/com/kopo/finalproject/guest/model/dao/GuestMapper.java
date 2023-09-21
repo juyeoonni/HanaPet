@@ -18,4 +18,6 @@ public interface GuestMapper {
     int checkDuplicate(HashMap<String, String> data);
 
     void insertPet(HashMap<String, String> data);
+
+    String getPhone(String guest_id);
 }
