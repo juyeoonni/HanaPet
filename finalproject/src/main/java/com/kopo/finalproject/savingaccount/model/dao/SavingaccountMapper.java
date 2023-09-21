@@ -17,11 +17,13 @@ public interface SavingaccountMapper {
 
 
     void deposit(HashMap<String, String> data);
+    void autoDeposit(HashMap<String, String> data);
 
     String getBalance(String accountNumber);
 
     List<MyPageDetailInfo> getDetailInfo(String accountNumber);
 
     List<MyPageHistoryInfo> getHistoryInfo(String accountNumber);
+
 
 }

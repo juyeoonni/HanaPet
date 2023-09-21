@@ -11,6 +11,15 @@
                 #{sms_maturity}, #{contribution_amount}, #{amount}, #{period})
     </insert>
 
+
+    <!-- 기여금액 업데이트 -->
+    <update id="updateContributionAmount" parameterType="HashMap">
+        UPDATE join_saving
+        SET contribution_amount = contribution_amount + #{amount}
+        WHERE guest_id = #{guest_id}
+          and account_number = #{account_number}
+    </update>
+
     <select id="selectInvited" parameterType="String"
             resultType="com.kopo.finalproject.joinsaving.model.dto.JoinSaving">
         SELECT *

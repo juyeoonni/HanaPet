@@ -4,23 +4,19 @@
 
 <mapper namespace="com.kopo.finalproject.autotransfer.model.dao.AutoTransferMapper">
 
-    <select id="getTransferId"
-            parameterType="HashMap"
-            resultType="String">
-        SELECT auto_transfer_id
-        FROM auto_transfer
-        WHERE guest_id = #{guest_id}
-          AND account_number_in = #{account_number}
+    <select id="getSchedulerInfo"
+            resultType="com.kopo.finalproject.autotransfer.model.dto.Scheduler">
+        select js.guest_id        as guestId,
+               js.account_number  as accountNumber,
+               js.join_date       as joinDate,
+               js.sms_transfer    as smsTransfer,
+               js.transfer_amount as transferAmount,
+               js.transfer_period as transferPeriod,
+               sa.current_balance as currentBalance,
+               da.account_number  as depositAccountNumber
+        from join_saving js
+                 join saving_account sa on js.account_number = sa.account_number
+                 join deposit_account da on js.deposit_account_number = da.account_number
     </select>
-
-    <select id="getBalance"
-            parameterType="HashMap"
-            resultType="String">
-        SELECT current_balance
-        FROM saving_account
-        WHERE account_number = #{account_number}
-    </select>
-
-
 
 </mapper>

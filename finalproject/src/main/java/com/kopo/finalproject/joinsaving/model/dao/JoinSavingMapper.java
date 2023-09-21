@@ -13,5 +13,7 @@ public interface JoinSavingMapper {
     // 적금 참여 insert
     void joinSaving(HashMap<String, String> data);
 
+    void updateContributionAmount(HashMap<String, String> data);
+
     List<Invite> getInvitedInfo(String accountNumber);
 }

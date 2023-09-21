@@ -5,7 +5,9 @@ import com.kopo.finalproject.joinsaving.service.JoinSavingService;
 import com.kopo.finalproject.pet.model.dto.Pet;
 import com.kopo.finalproject.pet.service.PetService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -25,10 +27,10 @@ public class MainController {
     public ModelAndView index(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         List<Pet> pets = null;
-        if(session.getAttribute("guest_id")!=null){
-            pets = petService.getAllPetsOfGuest((String)session.getAttribute("guest_id"));
+        if (session.getAttribute("guest_id") != null) {
+            pets = petService.getAllPetsOfGuest((String) session.getAttribute("guest_id"));
         }
-        mav.addObject("pets",pets);
+        mav.addObject("pets", pets);
         System.out.println(pets);
         mav.setViewName("index");
         return mav;
@@ -51,7 +53,8 @@ public class MainController {
     }
 
     @GetMapping("/invited-pw")
-    public ModelAndView invitedPw(@RequestParam(name = "account-number", required = false) String accountNumber, HttpSession session) {
+    public ModelAndView invitedPw(@RequestParam(name = "account-number", required = false) String
+                                          accountNumber, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("include/invited-password-card");
         if (accountNumber != null) session.setAttribute("accountNumber", accountNumber);
@@ -64,12 +67,6 @@ public class MainController {
         session.removeAttribute("accountNumber");
     }
 
-//    @RequestMapping("/dashboard")
-//    public ModelAndView dashboard() {
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("dashboard");
-//        return mav;
-//    }
 
 }
 
