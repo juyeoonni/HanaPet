@@ -266,17 +266,6 @@
                             var balanceDiv = $('<div>').text('잔액 ' + balance + '원');
                             rightContainer.append(accountNumberDiv, balanceDiv);
 
-                            // "자세히 보기" 버튼 생성
-                            var detailsButton = $('<button>').text('자세히 보기');
-
-                            // 버튼에 클릭 이벤트 리스너 추가
-                            detailsButton.on('click', function () {
-                                var nextPageUrl = '/mypet-saving/detail?accountNumber=' + encodeURIComponent(account_number);
-                                window.location.href = nextPageUrl;
-                            });
-
-                            buttonContainer.append(detailsButton);
-
                             // 내가 개설자일 때만 "공유하기" 버튼 생성
                             if (String(openerId) === guest_id) {
                                 var kakaoLink = $('<button>').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
@@ -310,6 +299,17 @@
                                     });
                                 });
                             }
+
+                            // "자세히 보기" 버튼 생성
+                            var detailsButton = $('<button>').text('자세히 보기');
+
+                            // 버튼에 클릭 이벤트 리스너 추가
+                            detailsButton.on('click', function () {
+                                var nextPageUrl = '/mypet-saving/detail?accountNumber=' + encodeURIComponent(account_number);
+                                window.location.href = nextPageUrl;
+                            });
+
+                            buttonContainer.append(detailsButton);
 
 
                             // 생성한 컨테이너들을 상위 컨테이너에 추가
