@@ -86,7 +86,7 @@
             margin-bottom: 40px;
         }
 
-        .text-right {
+        #text-right {
             text-align: end;
         }
 
@@ -155,7 +155,7 @@
         <div id="info-text">
             총
         </div>
-        <div class="text-right">
+        <div id="text-right">
             총 잔액
         </div>
     </div>
@@ -176,7 +176,7 @@
     $(document).ready(function () {
 
         var guest_id = '<%= guest_id %>'; // Java 값을 JavaScript 변수로 전달
-
+        var totalAmount = 0;
         let totalAccount = 0;
         $.ajax({
             url: "/pets",
@@ -323,7 +323,7 @@
 
                         });
                         $("#total-" + pet.pet_id).text("총 잔액 " + total_balance + "원");
-                        console.log("왜 안돼")
+                        totalAmount += total_balance;
                         document.getElementById("petAccountCnt" + pet.pet_id).textContent = myAccountsOfPet.length + "개의 적금 보유";
                     }).fail(function () {
                         console.log("Error fetching savingaccounts data.");
@@ -340,14 +340,14 @@
                 $.when.apply($, promises).then(function () {
                     console.log("All Ajax requests completed.");
                     document.getElementById("info-text").textContent += totalAccount + "개의 계좌를 보유하고 있습니다.";
+                    console.log(totalAmount)
+                    document.getElementById("text-right").textContent += totalAmount + "원";
                 });
             },
             error: function () {
                 console.log("Error fetching pets data.");
             }
         });
-
-        document.getElementById()
 
     });
 
