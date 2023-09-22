@@ -81,7 +81,7 @@ public class AutoTransferServiceImpl implements AutoTransferService {
 
             // 문자 보내기
             String content = "[HanaPet] 출금계좌 " + schedule.getDepositAccountNumber() + ' ' + schedule.getTransferAmount() + "원 자동이체 완료.";
-            smsService.sendSms(guestMapper.getPhone(schedule.getGuestId()), content);
+//            smsService.sendSms(guestMapper.getPhone(schedule.getGuestId()), content); // 돈 나가서 임시로 막아놓음
 
         } catch (Exception e) {
             throw new RuntimeException("자동이체 작업 중 오류 발생: " + e.getMessage());

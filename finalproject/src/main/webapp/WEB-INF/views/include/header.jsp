@@ -18,7 +18,7 @@
             <a href="/product" class="menu-item hvr-underline-from-center"> 펫적금 </a>
             <a href="/insurance-product" class="menu-item hvr-underline-from-center"> 펫보험 </a>
             <a href="/petcalendar" class="menu-item hvr-underline-from-center"> 펫캘린더</a>
-            <a href="/mypet-saving" class="menu-item hvr-underline-from-center"> 마이페이지</a>
+            <a href="/mypage" class="menu-item hvr-underline-from-center"> 마이페이지</a>
         </div>
 
         <%-- 로그인이 된 상태이면 로그아웃, 아니면 로그인 --%>

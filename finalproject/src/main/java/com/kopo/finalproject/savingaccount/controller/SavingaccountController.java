@@ -35,9 +35,9 @@ public class SavingaccountController {
         return ResponseEntity.ok(savingaccounts);
     }
 
-    @RequestMapping("/mypet-saving")
+    @RequestMapping("/mypage")
     public ModelAndView mypetSaving(HttpSession session) {
-        ModelAndView mav = new ModelAndView("mypet-saving");
+        ModelAndView mav = new ModelAndView("mypage");
         String id = (String) session.getAttribute("guest_id");
         List<Pet> pets = petService.getAllPetsOfGuest(id);
         mav.addObject("pets", pets);

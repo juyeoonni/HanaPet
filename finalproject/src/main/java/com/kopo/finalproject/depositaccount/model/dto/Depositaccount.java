@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class Depositaccount {
     private String account_number;
+    private String account_name;
     private String guest_id;
     private int balance;
     private String account_pw;

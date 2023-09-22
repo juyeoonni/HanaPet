@@ -240,7 +240,7 @@
                     data.forEach(function (account) {
                         const option = document.createElement('option');
                         option.value = account.balance;
-                        option.textContent = account.account_number;
+                        option.textContent = account.account_number + " [" + account.account_name + "]";
                         accountNumberSelection.appendChild(option);
                     });
                     document.getElementById("current_balance").textContent = data[0].balance;
@@ -254,7 +254,7 @@
             // Ajax로 예금 계좌 비밀번호 일치 확인
             $("#confirmButton").click(function (event) {
                 // 선택된 계좌 옵션의 text 가져오기
-                const account_number = $("#accountNumberSelection option:selected").text();
+                const account_number = $("#accountNumberSelection option:selected").text().split(' ')[0];
                 // 입력한 계좌 비밀번호 가져오기
                 const account_pw = $("#accountPassword").val();
 
@@ -420,7 +420,7 @@
                 }
 
                 const selectedOption = document.getElementById('accountNumberSelection').options[document.getElementById('accountNumberSelection').selectedIndex];
-                const selectedAccountNumber = selectedOption.textContent;
+                const selectedAccountNumber = selectedOption.textContent.split(" ")[0];
                 const amount = document.getElementById('joinAmount').value
                 const end_date = calculateEndDate(parseInt(joinPeriodInput.value));
                 const join_period = joinPeriodInput.value;
@@ -548,7 +548,7 @@
                 const selectedOption = document.getElementById('accountNumberSelection').options[document.getElementById('accountNumberSelection').selectedIndex];
 
                 // 선택된 예금 계좌 번호를 가져옵니다.
-                const selectedAccountNumber = selectedOption.textContent;
+                const selectedAccountNumber = selectedOption.textContent.split(" ")[0];
 
                 // 필요한 데이터를 객체로 만들어 전송
                 const requestData = {

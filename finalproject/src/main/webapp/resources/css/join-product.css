@@ -54,7 +54,7 @@ td.form-label {
 
 /* 입력 필드 스타일 */
 .input-form {
-    width: 400px;
+    width: 480px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -71,7 +71,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* 드롭다운 스타일 */
 .form-dropdown {
-    width: 400px;
+    width: 480px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
