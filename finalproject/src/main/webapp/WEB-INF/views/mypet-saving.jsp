@@ -154,7 +154,6 @@
         </div>
         <div id="info-text">
             총
-            <!--2마리의 반려견과 함께 총 3개의 계좌를 보유하고 있습니다.-->
         </div>
         <div class="text-right">
             총 잔액 18456,123원
@@ -239,15 +238,10 @@
                             var openerId = account.openerId;
                             var progress_rate = account.progressRate;
 
-
-                            console.log("밸런스" + balance);
                             total_balance += parseInt(balance);
-
-                            console.log("최종" + total_balance)
 
                             // 막대 그래프 생성 및 업데이트 로직을 추가하세요.
                             var progressBar = createProgressBar(progress_rate); // 막대 그래프 생성 함수
-
 
                             // 주요 컨테이너 생성
                             var container = $('<div>').addClass('account-container');
@@ -272,9 +266,11 @@
                             var balanceDiv = $('<div>').text('잔액 ' + balance + '원');
                             rightContainer.append(accountNumberDiv, balanceDiv);
 
-                            // "공유하기" 버튼 생성
-                            var kakaoLink = $('<button>').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
-                            buttonContainer.append(kakaoLink);
+                            // 내가 개설자일 때만 "공유하기" 버튼 생성
+                            if (String(openerId) === guest_id) {
+                                var kakaoLink = $('<button>').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
+                                buttonContainer.append(kakaoLink);
+                            }
 
                             // "자세히 보기" 버튼 생성
                             var detailsButton = $('<button>').text('자세히 보기');
@@ -324,7 +320,7 @@
                             });
                         });
                         $("#total-" + pet.pet_id).text("총 잔액 " + total_balance + "원");
-                        document.getElementById("petAccountCnt" + pet.pet_id).textContent = myAccountsOfPet.length +"개의 적금 보유";
+                        document.getElementById("petAccountCnt" + pet.pet_id).textContent = myAccountsOfPet.length + "개의 적금 보유";
                     }).fail(function () {
                         console.log("Error fetching savingaccounts data.");
                     });
