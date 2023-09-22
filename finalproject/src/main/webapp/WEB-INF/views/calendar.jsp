@@ -44,10 +44,7 @@
             <div class="modal" id="myModal">
                 <div class="modal-content">
                     <%@ include file="include/modal.jsp" %>
-                    <div style="display:flex;">
-                        <button id="closeModalButton">Close</button>
-                        <button class="form-submit" type="button" id="addEventButton">일정 등록</button>
-                    </div>
+
                 </div>
             </div>
         </div>

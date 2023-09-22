@@ -5,11 +5,20 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../../../resources/css/common.css">
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #closeModalButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div>
+    <div style="text-align: end;">
+        <button id="closeModalButton">X</button>
+    </div>
     <div>일정을 입력하세요</div>
     <div>
         <label class="form-label" for="petSelection">반려견</label>
@@ -30,6 +39,8 @@
         <label class="form-label">일정 내용</label>
         <input autocomplete="off" type="text" class="form-control" id="eventDescription" name="eventDescription">
     </div>
+
+    <button class="form-submit" type="button" id="addEventButton">일정 등록</button>
 
 
 </div>
