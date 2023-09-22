@@ -50,7 +50,6 @@
     </div>
 
     <div class="menu-title"> ${info[0].savingName}</div>
-    <div class="menu-title"> ${info[0].savingName}</div>
     <!-- infos 공통 부분 출력 -->
     <p> 계좌 번호: ${info[0].accountNumber}</p>
     <p> 적금 개설일: ${info[0].openingDate}</p>

@@ -118,10 +118,10 @@
     <div>
         <%=guest_name%>님
     </div>
-    <div id="info-text">
+    <div id="info-text3">
         총
     </div>
-    <div id="text-right">
+    <div id="text-right3">
         총 잔액
     </div>
 </div>
@@ -132,7 +132,6 @@
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>'; // Java 값을 JavaScript 변수로 전달
         var totalAmount = 0;
-        let totalAccount = 0;
 
         // Ajax로 예금 계좌 목록 가져와서 옵션 추가
         $.ajax({
@@ -144,16 +143,49 @@
             dataType: 'json',
             success: function (data) {
                 const accountBox = document.getElementById('account-box');
+
                 data.forEach(function (account) {
-                    accountBox
+                    totalAmount += account.balance;
+                    // 새로운 카드 요소 생성
+                    const card = document.createElement('div');
+                    card.classList.add('card-box'); // 원하는 클래스 추가
+
+                    // 카드 본문 생성
+                    const cardBody = document.createElement('div');
+                    cardBody.classList.add('card-body'); // 원하는 클래스 추가
+
+                    // 카드 내용 구성
+                    const accountNumber = document.createElement('div');
+                    accountNumber.textContent = '계좌번호: ' + account.account_number;
+
+                    const balance = document.createElement('div');
+                    balance.textContent = '잔액: ' + account.balance + '원';
+
+                    const accountName = document.createElement('div');
+                    accountName.textContent = '계좌명: ' + account.account_name;
+
+                    const history = document.createElement('button');
+                    history.textContent = '거래 내역';
+
+                    // 카드 본문에 내용 추가
+                    cardBody.appendChild(accountNumber);
+                    cardBody.appendChild(balance);
+                    cardBody.appendChild(accountName);
+                    cardBody.appendChild(history)
+
+                    // 카드에 본문 추가
+                    card.appendChild(cardBody);
+
+                    // 카드를 account-box에 추가
+                    accountBox.appendChild(card);
                 });
+                document.getElementById("info-text3").textContent += " " + data.length + "개의 계좌가 있습니다.";
+                document.getElementById("text-right3").textContent += totalAmount + "원";
             },
             error: function (xhr, status, error) {
                 console.error('Error fetching account list:', error);
             }
         });
-
-
     });
 
 </script>
