@@ -150,10 +150,11 @@
     </div>
     <div id="top-box">
         <div>
-            최유림님
+            <%=name%>님
         </div>
-        <div>
-            총 2마리의 반려견과 함께 총 3개의 계좌를 보유하고 있습니다.
+        <div id="info-text">
+            총
+            <!--2마리의 반려견과 함께 총 3개의 계좌를 보유하고 있습니다.-->
         </div>
         <div class="text-right">
             총 잔액 18456,123원
@@ -164,7 +165,6 @@
     </div>
 
     <div class="accordion" id="accordionPanelsStayOpenExample">
-        <!-- Placeholder for the accordion items -->
     </div>
 </div>
 
@@ -178,6 +178,7 @@
 
         var guest_id = '<%= guest_id %>'; // Java 값을 JavaScript 변수로 전달
 
+        let totalAccount = 0;
         $.ajax({
             url: "/pets",
             type: "GET",
@@ -189,8 +190,9 @@
                 console.log(guest_id);
                 console.log(petsData);
                 var promises = [];
-
+                document.getElementById("info-text").textContent += " " + petsData.length + "마리의 반려견과 함께 총 ";
                 petsData.forEach(function (pet) {
+                    var pet_id = pet.pet_id;
                     var accordionItem = $("<div>").addClass("accordion-item");
                     var accordionHeader = $("<h2>").addClass("accordion-header");
                     var imageElement = $('<img style="width: 60px; height:60px; border-radius: 50%">').attr('src', 'resources/img/dog' + pet.pet_id + '.jpg').addClass('petimg');
@@ -209,7 +211,7 @@
                             + '</div>'
                             + '<div class="right">'
                             + '<div>' + pet.gender + '|' + pet.age + '살 ' + pet.breed + '</div>'
-                            + '<div>2개의 적금 보유</div>'
+                            + '<div id="petAccountCnt' + pet_id + '"></div>'
                             + '</div>'
                             + '</div>');
                     var accordionCollapse = $("<div>").addClass("accordion-collapse collapse show") // 처음에 show로 펼쳐주기
@@ -227,7 +229,7 @@
                     }).then(function (myAccountsOfPet) {
 
                         let total_balance = 0;
-
+                        totalAccount += myAccountsOfPet.length;
                         myAccountsOfPet.forEach(function (account) {
                             // 필요한 정보 추출
                             var categoryImg = account.categoryImg;
@@ -322,6 +324,7 @@
                             });
                         });
                         $("#total-" + pet.pet_id).text("총 잔액 " + total_balance + "원");
+                        document.getElementById("petAccountCnt" + pet.pet_id).textContent = myAccountsOfPet.length +"개의 적금 보유";
                     }).fail(function () {
                         console.log("Error fetching savingaccounts data.");
                     });
@@ -333,8 +336,10 @@
 
                     $("#accordionPanelsStayOpenExample").append(accordionItem);
                 });
+
                 $.when.apply($, promises).then(function () {
                     console.log("All Ajax requests completed.");
+                    document.getElementById("info-text").textContent += totalAccount + "개의 계좌를 보유하고 있습니다.";
                 });
             },
             error: function () {
@@ -342,6 +347,7 @@
             }
         });
 
+        document.getElementById()
 
     });
 
