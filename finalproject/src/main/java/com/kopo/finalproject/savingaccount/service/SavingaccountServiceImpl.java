@@ -35,7 +35,6 @@ public class SavingaccountServiceImpl implements SavingaccountService {
 
     @Override
     public List<MyAccountsOfPet> getAllSavingAccountsOfPetOfGuest(HashMap<String, String> data) {
-        System.out.println("여기요2");
         return savingaccountMapper.getAllSavingAccountsOfPetOfGuest(data);
     }
 

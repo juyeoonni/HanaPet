@@ -34,4 +34,21 @@
         ]]>
 </select>
 
+    <!-- 마이페이지 보험에 들어가야 할 상품-->
+    <select id="getAllInsurancesOfPetOfGuest"
+            parameterType="HashMap"
+            resultType="com.kopo.finalproject.insurance.controller.MyInsurance">
+        SELECT JOIN_INSURANCE_ID      as joinInsuranceId,
+               GUEST_ID               as guestId,
+               PET_ID                 as petId,
+               INSURANCE_NAME         as insuranceName,
+               JOIN_DATE              as joinDate,
+               DEPOSIT_ACCOUNT_NUMBER as depositAccountNumber,
+               PAYMENT_COUNT          as paymentCount,
+               INSURANCE_AMOUNT       as insuranceAmount
+        FROM join_insurance
+        WHERE guest_id = #{guest_id}
+          AND pet_id = #{pet_id}
+    </select>
+
 </mapper>

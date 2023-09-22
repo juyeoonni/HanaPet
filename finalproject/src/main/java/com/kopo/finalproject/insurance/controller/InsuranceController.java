@@ -1,6 +1,8 @@
 package com.kopo.finalproject.insurance.controller;
 
+import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,5 +59,13 @@ public class InsuranceController {
         mav.setViewName("insurance-recommend");
 
         return mav;
+    }
+
+    // 나의 반려견의 보험 목록 가져오기
+    @GetMapping("/myinsurances")
+    public ResponseEntity<List<MyInsurance>> getInsurances(@RequestParam HashMap<String, String> data) {
+        List<MyInsurance> insurances = insuranceService.getAllInsurancesOfPetOfGuest(data); // 데이터베이스에서 모든 제품 정보 가져오기\
+        System.out.println(insurances);
+        return ResponseEntity.ok(insurances);
     }
 }
