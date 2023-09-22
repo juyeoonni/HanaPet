@@ -6,8 +6,6 @@
         <%=guest_name%>님
     </div>
     <div class="info-text2 mt-3">
-        총
-        <!-- 2마리의 반려견과 함께 총 2개의 보험에 가입되어 있습니다. -->
     </div>
 </div>
 <div class="accordion" id="accordion">
@@ -24,7 +22,8 @@
             dataType: "json",
             success: function (petsData) {
                 var promises2 = [];
-                var infoText = " " + petsData.length + "마리의 반려견과 함께 총 ";
+                var iszero = false;
+                var infoText = "총 " + petsData.length + "마리의 반려견과 함께 총 ";
 
                 petsData.forEach(function (pet) {
                     var pet_id = pet.pet_id;
@@ -58,19 +57,28 @@
                         },
                         dataType: "json"
                     }).then(function (insuranceData) {
-                        insuranceData.forEach(function (insurance) {
-                            var in_name = $("<div>").text("보험명: " + insurance.insuranceName);
-                            var in_count = $("<div>").text("납입 횟수: " + insurance.paymentCount);
-                            var in_amount = $("<div>").text("납입액: " + insurance.insuranceAmount);
-                            accordionBody.append(in_name);
-                            accordionBody.append(in_count);
-                            accordionBody.append(in_amount);
-                        });
-                        $("#petAccountCnt" + pet_id).text(insuranceData.length + "개의 보험 보유");
+                        if (insuranceData.length === 0) {
+                            // Handle the case when there are no insurance records for this pet
+                            var noInsuranceInfo = $("<div>").text("보험이 없습니다.");
+                            iszero = true;
+                            accordionBody.append(noInsuranceInfo);
+                            $("#petAccountCnt" + pet_id).text("보험이 없음");
+                        } else {
+                            insuranceData.forEach(function (insurance) {
+                                var in_name = $("<div>").text("보험명: " + insurance.insuranceName);
+                                var in_count = $("<div>").text("납입 횟수: " + insurance.paymentCount);
+                                var in_amount = $("<div>").text("납입액: " + insurance.insuranceAmount);
+                                accordionBody.append(in_name);
+                                accordionBody.append(in_count);
+                                accordionBody.append(in_amount);
+                            });
+                            $("#petAccountCnt" + pet_id).text(insuranceData.length + "개의 보험 보유");
+                        }
                     }).fail(function () {
                         console.log("Error fetching my insurance data.");
                     });
                     promises2.push(insurancePromise);
+                    console.log(iszero)
 
                     accordionCollapse.append(accordionBody);
                     accordionHeader.append(accordionButton);
@@ -78,12 +86,17 @@
                     $("#accordion").append(accordionItem);
                 });
 
-                // Update the info text once all AJAX requests are complete
-                $.when.apply($, promises2).then(function () {
-                    infoText += promises2.length + "개의 보험에 가입되어 있습니다.";
+// Update the info text once all AJAX requests are complete
+                $.when.apply($, promises2, iszero).then(function () {
+                    if (iszero) {
+                        infoText = "가입된 보험이 없습니다.\n 추천 보험 보러가기";
+                    } else {
+                        infoText += promises2.length + "개의 보험에 가입되어 있습니다.";
+                    }
                     var infoTextElement = document.querySelector(".info-text2");
-                    infoTextElement.textContent += infoText;
+                    infoTextElement.textContent = infoText;
                 });
+
             }
         });
     });
