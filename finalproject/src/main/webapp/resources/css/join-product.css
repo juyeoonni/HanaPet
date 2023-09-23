@@ -193,7 +193,7 @@ td:nth-child(odd) {
     top: 50%; /* 화면 상단에서 50% 위치에 */
     left: 50%; /* 화면 왼쪽에서 50% 위치에 */
     transform: translate(-50%, -50%); /* 화면 중앙 정렬을 위한 변환 */
-    z-index: 1; /* 다른 요소 위에 표시하기 위한 Z-index 설정 */
+    z-index: 2; /* 다른 요소 위에 표시하기 위한 Z-index 설정 */
     width: 500px;
     height: 330px;
     border-radius: 10px;
