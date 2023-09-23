@@ -58,8 +58,8 @@
             left: 0;
             width: 470px;
             color: white;
-            justify-content: center;
-            align-items: center;
+            /*justify-content: center;*/
+            /*align-items: center;*/
             padding: 30px;
             display: flex;
             flex-direction: column;
@@ -138,18 +138,15 @@
 
                 var front = $("<div>").addClass("card-side front");
                 var back = $("<div>").addClass("card-side back");
-                var backContent = $("<div>").addClass("card-body") // 클래스 이름을 'card-body'로 변경
-                    .css({
-                        "display": "flex",
-                        "align-self": "end",
-                        "margin-bottom": "20px",
-                        "color": "white"
-                    })
-                    .html("이자율 " + product.rate + "<br>가입 기간: " + product.min_period + "개월 이상 " + product.max_period + "개월 이하<br>가입 금액: 매월 " + product.min_balance + "원 이상 ~ " + product.max_balance + "원 이하<br>적립 방법: 자유적립식")
-                    .append($("<img>").attr("src", "/resources/img/" + product.image).addClass("product-image"));
+                var backContent = $("<div>").addClass("card-body");
+                var content =
+                    ($("<div>").addClass("card-footer")
+                            .append($("<div>")
+                                .html("최대 연 이자율: " + product.rate + "%<br><br>가입 기간: " + product.min_period + "개월 이상 " + product.max_period + "개월 이하<br><br>가입 금액: 매월 " + product.min_balance + "원 이상 ~ " + product.max_balance + "원 이하<br><br>적립 방법: 자유적립식")
+                                .css("color", "white"))
+                    );
 
-
-                var header = $("<div>").addClass("card-header") // 클래스 이름을 'card-header'로 변경
+                var header = $("<div>").addClass("card-header")
                     .css({
                         "place-self": "start"
                     })
@@ -179,7 +176,7 @@
                 }); // 클래스 이름을 'card-text'로 변경
 
                 productCard.append(front.append(header).append(box).append(middle));
-                productCard.append(back.append(backContent));
+                productCard.append(back.append(backContent.append(content)));
                 productList.append(productCard);
             });
         },
