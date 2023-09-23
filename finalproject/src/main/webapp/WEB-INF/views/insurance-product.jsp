@@ -11,9 +11,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
-        .menu-item{
+        .menu-item {
             padding-top: 12px !important;
         }
+
         .menu-title {
             text-align: center;
             font-size: 30px;
@@ -32,6 +33,8 @@
             justify-content: space-between;
             padding: 0px 30px;
         }
+
+
     </style>
 </head>
 <body>

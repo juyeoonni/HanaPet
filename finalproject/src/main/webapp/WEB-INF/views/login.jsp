@@ -5,10 +5,25 @@
 <head>
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="resources/css/common.css">
-    <link rel="stylesheet" href="resources/css/login-register.css">
+    <link rel="stylesheet" href="/resources/css/common.css">
+    <link rel="stylesheet" href="/resources/css/login-register.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/resources/js/apiKey.js"></script>
+    <style>
+        .button {
+            background-color: #75A989;
+            border: none;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 18px;
+            padding: 10px 30px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            outline: none;
+        }
+    </style>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
@@ -18,11 +33,11 @@
         <div class="col align-items-center flex-col sign-up">
         </div>
         <!-- SIGN IN -->
-        <div class="col align-items-center flex-col sign-in" style="padding-left: 50px; padding-top: 70px;">
+        <div class="col align-items-center flex-col sign-in" style="padding-left: 50px;">
             <div class="form-wrapper align-items-center">
-                <div class="form sign-in">
-                    <img src="resources/img/kakao_login_btn.png" onclick="kakaoLogin();"/>
-                    <form id="loginForm" method="post"> <!-- 로그인 폼 시작 -->
+                <div class="form sign-in" style="text-align: -webkit-center;">
+                    <b style="font-size: 28px">Login</b>
+                    <form id="loginForm" method="post" style="width: 62%;"> <!-- 로그인 폼 시작 -->
                         <div class="input-group">
                             <i class='bx bxs-user'></i>
                             <input type="text" placeholder="아이디" id="guest_id">
@@ -33,19 +48,19 @@
                         </div>
                         <input type="button" class="button" value="로그인" onclick="loginFormFunc(); return false;">
                     </form> <!-- 로그인 폼 종료 -->
-                    <p>
-                        <b>
+                    <div style="display: flex; padding: 30px 0px; justify-content: center;">
+                        <b style="margin-right: 15px; font-size: 17px;align-self: center;">
                             비밀번호 찾기
                         </b>
-                    </p>
-                    <p>
-              <span>
-                회원이 아니신가요?
-              </span>
                         <b onclick="toggle()" class="pointer">
-                            <a href="/register">가입하기</a>
+                            <a href="/register" style="font-size: 17px">회원가입</a>
                         </b>
-                    </p>
+
+                    </div>
+                    <br>
+                    <div style="text-align: center">
+                        <img src="/resources/img/kakao_login_btn.png" onclick="kakaoLogin();"/>
+                    </div>
                 </div>
             </div>
             <div class="form-wrapper">

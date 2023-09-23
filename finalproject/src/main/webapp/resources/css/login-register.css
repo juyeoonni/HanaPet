@@ -162,6 +162,9 @@ body {
     cursor: pointer;
 }
 
+a{
+    text-decoration: none;
+}
 .container.sign-in .form.sign-in,
 .container.sign-in .social-list.sign-in,
 .container.sign-in .social-list.sign-in > div,
@@ -320,4 +323,6 @@ body {
         margin: .5rem;
         font-size: 2rem;
     }
+
+
 }

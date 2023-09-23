@@ -39,6 +39,11 @@
             height: 160px;
         }
 
+        .grid-item:hover {
+            box-shadow: 2px 2px 10px #a5a5a5;
+            transform: scale(1.1);
+        }
+
         .product-image {
             width: 90px;
         }
@@ -48,6 +53,92 @@
             font-size: 30px;
             margin-bottom: 40px;
         }
+
+        a.img-caption {
+            margin: 0 0 40px;
+            display: block
+        }
+
+        .img-caption:hover {
+            /*transform: scale(1.1);*/
+        }
+
+        .img-caption img {
+            position: relative;
+            height: 300px;
+        }
+
+        .img-caption figure {
+            box-sizing: content-box;
+            overflow: hidden;
+            position: relative
+        }
+
+        .img-caption figcaption {
+            background: rgba(0, 0, 0, .4);
+            position: absolute;
+            box-sizing: content-box;
+            padding: 17px 25px;
+            bottom: 0;
+            display: block;
+            width: 100%;
+            -webkit-transition: background-color .2s ease-in-out;
+            -moz-transition: background-color .2s ease-in-out;
+            -ms-transition: background-color .2s ease-in-out;
+            -o-transition: background-color .2s ease-in-out;
+            transition: background-color .2s ease-in-out
+        }
+
+        .img-caption:hover figcaption {
+            background: green;
+
+        }
+
+        .img-caption figcaption h3 {
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 24px
+        }
+
+        .mega .img-caption figcaption h3 {
+            font-size: 14px;
+            line-height: 20px
+        }
+
+        .mega .img-caption figcaption span {
+            font-size: 14px;
+            line-height: 14px
+        }
+
+        .mega .img-caption figcaption {
+            padding: 10px 20px
+        }
+
+        .img-caption figcaption span {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 16px;
+            display: block;
+            position: relative;
+            opacity: 0;
+            max-height: 0;
+            padding: 0;
+            -webkit-transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out;
+            -moz-transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out;
+            -ms-transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out;
+            -o-transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out;
+            transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out
+        }
+
+        .img-caption:hover figcaption span {
+            max-height: 50px;
+            opacity: 1;
+            padding: 5px 0 4px
+        }
+
 
     </style>
 </head>
@@ -63,6 +154,24 @@
         <span style="font-size: 16px;">(조회 기준일자: 2023-08-29, 우대금리포함)</span>
     </div>
     <div class="grid-container">
+    </div>
+    <div class="one-third col-md-4">
+        <a href="#" class="img-caption">
+            <figure><img src="https://i.imgur.com/K7A78We.jpg" alt=""/>
+                <figcaption>
+                    <h3>MY Third Caption</h3>
+                    <span>
+                    이자율: 1.6
+                    상품 특징: 만 3세 이하 펫 우대 적금
+                    가입 대상: 반려견을 등록한 모든 Hanna Pet 손님
+                    가입 기간: 6개월 이상 72개월 이하
+                    가입 금액: 매월 5000원 이상 ~ 100만원 이하
+                    이자 지급 방법: 만기일시지급식 : 만기(후)해지시 이자를 지급
+                    적립 방법: 자유적립식
+                </span>
+                </figcaption>
+            </figure>
+        </a>
     </div>
 </div>
 <script>

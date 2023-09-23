@@ -106,6 +106,11 @@
         display: flex;
     }
 
+    .join-btn:hover {
+        box-shadow: 2px 2px 10px #a5a5a5;
+        transform: scale(1.05);
+    }
+
     .join-btn {
         background-color: #75A989;
         border: none;
