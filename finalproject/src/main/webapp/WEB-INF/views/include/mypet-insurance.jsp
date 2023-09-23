@@ -1,15 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+    .dNvInI {
+        font-size: 25px;
+        font-width: bold;
+        padding: 60px 100px 0px 0px;
+    }
+
+</style>
 <div id="top-box" class="container mt-3">
     <div>
         <%=guest_name%>님
     </div>
     <div class="info-text2 mt-3">
     </div>
+
 </div>
 <div class="accordion" id="accordion">
 </div>
+
 <script>
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>'; // Java 값을 JavaScript 변수로 전달
@@ -68,9 +78,24 @@
                                 var in_name = $("<div>").text("보험명: " + insurance.insuranceName);
                                 var in_count = $("<div>").text("납입 횟수: " + insurance.paymentCount);
                                 var in_amount = $("<div>").text("납입액: " + insurance.insuranceAmount);
+                                var downloadButtonContainer = $("<div>").addClass("sc-hmLeec dNvInI");
+                                var downloadButton = $("<button style='font-size: 16px'>")
+                                    .addClass("downbtn")
+                                    .css({
+                                        padding: "5px 10px",
+                                        border: "none"
+                                    })
+                                    .text("가입 증명서 다운")
+                                    .on("click", function () {
+                                        window.open('/signInfoPDF', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');
+                                    });
+
                                 accordionBody.append(in_name);
                                 accordionBody.append(in_count);
                                 accordionBody.append(in_amount);
+                                downloadButtonContainer.append(downloadButton);
+                                accordionBody.append(downloadButtonContainer);
+
                             });
                             $("#petAccountCnt" + pet_id).text(insuranceData.length + "개의 보험 보유");
                         }

@@ -260,11 +260,6 @@
             padding: 0px 100px 0px 100px;
         }
 
-        .dNvInI {
-            font-size: 25px;
-            font-width: bold;
-            padding: 60px 100px 0px 100px;
-        }
 
         .accordion {
             padding: 10px 100px 10px 100px;
@@ -535,16 +530,6 @@
                     <span>사망 위로금</span>
                 </button>
             </h2>
-        </div>
-    </div>
-
-
-    <div class="sc-hmLeec dNvInI">보험약관 다운로드
-        <div class="sc-gspIFj cCzenJ"><span>보험약관 다운받기</span>
-            <button class="downbtn" style="padding: 5px 10px; border:none;"
-                    onclick="window.open('/signInfoPDF', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');">
-                pdf 다운로드
-            </button>
         </div>
     </div>
 

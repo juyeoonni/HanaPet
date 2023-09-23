@@ -28,22 +28,6 @@
             gap: 40px; /* 아이템 사이의 간격 */
         }
 
-        /* 그리드 아이템 스타일 */
-        .grid-item {
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            border: 3px solid #BFDFCB; /* 5px 크기의 #BFDFCB 테두리 설정 */
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 20px;
-            height: 160px;
-        }
-
-        .grid-item:hover {
-            box-shadow: 2px 2px 10px #a5a5a5;
-            transform: scale(1.1);
-        }
-
         .product-image {
             width: 90px;
         }
@@ -54,91 +38,53 @@
             margin-bottom: 40px;
         }
 
-        a.img-caption {
-            margin: 0 0 40px;
-            display: block
+        .card {
+            perspective: 150rem;
+            width: 300px;
+            background: none;
+            cursor: pointer;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 20px;
+            height: 160px;
         }
 
-        .img-caption:hover {
-            /*transform: scale(1.1);*/
-        }
-
-        .img-caption img {
-            position: relative;
-            height: 300px;
-        }
-
-        .img-caption figure {
-            box-sizing: content-box;
-            overflow: hidden;
-            position: relative
-        }
-
-        .img-caption figcaption {
-            background: rgba(0, 0, 0, .4);
+        .card-side {
+            transition: all 1.4s ease;
+            backface-visibility: hidden;
             position: absolute;
-            box-sizing: content-box;
-            padding: 17px 25px;
-            bottom: 0;
-            display: block;
-            width: 100%;
-            -webkit-transition: background-color .2s ease-in-out;
-            -moz-transition: background-color .2s ease-in-out;
-            -ms-transition: background-color .2s ease-in-out;
-            -o-transition: background-color .2s ease-in-out;
-            transition: background-color .2s ease-in-out
+            top: 0;
+            left: 0;
+            width: 470px;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid #BFDFCB; /* 5px 크기의 #BFDFCB 테두리 설정 */
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            height: 160px;
         }
 
-        .img-caption:hover figcaption {
-            background: green;
-
+        .card-side.back {
+            transform: rotateY(-180deg);
+            background-color: #BFDFCB;
         }
 
-        .img-caption figcaption h3 {
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 17px;
-            font-weight: 700;
-            line-height: 24px
+        .card-side.front {
+            /*background-color: #75A989;*/
         }
 
-        .mega .img-caption figcaption h3 {
-            font-size: 14px;
-            line-height: 20px
+        .card:hover .card-side.front {
+            transform: rotateY(180deg);
         }
 
-        .mega .img-caption figcaption span {
-            font-size: 14px;
-            line-height: 14px
+        .card:hover .card-side.back {
+            transform: rotateY(0deg);
         }
-
-        .mega .img-caption figcaption {
-            padding: 10px 20px
-        }
-
-        .img-caption figcaption span {
-            color: #fff;
-            font-size: 16px;
-            font-weight: 300;
-            line-height: 16px;
-            display: block;
-            position: relative;
-            opacity: 0;
-            max-height: 0;
-            padding: 0;
-            -webkit-transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out;
-            -moz-transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out;
-            -ms-transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out;
-            -o-transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out;
-            transition: max-height .2s ease-in-out, opacity .2s ease-in-out, padding .2s ease-in-out
-        }
-
-        .img-caption:hover figcaption span {
-            max-height: 50px;
-            opacity: 1;
-            padding: 5px 0 4px
-        }
-
 
     </style>
 </head>
@@ -155,24 +101,6 @@
     </div>
     <div class="grid-container">
     </div>
-    <div class="one-third col-md-4">
-        <a href="#" class="img-caption">
-            <figure><img src="https://i.imgur.com/K7A78We.jpg" alt=""/>
-                <figcaption>
-                    <h3>MY Third Caption</h3>
-                    <span>
-                    이자율: 1.6
-                    상품 특징: 만 3세 이하 펫 우대 적금
-                    가입 대상: 반려견을 등록한 모든 Hanna Pet 손님
-                    가입 기간: 6개월 이상 72개월 이하
-                    가입 금액: 매월 5000원 이상 ~ 100만원 이하
-                    이자 지급 방법: 만기일시지급식 : 만기(후)해지시 이자를 지급
-                    적립 방법: 자유적립식
-                </span>
-                </figcaption>
-            </figure>
-        </a>
-    </div>
 </div>
 <script>
     $.ajax({
@@ -183,7 +111,7 @@
             var productList = $(".grid-container");
 
             products.forEach(function (product) {
-                var productCard = $("<div>").addClass("grid-item")
+                var productCard = $("<div>").addClass("card")
                     .css({
                         "display": "flex",
                         "justify-content": "center",
@@ -207,20 +135,37 @@
                         window.location.href = "/one-product";
                     });
 
-                var header = $("<div>").addClass("header")
+
+                var front = $("<div>").addClass("card-side front");
+                var back = $("<div>").addClass("card-side back");
+                var backContent = $("<div>").addClass("card-body") // 클래스 이름을 'card-body'로 변경
+                    .css({
+                        "display": "flex",
+                        "align-self": "end",
+                        "margin-bottom": "20px",
+                        "color": "white"
+                    })
+                    .html("이자율 " + product.rate + "<br>가입 기간: " + product.min_period + "개월 이상 " + product.max_period + "개월 이하<br>가입 금액: 매월 " + product.min_balance + "원 이상 ~ " + product.max_balance + "원 이하<br>적립 방법: 자유적립식")
+                    .append($("<img>").attr("src", "/resources/img/" + product.image).addClass("product-image"));
+
+
+                var header = $("<div>").addClass("card-header") // 클래스 이름을 'card-header'로 변경
+                    .css({
+                        "place-self": "start"
+                    })
                     .append($("<span>").text(product.category).css({
                         "font-family": "font-medium",
                         "font-weight": "bold",
                         "font-size": "27px"
                     }));
-                var box = $("<div>").addClass("box")
+                var box = $("<div>").addClass("card-body") // 클래스 이름을 'card-body'로 변경
                     .css({
                         "display": "flex",
                         "align-self": "end",
                         "margin-bottom": "20px"
                     })
                     .append($("<img>").attr("src", "/resources/img/" + product.image).addClass("product-image"))
-                    .append($("<div>").addClass("footer")
+                    .append($("<div>").addClass("card-footer") // 클래스 이름을 'card-footer'로 변경
                         .css("align-self", "center")
                         .append($("<div>").html("최대 연<br>" + product.rate + "%").css({
                             "margin-left": "20px",
@@ -229,9 +174,12 @@
                             "font-weight": "bold"
                         }))
                     );
-                var middle = $("<div>").addClass("middle").text(product.description);
+                var middle = $("<div>").addClass("card-text").text(product.description).css({
+                    "place-self": "start"
+                }); // 클래스 이름을 'card-text'로 변경
 
-                productCard.append(header).append(box).append(middle);
+                productCard.append(front.append(header).append(box).append(middle));
+                productCard.append(back.append(backContent));
                 productList.append(productCard);
             });
         },
