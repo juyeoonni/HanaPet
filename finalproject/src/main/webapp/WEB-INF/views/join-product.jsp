@@ -128,49 +128,61 @@
             <tr>
                 <td class="form-label">가입 금액</td>
                 <td>
-                    <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
-                           required><span>원</span>
-                    <% if (savingName != null) { %>
-                    <span id="endAmountWeek" style="cursor:pointer; margin-left: 30px;">계산</span>
-                    <% } else { %>
-                    <span id="endAmount" style="cursor:pointer; margin-left: 30px;">계산</span>
-                    <% } %>
-                    <div id="conditionMessage1" class="mt-2 text-danger"></div>
-                    <div id="endAmountMessage" style="margin-top: 20px;"></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="form-label">자동이체 SMS 통보</td>
-                <td>
-                    <div class="pe" id="transferSMS" required>
-                        <input type="radio" id="transferSMSyes" name="transferSMS" value="Y" checked><label
-                            for="transferSMSyes">신청함</label>
-                        <input type="radio" id="transferSMSno" name="transferSMS" value="N"><label for="transferSMSno">신청안함</label>
+                    <div style="display: flex">
+                        <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
+                               required><span style="align-self: center;">원</span>
+                        <% if (savingName != null) { %>
+                        <div style="display: flex; align-items: center;" id="endAmountWeek">
+                            <img src="/resources/img/calculator.png" height="30px"
+                                 style="cursor:pointer; margin-left: 40px;">
+                            <span style="cursor:pointer;">계산</span>
+                        </div>
+                        <% } else { %>
+                        <div style="display: flex; align-items: center;" id="endAmount">
+                            <img src="/resources/img/calculator.png" height="30px"
+                                 style="cursor:pointer; margin-left: 40px;">
+                            <span style="cursor:pointer;">계산</span>
+                        </div>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="form-label">적금 만기 SMS 통보</td>
-                <td>
-                    <div class="pe" id="finishSMS" required>
-                        <input type="radio" id="finishSMSyes" name="finishSMS" value="Y" checked><label
-                            for="finishSMSyes">신청함</label>
-                        <input type="radio" id="finishSMSno" name="finishSMS" value="N"><label
-                            for="finishSMSno">신청안함</label>
-                    </div>
-                </td>
-            </tr>
-        </table>
+                        <% } %>
+</div>
+<div id="conditionMessage1" class="mt-2 text-danger"></div>
+<div id="endAmountMessage" style="margin-top: 20px;"></div>
+</td>
 
-        <!-- 조건 충족 여부에 따른 가입 버튼 -->
-        <div style="text-align: center">
-            <button type="button" class="Button" id="joinButton">가입하기</button>
+</tr>
+<tr>
+    <td class="form-label">자동이체 SMS 통보</td>
+    <td>
+        <div class="pe" id="transferSMS" required>
+            <input type="radio" id="transferSMSyes" name="transferSMS" value="Y" checked><label
+                for="transferSMSyes">신청함</label>
+            <input type="radio" id="transferSMSno" name="transferSMS" value="N"><label for="transferSMSno">신청안함</label>
         </div>
-    </form>
+    </td>
+</tr>
+<tr>
+    <td class="form-label">적금 만기 SMS 통보</td>
+    <td>
+        <div class="pe" id="finishSMS" required>
+            <input type="radio" id="finishSMSyes" name="finishSMS" value="Y" checked><label
+                for="finishSMSyes">신청함</label>
+            <input type="radio" id="finishSMSno" name="finishSMS" value="N"><label
+                for="finishSMSno">신청안함</label>
+        </div>
+    </td>
+</tr>
+</table>
 
-    <div id="myModal" class="modal">
-        <%@ include file="include/saving-modal.jsp" %>
-    </div>
+<!-- 조건 충족 여부에 따른 가입 버튼 -->
+<div style="text-align: center">
+    <button type="button" class="Button" id="joinButton">가입하기</button>
+</div>
+</form>
+
+<div id="myModal" class="modal">
+    <%@ include file="include/saving-modal.jsp" %>
+</div>
 </div>
 </body>
 
@@ -189,8 +201,8 @@
         const selectedValue = document.getElementById("accountNumberSelection").value;
 
         // 선택한 값을 # 요소에 표시
-        document.getElementById("current_balance").textContent = selectedValue;
-        document.getElementById("able_balance").textContent = selectedValue;
+        document.getElementById("current_balance").textContent = selectedValue + "원";
+        document.getElementById("able_balance").textContent = selectedValue + "원";
 
         // 계좌 비밀번호 입력창 reset
         document.getElementById('accountPassword').value = "";
@@ -243,8 +255,8 @@
                         option.textContent = account.account_number + " [" + account.account_name + "]";
                         accountNumberSelection.appendChild(option);
                     });
-                    document.getElementById("current_balance").textContent = data[0].balance;
-                    document.getElementById("able_balance").textContent = data[0].balance;
+                    document.getElementById("current_balance").textContent = data[0].balance + "원";
+                    document.getElementById("able_balance").textContent = data[0].balance + "원";
                 },
                 error: function (xhr, status, error) {
                     console.error('Error fetching account list:', error);

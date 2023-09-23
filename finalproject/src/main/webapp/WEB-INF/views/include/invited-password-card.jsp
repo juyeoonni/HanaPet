@@ -61,7 +61,7 @@
             -moz-transition: transform 0.4s 0.4s, z-index 0.2s 0.4s;
             transform-origin: 50% 0%;
             transition: transform 0.4s 0.4s, z-index 0.2s 0.4s;
-            border-color: #cf4a43  transparent transparent transparent;
+            border-color: #cf4a43 transparent transparent transparent;
             z-index: 2;
         }
 
@@ -70,7 +70,7 @@
             bottom: 0;
             width: 200px;
             height: 100px;
-            background: #cf4a43 ;
+            background: #cf4a43;
             z-index: 0;
         }
 
@@ -222,7 +222,8 @@
             <br>
             <div class="relative mb-1">
                 <span class="ml-2 bg-white px-2 absolute -top-3 text-sm">Password</span>
-                <input class="transition duration-500 border h-12 rounded w-full px-2 mb-2" style="border-radius: 5px; margin-left: 5px; padding: 3px 5px">
+                <input class="transition duration-500 border h-12 rounded w-full px-2 mb-2"
+                       style="border-radius: 5px; margin-left: 5px; padding: 3px 5px">
             </div>
             <br>
             <div class="third-content">
@@ -239,7 +240,7 @@
     // "다음으로" 버튼을 클릭했을 때 실행되는 함수
     function checkPW() {
         // 입력한 비밀번호를 가져옴
-        const enteredPassword = document.querySelector("input[type='password']").value;
+        const enteredPassword = document.querySelector(".transition").value;
 
         // 실제 비밀번호
         var actualPassword = "381924";
