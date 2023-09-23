@@ -23,6 +23,13 @@
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             outline: none;
         }
+
+        .button:hover {
+            box-shadow: 2px 2px 10px #a5a5a5;
+            transform: scale(1.03);
+        }
+
+
     </style>
 </head>
 <body>
@@ -49,7 +56,7 @@
                         <input type="button" class="button" value="로그인" onclick="loginFormFunc(); return false;">
                     </form> <!-- 로그인 폼 종료 -->
                     <div style="display: flex; padding: 30px 0px; justify-content: center;">
-                        <b style="margin-right: 15px; font-size: 17px;align-self: center;">
+                        <b class= "pointer" style="margin-right: 15px; font-size: 17px;align-self: center;">
                             비밀번호 찾기
                         </b>
                         <b onclick="toggle()" class="pointer">
@@ -58,7 +65,7 @@
 
                     </div>
                     <br>
-                    <div style="text-align: center">
+                    <div style="text-align: center; cursor:pointer;">
                         <img src="/resources/img/kakao_login_btn.png" onclick="kakaoLogin();"/>
                     </div>
                 </div>

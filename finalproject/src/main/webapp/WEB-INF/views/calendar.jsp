@@ -19,6 +19,11 @@
 <jsp:include page="include/header.jsp"/>
 
 <div class="title">펫 캘린더</div>
+<div style="text-align: end;padding-right: 200px;">
+    <span>
+        <button id="openModalButton" style="margin-top: 0px;">+ 일정 추가</button>
+    </span>
+</div>
 <div class="calendar">
     <div class="calendar-left">
         <div class="calendar-header">
@@ -38,10 +43,8 @@
         <div class="calendar-dates" id="calendarDatesContainer">
         </div>
         <div>
-            <button id="openModalButton">일정 추가</button>
-
             <!-- 모달 창 -->
-            <div class="modal" id="myModal">
+            <div class="modal" id="myModal" style="display: none;">
                 <div class="modal-content">
                     <%@ include file="include/modal.jsp" %>
 
@@ -415,6 +418,10 @@
 
     // 닫기 버튼 클릭 시 모달 창 숨김
     document.getElementById("closeModalButton").addEventListener("click", function () {
+        document.getElementById("petSelection").selectedIndex = 0;
+        document.getElementById("calendar_start_date").value = "";
+        document.getElementById("calendar_end_date").value = "";
+        document.getElementById("eventDescription").value = "";
         const modal = document.getElementById("myModal");
         modal.style.display = "none";
     });
@@ -515,6 +522,7 @@
                 // 여기에 오류 시 실행할 코드를 추가하세요.
             });
     }
+
 
 </script>
 </body>
