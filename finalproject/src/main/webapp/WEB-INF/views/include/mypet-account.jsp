@@ -2,32 +2,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <style>
+        /*!* 막대 그래프 컨테이너 스타일 *!*/
+        /*.progress-bar-container {*/
+        /*    width: 100%;*/
+        /*    height: 45px; !* 막대 그래프의 높이 조절 *!*/
+        /*    background-color: #ccc; !* 막대 그래프 바의 배경색 *!*/
+        /*    border-radius: 50px; !* 모서리를 둥글게 만듭니다. *!*/
+        /*    margin-bottom: 5px; !* 각 막대 그래프 사이에 간격 추가 *!*/
+        /*}*/
 
-        /* 막대 그래프 컨테이너 스타일 */
-        .progress-bar-container {
-            width: 100%;
-            height: 35px; /* 막대 그래프의 높이 조절 */
-            background-color: #ccc; /* 막대 그래프 바의 배경색 */
-            border-radius: 50px; /* 모서리를 둥글게 만듭니다. */
-            margin-bottom: 5px; /* 각 막대 그래프 사이에 간격 추가 */
-        }
+        /*!* 막대 그래프 바 초기 스타일 *!*/
+        /*.progress-bar {*/
+        /*    height: 100%;*/
+        /*    background-color: #75A989; !* 막대 그래프의 색상 *!*/
+        /*    text-align: center;*/
+        /*    line-height: 20px; !* 텍스트를 수직으로 중앙 정렬 *!*/
+        /*    color: #fff; !* 텍스트 색상 *!*/
+        /*    border-radius: 50px; !* 왼쪽 모서리만 둥글게 만듭니다. *!*/
+        /*    width: 0; !* 초기 너비를 0으로 설정 *!*/
+        /*    transition: width 1s ease-in-out; !* 너비 변화에 대한 애니메이션 설정 *!*/
+        /*}*/
 
-        /* 막대 그래프 바 초기 스타일 */
-        .progress-bar {
-            height: 100%;
-            background-color: #4CAF50; /* 막대 그래프의 색상 */
-            text-align: center;
-            line-height: 20px; /* 텍스트를 수직으로 중앙 정렬 */
-            color: #fff; /* 텍스트 색상 */
-            border-radius: 50px; /* 왼쪽 모서리만 둥글게 만듭니다. */
-            width: 0; /* 초기 너비를 0으로 설정 */
-            transition: width 1s ease-in-out; /* 너비 변화에 대한 애니메이션 설정 */
-        }
-
-        /* 막대 그래프 진행률 텍스트 스타일 */
-        .progress-text {
-            margin-left: 5px; /* 텍스트와 막대 그래프 사이의 간격 추가 */
-        }
+        /*!* 막대 그래프 진행률 텍스트 스타일 *!*/
+        /*.progress-text {*/
+        /*    margin-left: 5px; !* 텍스트와 막대 그래프 사이의 간격 추가 *!*/
+        /*}*/
 
         .menu-title {
             text-align: center;
