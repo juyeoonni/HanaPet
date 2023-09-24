@@ -132,8 +132,7 @@
 <div class="card"><img src="resources/img/insurance-logo.png"/>
     <div class="card-content">
         <div class="desc">입통원비가 따로 보장되는</div>
-        <div class="name">프로미 반려동물보험
-            One형 플랜
+        <div class="name" id="insuranceName">프로미 반려동물보험 One형 플랜
         </div>
         <div class="content-detail">
             <div class="left">
@@ -216,7 +215,6 @@
                     <p>기존 보험료 대비 10% 할인</p></div>
                 <div class="buttons">
                     <button class="join-btn" id="join-btn">가입하기</button>
-
                 </div>
             </div>
         </div>
@@ -511,6 +509,15 @@
 </div>
 <script>
     document.getElementById("join-btn").addEventListener("click", function () {
+
+        // 다음 버튼 클릭 시 제품 정보를 세션에 저장
+        var insuranceInfo = {
+            insuranceName: document.getElementById("insuranceName").textContent,
+            insuranceAmount: "403620"
+        };
+        sessionStorage.setItem("selectedInsurance", JSON.stringify(insuranceInfo));
+
+        // 새 페이지로 이동
         window.location.href = "/insurance-detail";
     });
 </script>

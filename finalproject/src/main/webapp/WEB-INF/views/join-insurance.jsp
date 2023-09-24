@@ -53,7 +53,7 @@
             text-align: start;
         }
 
-        #myModal{
+        #myModal {
             height: 390px;
         }
     </style>
@@ -290,6 +290,9 @@
         <%@ include file="include/insurance-modal.jsp" %>
     </div>
 </div>
+<%
+    String guest_id = (String) session.getAttribute("guest_id");
+%>
 <script>
     const agreeChkAll = document.querySelector('input[name=agree_all]');
 
@@ -310,38 +313,34 @@
         }
     });
 
-    function joinInsurance(){
-        modal.style.display = "block";
+    function joinInsurance() {
+        const productInfo = JSON.parse(sessionStorage.getItem("selectedInsurance"));
+        const requestData = {
+            guestId: '<%=guest_id%>',
+            petId: '1',
+            insuranceName: productInfo.insuranceName,
+            depositAccountNumber: '493-293-143-13524',
+            insuranceAmount: productInfo.insuranceAmount
+        };
 
-        <%--const requestData = {--%>
-        <%--    account_number: accountNumber,--%>
-        <%--    join_period: joinPeriodInput.value,--%>
-        <%--    end_date: calculateEndDate(parseInt(joinPeriodInput.value)),--%>
-        <%--    category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,--%>
-        <%--    opener_id: '<%= guest_id %>',--%>
-        <%--    saving_name: document.getElementById('accountName').value,--%>
-        <%--    pet_id: document.getElementById("petSelection").value,--%>
-        <%--    current_balance: joinAmountInput.value--%>
-        <%--};--%>
-
-        <%--console.log(requestData);--%>
-        <%--$.ajax({--%>
-        <%--    url: "/create-savingaccounts",--%>
-        <%--    type: "POST",--%>
-        <%--    data: JSON.stringify(requestData),--%>
-        <%--    contentType: 'application/json',--%>
-        <%--    success: function (response) {--%>
-        <%--        console.log(response)--%>
-        <%--        if (response === "적금 생성 성공") {--%>
-        <%--            modal.style.display = "block";--%>
-        <%--        } else {--%>
-        <%--            console.error("insert 실패");--%>
-        <%--        }--%>
-        <%--    },--%>
-        <%--    error: function () {--%>
-        <%--        console.log("Error post.");--%>
-        <%--    }--%>
-        <%--});--%>
+        console.log(requestData);
+        $.ajax({
+            url: "/join-insuranceProduct",
+            type: "POST",
+            data: JSON.stringify(requestData),
+            contentType: 'application/json',
+            success: function (response) {
+                console.log(response)
+                if (response === "보험 생성 성공") {
+                    modal.style.display = "block";
+                } else {
+                    console.error("insert 실패");
+                }
+            },
+            error: function () {
+                console.log("Error post.");
+            }
+        });
     }
 
     const modal = document.getElementById("myModal");

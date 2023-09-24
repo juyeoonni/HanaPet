@@ -10,4 +10,6 @@ public interface InsuranceMapper {
     List<BreedData> getBreedData(String breed);
 
     List<MyInsurance> getAllInsurancesOfPetOfGuest(HashMap<String, String> data);
+
+    void joinInsurance(HashMap<String, String> data);
 }

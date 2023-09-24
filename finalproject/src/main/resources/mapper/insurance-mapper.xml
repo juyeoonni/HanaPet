@@ -51,4 +51,9 @@
           AND pet_id = #{pet_id}
     </select>
 
+    <!-- 보험 가입 테이블 생성 -->
+    <insert id="joinInsurance" parameterType="HashMap">
+        INSERT INTO JOIN_INSURANCE(guest_id, pet_id, insurance_name, deposit_account_number, insurance_amount)
+        VALUES (#{guestId}, #{petId}, #{insuranceName}, #{depositAccountNumber}, #{insuranceAmount})
+    </insert>
 </mapper>

@@ -25,4 +25,9 @@ public class InsuranceServiceImpl implements InsuranceService {
     public List<MyInsurance> getAllInsurancesOfPetOfGuest(HashMap<String, String> data) {
         return insuranceMapper.getAllInsurancesOfPetOfGuest(data);
     }
+
+    @Override
+    public void joinInsurance(HashMap<String, String> data) {
+        insuranceMapper.joinInsurance(data);
+    }
 }

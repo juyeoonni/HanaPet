@@ -4,9 +4,7 @@ import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -42,6 +40,13 @@ public class InsuranceController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("join-insurance");
         return mav;
+    }
+
+    // 보험 가입
+    @PostMapping("/join-insuranceProduct")
+    public ResponseEntity<String> createInsurance(@RequestBody HashMap<String, String> data) {
+        insuranceService.joinInsurance(data);
+        return ResponseEntity.ok("보험 생성 성공");
     }
 
     @GetMapping("/insurance-recommend")
