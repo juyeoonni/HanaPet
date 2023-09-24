@@ -332,8 +332,8 @@
             $("#productImg").attr("src", "/resources/img/" + productInfo.image);
             $("#productCategory").text(productInfo.category + " 펫 적금");
             $("#productDescription").text(productInfo.description);
-            $("#productRate").text("이자율: " + productInfo.rate);
-            $("#productBalance").text("가입 금액: " + productInfo.min_balance + "원 이상 " + productInfo.max_balance + "원 이하");
+            $("#productRate").text("이자율: " + productInfo.rate + "%");
+            $("#productBalance").text("가입 금액: " + Number(productInfo.min_balance).toLocaleString() + "원 이상 " + Number(productInfo.max_balance).toLocaleString() + "원 이하");
             $("#productEndDate").text("적금 예상 만기일: " + productInfo.endDate.split(" ")[0]);
             $("#productJoinPeriod").text("가입 기간: " + productInfo.joinPeriod + "개월");
 

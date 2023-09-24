@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/join-product.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/resources/js/common.js"></script>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
@@ -129,7 +130,8 @@
                 <td class="form-label">가입 금액</td>
                 <td>
                     <div style="display: flex">
-                        <input type="number" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
+                        <input type="text" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
+                               onkeyup="inputNumberFormat(this)"
                                required><span style="align-self: center;">원</span>
                         <% if (savingName != null) { %>
                         <div style="display: flex; align-items: center;" id="endAmountWeek">
@@ -201,8 +203,8 @@
         const selectedValue = document.getElementById("accountNumberSelection").value;
 
         // 선택한 값을 # 요소에 표시
-        document.getElementById("current_balance").textContent = selectedValue + "원";
-        document.getElementById("able_balance").textContent = selectedValue + "원";
+        document.getElementById("current_balance").textContent = Number(selectedValue).toLocaleString() + "원";
+        document.getElementById("able_balance").textContent = Number(selectedValue).toLocaleString() + "원";
 
         // 계좌 비밀번호 입력창 reset
         document.getElementById('accountPassword').value = "";
@@ -255,8 +257,8 @@
                         option.textContent = account.account_number + " [" + account.account_name + "]";
                         accountNumberSelection.appendChild(option);
                     });
-                    document.getElementById("current_balance").textContent = data[0].balance + "원";
-                    document.getElementById("able_balance").textContent = data[0].balance + "원";
+                    document.getElementById("current_balance").textContent = data[0].balance.toLocaleString() + "원";
+                    document.getElementById("able_balance").textContent = data[0].balance.toLocaleString() + "원";
                 },
                 error: function (xhr, status, error) {
                     console.error('Error fetching account list:', error);
@@ -308,7 +310,7 @@
 
             // 가입 버튼 활성화/비활성화 함수
             function toggleJoinButton() {
-                const joinAmount = parseFloat(joinAmountInput.value);
+                const joinAmount = parseFloat(joinAmountInput.value.replace(/,/g, ''));
                 const joinPeriod = joinPeriodInput ? parseFloat(joinPeriodInput.value) : null;
 
                 let message1 = (joinAmount < minBalance || joinAmount > maxBalance) ? '가입 금액을 확인해주세요.' : '';
@@ -367,7 +369,7 @@
                 $("#productDescription").text(productInfo.description);
                 $("#productRate").text("이자율: " + productInfo.rate);
                 $("#productMinPeriod").text("최소 기간: " + productInfo.min_period);
-                $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance);
+                $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance.toLocaleString());
             }
 
             function getWeeksBetweenDates(endDate) {
@@ -433,7 +435,7 @@
 
                 const selectedOption = document.getElementById('accountNumberSelection').options[document.getElementById('accountNumberSelection').selectedIndex];
                 const selectedAccountNumber = selectedOption.textContent.split(" ")[0];
-                const amount = document.getElementById('joinAmount').value
+                const amount = document.getElementById('joinAmount').value.replace(/,/g, '')
                 const end_date = calculateEndDate(parseInt(joinPeriodInput.value));
                 const join_period = joinPeriodInput.value;
                 const final_amount_month = String(parseInt(amount) * parseInt(join_period));
@@ -471,9 +473,9 @@
                         console.log(response)
                         if (response === "적금 생성 성공") {
                             if (requestData.sms_transfer) {
-                                let content = '[HanaPet]' + '<%=guest_name%>님의 출금계좌 ' + account_number + ' ' + selectedValue3 + ' ' + requestData.amount + '원 자동이체가 등록되었습니다.';
+                                let content = '[HanaPet]' + '<%=guest_name%>님의 출금계좌 ' + account_number + ' ' + selectedValue3 + ' ' + requestData.amount.toLocaleString() + '원 자동이체가 등록되었습니다.';
                                 sendSmsRequest(content)
-                                content = '[HanaPet] 출금계좌 ' + account_number + ' ' + requestData.amount + '원 자동이체 완료.';
+                                content = '[HanaPet] 출금계좌 ' + account_number + ' ' + requestData.amount.toLocaleString() + '원 자동이체 완료.';
                                 sendSmsRequest(content)
                             }
                             modal.style.display = "block";
@@ -569,10 +571,10 @@
                     sms_transfer: selectedValue,
                     sms_maturity: selectedValue2,
                     deposit_account_number: selectedAccountNumber,
-                    amount: document.getElementById('joinAmount').value,
+                    amount: document.getElementById('joinAmount').value.replace(/,/g, ''),
                     period: selectedValue3,
                     category: JSON.parse(sessionStorage.getItem("selectedProduct")).category,
-                    contribution_amount: document.getElementById('joinAmount').value,
+                    contribution_amount: document.getElementById('joinAmount').value.replace(/,/g, ''),
                     final_amount: finalAmount,
                     interest_amount: interest,
                     pet_name: '<%=petName%>'
@@ -657,7 +659,7 @@
                 // 시작 날짜와 종료 날짜를 JavaScript Date 객체로 변환
                 const startDate = new Date();
                 const endDate = new Date($("#endDateMessage").text().split(" ")[3]);
-                const amount = document.getElementById('joinAmount').value;
+                const amount = document.getElementById('joinAmount').value.replace(/,/g, '');
 
                 // 월별 입금 금액 및 연 이자율 설정
                 const monthlyInterestRate = (2.5 / 100) / 12;
@@ -681,7 +683,7 @@
                 const startDate = new Date();
                 startDate.setHours(0, 0, 0, 0);
                 const endDate = new Date(ed);
-                const amount = parseFloat(document.getElementById('joinAmount').value); // 입력된 값을 부동 소수점 숫자로 변환
+                const amount = parseFloat(document.getElementById('joinAmount').value.replace(/,/g, '')); // 입력된 값을 부동 소수점 숫자로 변환
 
                 // 연 이자율을 일 단위 이자율로 변환
                 const dailyInterestRate = (2.5 / 100) / 365; // 연 이자율을 365일로 나누어 일 단위로 계산
@@ -717,15 +719,16 @@
             $('#endAmount').click(function () {
                 const interest = calculateTotalInterest();
                 const endAmountMessage = document.getElementById('endAmountMessage');
-                const joinAmount = document.getElementById('joinAmount').value;
+                const joinAmount = document.getElementById('joinAmount').value.replace(/,/g, '');
                 const joinPeriod = document.getElementById('joinPeriod').value;
                 const principal = joinAmount * joinPeriod;
                 const real = Math.floor(principal + interest * 0.846);
 
-                let message3 = '원금 ' + joinAmount + '원을 ' + joinPeriod + '개월 동안 적금 시 원금 ' + principal + '원, 이자 ' + interest + '원\n일반 세율 가입 시 총 ' + real + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
+                let message3 = '원금 ' + Number(joinAmount).toLocaleString() + '원을 ' + joinPeriod + '개월 동안 적금 시 원금 ' + Number(principal).toLocaleString() + '원, 이자 ' + Number(interest).toLocaleString() + '원\n일반 세율 가입 시 총 ' + Number(real).toLocaleString() + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
 
                 endAmountMessage.textContent = message3;
             });
+
 
             const interestAmountString = "<%= interestAmount %>"; // 서버 사이드 코드를 통해 받은 문자열
             const interestAmountInt = parseInt(interestAmountString, 10); // 문자열을 10진수로 파싱
@@ -738,14 +741,14 @@
             $('#endAmountWeek').click(function () {
                 const aloneInterest = calculateInterestDaily();
                 const endAmountMessage = document.getElementById('endAmountMessage');
-                const joinAmount = document.getElementById('joinAmount').value;
+                const joinAmount = document.getElementById('joinAmount').value.replace(/,/g, '');
                 const alonePrincipal = joinAmount * calculateWeeksBetweenDates();
                 finalAmount = finalAmountInt + alonePrincipal;
                 interest = aloneInterest + interestAmountInt;
                 const interestAmount = Math.floor(interest * 0.846);
                 const real = finalAmount + interestAmount;
 
-                let message3 = '* 기존 적금의 만기 시 원금은 ' + finalAmountString + '원, 이자는 ' + interestAmountString + '원 입니다. 손님이 추가로 가입할 시 총 원금은 ' + finalAmount + '원이며 총 이자는 ' + interest + '원 입니다. 일반 세율 가입 시 총 ' + real + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
+                let message3 = '* 기존 적금의 만기 시 원금은 ' + Number(finalAmountString).toLocaleString() + '원, 이자는 ' + Number(interestAmountString).toLocaleString() + '원 입니다. 손님이 추가로 가입할 시 총 원금은 ' + Number(finalAmount).toLocaleString() + '원이며 총 이자는 ' + Number(interest).toLocaleString() + '원 입니다. 일반 세율 가입 시 총 ' + Number(real).toLocaleString() + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
 
                 endAmountMessage.textContent = message3;
             });
@@ -800,8 +803,7 @@
             });
 
         }
-    )
-    ;
+    );
 
 
 </script>

@@ -146,7 +146,7 @@
     <div class="bottom-centered-div">기간</div>
 </span>
         <span class="circle3">
-    <div class="centered-div"> 5000원 이상<br>100만원 이하</div>
+    <div class="centered-div"> 5,000원 이상<br>1,000,000원 이하</div>
     <div class="bottom-centered-div">가입 금액</div>
 </span>
         <span class="circle4">
@@ -181,7 +181,7 @@
                     <div class="product-info">상품 특징: 만 3세 이하 펫 우대 적금</div>
                     <div class="product-info">가입 대상: 반려견을 등록한 모든 Hanna Pet 손님</div>
                     <div id="productPeriod" class="product-info"></div>
-                    <div class="product-info">가입 금액: 매월 5000원 이상 ~ 100만원 이하</div>
+                    <div class="product-info">가입 금액: 매월 5,000원 이상 ~ 1,000,000원 이하</div>
                     <div class="product-info">이자 지급 방법: 만기일시지급식 : 만기(후)해지시 이자를 지급</div>
                     <div class="product-info">적립 방법: 자유적립식</div>
                 </div>
@@ -351,9 +351,9 @@
             $("#productImg").attr("src", "/resources/img/" + productInfo.image);
             $("#productCategory").text(productInfo.category + " 펫 적금");
             $("#productDescription").text(productInfo.description);
-            $("#productRate").text("이자율: " + productInfo.rate);
+            $("#productRate").text("이자율: " + productInfo.rate + "%");
             $("#productPeriod").text("가입 기간: " + productInfo.min_period + "개월 이상 " + productInfo.max_period + "개월 이하");
-            $("#productBalance").text("가입 금액: " + productInfo.min_balance + "원 이상 " + productInfo.max_balance + "원 이하");
+            $("#productBalance").text("가입 금액: " + productInfo.min_balance.toLocaleString('en-US') + "원 이상 " + productInfo.max_balance.toLocaleString('en-US') + "원 이하");
         }
 
         $("#joinForm").click(function () {
