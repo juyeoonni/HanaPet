@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<html>
 <head>
     <title>Calendar</title>
     <link rel="stylesheet" href="/resources/css/common.css">
@@ -14,6 +15,71 @@
     <script>
         Kakao.init(config.KAKAO_JAVASCRIPT_KEY); // 사용하려는 앱의 JavaScript 키 입력
     </script>
+    <style>
+        .blur-background {
+
+            pointer-events: none; /* 배경에 마우스 이벤트를 비활성화하여 모달 위의 요소에만 이벤트가 전달되도록 합니다. */
+        }
+
+        /* 모달 열릴 때 body를 흐리게 함 */
+        body.modal-open {
+            overflow: hidden; /* 스크롤을 숨김 */
+        }
+
+        #closeModalButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #555;
+        }
+
+        #modalTitle {
+            font-size: 23px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-select,
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .form-submit {
+            background-color: #F2D8DD;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-submit:hover {
+            box-shadow: 2px 2px 10px #a5a5a5;
+            transform: scale(1.03);
+        }
+
+        .date-inputs {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .date-inputs input {
+            width: 235px;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="include/header.jsp"/>
@@ -42,15 +108,7 @@
         </div>
         <div class="calendar-dates" id="calendarDatesContainer">
         </div>
-        <div>
-            <!-- 모달 창 -->
-            <div class="modal" id="myModal" style="display: none;">
-                <div class="modal-content">
-                    <%@ include file="include/modal.jsp" %>
 
-                </div>
-            </div>
-        </div>
     </div>
     <div class="calendar-right">
         <div class="form-container">
@@ -67,13 +125,77 @@
         </div>
     </div>
 </div>
+</body>
+<!-- 모달 창 -->
+<div class="modal">
+    <div class="modal_body">
+        <div style="text-align: end">
+            <button id="closeModalButton">×</button>
+        </div>
+        <div id="modalTitle">일정을 입력하세요</div>
+        <div>
+            <label class="form-label" for="petSelection">반려견</label>
+            <select class="form-select" id="petSelection">
+            </select>
+        </div>
+        <div class="date-inputs">
+            <div>
+                <label class="form-label">시작 날짜</label>
+                <input autocomplete="off" type="date" class="form-control" id="calendar_start_date"
+                       name="calendar_start_date">
+            </div>
+            <div>
+                <label class="form-label">마감 날짜</label>
+                <input autocomplete="off" type="date" class="form-control" id="calendar_end_date"
+                       name="calendar_end_date">
+            </div>
+        </div>
+        <div>
+            <label class="form-label">일정 내용</label>
+            <input style="width: 510px; height: 50px" autocomplete="off" type="text" class="form-control"
+                   id="eventDescription"
+                   name="eventDescription">
+        </div>
 
+        <div style="text-align: center">
+            <button class="form-submit" type="button" id="addEventButton">일정 등록</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.querySelector('.modal');
+    const btnOpenPopup = document.querySelector('.btn-open-popup');
+
+    btnOpenPopup.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+</script>
+<script>
+    const startDateInput = document.getElementById("calendar_start_date");
+    const endDateInput = document.getElementById("calendar_end_date");
+
+    startDateInput.addEventListener("input", function () {
+        if (!endDateInput.value) {
+            endDateInput.value = this.value;
+        }
+
+        endDateInput.min = this.value;
+    });
+
+    endDateInput.addEventListener("input", function () {
+        startDateInput.max = this.value;
+    });
+
+    const closeModalButton = document.getElementById("closeModalButton");
+    const modalContainer = document.getElementById("modalContainer");
+
+</script>
 <%
     String guest_id = (String) session.getAttribute("guest_id");
     String access_token = (String) session.getAttribute("accessToken");
     // 여기서 필요한 세션값과 변수들을 설정하세요
 %>
-
 <script>
     // Initialize the current date
     const currentDate = new Date();
@@ -102,7 +224,6 @@
 
         return daysArray;
     }
-
 
     // Function to render the calendar
     function renderCalendar(month) {
@@ -184,7 +305,6 @@
         }, 500); // 애니메이션 시간과 동일한 시간으로 설정 (0.5초)
     }
 
-
     // Attach event listeners to date elements for adding events
     document.getElementById("calendarDatesContainer").addEventListener("click", function (event) {
         const target = event.target;
@@ -231,9 +351,27 @@
         });
     }
 
-
     // Function to fetch month events from the server
     function fetchMonthEvents(year, month, pet_id) {
+        // Make an API request to fetch month events for the selected pet
+        $.ajax({
+            url: "/monthcalendars",
+            type: "GET",
+            data: {
+                month: year + "/" + month,
+                pet_id: parseInt(pet_id)
+            },
+            dataType: "json",
+            success: function (data) {
+                markDatesWithEvents(data);
+            },
+            error: function () {
+                console.log("Error fetching month events.");
+            }
+        });
+    }
+
+    function fetchTransferEvents(year, month, pet_id) {
         // Make an API request to fetch month events for the selected pet
         $.ajax({
             url: "/monthcalendars",
@@ -321,7 +459,6 @@
                         document.getElementById("eventDescription").value = "";
                         sendKakaoTalkMessage();
                         console.log("insert 성공");
-                        const modal = document.getElementById("myModal");
                         modal.style.display = "none";
                         renderCalendar(currentDate.getMonth());
                     } else {
@@ -410,19 +547,13 @@
         });
     }
 
-    // 열기 버튼 클릭 시 모달 창 표시
+    // 모달 열기 버튼 클릭 시
     document.getElementById("openModalButton").addEventListener("click", function () {
-        const modal = document.getElementById("myModal");
-        modal.style.display = "block";
+        modal.style.display = 'block';
     });
 
-    // 닫기 버튼 클릭 시 모달 창 숨김
+    // 모달 닫기 버튼 클릭 시 또는 모달 외부 클릭 시
     document.getElementById("closeModalButton").addEventListener("click", function () {
-        document.getElementById("petSelection").selectedIndex = 0;
-        document.getElementById("calendar_start_date").value = "";
-        document.getElementById("calendar_end_date").value = "";
-        document.getElementById("eventDescription").value = "";
-        const modal = document.getElementById("myModal");
         modal.style.display = "none";
     });
 
@@ -522,7 +653,6 @@
                 // 여기에 오류 시 실행할 코드를 추가하세요.
             });
     }
-
-
 </script>
-</body>
+
+</html>

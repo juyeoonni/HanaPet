@@ -29,9 +29,11 @@
         .top-container, .left-container {
             display: flex;
             justify-content: space-between;
+            gap: 35px;
         }
 
         .button-container {
+            margin-top: 30px;
             text-align: end;
         }
 
@@ -54,12 +56,12 @@
 
         .accordion-button {
             background-color: white !important;
-            border: 2px solid #E1E6DE;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
 
         .smallsize {
-            font-size: 15px;
+            font-size: 18px;
+            font-weight: bold;
         }
 
         .accordion-body {
@@ -67,7 +69,7 @@
         }
 
         .account-container {
-            padding: 20px 0px;
+            padding: 35px 40px;
             border-bottom: 2px solid #E1E6DE !important;
         }
 
@@ -166,11 +168,12 @@
                 var promises = [];
                 document.getElementById("info-text").textContent += " " + petsData.length + "마리의 반려견과 함께 총 ";
                 petsData.forEach(function (pet) {
+                    var gender = pet.gender == 'M' ? '남' : '여';
                     var pet_id = pet.pet_id;
                     var accordionItem = $("<div>").addClass("accordion-item");
                     var accordionHeader = $("<h2>").addClass("accordion-header");
                     var imageElement = $('<img style="width: 60px; height:60px; border-radius: 50%">').attr('src', 'resources/img/dog' + pet.pet_id + '.jpg').addClass('petimg');
-                    var accordionButton = $('<button style="padding:15px;">').addClass("accordion-button")
+                    var accordionButton = $('<button style="padding:15px 40px;">').addClass("accordion-button")
                         .attr("type", "button")
                         .attr("data-bs-toggle", "collapse")
                         .attr("data-bs-target", "#accordionItem" + pet.pet_id)
@@ -179,15 +182,18 @@
                         .html('<div class="button-content" style="display: flex; justify-content: space-between; align-items: center; width: 90%">'
                             + '<div class="left">'
                             + '<span class="petimg">' + imageElement.prop('outerHTML') + '</span>'
-                            + '<span class="petname">' + pet.name + '</span>'
+                            + '<span class="petname" style="font-size: 24px; font-weight: bold; margin-left: 20px;">' + pet.name + '</span>'
                             + '</div>'
-                            + '<div class="smallsize" id="total-' + pet.pet_id + '">'
-                            + '</div>'
-                            + '<div class="right">'
-                            + '<div>' + pet.gender + '|' + pet.age + '살 ' + pet.breed + '</div>'
+                            + '<div style="display: flex; align-items: center;"><div style="text-align: end">'
+                            + '<div class="smallsize" style=" margin-right: 40px;" id="total-' + pet.pet_id + '">'
+                            + '</div> </div>'
+                            + '<div class="right" style="margin-right: -40px">'
+                            + '<div style="font-size: 20px; font-weight: bold; padding-bottom: 10px; ">' + gender + ' | ' + pet.age + '살 ' + pet.breed + '</div>'
                             + '<div id="petAccountCnt' + pet_id + '"></div>'
+                            + '</div></div>'
                             + '</div>'
-                            + '</div>');
+                        )
+                    ;
                     var accordionCollapse = $("<div>").addClass("accordion-collapse collapse show") // 처음에 show로 펼쳐주기
                         .attr("id", "accordionItem" + pet.pet_id);
                     var accordionBody = $("<div>").addClass("accordion-body");
@@ -226,12 +232,12 @@
                             var buttonContainer = $('<div>').addClass('button-container');
 
                             // 이미지 요소 생성 및 추가
-                            var imgElement = $('<img style="width: 60px; height:60px;">').attr('src', 'resources/img/' + categoryImg).addClass('category-img');
+                            var imgElement = $('<img style="width: 65px;">').attr('src', 'resources/img/' + categoryImg).addClass('category-img');
                             leftContainer.append(imgElement);
 
                             var Div = $('<div>');
                             // 적금 이름과 진행률 추가
-                            var nameDiv = $('<div>').text(saving_name);
+                            var nameDiv = $('<div style="font-weight: bold; font-size: 18px">').text(saving_name);
                             // var progressDiv = $('<div>').text(progress_rate);
                             Div.append(nameDiv, progressBar);
                             leftContainer.append(Div);
@@ -243,7 +249,7 @@
 
                             // 내가 개설자일 때만 "공유하기" 버튼 생성
                             if (String(openerId) === guest_id) {
-                                var kakaoLink = $('<button>').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
+                                var kakaoLink = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px;  padding: 5px 15px">').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
                                 buttonContainer.append(kakaoLink);
 
                                 // Kakao 공유 버튼을 생성하고 설정
@@ -276,16 +282,14 @@
                             }
 
                             // "자세히 보기" 버튼 생성
-                            var detailsButton = $('<button>').text('자세히 보기');
+                            var detailsButton = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px; padding: 5px 15px; margin-left: 10px">').text('자세히 보기');
 
-                            // 버튼에 클릭 이벤트 리스너 추가
                             detailsButton.on('click', function () {
                                 var nextPageUrl = '/mypet-saving/detail?accountNumber=' + encodeURIComponent(account_number);
                                 window.location.href = nextPageUrl;
                             });
 
                             buttonContainer.append(detailsButton);
-
 
                             // 생성한 컨테이너들을 상위 컨테이너에 추가
                             topContainer.append(leftContainer, rightContainer);
@@ -294,9 +298,8 @@
 
                             // 생성한 컨테이너를 화면에 추가
                             accordionBody.append(container);
-
-
                         });
+
                         $("#total-" + pet.pet_id).text("총 잔액 " + total_balance.toLocaleString() + "원");
                         totalAmount += total_balance;
                         document.getElementById("petAccountCnt" + pet.pet_id).textContent = myAccountsOfPet.length + "개의 적금 보유";
@@ -338,7 +341,7 @@
             var progressBarContainer = $("<div style='width: 340px; height: 30px; border-radius: 20px'>").addClass("progress");
 
             // 막대 그래프 바를 생성합니다.
-            var progressBar = $("<div style='background-image: linear-gradient(135deg, #22948a 0%, #e1fcab 100%);'>").addClass("progress-bar")
+            var progressBar = $("<div style='background: linear-gradient(144deg, rgba(191,223,203,1) 36%, rgba(117,169,137,1) 100%);'>").addClass("progress-bar")
                 .attr("role", "progressbar")
                 .attr("aria-valuemin", "0")
                 .attr("aria-valuemax", "100")
