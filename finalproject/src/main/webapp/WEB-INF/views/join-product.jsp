@@ -6,9 +6,19 @@
     <title>Join-Product</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/resources/css/common.css">
+    <link rel="stylesheet" href="/resources/css/modal.css">
     <link rel="stylesheet" href="/resources/css/join-product.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/resources/js/common.js"></script>
+    <style>
+        .modal {
+            height: 1610px;
+        }
+
+        .modal_body {
+            top: 75%;
+        }
+    </style>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
@@ -182,9 +192,34 @@
 </div>
 </form>
 
-<div id="myModal" class="modal">
-    <%@ include file="include/saving-modal.jsp" %>
-</div>
+<div class="modal">
+    <div class="modal_body">
+        <div class="category">
+            <img src="/resources/img/product-의료건강.svg" width="42px"
+                 style="padding-left: 5px; padding-top: 3px; margin-right: 15px;">
+            <span style="font-size: 26px">의료/건강</span>
+        </div>
+
+        <div class="contents">
+            <div class="first-content">
+                <img src=""/>
+                <span>토리를 위한 </span>
+                <span id="account-name">백내장 수술 적금</span>
+                <span>에 가입되었습니다.</span>
+            </div>
+            <div class="second-content">
+                <img src="/resources/img/checked.png" width="100px"/>
+            </div>
+            <div class="third-content" style="padding-bottom: 30px">
+                <a href="/">
+                    <button>HOME으로</button>
+                </a>
+                <a href="/mypage">
+                    <button>마이페이지로</button>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 
@@ -598,7 +633,6 @@
                                 sendSmsRequest(content)
                             }
                             modal.style.display = "block";
-                            modal.style.display = "block";
                         } else {
                             console.error("초대 적금 가입 실패");
                         }
@@ -610,7 +644,6 @@
 
             }
 
-            const modal = document.getElementById("myModal");
             let accountName = "";
             document.getElementById('joinButton').addEventListener('click', function (event) {
                 if ('<%=savingName%>' == null) {
@@ -806,4 +839,12 @@
     );
 
 
+</script>
+<script>
+    const modal = document.querySelector('.modal');
+    const btnOpenPopup = document.querySelector('.btn-open-popup');
+
+    btnOpenPopup.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
 </script>

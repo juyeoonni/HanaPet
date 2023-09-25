@@ -57,6 +57,12 @@
         #myModal {
             height: 390px;
         }
+
+        .modal_body{
+            height: 410px;
+        }
+
+
     </style>
 </head>
 <%@ include file="include/header.jsp" %>
