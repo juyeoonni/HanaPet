@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/join-product.css">
+    <link rel="stylesheet" href="/resources/css/modal.css">
     <!-- 부트스트랩 CSS 링크 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- 부트스트랩 JS 링크 -->
@@ -286,10 +287,33 @@
         <button type="button" class="Button" id="joinButton">가입하기</button>
     </div>
 
-    <div id="myModal" class="modal">
-        <%@ include file="include/insurance-modal.jsp" %>
+    <div class="modal">
+        <div class="modal_body">
+            <div class="category">
+                <img src="/resources/img/insurance-logo.png" width="160px"
+                     style="padding-left: 5px; padding-top: 3px; margin-right: 15px;">
+            </div>
+
+            <div class="first-content">
+                <span>토리를 위한</span><br>
+                <span id="account-name">프로미 반려동물보험 One형 플랜 보험</span><br>
+                <span>에 가입되었습니다.</span>
+            </div>
+            <div class="second-content">
+                <img src="/resources/img/checked.png" width="100px"/>
+            </div>
+            <div class="third-content">
+                <a href="/">
+                    <button>HOME으로</button>
+                </a>
+                <a href="/mypage">
+                    <button>마이페이지로</button>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
+
 <%
     String guest_id = (String) session.getAttribute("guest_id");
 %>
@@ -341,9 +365,8 @@
                 console.log("Error post.");
             }
         });
+        modal.style.display = "block";
     }
-
-    const modal = document.getElementById("myModal");
 
 
     // 모달 내에서 확인 버튼을 클릭하면 모달을 닫는 이벤트 핸들러
@@ -352,5 +375,13 @@
     confirmButton.addEventListener("click", () => {
         modal.style.display = "none"; // 모달을 화면에서 숨김
         window.location.href = '/card'; // 페이지 이동 처리
+    });
+</script>
+<script>
+    const modal = document.querySelector('.modal');
+    const btnOpenPopup = document.querySelector('.btn-open-popup');
+
+    btnOpenPopup.addEventListener('click', () => {
+        modal.style.display = 'block';
     });
 </script>

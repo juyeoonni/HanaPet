@@ -36,7 +36,7 @@
     padding: 10px 0px 30px 0px;
 }
 
-button {
+button, a button {
     /* main */
     background: #75A989;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);

@@ -187,14 +187,37 @@ td:nth-child(odd) {
     padding-top: 11px;
 }
 
-#myModal {
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1075px;
+
     display: none;
-    position: fixed; /* 고정 위치 */
-    top: 50%; /* 화면 상단에서 50% 위치에 */
-    left: 50%; /* 화면 왼쪽에서 50% 위치에 */
-    transform: translate(-50%, -50%); /* 화면 중앙 정렬을 위한 변환 */
-    z-index: 2; /* 다른 요소 위에 표시하기 위한 Z-index 설정 */
-    width: 500px;
-    height: 330px;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal_body {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+
+    width: 35%;
+    height: 410px;
+
+    text-align: center;
+
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+    transform: translateX(-50%) translateY(-50%);
 }
