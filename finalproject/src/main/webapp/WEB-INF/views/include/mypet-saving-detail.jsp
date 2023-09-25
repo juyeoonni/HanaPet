@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page import="com.kopo.finalproject.savingaccount.model.dto.MyPageHistoryInfo" %>
 <!DOCTYPE html>
@@ -230,7 +231,7 @@
 </head>
 
 <body>
-<%@ include file="include/header.jsp" %>
+<%@ include file="header.jsp" %>
 
 <div class="body">
     <div class="card text-white mb-3">
@@ -278,10 +279,11 @@
             <p> 적금 상품: ${info[0].category}</p>
             <img src="/resources/img/${info[0].categoryImg}" width="40px"/>
             <p>개설자: ${info[0].openerId}</p>
-            <p> 현재 잔액: ${info[0].balance}</p>
+            <p> 현재 잔액: <fmt:formatNumber value="${info[0].balance}" type="number" pattern="#,###원"/></p>
+
             <p> 진행률: ${info[0].progressRate}</p>
-            <p> 적금 만기 시 원금: ${info[0].finalAmount}</p>
-            <p> 적금 만기 시 이자: ${info[0].interestAmount}</p>
+            <p> 적금 만기 시 원금: <fmt:formatNumber value="${info[0].finalAmount}" type="number" pattern="#,###원"/></p>
+            <p> 적금 만기 시 이자: <fmt:formatNumber value="${info[0].interestAmount}" type="number" pattern="#,###원"/></p>
             <br>
             <hr>
             <div>참여자 정보</div>
@@ -291,9 +293,11 @@
                         <div class="c-container">
                             <p>이름: ${infoItem.guestId}</p>
                             <p>가입일: ${infoItem.joinDate}</p>
-                            <p>현재까지 기여 금액: ${infoItem.contributionAmount}</p>
+                            <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}" type="number"
+                                                             pattern="#,###원"/></p>
                             <p>기여도: ${infoItem.contributionRatio}</p>
-                            <p>가입 금액: ${infoItem.transferAmount}</p>
+                            <p>가입 금액: <fmt:formatNumber value="${info[0].transferAmount}" type="number"
+                                                        pattern="#,###원"/></p>
                             <p>납입 주기: ${infoItem.transferPeriod}</p>
                         </div>
                     </div>
@@ -302,9 +306,11 @@
                     <div style="border: 1px solid; margin-bottom: 10px">
                         <p>이름: ${infoItem.guestId}</p>
                         <p>가입일: ${infoItem.joinDate}</p>
-                        <p>현재까지 기여 금액: ${infoItem.contributionAmount}</p>
+                        <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}" type="number"
+                                                         pattern="#,###원"/></p>
                         <p>기여도: ${infoItem.contributionRatio}</p>
-                        <p>가입 금액: ${infoItem.transferAmount}</p>
+                        <p>가입 금액: <fmt:formatNumber value="${info[0].transferAmount}" type="number"
+                                                    pattern="#,###원"/></p>
                         <p>납입 주기: ${infoItem.transferPeriod}</p>
                     </div>
                 </c:if>
@@ -364,7 +370,6 @@
                 });
             </script>
             <div style="display: flex;">
-                <div style=" margin-right: 100px">거래 내역</div>
                 <span>전체 보기</span>/
                 <span>내 내역만 보기</span>
             </div>
@@ -372,7 +377,8 @@
             <div class="container d-flex justify-content-center mt-50 mb-50">
                 <div class="card w-100">
                     <div class="card-header header-elements-inline">
-                        <h5 class="card-title mt-2">User table</h5>
+                        <h5 class="card-title" style="margin-left: -20px;"><b style=" font-size: 24px !important;">거래
+                            내역</b></h5>
                         <div class="header-elements">
                             <div class="list-icons text-muted font-weight-light">
                                 <a class="list-icons-item" data-action="collapse" data-abc="true"><i
@@ -388,7 +394,7 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>#</th>
+                                <th>회차</th>
                                 <th>이름</th>
                                 <th>입금 계좌</th>
                                 <th>출금 계좌</th>
@@ -400,17 +406,19 @@
                             <tbody>
                             <c:set var="i" value="${history_info.size()}"/>
                             <c:forEach var="historyItem" items="${history_info}">
-                                <tr>
-                                    <div style="border: 1px solid">
-                                        <td>${i}회차</td>
-                                        <td> ${historyItem.guestId}</td>
-                                        <td> ${historyItem.accountNumberIn}</td>
-                                        <td> ${historyItem.accountNumberOut}</td>
-                                        <td> ${historyItem.transferDate.split(" ")[0]}</td>
-                                        <td> ${historyItem.amount}원</td>
-                                        <td> ${historyItem.balanceAfterIn}원</td>
-                                    </div>
-                                    <c:set var="i" value="${i - 1}"/>
+                                <div style="border: 1px solid">
+                                    <td>${i}회차</td>
+                                    <td> ${historyItem.guestId}</td>
+                                    <td> ${historyItem.accountNumberIn}</td>
+                                    <td> ${historyItem.accountNumberOut}</td>
+                                    <td> ${historyItem.transferDate.split(" ")[0]}</td>
+                                    <td><fmt:formatNumber value="${historyItem.amount}" type="number"
+                                                          pattern="#,###원"/>
+                                    </td>
+                                    <td><fmt:formatNumber value="${historyItem.balanceAfterIn}" type="number"
+                                                          pattern="#,###원"/></td>
+                                </div>
+                                <c:set var="i" value="${i - 1}"/>
                                 </tr>
                             </c:forEach>
                             </tbody>

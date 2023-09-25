@@ -47,18 +47,9 @@
             padding: 0px 30px;
         }
 
-        #top-box {
-            width: 100%;
-            height: 120px;
-            margin-top: 10px;
-            background: #E1E6DE;
-            /*box-shadow: 4px 4px 15px 1px rgba(0, 0, 0, 0.2);*/
-            border-radius: 10px;
-            margin-bottom: 40px;
-        }
-
         #text-right {
             text-align: end;
+            font-weight: bold;
         }
 
         .accordion-button {
@@ -103,19 +94,57 @@
     </style>
 
 </head>
+<div style="display:flex;">
+    <div id="top-box">
+        <div class="guest">
+            <img src="/resources/img/logo-one.png" width="40px"/> <%=guest_name%>님
+        </div>
+        <div id="info-text">
+            총
+        </div>
+        <br>
+        <div id="text-right">
+            총 자산
+        </div>
 
-<body>
-<div id="top-box">
-    <div>
-        <%=guest_name%>님
     </div>
-    <div id="info-text">
-        총
+    <div id="top-box2">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card" style="padding-bottom: 10px">
+                <div class="card-body">
+                    <h5 class="card-title" style="padding-bottom: 5px"><b>자산 한눈에 보기</b></h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped" style="margin-bottom: 0px">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    반려견 적금
+                                </td>
+                                <td id="jk">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    반려견 보험
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    내 계좌
+                                </td>
+                                <td id="ma">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="text-right">
-        총 잔액
-    </div>
-
 </div>
 <div class="accordion" id="accordionPanelsStayOpenExample">
 </div>
@@ -209,7 +238,7 @@
 
                             // 계좌 번호와 잔액 추가
                             var accountNumberDiv = $('<div>').text(account_number.slice(0, 15) + '*');
-                            var balanceDiv = $('<div>').text('잔액 ' + balance + '원');
+                            var balanceDiv = $('<div>').text('잔액 ' + Number(balance).toLocaleString() + '원');
                             rightContainer.append(accountNumberDiv, balanceDiv);
 
                             // 내가 개설자일 때만 "공유하기" 버튼 생성
@@ -268,7 +297,7 @@
 
 
                         });
-                        $("#total-" + pet.pet_id).text("총 잔액 " + total_balance + "원");
+                        $("#total-" + pet.pet_id).text("총 잔액 " + total_balance.toLocaleString() + "원");
                         totalAmount += total_balance;
                         document.getElementById("petAccountCnt" + pet.pet_id).textContent = myAccountsOfPet.length + "개의 적금 보유";
                     }).fail(function () {
@@ -287,12 +316,21 @@
                     console.log("All Ajax requests completed.");
                     document.getElementById("info-text").textContent += totalAccount + "개의 계좌를 보유하고 있습니다.";
                     console.log(totalAmount)
-                    document.getElementById("text-right").textContent += totalAmount + "원";
+                    document.getElementById("text-right").textContent += totalAmount.toLocaleString() + "원";
+
+                    document.getElementById('jk').textContent = document.getElementById('text-right').textContent.replace(/\s+/g, '').slice(3);
+                    document.getElementById('ma').textContent = document.getElementById('text-right3').textContent.replace(/\s+/g, '').slice(3);
+                    document.getElementById('jk2').textContent = document.getElementById('text-right').textContent.replace(/\s+/g, '').slice(3);
+                    document.getElementById('ma2').textContent = document.getElementById('text-right3').textContent.replace(/\s+/g, '').slice(3);
+                    document.getElementById('jk3').textContent = document.getElementById('text-right').textContent.replace(/\s+/g, '').slice(3);
+                    document.getElementById('ma3').textContent = document.getElementById('text-right3').textContent.replace(/\s+/g, '').slice(3);
+
                 });
             },
             error: function () {
                 console.log("Error fetching pets data.");
             }
+
         });
 
         function createProgressBar(progressRate) {
@@ -320,6 +358,3 @@
     });
 
 </script>
-
-
-</body>

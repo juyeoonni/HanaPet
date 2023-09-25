@@ -9,13 +9,52 @@
     }
 
 </style>
-<div id="top-box" class="container mt-3">
-    <div>
-        <%=guest_name%>님
-    </div>
-    <div class="info-text2 mt-3">
-    </div>
+<div style="display:flex;">
+    <div id="top-box">
+        <div class="guest">
+            <img src="/resources/img/logo-one.png" width="40px"/> <%=guest_name%>님
+        </div>
+        <div class="info-text2 mt-3">
+        </div>
 
+    </div>
+    <div id="top-box2">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="padding-bottom: 5px"><b>자산 한눈에 보기</b></h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped" style="margin-bottom: 0px">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    반려견 적금
+                                </td>
+                                <td id="jk2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    반려견 보험
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    내 계좌
+                                </td>
+                                <td id="ma2">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="accordion" id="accordion">
 </div>
@@ -32,8 +71,9 @@
             dataType: "json",
             success: function (petsData) {
                 var promises2 = [];
-                var iszero = false;
+                var iszero = false; // 보험이 하나도 없는 경우를 위한 flag
                 var infoText = "총 " + petsData.length + "마리의 반려견과 함께 총 ";
+                var cnt = 0; // 보험이 없는 개수
 
                 petsData.forEach(function (pet) {
                     var pet_id = pet.pet_id;
@@ -50,7 +90,7 @@
                             + '</div>'
                             + '<div class="right">'
                             + '<div>' + pet.gender + '|' + pet.age + '살 ' + pet.breed + '</div>'
-                            + '<div id="petAccountCnt' + pet_id + '"></div>'
+                            + '<div id="petInsuranceCnt' + pet_id + '"></div>'
                             + '</div>'
                             + '</div>');
 
@@ -68,16 +108,16 @@
                         dataType: "json"
                     }).then(function (insuranceData) {
                         if (insuranceData.length === 0) {
-                            // Handle the case when there are no insurance records for this pet
                             var noInsuranceInfo = $("<div>").text("보험이 없습니다.");
-                            iszero = true;
                             accordionBody.append(noInsuranceInfo);
-                            $("#petAccountCnt" + pet_id).text("보험이 없음");
+                            $("#petInsuranceCnt" + pet_id).text("보험이 없음");
                         } else {
+                            iszero = true;
                             insuranceData.forEach(function (insurance) {
+                                cnt++;
                                 var in_name = $("<div>").text("보험명: " + insurance.insuranceName);
                                 var in_count = $("<div>").text("납입 횟수: " + insurance.paymentCount);
-                                var in_amount = $("<div>").text("납입액: " + insurance.insuranceAmount);
+                                var in_amount = $("<div>").text("납입액: " + Number(insurance.insuranceAmount).toLocaleString() + "원");
                                 var downloadButtonContainer = $("<div>").addClass("sc-hmLeec dNvInI");
                                 var downloadButton = $("<button style='font-size: 16px'>")
                                     .addClass("downbtn")
@@ -97,7 +137,8 @@
                                 accordionBody.append(downloadButtonContainer);
 
                             });
-                            $("#petAccountCnt" + pet_id).text(insuranceData.length + "개의 보험 보유");
+                            $("#petInsuranceCnt" + pet_id).text(insuranceData.length + "개의 보험 보유");
+
                         }
                     }).fail(function () {
                         console.log("Error fetching my insurance data.");
@@ -111,17 +152,15 @@
                     $("#accordion").append(accordionItem);
                 });
 
-// Update the info text once all AJAX requests are complete
-                $.when.apply($, promises2, iszero).then(function () {
-                    if (iszero) {
+                $.when.apply($, promises2, iszero, cnt).then(function () {
+                    if (!iszero) {
                         infoText = "가입된 보험이 없습니다.\n 추천 보험 보러가기";
                     } else {
-                        infoText += promises2.length + "개의 보험에 가입되어 있습니다.";
+                        infoText += cnt + "개의 보험에 가입되어 있습니다.";
                     }
                     var infoTextElement = document.querySelector(".info-text2");
                     infoTextElement.textContent = infoText;
                 });
-
             }
         });
     });

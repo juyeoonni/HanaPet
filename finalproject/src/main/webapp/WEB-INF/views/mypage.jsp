@@ -13,8 +13,39 @@
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"--%>
-<%--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--%>
+    <style>
+        .guest {
+            font-weight: bold;
+            font-size: 23px;
+            padding-bottom: 20px;
+        }
+
+        #top-box {
+            width: 140%;
+            /*height: 120px;*/
+            padding: 30px;
+            margin-top: 10px;
+            background: #E1E6DE;
+            margin-right: 10px;
+            /*box-shadow: 4px 4px 15px 1px rgba(0, 0, 0, 0.2);*/
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        #top-box2 {
+            width: 100%;
+            margin-top: 10px;
+            background: #E1E6DE;
+            box-shadow: 4px 4px 15px 1px rgba(0, 0, 0, 0.17);
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+
+
+    </style>
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"--%>
+    <%--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--%>
 </head>
 <body>
 <%

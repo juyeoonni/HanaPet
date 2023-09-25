@@ -47,7 +47,7 @@ public class SavingaccountController {
     // 마이페이지 반려견 적금 자세히 보기
     @GetMapping("/mypet-saving/detail")
     public ModelAndView mypetSavingDetail(@RequestParam(name = "accountNumber", required = false) String accountNumber) {
-        ModelAndView mav = new ModelAndView("mypet-saving-detail");
+        ModelAndView mav = new ModelAndView("include/mypet-saving-detail");
         // 자세히 보기 페이지에서 필요한 정보들
         List<MyPageDetailInfo> infos = savingaccountService.getDetailInfo(accountNumber);
         // 자세히 보기 페이지에서 필요한 거래 내역 정보들

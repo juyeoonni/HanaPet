@@ -2,128 +2,110 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <style>
-        /*!* 막대 그래프 컨테이너 스타일 *!*/
-        /*.progress-bar-container {*/
-        /*    width: 100%;*/
-        /*    height: 45px; !* 막대 그래프의 높이 조절 *!*/
-        /*    background-color: #ccc; !* 막대 그래프 바의 배경색 *!*/
-        /*    border-radius: 50px; !* 모서리를 둥글게 만듭니다. *!*/
-        /*    margin-bottom: 5px; !* 각 막대 그래프 사이에 간격 추가 *!*/
-        /*}*/
-
-        /*!* 막대 그래프 바 초기 스타일 *!*/
-        /*.progress-bar {*/
-        /*    height: 100%;*/
-        /*    background-color: #75A989; !* 막대 그래프의 색상 *!*/
-        /*    text-align: center;*/
-        /*    line-height: 20px; !* 텍스트를 수직으로 중앙 정렬 *!*/
-        /*    color: #fff; !* 텍스트 색상 *!*/
-        /*    border-radius: 50px; !* 왼쪽 모서리만 둥글게 만듭니다. *!*/
-        /*    width: 0; !* 초기 너비를 0으로 설정 *!*/
-        /*    transition: width 1s ease-in-out; !* 너비 변화에 대한 애니메이션 설정 *!*/
-        /*}*/
-
-        /*!* 막대 그래프 진행률 텍스트 스타일 *!*/
-        /*.progress-text {*/
-        /*    margin-left: 5px; !* 텍스트와 막대 그래프 사이의 간격 추가 *!*/
-        /*}*/
-
-        .menu-title {
-            text-align: center;
-            font-size: 30px;
-            margin-bottom: 40px;
+        .card-box {
+            padding: 10px 20px 20px 10px;
+            border-bottom: 1px solid;
         }
 
-        .top-container, .left-container {
-            display: flex;
-            justify-content: space-between;
+        .toggleSwitch {
+            width: 50px; /* 전체 너비를 50%로 축소 */
+            height: 25px; /* 전체 높이를 50%로 축소 */
+            display: block;
+            position: relative;
+            border-radius: 15px; /* 반지름도 50%로 축소 */
+            background-color: #fff;
+            box-shadow: 0 0 8px 1.5px rgba(0 0 0 / 15%);
+            cursor: pointer;
+            margin-bottom: 10px; /* 마진도 50%로 축소 */
         }
 
-        .button-container {
+        .toggleSwitch .toggleButton {
+            width: 20px; /* 토글 버튼의 너비를 조절 */
+            height: 20px; /* 토글 버튼의 높이를 조절 */
+            position: absolute;
+            top: 50%;
+            left: 2px; /* 왼쪽 위치를 조절 */
+            transform: translateY(-50%);
+            border-radius: 50%;
+            background: #75a989;
+        }
+
+        .toggles:checked ~ .toggleSwitch {
+            background: #75a989;
+        }
+
+        .toggles:checked ~ .toggleSwitch .toggleButton {
+            left: calc(100% - 22px); /* 토글 버튼의 왼쪽 위치를 조절 */
+            background: #fff;
+        }
+
+        .toggleSwitch, .toggleButton {
+            transition: all 0.2s ease-in;
+        }
+
+        #text-right3 {
             text-align: end;
         }
 
-        .middle-box {
-            background: #75A989;
-            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-            border-radius: 10px 10px 0px 0px;
-            width: auto;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0px 30px;
-        }
-
-        #top-box {
-            width: 100%;
-            height: 120px;
-            margin-top: 10px;
-            background: #E1E6DE;
-            /*box-shadow: 4px 4px 15px 1px rgba(0, 0, 0, 0.2);*/
-            border-radius: 10px;
-            margin-bottom: 40px;
-        }
-
-        #text-right {
-            text-align: end;
-        }
-
-        .accordion-button {
-            background-color: white !important;
-            border: 2px solid #E1E6DE;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-
-        .smallsize {
-            font-size: 15px;
-        }
-
-        .accordion-body {
-            padding: 15px !important;
-        }
-
-        .account-container {
-            padding: 20px 0px;
-            border-bottom: 2px solid #E1E6DE !important;
-        }
-
-        /* 기본 버튼 스타일 */
-        .custom-btn {
-            background-color: #75A989;
-            border: 1px solid #fff;
-            color: #fff; /* 텍스트 색상을 흰색으로 지정 */
-        }
-
-        /* 선택된 버튼 스타일 */
-        .custom-btn:checked {
-            background-color: #BFDFCB !important; /* 선택된 버튼의 배경색 변경 */
-            border: 1px solid #fff; /* 선택된 버튼의 테두리 스타일 변경 */
-            color: #fff; /* 선택된 버튼의 텍스트 색상을 흰색으로 유지 */
-        }
-
-        /* 호버 상태일 때의 스타일 */
-        .custom-btn:hover {
-            background-color: #BFDFCB; /* 호버 상태일 때 배경색 변경 */
-            border: 1px solid #fff; /* 호버 상태일 때 테두리 스타일 변경 */
-            color: #fff; /* 호버 상태일 때 텍스트 색상을 흰색으로 유지 */
+        td{
+            color: #324D3D !important;
         }
     </style>
 
 </head>
 
 <body>
-<div id="top-box">
-    <div>
-        <%=guest_name%>님
+<div style="display:flex;">
+    <div id="top-box">
+        <div class="guest">
+            <img src="/resources/img/logo-one.png" width="40px"/> <%=guest_name%>님
+        </div>
+        <div id="info-text3" style="color: #75a989">
+            총
+        </div>
+        <div id="text-right3" style="font-weight: bold;">
+            총 자산
+        </div>
     </div>
-    <div id="info-text3">
-        총
-    </div>
-    <div id="text-right3">
-        총 잔액
+    <div id="top-box2">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="padding-bottom: 5px"><b>자산 한눈에 보기</b></h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped" style="margin-bottom: 0px">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    반려견 적금
+                                </td>
+                                <td id="jk3">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    반려견 보험
+                                </td>
+                                <td>
+                                    -
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    내 계좌
+                                </td>
+                                <td id="ma3">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 <div class="account-box" id="account-box">
     <!-- 동적으로 카드 넣기 -->
 </div>
@@ -143,49 +125,98 @@
             success: function (data) {
                 const accountBox = document.getElementById('account-box');
 
-                data.forEach(function (account) {
+                data.forEach(function (account, index) {
                     totalAmount += account.balance;
-                    // 새로운 카드 요소 생성
+
                     const card = document.createElement('div');
-                    card.classList.add('card-box'); // 원하는 클래스 추가
+                    card.classList.add('card-box');
 
-                    // 카드 본문 생성
                     const cardBody = document.createElement('div');
-                    cardBody.classList.add('card-body'); // 원하는 클래스 추가
+                    cardBody.style.display = "flex";
+                    cardBody.style.justifyContent = "space-between";
+                    cardBody.classList.add('card-body');
 
-                    // 카드 내용 구성
+                    const left = document.createElement('div');
+                    const accountName = document.createElement('div');
+                    accountName.style.fontWeight = 'bold'
+                    accountName.textContent = account.account_name;
                     const accountNumber = document.createElement('div');
-                    accountNumber.textContent = '계좌번호: ' + account.account_number;
+                    accountNumber.textContent = account.account_number.slice(0, 16) + '*';
+
+                    left.appendChild(accountName);
+                    left.appendChild(accountNumber);
 
                     const balance = document.createElement('div');
-                    balance.textContent = '잔액: ' + account.balance + '원';
-
-                    const accountName = document.createElement('div');
-                    accountName.textContent = '계좌명: ' + account.account_name;
+                    balance.id = 'balance' + index;
+                    balance.style.alignSelf = 'center';
+                    balance.textContent = Number(account.balance).toLocaleString() + '원';
 
                     const history = document.createElement('button');
                     history.textContent = '거래 내역';
 
-                    // 카드 본문에 내용 추가
-                    cardBody.appendChild(accountNumber);
+                    const text = document.createElement("span");
+                    text.style.marginRight = '10px';
+                    text.textContent = '자산 보이기';
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.id = "toggle" + index;
+                    checkbox.className = 'toggles';
+                    checkbox.hidden = true;
+                    const label = document.createElement("label");
+                    label.setAttribute("for", "toggle" + index);
+                    label.className = "toggleSwitch";
+                    const span = document.createElement("span");
+                    span.className = "toggleButton";
+                    label.appendChild(span);
+
+                    const togglebox = document.createElement("div");
+                    togglebox.style.display = 'flex';
+                    togglebox.appendChild(text);
+                    togglebox.appendChild(checkbox);
+                    togglebox.appendChild(label);
+
+                    const right = document.createElement("right");
+                    right.style.textAlign = 'end';
+                    right.appendChild(togglebox);
+                    right.appendChild(history);
+
+                    cardBody.appendChild(left);
                     cardBody.appendChild(balance);
-                    cardBody.appendChild(accountName);
-                    cardBody.appendChild(history)
+                    cardBody.appendChild(right);
 
-                    // 카드에 본문 추가
                     card.appendChild(cardBody);
-
-                    // 카드를 account-box에 추가
                     accountBox.appendChild(card);
+
+                    const toggleCheckbox = document.getElementById("toggle" + index);
+                    toggleCheckbox.addEventListener("change", function () {
+                        const toggleButton = toggleCheckbox.nextElementSibling.querySelector(".toggleButton");
+                        if (toggleCheckbox.checked) {
+                            console.log("체크 박스가 체크되었습니다.");
+                            document.getElementById('balance' + index).textContent = "체크";
+                            toggleButton.style.left = 'calc(100% - 22px)';
+                            // toggleButton.style.background = 'white'; // 토글 버튼의 배경색 변경
+                            // toggleCheckbox.style.backgroundColor = '#75a989'; // 토글 체크박스의 배경색 변경
+                        } else {
+                            console.log("체크 박스가 해제되었습니다.");
+                            document.getElementById('balance' + index).textContent = "잔액 숨김 중";
+                            toggleButton.style.left = '2px';
+                            // toggleButton.style.background = '#75a989'; // 토글 버튼의 배경색 변경
+                            // toggleCheckbox.style.backgroundColor = 'white'; // 토글 체크박스의 배경색 변경
+                        }
+                    });
+
                 });
                 document.getElementById("info-text3").textContent += " " + data.length + "개의 계좌가 있습니다.";
-                document.getElementById("text-right3").textContent += totalAmount + "원";
+                document.getElementById("text-right3").textContent += totalAmount.toLocaleString() + "원";
             },
             error: function (xhr, status, error) {
                 console.error('Error fetching account list:', error);
             }
         });
+
+
     });
+
 
 </script>
 
