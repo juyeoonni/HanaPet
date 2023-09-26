@@ -1,6 +1,7 @@
 package com.kopo.finalproject.depositaccount.model.dao;
 
 import com.kopo.finalproject.depositaccount.model.dto.Depositaccount;
+import com.kopo.finalproject.depositaccount.model.dto.History;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
@@ -11,6 +12,8 @@ public interface DepositaccountMapper {
 
     // 예금 계좌를 모두 가져오기 (select)
     List<Depositaccount> getAllDepositAccountsOfGuest(String guest_id);
+
+    List<History> getHistory(String account_number);
 
     // 예금 계좌 비밀번호 확인하기
     int checkDepositAccountPW(HashMap<String, String> checkPWdata);

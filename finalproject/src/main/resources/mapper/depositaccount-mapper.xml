@@ -11,6 +11,14 @@
         WHERE guest_id = #{guest_id}
     </select>
 
+    <!-- 예금 계좌 거래 내역 조회 -->
+    <select id="getHistory" parameterType="String"
+            resultType="com.kopo.finalproject.depositaccount.model.dto.History">
+        SELECT *
+        FROM history
+        WHERE account_number = #{account_number}
+    </select>
+
     <!-- 예금 계좌 비밀번호 확인 -->
     <select id="checkDepositAccountPW" parameterType="HashMap"
             resultType="Integer">

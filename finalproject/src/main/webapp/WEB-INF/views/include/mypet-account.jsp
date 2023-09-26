@@ -47,7 +47,7 @@
             text-align: end;
         }
 
-        td{
+        td {
             color: #324D3D !important;
         }
     </style>
@@ -153,6 +153,11 @@
 
                     const history = document.createElement('button');
                     history.textContent = '거래 내역';
+                    var url = "/history?account_number="
+                    history.addEventListener("click", function () {
+                        url += account.account_number;
+                        window.location.href = url;
+                    })
 
                     const text = document.createElement("span");
                     text.style.marginRight = '10px';

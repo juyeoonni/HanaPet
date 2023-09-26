@@ -404,9 +404,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:set var="i" value="${history_info.size()}"/>
-                            <c:forEach var="historyItem" items="${history_info}">
-                                <div style="border: 1px solid">
+
+                            <div style="border: 1.5px solid">
+                                <c:set var="i" value="${history_info.size()}"/>
+                                <c:forEach var="historyItem" items="${history_info}">
+                                <tr>
                                     <td>${i}회차</td>
                                     <td> ${historyItem.guestId}</td>
                                     <td> ${historyItem.accountNumberIn}</td>
@@ -417,9 +419,9 @@
                                     </td>
                                     <td><fmt:formatNumber value="${historyItem.balanceAfterIn}" type="number"
                                                           pattern="#,###원"/></td>
-                                </div>
-                                <c:set var="i" value="${i - 1}"/>
-                                </tr>
+                            </div>
+                            <c:set var="i" value="${i - 1}"/>
+                            </tr>
                             </c:forEach>
                             </tbody>
                         </table>

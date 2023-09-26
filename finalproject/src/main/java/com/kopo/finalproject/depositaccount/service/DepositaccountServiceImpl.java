@@ -2,6 +2,7 @@ package com.kopo.finalproject.depositaccount.service;
 
 import com.kopo.finalproject.depositaccount.model.dao.DepositaccountMapper;
 import com.kopo.finalproject.depositaccount.model.dto.Depositaccount;
+import com.kopo.finalproject.depositaccount.model.dto.History;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,15 @@ public class DepositaccountServiceImpl implements DepositaccountService {
     public DepositaccountServiceImpl(DepositaccountMapper depositaccountMapper) {
         this.depositaccountMapper = depositaccountMapper;
     }
+
     @Override
     public List<Depositaccount> getAllDepositAccountsOfGuest(String guest_id) {
         return depositaccountMapper.getAllDepositAccountsOfGuest(guest_id);
+    }
+
+    @Override
+    public List<History> getHistory(String account_number) {
+        return depositaccountMapper.getHistory(account_number);
     }
 
     @Override
