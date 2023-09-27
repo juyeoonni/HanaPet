@@ -3,8 +3,8 @@
 <head>
     <style>
         .card-box {
-            padding: 10px 20px 20px 10px;
-            border-bottom: 1px solid;
+            padding: 30px 35px 25px 35px;
+            border-bottom: 2px solid #75a989 ;
         }
 
         .toggleSwitch {
@@ -60,7 +60,7 @@
         <div class="guest">
             <img src="/resources/img/logo-one.png" width="40px"/> <%=guest_name%>님
         </div>
-        <div id="info-text3" style="color: #75a989">
+        <div id="info-text3">
             총
         </div>
         <div id="text-right3" style="font-weight: bold;">

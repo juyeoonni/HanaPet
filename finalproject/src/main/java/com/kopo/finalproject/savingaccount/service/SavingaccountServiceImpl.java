@@ -61,6 +61,7 @@ public class SavingaccountServiceImpl implements SavingaccountService {
 
             // 5. 이체 내역 테이블 생성 (insert) - 내역 기록
             transferHistoryMapper.insertHistory(data);
+            transferHistoryMapper.insertDepositHistory(data);
 
         } catch (Exception e) {
             throw new RuntimeException("joinSavingAccounts 작업 중 오류 발생: " + e.getMessage());
@@ -93,8 +94,9 @@ public class SavingaccountServiceImpl implements SavingaccountService {
             //예금 계좌 잔액 가져오기 (이체 내역 insert를 위한)
             balance = depositaccountMapper.getBalance(data.get("deposit_account_number"));
             data.put("current_balance_d", balance);
-            // 4. 이체 내역 테이블 생성 (insert) - 내역 기록
+            // 4. 이체 내역 테이블 2개 생성 (insert) - 내역 기록
             transferHistoryMapper.insertHistory(data);
+            transferHistoryMapper.insertDepositHistory(data);
             // 5. 손님-반려견 테이블 생성 (insert)
             if (guestMapper.checkDuplicate(data) == 0) {
                 guestMapper.insertPet(data);

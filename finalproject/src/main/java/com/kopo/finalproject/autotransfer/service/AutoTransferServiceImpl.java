@@ -78,6 +78,7 @@ public class AutoTransferServiceImpl implements AutoTransferService {
 
             // 4. 이체 내역 테이블 생성 (insert) - 내역 기록
             transferHistoryMapper.insertHistory(data);
+            transferHistoryMapper.insertDepositHistory(data);
 
             // 문자 보내기
             String content = "[HanaPet] 출금계좌 " + schedule.getDepositAccountNumber() + ' ' + schedule.getTransferAmount() + "원 자동이체 완료.";
