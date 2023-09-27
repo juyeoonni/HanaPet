@@ -123,14 +123,12 @@
 </div>
 <script>
     $(document).ready(function () {
-        $.noConflict();
-        $('#myTable').DataTable();
-    });
-
-    var table = new DataTable('#myTable', {
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json',
-        },
+        new DataTable('#myTable', {
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json',
+            },
+            order: [[0, 'desc']] // 첫 번째 열(거래일시)을 내림차순으로 정렬
+        });
     });
 
     document.getElementById('account-name').textContent += "[" + sessionStorage.getItem("accountName") + "]";
