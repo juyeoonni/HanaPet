@@ -12,4 +12,6 @@ public interface InsuranceMapper {
     List<MyInsurance> getAllInsurancesOfPetOfGuest(HashMap<String, String> data);
 
     void joinInsurance(HashMap<String, String> data);
+
+    MyInsurance getInsuDetail(String insu_id);
 }

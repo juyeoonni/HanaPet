@@ -37,7 +37,6 @@
         }
 
         .button-container {
-            margin-top: 30px;
             text-align: end;
         }
 
@@ -231,7 +230,7 @@
                             // 주요 컨테이너 생성
                             var container = $('<div>').addClass('account-container');
                             var topContainer = $('<div>').addClass('top-container');
-                            var leftContainer = $('<div>').addClass('left-container');
+                            var leftContainer = $('<div style="margin-top: 10px">').addClass('left-container');
                             var rightContainer = $('<div>').addClass('right-container');
                             var buttonContainer = $('<div>').addClass('button-container');
 
@@ -241,13 +240,13 @@
 
                             var Div = $('<div>');
                             // 적금 이름과 진행률 추가
-                            var nameDiv = $('<div style="font-weight: bold; font-size: 18px">').text(saving_name);
+                            var nameDiv = $('<div style="font-weight: bold; font-size: 20px; margin-bottom: 10px">').text(saving_name);
                             // var progressDiv = $('<div>').text(progress_rate);
                             Div.append(nameDiv, progressBar);
                             leftContainer.append(Div);
 
                             // 계좌 번호와 잔액 추가
-                            var accountNumberDiv = $('<div>').text(account_number.slice(0, 15) + '*');
+                            var accountNumberDiv = $('<div>').text(account_number.slice(0, 4) + '******'+account_number.slice(10));
                             var balanceDiv = $('<div>').text('잔액 ' + Number(balance).toLocaleString() + '원');
                             rightContainer.append(accountNumberDiv, balanceDiv);
 
@@ -342,17 +341,20 @@
 
         function createProgressBar(progressRate) {
             // 막대 그래프 컨테이너를 생성합니다.
-            var progressBarContainer = $("<div style='width: 340px; height: 30px; border-radius: 20px'>").addClass("progress");
+            var progressBarContainer = $("<div style='width: 410px; height: 30px; border-radius: 20px; background: #f2f2f2;'>").addClass("progress");
 
             // 막대 그래프 바를 생성합니다.
-            var progressBar = $("<div style='background: linear-gradient(144deg, rgba(191,223,203,1) 36%, rgba(117,169,137,1) 100%);'>").addClass("progress-bar")
+            var progressBar = $("<div style='background:linear-gradient(to right, #d3959b, #bfe6ba)'>").addClass("progress-bar")
                 .attr("role", "progressbar")
                 .attr("aria-valuemin", "0")
                 .attr("aria-valuemax", "100")
                 .css("width", "0%"); // 초기 너비를 0%로 설정
 
-            // 막대 그래프 바를 막대 그래프 컨테이너에 추가합니다.
-            progressBarContainer.append(progressBar);
+            // 진행률을 나타내는 텍스트를 생성합니다.
+            var progressText = $("<div style='text-align: center; color: #324D3D; font-size: 14px; margin-left: 10px; margin-top: 4px'>").text(Math.round(progressRate) + "%");
+
+            // 막대 그래프 바와 텍스트를 막대 그래프 컨테이너에 추가합니다.
+            progressBarContainer.append(progressBar, progressText);
 
             // 막대 그래프 컨테이너를 반환합니다.
             var container = progressBarContainer;
@@ -362,6 +364,7 @@
 
             return container;
         }
+
     });
 
 </script>

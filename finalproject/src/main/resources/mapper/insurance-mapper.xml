@@ -51,9 +51,29 @@
           AND pet_id = #{pet_id}
     </select>
 
+
+    <!-- 마이페이지 보험 상세 페이지 내용 -->
+    <select id="getInsuDetail"
+            parameterType="String"
+            resultType="com.kopo.finalproject.insurance.controller.MyInsurance">
+        SELECT JOIN_INSURANCE_ID      as joinInsuranceId,
+               GUEST_ID               as guestId,
+               PET_ID                 as petId,
+               INSURANCE_NAME         as insuranceName,
+               JOIN_DATE              as joinDate,
+               DEPOSIT_ACCOUNT_NUMBER as depositAccountNumber,
+               PAYMENT_COUNT          as paymentCount,
+               INSURANCE_AMOUNT       as insuranceAmount
+        FROM join_insurance
+        WHERE join_insurance_id = #{insu_id}
+    </select>
+
+
     <!-- 보험 가입 테이블 생성 -->
     <insert id="joinInsurance" parameterType="HashMap">
         INSERT INTO JOIN_INSURANCE(guest_id, pet_id, insurance_name, deposit_account_number, insurance_amount)
         VALUES (#{guestId}, #{petId}, #{insuranceName}, #{depositAccountNumber}, #{insuranceAmount})
     </insert>
+
+
 </mapper>

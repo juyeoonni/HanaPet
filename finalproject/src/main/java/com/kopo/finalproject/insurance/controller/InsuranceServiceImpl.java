@@ -30,4 +30,9 @@ public class InsuranceServiceImpl implements InsuranceService {
     public void joinInsurance(HashMap<String, String> data) {
         insuranceMapper.joinInsurance(data);
     }
+
+    @Override
+    public MyInsurance getInsuDeatil(String insu_id) {
+        return insuranceMapper.getInsuDetail(insu_id);
+    }
 }

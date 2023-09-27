@@ -1,5 +1,6 @@
 package com.kopo.finalproject.insurance.controller;
 
+import com.kopo.finalproject.depositaccount.model.dto.History;
 import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -72,5 +73,17 @@ public class InsuranceController {
         List<MyInsurance> insurances = insuranceService.getAllInsurancesOfPetOfGuest(data); // 데이터베이스에서 모든 제품 정보 가져오기\
         System.out.println(insurances);
         return ResponseEntity.ok(insurances);
+    }
+
+    @GetMapping("/mypet-insurance/detail")
+    public ModelAndView getInsuDeatil(@RequestParam String insu_id) {
+        ModelAndView mav = new ModelAndView();
+        MyInsurance insu = insuranceService.getInsuDeatil(insu_id);
+
+        mav.addObject("insu", insu); // 결과를 뷰에 전달
+        mav.setViewName("include/mypet-insurance-detail");
+
+        System.out.println("insu: " + insu);
+        return mav;
     }
 }

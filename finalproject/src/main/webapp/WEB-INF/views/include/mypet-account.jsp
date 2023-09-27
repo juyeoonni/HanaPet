@@ -153,10 +153,8 @@
 
                     const history = document.createElement('button');
                     history.textContent = '거래 내역';
-                    var url = "/history?account_number="
                     history.addEventListener("click", function () {
-                        url += account.account_number;
-                        window.location.href = url;
+                        window.location.href = "/history?account_number=" + account.account_number;
                     })
 
                     const text = document.createElement("span");

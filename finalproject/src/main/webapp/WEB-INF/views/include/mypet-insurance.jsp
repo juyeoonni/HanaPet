@@ -166,14 +166,17 @@
                                         window.open('/signInfoPDF', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');
                                     });
 
-                                var detailBtn = $("<button style='font-size: 17px; background: rgb(117, 169, 137); color: white; border: 3px solid rgb(117, 169, 137); border-radius: 10px; padding: 5px 15px; width: 130px; height: 45px; cursor: pointer;'>").text("자세히 보기");
-
+                                var detailBtn = $("<button style='font-size: 17px; background: rgb(117, 169, 137); color: white; border: 3px solid rgb(117, 169, 137); border-radius: 10px; padding: 5px 15px; width: 130px; height: 45px; cursor: pointer;'>")
+                                    .text("자세히 보기")
+                                    .on('click', function () {
+                                        window.location.href = "/mypet-insurance/detail?insu_id=" + insurance.joinInsuranceId;
+                                    });
 
                                 downloadButtonContainer.append(downloadButton);
 
                                 right.append(downloadButtonContainer);
                                 right.append(detailBtn);
-                                realRight.append(middle,right);
+                                realRight.append(middle, right);
 
 
                                 container.append(left);

@@ -11,4 +11,6 @@ public interface InsuranceService {
     List<MyInsurance> getAllInsurancesOfPetOfGuest(HashMap<String, String> data);
 
     void joinInsurance(HashMap<String, String> data);
+
+    MyInsurance getInsuDeatil(String insu_id);
 }
