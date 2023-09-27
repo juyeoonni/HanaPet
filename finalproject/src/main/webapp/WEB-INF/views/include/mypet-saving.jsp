@@ -11,6 +11,10 @@
     </script>
     <style>
 
+        .accordion-collapse .account-container:last-child {
+            border-bottom: none !important;
+        }
+
         .nav-item .nav-link {
             border-bottom: #75a989 !important;
         }
@@ -249,7 +253,7 @@
 
                             // 내가 개설자일 때만 "공유하기" 버튼 생성
                             if (String(openerId) === guest_id) {
-                                var kakaoLink = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px;  padding: 5px 15px">').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
+                                var kakaoLink = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px;  padding: 5px 15px; width: 122px">').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
                                 buttonContainer.append(kakaoLink);
 
                                 // Kakao 공유 버튼을 생성하고 설정

@@ -2,10 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-    .dNvInI {
+    .downloadbtn {
         font-size: 25px;
         font-width: bold;
-        padding: 60px 100px 0px 0px;
+    }
+
+    .insu-container {
+        padding: 20px 40px;
+        border-bottom: 2px solid #E1E6DE !important;
+    }
+
+    .accordion-collapse .insu-container:last-child {
+        border-bottom: none !important;
     }
 
 </style>
@@ -76,20 +84,22 @@
                 var cnt = 0; // 보험이 없는 개수
 
                 petsData.forEach(function (pet) {
+                    var gender = pet.gender == 'M' ? '남' : '여';
                     var pet_id = pet.pet_id;
                     var accordionItem = $("<div>").addClass("accordion-item");
                     var accordionHeader = $("<h2>").addClass("accordion-header");
                     var imageElement = $('<img style="width: 60px; height:60px; border-radius: 50%">').attr('src', 'resources/img/dog' + pet.pet_id + '.jpg').addClass('petimg');
-                    var accordionButton = $('<button class="accordion-button" style="padding:15px;" type="button" data-bs-toggle="collapse" data-bs-target="#accordionItem' + pet.pet_id + '" aria-expanded="false" aria-controls="accordionItem' + pet.pet_id + '">')
+                    var accordionButton = $('<button class="accordion-button" style="padding:15px 40px;" type="button" data-bs-toggle="collapse" data-bs-target="#accordionItem' + pet.pet_id + '" aria-expanded="false" aria-controls="accordionItem' + pet.pet_id + '">')
                         .html('<div class="button-content" style="display: flex; justify-content: space-between; align-items: center; width: 90%">'
                             + '<div class="left">'
                             + '<span class="petimg">' + imageElement.prop('outerHTML') + '</span>'
-                            + '<span class="petname">' + pet.name + '</span>'
+                            + '<span class="petname" style="font-size: 24px; font-weight: bold; margin-left: 20px;">' + pet.name + '</span>'
                             + '</div>'
-                            + '<div class="smallsize" id="total-' + pet.pet_id + '">'
-                            + '</div>'
-                            + '<div class="right">'
-                            + '<div>' + pet.gender + '|' + pet.age + '살 ' + pet.breed + '</div>'
+                            + '<div style="display: flex; align-items: center;"><div style="text-align: end">'
+                            + '<div class="smallsize" style=" margin-right: 40px;" id="total-' + pet.pet_id + '">'
+                            + '</div> </div>'
+                            + '<div class="right" style="margin-right: -40px">'
+                            + '<div style="font-size: 20px; font-weight: bold; padding-bottom: 10px; ">' + gender + '|' + pet.age + '살 ' + pet.breed + '</div>'
                             + '<div id="petInsuranceCnt' + pet_id + '"></div>'
                             + '</div>'
                             + '</div>');
@@ -108,35 +118,69 @@
                         dataType: "json"
                     }).then(function (insuranceData) {
                         if (insuranceData.length === 0) {
-                            var noInsuranceInfo = $("<div>").text("보험이 없습니다.");
+                            var noInsuranceInfo = $("<div style='padding: 15px 40px !important;'>").text("보험이 없습니다.");
                             accordionBody.append(noInsuranceInfo);
-                            $("#petInsuranceCnt" + pet_id).text("보험이 없음");
+                            $("#petInsuranceCnt" + pet_id).text("보험 없음");
                         } else {
                             iszero = true;
                             insuranceData.forEach(function (insurance) {
                                 cnt++;
-                                var in_name = $("<div>").text("보험명: " + insurance.insuranceName);
-                                var in_count = $("<div>").text("납입 횟수: " + insurance.paymentCount);
-                                var in_amount = $("<div>").text("납입액: " + Number(insurance.insuranceAmount).toLocaleString() + "원");
-                                var downloadButtonContainer = $("<div>").addClass("sc-hmLeec dNvInI");
+                                var container = $('<div style="display: flex; justify-content: space-between;" >').addClass('insu-container');
+
+                                var left = $('<div>').addClass('left');
+                                var realRight = $('<div style="display:flex; align-self: end; padding-top: 55px">');
+                                var right = $('<div style="display:flex; align-self: end;">').addClass('right');
+
+                                var in_img = $("<img src='/resources/img/insurance-logo.png' width='150px' height='40px' style='margin-bottom: 10px; margin-left: -5px'>");
+                                var in_name = $("<div style='font-size: 21px; font-weight: bold; margin-bottom: 10px' >").text(insurance.insuranceName);
+                                var in_count = $("<div style='margin-bottom: 7px'>").text("1년 일시납");
+                                var in_amount = $("<div style='font-size: 19px; font-weight: bold;' >").text("납입액: " + Number(insurance.insuranceAmount).toLocaleString() + "원");
+
+                                var middle = $("<div style='padding-right: 40px'>");
+                                middle.append(in_count, in_amount);
+
+                                left.append(in_img, in_name);
+
+                                var downloadButtonContainer = $("<div>").addClass("downloadbtn");
                                 var downloadButton = $("<button style='font-size: 16px'>")
                                     .addClass("downbtn")
                                     .css({
+                                        fontSize: "17px",
                                         padding: "5px 10px",
-                                        border: "none"
+                                        background: "rgb(117, 169, 137)",
+                                        color: "white",
+                                        border: "3px solid rgb(117, 169, 137)",
+                                        borderRadius:
+                                            "10px",
+                                        padding:
+                                            "5px 15px",
+                                        width:
+                                            "148px",
+                                        height: "45px",
+                                        cursor:
+                                            "pointer",
+                                        marginRight: "10px"
                                     })
                                     .text("가입 증명서 다운")
                                     .on("click", function () {
                                         window.open('/signInfoPDF', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');
                                     });
 
-                                accordionBody.append(in_name);
-                                accordionBody.append(in_count);
-                                accordionBody.append(in_amount);
-                                downloadButtonContainer.append(downloadButton);
-                                accordionBody.append(downloadButtonContainer);
+                                var detailBtn = $("<button style='font-size: 17px; background: rgb(117, 169, 137); color: white; border: 3px solid rgb(117, 169, 137); border-radius: 10px; padding: 5px 15px; width: 130px; height: 45px; cursor: pointer;'>").text("자세히 보기");
 
+
+                                downloadButtonContainer.append(downloadButton);
+
+                                right.append(downloadButtonContainer);
+                                right.append(detailBtn);
+                                realRight.append(middle,right);
+
+
+                                container.append(left);
+                                container.append(realRight);
+                                accordionBody.append(container);
                             });
+
                             $("#petInsuranceCnt" + pet_id).text(insuranceData.length + "개의 보험 보유");
 
                         }
