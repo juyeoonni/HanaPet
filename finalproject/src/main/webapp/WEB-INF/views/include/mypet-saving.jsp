@@ -360,7 +360,7 @@
             var container = progressBarContainer;
 
             // 동적으로 생성된 프로그래스 바에 애니메이션을 적용합니다.
-            progressBar.animate({width: progressRate + '%'}, 600); // 0.6초 동안 애니메이션 실행
+            progressBar.animate({width: progressRate + '%'}, 750); // 0.6초 동안 애니메이션 실행
 
             return container;
         }

@@ -19,6 +19,13 @@
 
 </head>
 <style>
+
+    .menu-title {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
     tr {
         background: #75A989;
     }
@@ -79,7 +86,12 @@
 <%@ include file="header.jsp" %>
 <div class="body">
     <div class="card text-white mb-3">
-        <div class="card-header">거래 내역</div>
+        <div class="menu-title">거래 내역 조회</div>
+        <div style="text-align: center;" id="account-name">
+            ${historyList[0].account_number}
+        </div>
+        <br>
+        <br>
         <div class="card-body">
             <table id="myTable" class="display" style="width:100%">
                 <thead>
@@ -121,6 +133,7 @@
         },
     });
 
+    document.getElementById('account-name').textContent += "[" + sessionStorage.getItem("accountName") + "]";
 </script>
 </body>
 </html>

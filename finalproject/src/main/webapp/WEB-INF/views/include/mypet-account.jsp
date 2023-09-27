@@ -147,13 +147,23 @@
                     left.appendChild(accountNumber);
 
                     const balance = document.createElement('div');
+                    balance.style.marginRight = '-500px';
+                    balance.style.fontWeight = 'bold';
                     balance.id = 'balance' + index;
                     balance.style.alignSelf = 'center';
                     balance.textContent = Number(account.balance).toLocaleString() + '원';
 
                     const history = document.createElement('button');
+                    history.style.backgroundColor = "#75a989";
+                    history.style.color = "white";
+                    history.style.border = "3px solid #75a989";
+                    history.style.borderRadius = "10px";
+                    history.style.padding = "5px 15px";
+                    history.style.marginLeft = "10px";
+
                     history.textContent = '거래 내역';
                     history.addEventListener("click", function () {
+                        sessionStorage.setItem("accountName", account.account_name);
                         window.location.href = "/history?account_number=" + account.account_number;
                     })
 
