@@ -14,8 +14,15 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css"/>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+    <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/KOREAN.json"></script>
+
 </head>
 <style>
+    tr {
+        background: #75A989;
+    }
+
     th {
         font-size: 18px;
     }
@@ -24,10 +31,49 @@
         font-size: 17px;
     }
 
-    table.dataTable tbody tr {
-        background-color: #E1E6DE;
+    input[type="search" i] {
+        margin-bottom: 25px;
     }
 
+    /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+    table.dataTable.stripe > tbody > tr.odd > *, table.dataTable.display > tbody > tr.odd > * {
+        box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+        background-color: white !important;
+    }
+
+    /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+    table.dataTable.stripe > tbody > tr.odd.selected > *, table.dataTable.display > tbody > tr.odd.selected > * {
+        box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+        background-color: white !important;
+    }
+
+    /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+    table.dataTable.stripe > tbody > tr.even > *, table.dataTable.display > tbody > tr.even > * {
+        box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+        background-color: white !important;
+    }
+
+    /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+    table.dataTable.stripe > tbody > tr.even.selected > *, table.dataTable.display > tbody > tr.even.selected > * {
+        box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+        background-color: white !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #E1E6DE !important;
+        border: 1px solid #E1E6DE !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+        background: #75A989 !important;
+        border: 1px solid #75A989 !important;
+        color: white !important;
+    }
+
+    #myTable_info {
+        font-size: 16px !important; /* 원하는 크기로 변경 */
+        padding-left: 10px !important;
+    }
 </style>
 <body>
 <%@ include file="header.jsp" %>
@@ -68,6 +114,13 @@
         $.noConflict();
         $('#myTable').DataTable();
     });
+
+    var table = new DataTable('#myTable', {
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json',
+        },
+    });
+
 </script>
 </body>
 </html>
