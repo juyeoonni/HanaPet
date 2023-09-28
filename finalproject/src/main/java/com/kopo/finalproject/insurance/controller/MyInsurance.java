@@ -10,11 +10,12 @@ import lombok.Setter;
 public class MyInsurance {
     private String joinInsuranceId;
     private String guestId;
+    private String guestName;
     private String petId;
+    private String petName;
     private String insuranceName;
     private String joinDate;
     private String depositAccountNumber;
     private String paymentCount;
     private String insuranceAmount;
-
 }

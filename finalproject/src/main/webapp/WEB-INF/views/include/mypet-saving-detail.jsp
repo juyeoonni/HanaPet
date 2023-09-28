@@ -241,7 +241,6 @@
         }
 
         .card {
-
             position: relative;
             display: flex;
             flex-direction: column;
@@ -249,7 +248,6 @@
             word-wrap: break-word;
             background-color: #fff;
             background-clip: border-box;
-            border: 1px solid rgba(19, 24, 44, .125);
             border-radius: .25rem
         }
 
@@ -438,7 +436,8 @@
                     </c:if>
                 </div>
 
-                <div class="card" style="align-self: center; margin-top: 50px; width: 100%;">
+                <div class="card"
+                     style="align-self: center; margin-top: 50px; width: 100%; border: 1px solid rgba(19, 24, 44, .125);">
                     <div class="card-header" style="align-self: center; margin-bottom: 25px;">기여도</div>
                     <div class="card-body" style=" padding: 20px; width: 100%;">
                         <iframe class="chartjs-hidden-iframe"

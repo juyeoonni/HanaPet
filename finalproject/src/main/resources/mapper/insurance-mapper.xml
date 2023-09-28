@@ -56,15 +56,19 @@
     <select id="getInsuDetail"
             parameterType="String"
             resultType="com.kopo.finalproject.insurance.controller.MyInsurance">
-        SELECT JOIN_INSURANCE_ID      as joinInsuranceId,
-               GUEST_ID               as guestId,
-               PET_ID                 as petId,
-               INSURANCE_NAME         as insuranceName,
-               JOIN_DATE              as joinDate,
-               DEPOSIT_ACCOUNT_NUMBER as depositAccountNumber,
-               PAYMENT_COUNT          as paymentCount,
-               INSURANCE_AMOUNT       as insuranceAmount
-        FROM join_insurance
+        SELECT ji.JOIN_INSURANCE_ID      as joinInsuranceId,
+               ji.GUEST_ID               as guestId,
+               g.NAME                    as guestName,
+               ji.PET_ID                 as petId,
+               p.NAME                    as petName,
+               ji.INSURANCE_NAME         as insuranceName,
+               ji.JOIN_DATE              as joinDate,
+               ji.DEPOSIT_ACCOUNT_NUMBER as depositAccountNumber,
+               ji.PAYMENT_COUNT          as paymentCount,
+               ji.INSURANCE_AMOUNT       as insuranceAmount
+        FROM join_insurance ji
+                 join guest g on g.guest_id = ji.guest_id
+                 join pet p on p.pet_id = ji.pet_id
         WHERE join_insurance_id = #{insu_id}
     </select>
 

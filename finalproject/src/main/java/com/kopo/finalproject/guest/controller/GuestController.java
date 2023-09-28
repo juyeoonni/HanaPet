@@ -35,6 +35,7 @@ class GuestController {
             session.setAttribute("guest_id", loginMember.getGuest_id());
             session.setAttribute("name", loginMember.getName());
             session.setAttribute("phone", loginMember.getPhone());
+            session.setAttribute("email", loginMember.getEmail());
             return ResponseEntity.ok("로그인 성공");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("로그인 실패");
@@ -77,6 +78,7 @@ class GuestController {
             session.setAttribute("guest_id", memberInfo.getGuest_id());
             session.setAttribute("name", memberInfo.getName());
             session.setAttribute("phone", memberInfo.getPhone());
+            session.setAttribute("email", memberInfo.getEmail());
         } else {
         }
         return mav;

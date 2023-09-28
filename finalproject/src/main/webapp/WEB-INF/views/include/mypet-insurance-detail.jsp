@@ -3,29 +3,27 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ page import="com.kopo.finalproject.savingaccount.model.dto.MyPageHistoryInfo" %>
 <!DOCTYPE html>
-<html>
 <head>
     <title>MyPet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/bootstrap.css">
-    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"--%>
-    <%--          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">--%>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/resources/js/apiKey.js"></script>
 
-    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
-            integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
-            crossorigin="anonymous"></script>
-    <script>
-        Kakao.init(config.KAKAO_JAVASCRIPT_KEY); // 사용하려는 앱의 JavaScript 키 입력
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css"/>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+    <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/KOREAN.json"></script>
+
+
     <style>
         .menu-title {
             text-align: center;
@@ -138,12 +136,13 @@
             word-wrap: break-word;
             background-color: #fff;
             background-clip: border-box;
-            border: 1px solid rgba(19, 24, 44, .125);
             border-radius: .25rem
         }
 
         .card-header {
-            color: black;
+            color: #324D3D;
+            font-size: 30px;
+            align-self: center;
             padding: .75rem 1.25rem;
             margin-bottom: 0;
             background-color: rgba(19, 24, 44, .03);
@@ -227,6 +226,63 @@
             border-top-right-radius: 10px;
             color: #fff;
         }
+
+        .menu-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        tr {
+            background: #75A989;
+        }
+
+        th {
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 17px;
+        }
+
+        input[type="search" i] {
+            margin-bottom: 25px;
+        }
+
+        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.odd > *, table.dataTable.display > tbody > tr.odd > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.odd.selected > *, table.dataTable.display > tbody > tr.odd.selected > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.even > *, table.dataTable.display > tbody > tr.even > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.even.selected > *, table.dataTable.display > tbody > tr.even.selected > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #E1E6DE !important;
+            border: 1px solid #E1E6DE !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: #75A989 !important;
+            border: 1px solid #75A989 !important;
+            color: white !important;
+        }
     </style>
 </head>
 
@@ -234,205 +290,84 @@
 <%@ include file="header.jsp" %>
 
 <div class="body">
-<%--    <div class="card text-white mb-3">--%>
-<%--        <div class="card-header"> ${info[0].savingName}</div>--%>
-<%--        <div class="card-body">--%>
-
-<%--            <div class="card">--%>
-<%--                <c:set var="progressRate" value="${info[0].progressRate}"/>--%>
-<%--                <c:set var="progressRateAsDouble" value="${progressRate * 1.0}"/>--%>
-
-<%--                <c:choose>--%>
-<%--                    <c:when test="${progressRateAsDouble >= 0 && progressRateAsDouble < 25}">--%>
-<%--                        <div>시작은 어렵지만, 꾸준히 모아보세요! 💪</div>--%>
-<%--                    </c:when>--%>
-<%--                    <c:when test="${progressRateAsDouble >= 25 && progressRateAsDouble < 50}">--%>
-<%--                        <div> 멋져요! 이미 절반을 향해 달려가고 있어요! 🚀</div>--%>
-<%--                    </c:when>--%>
-<%--                    <c:when test="${progressRateAsDouble >= 50 && progressRateAsDouble < 75}">--%>
-<%--                        <div>절반 이상을 정복했어요! 끝까지 힘을 내요! 🔥</div>--%>
-<%--                    </c:when>--%>
-<%--                    <c:when test="${progressRateAsDouble >= 75 && progressRateAsDouble <= 100}">--%>
-<%--                        <div>목표를 향한 마지막 스퍼트! 🌟</div>--%>
-<%--                    </c:when>--%>
-<%--                </c:choose>--%>
-
-<%--                <br>--%>
-<%--                <div class="progress mb-2">--%>
-<%--                    <div class="progress-bar p-green mx1" role="progressbar" style="width: ${info[0].progressRate}%"--%>
-<%--                         aria-valuenow="20"--%>
-<%--                         aria-valuemin="0" aria-valuemax="100">--%>
-<%--                    </div>--%>
-<%--                    <div class="icon1 d-flex align-items-center justify-content-center">--%>
-<%--                        <span class="far fa-star "></span>--%>
-<%--                    </div>--%>
-<%--                    <div class="icon2 d-flex align-items-center justify-content-center"--%>
-<%--                         style="left: ${info[0].progressRate}%">--%>
-<%--                        <span class="fas fa-check "></span>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <!-- infos 공통 부분 출력 -->--%>
-<%--            <p> 계좌 번호: ${info[0].accountNumber}</p>--%>
-<%--            <p> 적금 개설일: ${info[0].openingDate}</p>--%>
-<%--            <p> 적금 만기 예정일: ${info[0].endDate}</p>--%>
-<%--            <p> 적금 상품: ${info[0].category}</p>--%>
-<%--            <img src="/resources/img/${info[0].categoryImg}" width="40px"/>--%>
-<%--            <p>개설자: ${info[0].openerId}</p>--%>
-<%--            <p> 현재 잔액: <fmt:formatNumber value="${info[0].balance}" type="number" pattern="#,###원"/></p>--%>
-
-<%--            <p> 진행률: ${info[0].progressRate}</p>--%>
-<%--            <p> 적금 만기 시 원금: <fmt:formatNumber value="${info[0].finalAmount}" type="number" pattern="#,###원"/></p>--%>
-<%--            <p> 적금 만기 시 이자: <fmt:formatNumber value="${info[0].interestAmount}" type="number" pattern="#,###원"/></p>--%>
-<%--            <br>--%>
-<%--            <hr>--%>
-<%--            <div>참여자 정보</div>--%>
-<%--            <c:forEach var="infoItem" items="${info}">--%>
-<%--                <c:if test="${infoItem.openerId eq infoItem.guestId}">--%>
-<%--                    <div class="c" data-label="Coming Soon">--%>
-<%--                        <div class="c-container">--%>
-<%--                            <p>이름: ${infoItem.guestId}</p>--%>
-<%--                            <p>가입일: ${infoItem.joinDate}</p>--%>
-<%--                            <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}" type="number"--%>
-<%--                                                             pattern="#,###원"/></p>--%>
-<%--                            <p>기여도: ${infoItem.contributionRatio}</p>--%>
-<%--                            <p>가입 금액: <fmt:formatNumber value="${info[0].transferAmount}" type="number"--%>
-<%--                                                        pattern="#,###원"/></p>--%>
-<%--                            <p>납입 주기: ${infoItem.transferPeriod}</p>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </c:if>--%>
-<%--                <c:if test="${infoItem.openerId ne infoItem.guestId}">--%>
-<%--                    <div style="border: 1px solid; margin-bottom: 10px">--%>
-<%--                        <p>이름: ${infoItem.guestId}</p>--%>
-<%--                        <p>가입일: ${infoItem.joinDate}</p>--%>
-<%--                        <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}" type="number"--%>
-<%--                                                         pattern="#,###원"/></p>--%>
-<%--                        <p>기여도: ${infoItem.contributionRatio}</p>--%>
-<%--                        <p>가입 금액: <fmt:formatNumber value="${info[0].transferAmount}" type="number"--%>
-<%--                                                    pattern="#,###원"/></p>--%>
-<%--                        <p>납입 주기: ${infoItem.transferPeriod}</p>--%>
-<%--                    </div>--%>
-<%--                </c:if>--%>
+    <div class="card text-white mb-3">
+        <img src="/resources/img/insurance-logo.png" width="160px" style="align-self: center"/>
+        <div class="card-header"> ${insu.insuranceName}</div>
+        <table>
+            <tr>
+                <th>이름</th>
+                <td>${insu.guestName}</td>
+            </tr>
+            <tr>
+                <th>반려견 이름</th>
+                <td>${insu.petName}</td>
+            </tr>
+            <tr>
+                <th>가입 일자</th>
+                <td>${insu.joinDate.split(" ")[0]}</td>
+            </tr>
+            <tr>
+                <th>연결 계좌</th>
+                <td>${insu.depositAccountNumber}</td>
+            </tr>
+            <tr>
+                <th>보험 납입금</th>
+                <td><fmt:formatNumber value="${insu.insuranceAmount}" type="number" pattern="#,###원"/></td>
+            </tr>
+            <tr>
+                <th>납입 횟수</th>
+                <td>${insu.paymentCount}</td>
+            </tr>
+            <tr>
+                <th>납입 횟수</th>
+                <td>${insu.paymentCount}</td>
+            </tr>
+            <tr>
+                <th>최종납입월</th>
+                <td>${insu.joinDate.substring(0,7)}</td>
+            </tr>
+        </table>
 
 
-<%--            </c:forEach>--%>
-<%--            <hr>--%>
+        <div class="card-body">
+            <table id="myTable" class="display" style="width:100%">
+                <thead>
+                <tr>
+                    <th>회차</th>
+                    <th>납입일</th>
+                    <th>납입방법</th>
+                    <th>납입금액</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>${insu.paymentCount}회차</td>
+                    <td>${insu.joinDate.split(" ")[0]}</td>
+                    <td>자동이체</td>
+                    <td><fmt:formatNumber value="${insu.insuranceAmount}" type="number" pattern="#,###원"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-
-<%--            <div class="page-content page-container" id="page-content">--%>
-<%--                <div class="padding">--%>
-<%--                    <div class="row">--%>
-<%--                        <div class="container-fluid d-flex justify-content-center">--%>
-<%--                            <div class="col-sm-8 col-md-6">--%>
-<%--                                <div class="card">--%>
-<%--                                    <div class="card-header">기여도</div>--%>
-<%--                                    <div class="card-body">--%>
-<%--                                        <div class="chartjs-size-monitor"--%>
-<%--                                             style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">--%>
-<%--                                            <div class="chartjs-size-monitor-expand"--%>
-<%--                                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">--%>
-<%--                                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="chartjs-size-monitor-shrink"--%>
-<%--                                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">--%>
-<%--                                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                        <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor"--%>
-<%--                                                style="display: block; width: 299px; height: 200px;"></canvas>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <script>--%>
-<%--                $(document).ready(function () {--%>
-<%--                    var ctx = $("#chart-line");--%>
-<%--                    new Chart(ctx, {--%>
-<%--                        type: 'pie',--%>
-<%--                        data: {--%>
-<%--                            labels: ["Spring", "Summer"],--%>
-<%--                            datasets: [{--%>
-<%--                                data: [${info[0].contributionRatio}, ${info[1].contributionRatio}],--%>
-<%--                                backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)", "rgba(0, 100, 255, 0.5)"]--%>
-<%--                            }]--%>
-<%--                        },--%>
-<%--                        options: {--%>
-<%--                            title: {--%>
-<%--                                display: true,--%>
-<%--                                text: '적금 참여자'--%>
-<%--                            }--%>
-<%--                        }--%>
-<%--                    });--%>
-<%--                });--%>
-<%--            </script>--%>
-<%--            <div style="display: flex;">--%>
-<%--                <span>전체 보기</span>/--%>
-<%--                <span>내 내역만 보기</span>--%>
-<%--            </div>--%>
-
-<%--            <div class="container d-flex justify-content-center mt-50 mb-50">--%>
-<%--                <div class="card w-100">--%>
-<%--                    <div class="card-header header-elements-inline">--%>
-<%--                        <h5 class="card-title" style="margin-left: -20px;"><b style=" font-size: 24px !important;">거래--%>
-<%--                            내역</b></h5>--%>
-<%--                        <div class="header-elements">--%>
-<%--                            <div class="list-icons text-muted font-weight-light">--%>
-<%--                                <a class="list-icons-item" data-action="collapse" data-abc="true"><i--%>
-<%--                                        class="fa fa-minus font-weight-light"></i></a>--%>
-<%--                                <a class="list-icons-item" data-action="reload" data-abc="true"><i--%>
-<%--                                        class="fa fa-refresh"></i></a>--%>
-<%--                                <a class="list-icons-item" data-action="remove" data-abc="true"><i--%>
-<%--                                        class="fa fa-close"></i></a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="table-responsive">--%>
-<%--                        <table class="table">--%>
-<%--                            <thead>--%>
-<%--                            <tr>--%>
-<%--                                <th>회차</th>--%>
-<%--                                <th>이름</th>--%>
-<%--                                <th>입금 계좌</th>--%>
-<%--                                <th>출금 계좌</th>--%>
-<%--                                <th>납입일</th>--%>
-<%--                                <th>납입금</th>--%>
-<%--                                <th>잔액</th>--%>
-<%--                            </tr>--%>
-<%--                            </thead>--%>
-<%--                            <tbody>--%>
-
-<%--                            <div style="border: 1.5px solid">--%>
-<%--                                <c:set var="i" value="${history_info.size()}"/>--%>
-<%--                                <c:forEach var="historyItem" items="${history_info}">--%>
-<%--                                <tr>--%>
-<%--                                    <td>${i}회차</td>--%>
-<%--                                    <td> ${historyItem.guestId}</td>--%>
-<%--                                    <td> ${historyItem.accountNumberIn}</td>--%>
-<%--                                    <td> ${historyItem.accountNumberOut}</td>--%>
-<%--                                    <td> ${historyItem.transferDate.split(" ")[0]}</td>--%>
-<%--                                    <td><fmt:formatNumber value="${historyItem.amount}" type="number"--%>
-<%--                                                          pattern="#,###원"/>--%>
-<%--                                    </td>--%>
-<%--                                    <td><fmt:formatNumber value="${historyItem.balanceAfterIn}" type="number"--%>
-<%--                                                          pattern="#,###원"/></td>--%>
-<%--                            </div>--%>
-<%--                            <c:set var="i" value="${i - 1}"/>--%>
-<%--                            </tr>--%>
-<%--                            </c:forEach>--%>
-<%--                            </tbody>--%>
-<%--                        </table>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>--%>
-
-<%--</div>--%>
+        <div style="align-self: end">총 납입보험료: <fmt:formatNumber value="${insu.insuranceAmount}" type="number"
+                                                                pattern="#,###원"/></div>
+        </v>
+    </div>
 </body>
-</html>
+
+<script>
+    $(document).ready(function () {
+        new DataTable('#myTable', {
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json',
+            },
+            searching: false,     // 검색창 비활성화
+            paging: false,        // 페이지네이션 비활성화
+            lengthChange: false,   // 페이지당 표시 항목 수 설정 비활성화
+            info: false
+        });
+    });
+
+    document.getElementById('account-name').textContent += "[" + sessionStorage.getItem("accountName") + "]";
+</script>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.kopo.finalproject.EmailSender" %>
 <!DOCTYPE html>
 <head>
     <title>Join-Product</title>
@@ -58,7 +59,7 @@
             height: 390px;
         }
 
-        .modal_body{
+        .modal_body {
             height: 410px;
         }
 
@@ -363,6 +364,7 @@
                 console.log(response)
                 if (response === "보험 생성 성공") {
                     modal.style.display = "block";
+                    <%EmailSender.naverMailSend((String) session.getAttribute("email"),"하나펫손해보험 가입","내용 test");%>
                 } else {
                     console.error("insert 실패");
                 }

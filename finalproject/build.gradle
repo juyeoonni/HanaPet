@@ -59,6 +59,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
     implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2' // 최신 버전 사용 권장
 }
 
 tasks.named('test') {
