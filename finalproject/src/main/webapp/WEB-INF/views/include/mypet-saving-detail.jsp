@@ -26,11 +26,101 @@
     <script>
         Kakao.init(config.KAKAO_JAVASCRIPT_KEY); // 사용하려는 앱의 JavaScript 키 입력
     </script>
+    <!-- 필요한 DataTables 스타일 및 스크립트 가져오기 -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css"/>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+    <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/KOREAN.json"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+
+
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" type="text/css"
+          rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+
+
     <style>
         .menu-title {
             text-align: center;
             font-size: 30px;
             margin-bottom: 40px;
+        }
+
+        .buttons-excel span {
+
+        }
+
+
+        /* Hide the descending (downward arrow) sorting icon */
+        .sorting::before .sorting::after {
+            display: none !important;
+        }
+
+        tr {
+            background: #75A989;
+        }
+
+        th {
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 17px;
+        }
+
+        input[type="search" i] {
+            margin-bottom: 25px;
+        }
+
+        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.odd > *, table.dataTable.display > tbody > tr.odd > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.odd.selected > *, table.dataTable.display > tbody > tr.odd.selected > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.even > *, table.dataTable.display > tbody > tr.even > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.even.selected > *, table.dataTable.display > tbody > tr.even.selected > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        #transactionTable_wrapper {
+            margin-top: 100px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #E1E6DE !important;
+            border: 1px solid #E1E6DE !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: #75A989 !important;
+            border: 1px solid #75A989 !important;
+            color: white !important;
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
@@ -41,7 +131,7 @@
 
         .card {
             margin: 20px 0;
-            padding: 20px 30px;
+            /*padding: 20px 30px;*/
         }
 
         .mx1 {
@@ -131,6 +221,7 @@
         }
 
         .card {
+
             position: relative;
             display: flex;
             flex-direction: column;
@@ -143,7 +234,10 @@
         }
 
         .card-header {
-            color: black;
+            text-align: center;
+            align-self: center;
+            font-size: 30px;
+            color: #324D3D;
             padding: .75rem 1.25rem;
             margin-bottom: 0;
             background-color: rgba(19, 24, 44, .03);
@@ -170,23 +264,19 @@
 
         .c {
             width: 350px;
-            height: 150px;
+            height: 240px;
             border-radius: 14px;
-            padding: 20px;
+            padding: 20px 20px 20px 0px;
             position: relative;
-
         }
 
         .c .c-container {
-            width: 100%;
+            width: 90%;
             height: 100%;
-            position: relative;
             background-color: #fff;
-            z-index: 10;
             border-radius: 10px;
-            padding: 15px;
-            padding-top: 50px;
-
+            border: 3px solid #75A989;
+            padding: 20px;
         }
 
         .c-container h4 {
@@ -198,33 +288,15 @@
             font-size: 17px;
         }
 
-        .c::before {
-            position: absolute;
-            content: '';
-            background-color: #fc5185;
-            height: 35px;
-            width: 35px;
-            top: 3rem;
-            right: -23px;
-            transform: rotate(45deg);
-            z-index: 10;
-
-        }
-
-
         .c::after {
             position: absolute;
             content: attr(data-label);
-            top: 27px;
-            padding-left: 20px;
-            padding: 10px;
-            right: -31px;
-            width: 8rem;
-            background-color: #fc5185;
+            top: -5px;
+            padding: 10px 20px;
+            right: 45px;
+            background-color: #BFDFCB;
             z-index: 12;
-            border-bottom-left-radius: 20px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 10px;
+            border-radius: 20px;
             color: #fff;
         }
     </style>
@@ -234,205 +306,258 @@
 <%@ include file="header.jsp" %>
 
 <div class="body">
-    <div class="card text-white mb-3">
-        <div class="card-header"> ${info[0].savingName}</div>
+    <div class="card text-white mb-3" style="padding: 50px 80px">
+        <div class="card-header">
+            <img src="/resources/img/${info[0].categoryImg}" width="80px"/>
+            <br>${info[0].savingName}</div>
         <div class="card-body">
 
-            <div class="card">
+            <div class="card" style="margin: 0px;
+            border: none;">
                 <c:set var="progressRate" value="${info[0].progressRate}"/>
                 <c:set var="progressRateAsDouble" value="${progressRate * 1.0}"/>
 
                 <c:choose>
                     <c:when test="${progressRateAsDouble >= 0 && progressRateAsDouble < 25}">
-                        <div>시작은 어렵지만, 꾸준히 모아보세요! 💪</div>
+                        <div style="align-self: center;">시작은 어렵지만, 꾸준히 모아보세요! 💪</div>
                     </c:when>
                     <c:when test="${progressRateAsDouble >= 25 && progressRateAsDouble < 50}">
-                        <div> 멋져요! 이미 절반을 향해 달려가고 있어요! 🚀</div>
+                        <div style="align-self: center;"> 멋져요! 이미 절반을 향해 달려가고 있어요! 🚀</div>
                     </c:when>
                     <c:when test="${progressRateAsDouble >= 50 && progressRateAsDouble < 75}">
-                        <div>절반 이상을 정복했어요! 끝까지 힘을 내요! 🔥</div>
+                        <div style="align-self: center;">절반 이상을 정복했어요! 끝까지 힘을 내요! 🔥</div>
                     </c:when>
                     <c:when test="${progressRateAsDouble >= 75 && progressRateAsDouble <= 100}">
-                        <div>목표를 향한 마지막 스퍼트! 🌟</div>
+                        <div style="align-self: center;">목표를 향한 마지막 스퍼트! 🌟</div>
                     </c:when>
                 </c:choose>
 
                 <br>
-                <div class="progress mb-2">
-                    <div class="progress-bar p-green mx1" role="progressbar" style="width: ${info[0].progressRate}%"
-                         aria-valuenow="20"
-                         aria-valuemin="0" aria-valuemax="100">
-                    </div>
-                    <div class="icon1 d-flex align-items-center justify-content-center">
-                        <span class="far fa-star "></span>
-                    </div>
-                    <div class="icon2 d-flex align-items-center justify-content-center"
-                         style="left: ${info[0].progressRate}%">
-                        <span class="fas fa-check "></span>
+                <div id="progressBarContainer"></div>
+
+            </div>
+
+
+            <div class="relative w-64" style="width: 98%; margin-top: 80px; margin-bottom: 45px">
+
+                <div class="absolute left-4 bottom-4 bg-red-600 h-full w-full rounded-xl"
+                     style="background: #75A989"></div>
+
+                <div class="relative bg-gray-800 text-gray-50 rounded-xl p-8 space-y-7" style="background: #CFDBC8">
+
+                    <div class="h-2 w-20" style="background: #75A989; margin-left: 60px"></div>
+                    <div class="h-2 w-20" style="background: #75A989; margin-left: 60px"></div>
+
+                    <div class="text-5xl font-extrabold text-white"
+                         style="display: flex; gap: 150px; padding-left: 60px">
+                        <div style="color: white; font-weight: normal">
+                            계좌 번호: ${info[0].accountNumber}
+                            <br> <br>
+                            적금 상품: ${info[0].category}
+                            <br> <br>
+                            개설자: ${info[0].openerId}
+                            <br> <br>
+                            현재 잔액: <fmt:formatNumber value="${info[0].balance}" type="number" pattern="#,###원"/>
+                        </div>
+
+                        <div style="color: white; font-weight: normal">
+                            적금 개설일: ${info[0].openingDate.split(" ")[0]}<br> <br>
+                            적금 만기 예정일: ${info[0].endDate.split(" ")[0]}<br> <br>
+                            적금 만기 시 원금: <fmt:formatNumber value="${info[0].finalAmount}" type="number"
+                                                          pattern="#,###원"/><br> <br>
+                            적금 만기 시 이자: <fmt:formatNumber value="${info[0].interestAmount}" type="number"
+                                                          pattern="#,###원"/>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- infos 공통 부분 출력 -->
-            <p> 계좌 번호: ${info[0].accountNumber}</p>
-            <p> 적금 개설일: ${info[0].openingDate}</p>
-            <p> 적금 만기 예정일: ${info[0].endDate}</p>
-            <p> 적금 상품: ${info[0].category}</p>
-            <img src="/resources/img/${info[0].categoryImg}" width="40px"/>
-            <p>개설자: ${info[0].openerId}</p>
-            <p> 현재 잔액: <fmt:formatNumber value="${info[0].balance}" type="number" pattern="#,###원"/></p>
 
-            <p> 진행률: ${info[0].progressRate}</p>
-            <p> 적금 만기 시 원금: <fmt:formatNumber value="${info[0].finalAmount}" type="number" pattern="#,###원"/></p>
-            <p> 적금 만기 시 이자: <fmt:formatNumber value="${info[0].interestAmount}" type="number" pattern="#,###원"/></p>
+
             <br>
             <hr>
-            <div>참여자 정보</div>
-            <c:forEach var="infoItem" items="${info}">
-                <c:if test="${infoItem.openerId eq infoItem.guestId}">
-                    <div class="c" data-label="Coming Soon">
-                        <div class="c-container">
-                            <p>이름: ${infoItem.guestId}</p>
-                            <p>가입일: ${infoItem.joinDate}</p>
-                            <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}" type="number"
-                                                             pattern="#,###원"/></p>
-                            <p>기여도: ${infoItem.contributionRatio}</p>
-                            <p>가입 금액: <fmt:formatNumber value="${info[0].transferAmount}" type="number"
-                                                        pattern="#,###원"/></p>
-                            <p>납입 주기: ${infoItem.transferPeriod}</p>
-                        </div>
-                    </div>
-                </c:if>
-                <c:if test="${infoItem.openerId ne infoItem.guestId}">
-                    <div style="border: 1px solid; margin-bottom: 10px">
-                        <p>이름: ${infoItem.guestId}</p>
-                        <p>가입일: ${infoItem.joinDate}</p>
-                        <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}" type="number"
-                                                         pattern="#,###원"/></p>
-                        <p>기여도: ${infoItem.contributionRatio}</p>
-                        <p>가입 금액: <fmt:formatNumber value="${info[0].transferAmount}" type="number"
-                                                    pattern="#,###원"/></p>
-                        <p>납입 주기: ${infoItem.transferPeriod}</p>
-                    </div>
-                </c:if>
+            <div style="display: flex">
+                <div>
 
-
-            </c:forEach>
-            <hr>
-
-
-            <div class="page-content page-container" id="page-content">
-                <div class="padding">
-                    <div class="row">
-                        <div class="container-fluid d-flex justify-content-center">
-                            <div class="col-sm-8 col-md-6">
-                                <div class="card">
-                                    <div class="card-header">기여도</div>
-                                    <div class="card-body">
-                                        <div class="chartjs-size-monitor"
-                                             style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                                            <div class="chartjs-size-monitor-expand"
-                                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                                            </div>
-                                            <div class="chartjs-size-monitor-shrink"
-                                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                                            </div>
-                                        </div>
-                                        <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor"
-                                                style="display: block; width: 299px; height: 200px;"></canvas>
-                                    </div>
+                    <div>참여자 정보</div>
+                    <c:forEach var="infoItem" items="${info}">
+                        <c:if test="${infoItem.openerId eq infoItem.guestId}">
+                            <div class="c" data-label="소유자">
+                                <div class="c-container">
+                                    <p>이름: ${infoItem.guestId}</p>
+                                    <p>가입일: ${infoItem.joinDate.split(" ")[0]}</p>
+                                    <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}"
+                                                                     type="number"
+                                                                     pattern="#,###원"/></p>
+                                    <p>기여도: ${infoItem.contributionRatio}%</p>
+                                    <p>납입 금액: <fmt:formatNumber value="${infoItem.transferAmount}" type="number"
+                                                                pattern="#,###원"/></p>
+                                    <p>납입 주기: ${infoItem.transferPeriod}</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script>
-                $(document).ready(function () {
-                    var ctx = $("#chart-line");
-                    new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: ["Spring", "Summer"],
-                            datasets: [{
-                                data: [${info[0].contributionRatio}, ${info[1].contributionRatio}],
-                                backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)", "rgba(0, 100, 255, 0.5)"]
-                            }]
-                        },
-                        options: {
-                            title: {
-                                display: true,
-                                text: '적금 참여자'
-                            }
-                        }
-                    });
-                });
-            </script>
-            <div style="display: flex;">
-                <span>전체 보기</span>/
-                <span>내 내역만 보기</span>
-            </div>
-
-            <div class="container d-flex justify-content-center mt-50 mb-50">
-                <div class="card w-100">
-                    <div class="card-header header-elements-inline">
-                        <h5 class="card-title" style="margin-left: -20px;"><b style=" font-size: 24px !important;">거래
-                            내역</b></h5>
-                        <div class="header-elements">
-                            <div class="list-icons text-muted font-weight-light">
-                                <a class="list-icons-item" data-action="collapse" data-abc="true"><i
-                                        class="fa fa-minus font-weight-light"></i></a>
-                                <a class="list-icons-item" data-action="reload" data-abc="true"><i
-                                        class="fa fa-refresh"></i></a>
-                                <a class="list-icons-item" data-action="remove" data-abc="true"><i
-                                        class="fa fa-close"></i></a>
+                        </c:if>
+                        <c:if test="${infoItem.openerId ne infoItem.guestId}">
+                            <div class="c" data-label="참여자">
+                                <div class="c-container">
+                                    <p>이름: ${infoItem.guestId}</p>
+                                    <p>가입일: ${infoItem.joinDate.split(" ")[0]}</p>
+                                    <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}"
+                                                                     type="number"
+                                                                     pattern="#,###원"/></p>
+                                    <p>기여도: ${infoItem.contributionRatio}%</p>
+                                    <p>납입 금액: <fmt:formatNumber value="${infoItem.transferAmount}" type="number"
+                                                                pattern="#,###원"/></p>
+                                    <p>납입 주기: ${infoItem.transferPeriod}</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>회차</th>
-                                <th>이름</th>
-                                <th>입금 계좌</th>
-                                <th>출금 계좌</th>
-                                <th>납입일</th>
-                                <th>납입금</th>
-                                <th>잔액</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <div style="border: 1.5px solid">
-                                <c:set var="i" value="${history_info.size()}"/>
-                                <c:forEach var="historyItem" items="${history_info}">
-                                <tr>
-                                    <td>${i}회차</td>
-                                    <td> ${historyItem.guestId}</td>
-                                    <td> ${historyItem.accountNumberIn}</td>
-                                    <td> ${historyItem.accountNumberOut}</td>
-                                    <td> ${historyItem.transferDate.split(" ")[0]}</td>
-                                    <td><fmt:formatNumber value="${historyItem.amount}" type="number"
-                                                          pattern="#,###원"/>
-                                    </td>
-                                    <td><fmt:formatNumber value="${historyItem.balanceAfterIn}" type="number"
-                                                          pattern="#,###원"/></td>
-                            </div>
-                            <c:set var="i" value="${i - 1}"/>
-                            </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
+                        </c:if>
+                    </c:forEach>
                 </div>
 
+
+                <div class="card" style="align-self: center; margin-top: 50px; width: 100%;">
+                    <div class="card-header" style="align-self: center; margin-bottom: 25px;">기여도</div>
+                    <div class="card-body" style=" padding: 20px; width: 100%;">
+                        <iframe class="chartjs-hidden-iframe"
+                                style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
+                        <iframe class="chartjs-hidden-iframe"
+                                style="width: 400px;display: block;border: 0px;height: 0px;margin: 0px;position: absolute;inset: 0px;"></iframe>
+                        <div class="chartjs-size-monitor"
+                             style="position: absolute;left: 0px;top: 0px;right: 0px;bottom: 0px;overflow: hidden;pointer-events: none;visibility: hidden;width: 400px;z-index: -1;">
+                            <div class="chartjs-size-monitor-expand"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                            </div>
+                        </div>
+                        <canvas id="chart-line" class="chartjs-render-monitor"
+                                style="display: block; height: 105px; width: 210px;" height="131" width="262"></canvas>
+                    </div>
+
+                </div>
+
+
             </div>
+
+            <table id="transactionTable" class="display" style="width:100%">
+                <thead>
+                <tr>
+                    <th>회차</th>
+                    <th>이름</th>
+                    <th>입금 계좌</th>
+                    <th>출금 계좌</th>
+                    <th>납입일</th>
+                    <th>납입금</th>
+                    <th>잔액</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:set var="i" value="${history_info.size()}"/>
+                <c:forEach var="historyItem" items="${history_info}">
+                    <tr>
+                        <td>${i}회차</td>
+                        <td>${historyItem.guestId}</td>
+                        <td>${historyItem.accountNumberIn}</td>
+                        <td>${historyItem.accountNumberOut}</td>
+                        <td>${historyItem.transferDate.split(" ")[0]}</td>
+                        <td><fmt:formatNumber value="${historyItem.amount}" type="number" pattern="#,###원"/></td>
+                        <td><fmt:formatNumber value="${historyItem.balanceAfterIn}" type="number"
+                                              pattern="#,###원"/></td>
+                    </tr>
+                    <c:set var="i" value="${i - 1}"/>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 
 </div>
 </body>
+<script>
+    $(document).ready(function () {
+        // DataTable 초기화
+        $.noConflict();
+        $('#transactionTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf', 'print'
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json"
+            },
+            "order": [[0, 'desc']], // 거래일시를 내림차순으로 정렬
+            "paging": false, // 페이지 나누기 사용
+            "info": false
+        });
+
+        // Find the button element by its ID
+        var excelButton = document.getElementsByClassName("buttons-excel");
+
+        // Change the text content of the button
+        excelButton.querySelector("span").textContent = "엑셀";
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var ctx = $("#chart-line");
+
+        // Initialize arrays to hold labels and data
+        var labels = [];
+        var data = [];
+
+        // Iterate through info array and populate labels and data arrays
+        <c:forEach var="infoItem" items="${info}">
+        labels.push("${infoItem.guestId}");
+        data.push(${infoItem.contributionRatio});
+        </c:forEach>
+
+        new Chart(ctx, {
+            type: 'pie', // Change chart type if needed
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: ["#ee9ca7", "#bfe6ba"]
+                }]
+            },
+            options: {}
+        });
+
+        var progressBar = createProgressBar(${info[0].progressRate});
+        $("#progressBarContainer").append(progressBar);
+    });
+
+    function createProgressBar(progressRate) {
+        // 막대 그래프 컨테이너를 생성합니다.
+        var progressBarContainer = $("<div style='width: 100%; height: 30px; border-radius: 20px; background: #f2f2f2;'>").addClass("progress");
+
+        // 막대 그래프 바를 생성합니다.
+        var progressBar = $("<div style='background:linear-gradient(to right, #d3959b, #bfe6ba)'>").addClass("progress-bar")
+            .attr("role", "progressbar")
+            .attr("aria-valuemin", "0")
+            .attr("aria-valuemax", "100")
+            .css("width", "0%")
+            .css("borderRadius", "20px");
+
+        // 진행률을 나타내는 텍스트를 생성합니다.
+        var progressText = $("<div style='text-align: center; color: #324D3D; font-size: 14px; margin-left: 10px; margin-top: 4px'>").text(Math.round(progressRate) + "%");
+
+        // 막대 그래프 바와 텍스트를 막대 그래프 컨테이너에 추가합니다.
+        progressBarContainer.append(progressBar, progressText);
+
+        // 막대 그래프 컨테이너를 반환합니다.
+        var container = progressBarContainer;
+
+        // 동적으로 생성된 프로그래스 바에 애니메이션을 적용합니다.
+        progressBar.animate({width: progressRate + '%'}, 650); // 0.6초 동안 애니메이션 실행
+
+        return container;
+    }
+
+
+</script>
 </html>

@@ -76,11 +76,6 @@
         border: 1px solid #75A989 !important;
         color: white !important;
     }
-
-    #myTable_info {
-        font-size: 16px !important; /* 원하는 크기로 변경 */
-        padding-left: 10px !important;
-    }
 </style>
 <body>
 <%@ include file="header.jsp" %>
