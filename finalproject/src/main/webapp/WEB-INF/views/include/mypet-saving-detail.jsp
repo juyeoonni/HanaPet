@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MyPet</title>
+    <title>이체 내역 조회</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/bootstrap.css">
@@ -55,10 +55,33 @@
             margin-bottom: 40px;
         }
 
-        .buttons-excel span {
-
+        button.dt-button, div.dt-button, a.dt-button {
+            position: relative;
+            display: inline-block;
+            box-sizing: border-box;
+            margin-right: 0.333em;
+            margin-bottom: 0.333em;
+            padding: 10px 10px 7px 10px;
+            border: 1px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 10px;
+            line-height: 1.6em;
+            color: #324D3D;
+            white-space: nowrap;
+            overflow: hidden;
+            background-color: #e9e9e9;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-decoration: none;
+            outline: none
         }
 
+        button.dt-button span {
+            font-size: 17px;
+        }
 
         /* Hide the descending (downward arrow) sorting icon */
         .sorting::before .sorting::after {
@@ -303,10 +326,10 @@
 <%@ include file="header.jsp" %>
 
 <div class="body">
-    <div class="card text-white mb-3" style="padding: 50px 80px">
+    <div class="card text-white mb-3" style="padding: 30px 80px">
         <div class="card-header">
             <img src="/resources/img/${info[0].categoryImg}" width="80px"/>
-            <br>${info[0].savingName}</div>
+            ${info[0].savingName}</div>
         <div class="card-body">
 
             <div class="card" style="margin: 0px;
@@ -343,7 +366,6 @@
                 <div class="relative bg-gray-800 text-gray-50 rounded-xl p-8 space-y-7" style="background: #CFDBC8">
 
                     <div class="h-2 w-20" style="background: #75A989; margin-left: 60px"></div>
-                    <div class="h-2 w-20" style="background: #75A989; margin-left: 60px"></div>
 
                     <div class="text-5xl font-extrabold text-white"
                          style="display: flex; gap: 150px; padding-left: 60px">
@@ -352,7 +374,7 @@
                             <br> <br>
                             적금 상품: ${info[0].category}
                             <br> <br>
-                            개설자: ${info[0].openerId}
+                            개설자: ${info[0].guestName}
                             <br> <br>
                             현재 잔액: <fmt:formatNumber value="${info[0].balance}" type="number" pattern="#,###원"/>
                         </div>
@@ -380,7 +402,7 @@
                         <c:if test="${infoItem.openerId eq infoItem.guestId}">
                             <div class="c" data-label="소유자">
                                 <div class="c-container">
-                                    <p>이름: ${infoItem.guestId}</p>
+                                    <p>이름: ${infoItem.guestName}</p>
                                     <p>가입일: ${infoItem.joinDate.split(" ")[0]}</p>
                                     <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}"
                                                                      type="number"
@@ -395,7 +417,7 @@
                         <c:if test="${infoItem.openerId ne infoItem.guestId}">
                             <div class="c" data-label="참여자">
                                 <div class="c-container">
-                                    <p>이름: ${infoItem.guestId}</p>
+                                    <p>이름: ${infoItem.guestName}</p>
                                     <p>가입일: ${infoItem.joinDate.split(" ")[0]}</p>
                                     <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}"
                                                                      type="number"
@@ -455,7 +477,7 @@
                 <c:forEach var="historyItem" items="${history_info}">
                     <tr>
                         <td>${i}회차</td>
-                        <td>${historyItem.guestId}</td>
+                        <td>${historyItem.guestName}</td>
                         <td>${historyItem.accountNumberIn}</td>
                         <td>${historyItem.accountNumberOut}</td>
                         <td>${historyItem.transferDate.split(" ")[0]}</td>
@@ -490,13 +512,11 @@
             "info": false
         });
 
-        // Find the button element by its ID
-        var excelButton = document.getElementsByClassName("buttons-excel");
-
-        // Change the text content of the button
-        excelButton.querySelector("span").textContent = "엑셀";
-
+        // Find the button element by its class name
+        $(".buttons-excel span").text("엑셀");
     });
+
+
 </script>
 <script>
     $(document).ready(function () {
@@ -508,7 +528,7 @@
 
         // Iterate through info array and populate labels and data arrays
         <c:forEach var="infoItem" items="${info}">
-        labels.push("${infoItem.guestId}");
+        labels.push("${infoItem.guestName}");
         data.push(${infoItem.contributionRatio});
         </c:forEach>
 

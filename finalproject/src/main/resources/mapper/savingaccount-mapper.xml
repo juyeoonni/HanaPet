@@ -55,6 +55,7 @@
 
     <select id="getDetailInfo">
         select js.guest_id            as guestId,
+               g.name                 as guestName,
                sa.account_number      as accountNumber,
                sa.opening_date        as openingDate,
                sa.end_date            as endDate,
@@ -76,6 +77,7 @@
                  join join_saving js on sa.account_number = js.account_number
                  join pet_saving_product psd on psd.category = sa.category
                  join pet on pet.pet_id = sa.pet_id
+                 join guest g on g.guest_id = js.guest_id
         where sa.account_number = #{accountNumber}
     </select>
 
@@ -83,6 +85,7 @@
     <select id="getHistoryInfo">
         select distinct th.auto_transfer_id   as id,
                         da.guest_id           as guestId,
+                        g.name                as guestName,
                         th.account_number_in  as accountNumberIn,
                         th.account_number_out as accountNumberOut,
                         th.transfer_date      as transferDate,
@@ -90,6 +93,7 @@
                         th.balance_after_in   as balanceAfterIn
         from transfer_history th
                  join deposit_account da on da.account_number = th.account_number_out
+                 join guest g on g.guest_id = da.guest_id
         where th.account_number_in = #{accountNumber}
         order by id desc
     </select>

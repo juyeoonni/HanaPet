@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class MyPageDetailInfo {
     private String guestId;
+    private String guestName;
     private String accountNumber;
     private String openingDate;
     private String endDate;

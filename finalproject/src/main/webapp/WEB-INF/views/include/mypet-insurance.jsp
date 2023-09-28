@@ -84,7 +84,7 @@
                 var cnt = 0; // 보험이 없는 개수
 
                 petsData.forEach(function (pet) {
-                    var gender = pet.gender == 'M' ? '남' : '여';
+                    var gender = pet.gender == 'M' ? '남 ' : '여 ';
                     var pet_id = pet.pet_id;
                     var accordionItem = $("<div>").addClass("accordion-item");
                     var accordionHeader = $("<h2>").addClass("accordion-header");
@@ -99,7 +99,7 @@
                             + '<div class="smallsize" style=" margin-right: 40px;" id="total-' + pet.pet_id + '">'
                             + '</div> </div>'
                             + '<div class="right" style="margin-right: -40px">'
-                            + '<div style="font-size: 20px; font-weight: bold; padding-bottom: 10px; ">' + gender + '|' + pet.age + '살 ' + pet.breed + '</div>'
+                            + '<div style="font-size: 20px; font-weight: bold; padding-bottom: 10px; ">' + gender + '| ' + pet.age + '살 ' + pet.breed + '</div>'
                             + '<div id="petInsuranceCnt' + pet_id + '"></div>'
                             + '</div>'
                             + '</div>');

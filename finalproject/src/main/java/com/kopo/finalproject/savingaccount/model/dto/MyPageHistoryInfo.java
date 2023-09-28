@@ -10,6 +10,7 @@ import lombok.Setter;
 public class MyPageHistoryInfo {
     private String id;
     private String guestId;
+    private String guestName;
     private String accountNumberIn;
     private String accountNumberOut;
     private String transferDate;
