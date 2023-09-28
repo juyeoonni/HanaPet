@@ -3,7 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ page import="com.kopo.finalproject.savingaccount.model.dto.MyPageHistoryInfo" %>
 <!DOCTYPE html>
 <html>
 <head>
