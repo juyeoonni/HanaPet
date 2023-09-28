@@ -246,7 +246,7 @@
                             leftContainer.append(Div);
 
                             // 계좌 번호와 잔액 추가
-                            var accountNumberDiv = $('<div>').text(account_number.slice(0, 4) + '******'+account_number.slice(10));
+                            var accountNumberDiv = $('<div>').text(account_number.slice(0, 4) + '******' + account_number.slice(10));
                             var balanceDiv = $('<div>').text('잔액 ' + Number(balance).toLocaleString() + '원');
                             rightContainer.append(accountNumberDiv, balanceDiv);
 
@@ -348,6 +348,7 @@
                 .attr("role", "progressbar")
                 .attr("aria-valuemin", "0")
                 .attr("aria-valuemax", "100")
+                .css("borderRadius", "20px")
                 .css("width", "0%"); // 초기 너비를 0%로 설정
 
             // 진행률을 나타내는 텍스트를 생성합니다.

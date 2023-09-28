@@ -396,7 +396,6 @@
             <hr>
             <div style="display: flex">
                 <div>
-
                     <div>참여자 정보</div>
                     <c:forEach var="infoItem" items="${info}">
                         <c:if test="${infoItem.openerId eq infoItem.guestId}">
@@ -430,8 +429,14 @@
                             </div>
                         </c:if>
                     </c:forEach>
+                    <c:if test="${fn:length(info) == 1}">
+                        <style>
+                            .c {
+                                margin-top: 100px;
+                            }
+                        </style>
+                    </c:if>
                 </div>
-
 
                 <div class="card" style="align-self: center; margin-top: 50px; width: 100%;">
                     <div class="card-header" style="align-self: center; margin-bottom: 25px;">기여도</div>
@@ -454,10 +459,7 @@
                         <canvas id="chart-line" class="chartjs-render-monitor"
                                 style="display: block; height: 105px; width: 210px;" height="131" width="262"></canvas>
                     </div>
-
                 </div>
-
-
             </div>
 
             <table id="transactionTable" class="display" style="width:100%">
