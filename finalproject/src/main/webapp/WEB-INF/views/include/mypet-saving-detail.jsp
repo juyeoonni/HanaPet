@@ -550,10 +550,8 @@
     });
 
     function createProgressBar(progressRate) {
-        // 막대 그래프 컨테이너를 생성합니다.
         var progressBarContainer = $("<div style='width: 100%; height: 30px; border-radius: 20px; background: #f2f2f2;'>").addClass("progress");
 
-        // 막대 그래프 바를 생성합니다.
         var progressBar = $("<div style='background:linear-gradient(to right, #d3959b, #bfe6ba)'>").addClass("progress-bar")
             .attr("role", "progressbar")
             .attr("aria-valuemin", "0")
@@ -561,16 +559,10 @@
             .css("width", "0%")
             .css("borderRadius", "20px");
 
-        // 진행률을 나타내는 텍스트를 생성합니다.
-        var progressText = $("<div style='text-align: center; color: #324D3D; font-size: 14px; margin-left: 10px; margin-top: 4px'>").text(Math.round(progressRate) + "%");
-
-        // 막대 그래프 바와 텍스트를 막대 그래프 컨테이너에 추가합니다.
-        progressBarContainer.append(progressBar, progressText);
-
-        // 막대 그래프 컨테이너를 반환합니다.
+        var progressText = $("<div style='text-align: center; color: #324D3D; font-size: 14px; margin-left: 10px; margin-top: 4px; z-index: 2; padding-right: 4px; align-self: self-end;'>").text(Math.round(progressRate) + "%");
+        progressBar.append(progressText);
+        progressBarContainer.append(progressBar);
         var container = progressBarContainer;
-
-        // 동적으로 생성된 프로그래스 바에 애니메이션을 적용합니다.
         progressBar.animate({width: progressRate + '%'}, 650); // 0.6초 동안 애니메이션 실행
 
         return container;
