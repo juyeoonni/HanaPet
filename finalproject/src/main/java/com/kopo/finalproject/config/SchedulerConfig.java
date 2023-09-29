@@ -1,5 +1,6 @@
 package com.kopo.finalproject.config;
 
+import com.kopo.finalproject.autotransfer.model.dto.EndTransferInfo;
 import com.kopo.finalproject.autotransfer.model.dto.Scheduler;
 import com.kopo.finalproject.autotransfer.service.AutoTransferService;
 import com.kopo.finalproject.guest.model.dto.EndMessageGuest;
@@ -153,6 +154,16 @@ public class SchedulerConfig implements SchedulingConfigurer {
 //                            throw new RuntimeException(e);
 //                        }
                         System.out.println("테스트: " + content);
+                    }
+                }
+
+                // 오늘이 만기일일 때 자동으로 opener 계좌에 돈 입금시키기
+                if (sdf.format(currentDate).equals(sdf.format(endDate))) {
+                    // 만기일이라면, 그 계좌의 opener의 계좌로 돈 넣기
+                    List<EndTransferInfo> endTransferInfoList = autoTransferService.getEndTransferInfo(savingaccount.getAccount_number());
+                    for (EndTransferInfo endTransferInfo : endTransferInfoList) {
+                        autoTransferService.endTransfer(endTransferInfo);
+                        System.out.println("오늘 만기일" + endTransferInfo);
                     }
                 }
                 return null;

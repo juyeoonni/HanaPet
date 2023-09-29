@@ -22,6 +22,9 @@ public interface SavingaccountMapper {
 
     void autoDeposit(HashMap<String, String> data);
 
+    // 만기 시 돈 자동 출금
+    void autoWithdraw(HashMap<String, String> data);
+
     String getBalance(String accountNumber);
 
     List<MyPageDetailInfo> getDetailInfo(String accountNumber);

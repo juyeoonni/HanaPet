@@ -35,6 +35,13 @@
         WHERE account_number = #{deposit_account_number}
     </update>
 
+    <!-- 돈 들어옴 -->
+    <update id="insert" parameterType="HashMap">
+        UPDATE deposit_account
+        SET balance = balance + #{amount}
+        WHERE account_number = #{deposit_account_number}
+    </update>
+
     <select id="getBalance" parameterType="String"
             resultType="String">
         SELECT balance

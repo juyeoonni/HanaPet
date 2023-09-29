@@ -51,6 +51,13 @@
         WHERE account_number = #{account_number}
     </update>
 
+    <!-- 만기 시 적금 계좌에서 돈 출금됨 -->
+    <update id="autoWithdraw" parameterType="HashMap">
+        UPDATE saving_account
+        SET current_balance = 1000
+        WHERE account_number = #{account_number}
+    </update>
+
     <select id="getBalance"
             parameterType="HashMap"
             resultType="String">

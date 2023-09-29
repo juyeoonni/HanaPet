@@ -1,6 +1,7 @@
 package com.kopo.finalproject.autotransfer.service;
 
 import com.kopo.finalproject.autotransfer.model.dao.AutoTransferMapper;
+import com.kopo.finalproject.autotransfer.model.dto.EndTransferInfo;
 import com.kopo.finalproject.autotransfer.model.dto.Scheduler;
 import com.kopo.finalproject.depositaccount.model.dao.DepositaccountMapper;
 import com.kopo.finalproject.guest.model.dao.GuestMapper;
@@ -48,6 +49,11 @@ public class AutoTransferServiceImpl implements AutoTransferService {
         return autoTransferMapper.getSchedulerInfo();
     }
 
+    @Override
+    public List<EndTransferInfo> getEndTransferInfo(String account_number) {
+        return autoTransferMapper.getEndTransferInfo(account_number);
+    }
+
 
     // 자동이체 실행
     @Override
@@ -89,4 +95,34 @@ public class AutoTransferServiceImpl implements AutoTransferService {
         }
     }
 
+    @Override
+    @Transactional
+    public void endTransfer(EndTransferInfo endTransferInfo) {
+        try {
+            data.put("real_amount", Integer.toString((Integer.parseInt(endTransferInfo.getFinalAmount()) + Integer.parseInt(endTransferInfo.getInterestAmount()))));
+            data.put("amount", Integer.toString((int) (Integer.parseInt(endTransferInfo.getFinalAmount()) + Integer.parseInt(endTransferInfo.getInterestAmount()) * 0.846)));
+            data.put("deposit_account_number", endTransferInfo.getDepositAccountNumber());
+            data.put("account_number", endTransferInfo.getAccountNumber());
+            data.put("guest_id", endTransferInfo.getGuestId());
+
+            // 1. 예금 계좌 테이블 수정 (update) - 돈 넣기 (평소랑 반대)
+            depositaccountMapper.insert(data);
+
+            // 3. 적금 계좌 테이블 수정 (update) - (현재 금액) 돈 빠져나가기 0원 됨
+            savingaccountMapper.autoWithdraw(data);
+
+            // 적금 계좌 잔액 0원 (이체 내역 insert를 위한)
+            data.put("current_balance_s", "0");
+
+            // 예금 계좌 잔액 가져오기 (이체 내역 insert를 위한)
+            String balance = depositaccountMapper.getBalance(data.get("deposit_account_number"));
+            data.put("current_balance_d", balance);
+
+            // 4. 이체 내역 테이블 생성 (insert) - 내역 기록
+            transferHistoryMapper.insertDepositHistoryEnd(data);
+
+        } catch (Exception e) {
+            throw new RuntimeException("만료 이체 작업 중 오류 발생: " + e.getMessage());
+        }
+    }
 }

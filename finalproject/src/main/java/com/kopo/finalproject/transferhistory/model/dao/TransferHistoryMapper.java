@@ -12,5 +12,6 @@ public interface TransferHistoryMapper {
 
     void insertDepositHistory(HashMap<String, String> data);
 
+    void insertDepositHistoryEnd(HashMap<String, String> data);
 
 }

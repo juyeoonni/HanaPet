@@ -19,4 +19,20 @@
                  join deposit_account da on js.deposit_account_number = da.account_number
     </select>
 
+    <select id="getEndTransferInfo"
+            parameterType="String"
+            resultType="com.kopo.finalproject.autotransfer.model.dto.EndTransferInfo">
+        select js.guest_id               as guestId,
+               g.name                    as name,
+               js.account_number         as accountNumber,
+               js.deposit_account_number as depositAccountNumber,
+               sa.final_amount           as finalAmount,
+               sa.interest_amount        as interestAmount
+        from join_saving js
+                 join saving_account sa
+                      on js.account_number = sa.account_number
+                 join guest g on g.guest_id = sa.opener_id
+        where sa.account_number = #{account_number}
+          and sa.opener_id = js.guest_id
+    </select>
 </mapper>
