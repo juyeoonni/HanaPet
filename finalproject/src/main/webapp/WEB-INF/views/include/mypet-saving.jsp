@@ -224,9 +224,6 @@
 
                             total_balance += parseInt(balance);
 
-                            // 막대 그래프 생성 및 업데이트 로직을 추가하세요.
-                            var progressBar = createProgressBar(progress_rate); // 막대 그래프 생성 함수
-
                             // 주요 컨테이너 생성
                             var container = $('<div>').addClass('account-container');
                             var topContainer = $('<div>').addClass('top-container');
@@ -238,61 +235,77 @@
                             var imgElement = $('<img style="width: 65px;">').attr('src', 'resources/img/' + categoryImg).addClass('category-img');
                             leftContainer.append(imgElement);
 
-                            var Div = $('<div>');
-                            // 적금 이름과 진행률 추가
-                            var nameDiv = $('<div style="font-weight: bold; font-size: 20px; margin-bottom: 10px">').text(saving_name);
-                            // var progressDiv = $('<div>').text(progress_rate);
-                            Div.append(nameDiv, progressBar);
-                            leftContainer.append(Div);
+                            if (account.balance == '1000') {
+                                var Div = $('<div>');
+                                // 적금 이름과 진행률 추가
+                                var nameDiv = $('<div style="font-weight: bold; font-size: 20px; margin-bottom: 10px">').text(saving_name);
+                                var progressBar = createProgressBar(100); // 막대 그래프 생성 함수
 
-                            // 계좌 번호와 잔액 추가
-                            var accountNumberDiv = $('<div>').text(account_number.slice(0, 4) + '******' + account_number.slice(10));
-                            var balanceDiv = $('<div>').text('잔액 ' + Number(balance).toLocaleString() + '원');
-                            rightContainer.append(accountNumberDiv, balanceDiv);
+                                Div.append(nameDiv, progressBar);
+                                leftContainer.append(Div);
 
-                            // 내가 개설자일 때만 "공유하기" 버튼 생성
-                            if (String(openerId) === guest_id) {
-                                var kakaoLink = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px;  padding: 5px 15px; width: 122px">').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
-                                buttonContainer.append(kakaoLink);
+                                // 만기 알림
+                                var endDiv = $('<div style="padding-top: 37px; font-size: 22px; font-weight: bold; color: #75a989;">').text('만기된 적금입니다.');
+                                rightContainer.append(endDiv);
 
-                                // Kakao 공유 버튼을 생성하고 설정
-                                kakaoLink.on('click', function () {
-                                    const sharedUrl = 'http://localhost:8080/invited-pw?account-number=' + account.accountNumber;
+                            } else {
+                                var Div = $('<div>');
+                                // 적금 이름과 진행률 추가
+                                var nameDiv = $('<div style="font-weight: bold; font-size: 20px; margin-bottom: 10px">').text(saving_name);
+                                var progressBar = createProgressBar(progress_rate); // 막대 그래프 생성 함수
 
-                                    Kakao.Share.createDefaultButton({
-                                        container: '#kakaotalk-sharing-btn-' + account_number,
-                                        objectType: 'feed',
-                                        content: {
-                                            title: 'HanaPet 공유 적금에 초대되었어요!',
-                                            description: pet.name + '를 위해 공유 적금에 참여해보세요!🐶 비밀번호는 381924입니다.',
-                                            imageUrl: 'https://postfiles.pstatic.net/MjAyMzA5MTBfMTg2/MDAxNjk0MzM0MzI1NTIy.4l3dX_IM59DAvZREh6SKYk8pxBVd6kttYnha-5qNyuUg.a-pIK9JsI0PZPa1grgYGbTeQUtMjVL4aE-xGA-q3j80g.PNG.yulim_choi/A4_-_1.png?type=w966',
-                                            link: {
-                                                mobileWebUrl: sharedUrl,
-                                                webUrl: sharedUrl,
-                                            },
-                                        },
-                                        buttons: [
-                                            {
-                                                title: '적금 참여하기',
+                                Div.append(nameDiv, progressBar);
+                                leftContainer.append(Div);
+
+                                // 계좌 번호와 잔액 추가
+                                var accountNumberDiv = $('<div>').text(account_number.slice(0, 4) + '******' + account_number.slice(10));
+                                var balanceDiv = $('<div>').text('잔액 ' + Number(balance).toLocaleString() + '원');
+                                rightContainer.append(accountNumberDiv, balanceDiv);
+
+                                // 내가 개설자일 때만 "공유하기" 버튼 생성
+                                if (String(openerId) === guest_id) {
+                                    var kakaoLink = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px;  padding: 5px 15px; width: 122px">').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
+                                    buttonContainer.append(kakaoLink);
+
+                                    // Kakao 공유 버튼을 생성하고 설정
+                                    kakaoLink.on('click', function () {
+                                        const sharedUrl = 'http://localhost:8080/invited-pw?account-number=' + account.accountNumber;
+
+                                        Kakao.Share.createDefaultButton({
+                                            container: '#kakaotalk-sharing-btn-' + account_number,
+                                            objectType: 'feed',
+                                            content: {
+                                                title: 'HanaPet 공유 적금에 초대되었어요!',
+                                                description: pet.name + '를 위해 공유 적금에 참여해보세요!🐶 비밀번호는 381924입니다.',
+                                                imageUrl: 'https://postfiles.pstatic.net/MjAyMzA5MTBfMTg2/MDAxNjk0MzM0MzI1NTIy.4l3dX_IM59DAvZREh6SKYk8pxBVd6kttYnha-5qNyuUg.a-pIK9JsI0PZPa1grgYGbTeQUtMjVL4aE-xGA-q3j80g.PNG.yulim_choi/A4_-_1.png?type=w966',
                                                 link: {
                                                     mobileWebUrl: sharedUrl,
                                                     webUrl: sharedUrl,
                                                 },
-                                            }
-                                        ]
+                                            },
+                                            buttons: [
+                                                {
+                                                    title: '적금 참여하기',
+                                                    link: {
+                                                        mobileWebUrl: sharedUrl,
+                                                        webUrl: sharedUrl,
+                                                    },
+                                                }
+                                            ]
+                                        });
                                     });
+                                }
+
+                                // "자세히 보기" 버튼 생성
+                                var detailsButton = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px; padding: 5px 15px; margin-left: 10px">').text('자세히 보기');
+
+                                detailsButton.on('click', function () {
+                                    var nextPageUrl = '/mypet-saving/detail?accountNumber=' + encodeURIComponent(account_number);
+                                    window.location.href = nextPageUrl;
                                 });
+
+                                buttonContainer.append(detailsButton);
                             }
-
-                            // "자세히 보기" 버튼 생성
-                            var detailsButton = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px; padding: 5px 15px; margin-left: 10px">').text('자세히 보기');
-
-                            detailsButton.on('click', function () {
-                                var nextPageUrl = '/mypet-saving/detail?accountNumber=' + encodeURIComponent(account_number);
-                                window.location.href = nextPageUrl;
-                            });
-
-                            buttonContainer.append(detailsButton);
 
                             // 생성한 컨테이너들을 상위 컨테이너에 추가
                             topContainer.append(leftContainer, rightContainer);
@@ -340,10 +353,8 @@
         });
 
         function createProgressBar(progressRate) {
-            // 막대 그래프 컨테이너를 생성합니다.
             var progressBarContainer = $("<div style='width: 410px; height: 30px; border-radius: 20px; background: #f2f2f2;'>").addClass("progress");
 
-            // 막대 그래프 바를 생성합니다.
             var progressBar = $("<div style='background:linear-gradient(to right, #d3959b, #bfe6ba)'>").addClass("progress-bar")
                 .attr("role", "progressbar")
                 .attr("aria-valuemin", "0")
@@ -351,20 +362,17 @@
                 .css("borderRadius", "20px")
                 .css("width", "0%"); // 초기 너비를 0%로 설정
 
-            // 진행률을 나타내는 텍스트를 생성합니다.
-            var progressText = $("<div style='text-align: center; color: #324D3D; font-size: 14px; margin-left: 10px; margin-top: 4px'>").text(Math.round(progressRate) + "%");
+            progressBarContainer.append(progressBar);
 
-            // 막대 그래프 바와 텍스트를 막대 그래프 컨테이너에 추가합니다.
-            progressBarContainer.append(progressBar, progressText);
-
-            // 막대 그래프 컨테이너를 반환합니다.
-            var container = progressBarContainer;
-
-            // 동적으로 생성된 프로그래스 바에 애니메이션을 적용합니다.
             progressBar.animate({width: progressRate + '%'}, 750); // 0.6초 동안 애니메이션 실행
 
-            return container;
+            var progressText = $("<div style='text-align: center; color: #324D3D; font-size: 14px; z-index: 2; padding-right: 4px; align-self: self-end;'>").text(Math.round(progressRate) + "%");
+
+            progressBar.append(progressText);
+
+            return progressBarContainer;
         }
+
 
     });
 
