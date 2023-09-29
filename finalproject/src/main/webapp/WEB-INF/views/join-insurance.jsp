@@ -198,11 +198,8 @@
                                 </td>
                             </tr>
                         </table>
-
                         <br>
-
                         <div>
-                            <br><br>
                             <h4 style="margin-top: 80px; text-align: center">보험 가입 동의서</h4>
                             <br>
                             <img src="/resources/img/warning.png" width="30px">
@@ -419,15 +416,16 @@
 
     function joinInsurance() {
         const productInfo = JSON.parse(sessionStorage.getItem("selectedInsurance"));
+        const selectedOption = document.getElementById('accountNumberSelection').options[document.getElementById('accountNumberSelection').selectedIndex];
         const requestData = {
             guestId: '<%=guest_id%>',
-            petId: '1',
+            petId: document.getElementById("petSelection").value,
             insuranceName: productInfo.insuranceName,
-            depositAccountNumber: '493-293-143-13524',
+            depositAccountNumber: selectedOption.textContent.split(" ")[0],
             insuranceAmount: productInfo.insuranceAmount
         };
 
-        console.log(requestData);
+        console.log("이거야" + requestData);
         $.ajax({
             url: "/join-insuranceProduct",
             type: "POST",
