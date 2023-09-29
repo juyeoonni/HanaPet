@@ -2,6 +2,7 @@ package com.kopo.finalproject.guest.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kopo.finalproject.guest.model.dao.GuestMapper;
+import com.kopo.finalproject.guest.model.dto.EndMessageGuest;
 import com.kopo.finalproject.guest.model.dto.Guest;
 import com.kopo.finalproject.guest.model.dto.SocialToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class GuestServiceImpl implements GuestService {
     @Override
     public List<Guest> getAllMember() {
         return null;
+    }
+
+    @Override
+    public List<EndMessageGuest> getEndMessageGuest(String account_number) {
+        return guestMapper.getEndMessageGuest(account_number);
     }
 
     @Override

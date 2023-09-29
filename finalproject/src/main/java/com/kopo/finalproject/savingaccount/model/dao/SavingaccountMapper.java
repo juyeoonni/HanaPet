@@ -13,10 +13,13 @@ import java.util.List;
 public interface SavingaccountMapper {
     List<MyAccountsOfPet> getAllSavingAccountsOfPetOfGuest(HashMap<String, String> data);
 
+    List<Savingaccount> getAllSavingAccounts();
+
     void createSavingAccounts(HashMap<String, String> data);
 
 
     void deposit(HashMap<String, String> data);
+
     void autoDeposit(HashMap<String, String> data);
 
     String getBalance(String accountNumber);

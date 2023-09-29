@@ -7,6 +7,7 @@ import com.kopo.finalproject.savingaccount.model.dao.SavingaccountMapper;
 import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
 import com.kopo.finalproject.savingaccount.model.dto.MyPageDetailInfo;
 import com.kopo.finalproject.savingaccount.model.dto.MyPageHistoryInfo;
+import com.kopo.finalproject.savingaccount.model.dto.Savingaccount;
 import com.kopo.finalproject.transferhistory.model.dao.TransferHistoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,11 @@ public class SavingaccountServiceImpl implements SavingaccountService {
     @Override
     public List<MyAccountsOfPet> getAllSavingAccountsOfPetOfGuest(HashMap<String, String> data) {
         return savingaccountMapper.getAllSavingAccountsOfPetOfGuest(data);
+    }
+
+    @Override
+    public List<Savingaccount> getAllSavingAccounts() {
+        return savingaccountMapper.getAllSavingAccounts();
     }
 
     @Override

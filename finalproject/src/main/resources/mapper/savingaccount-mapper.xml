@@ -21,6 +21,12 @@
           AND pet_id = #{pet_id}
     </select>
 
+    <select id="getAllSavingAccounts"
+            resultType="com.kopo.finalproject.savingaccount.model.dto.Savingaccount">
+        SELECT *
+        FROM saving_account
+    </select>
+
     <!-- 적금 계좌 테이블 생성 -->
     <insert id="createSavingAccounts" parameterType="HashMap">
         INSERT INTO saving_account(account_number, join_period, end_date, category, opener_id, saving_name, pet_id,

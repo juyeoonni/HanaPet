@@ -10,6 +10,17 @@
     <!--        FROM guest-->
     <!--    </select>-->
 
+    <select id="getEndMessageGuest" parameterType="String"
+            resultType="com.kopo.finalproject.guest.model.dto.EndMessageGuest">
+        select g.name as name, g.phone as phone, sa.saving_name as savingName
+        from join_saving js
+                 join guest g on g.guest_id = js.guest_id
+                 join saving_account sa on sa.account_number = js.account_number
+        where sa.account_number = #{account_number}
+          and js.sms_maturity = 'Y'
+    </select>
+
+
     <!-- 로그인 -->
     <select id="loginGuest" parameterType="HashMap" resultType="com.kopo.finalproject.guest.model.dto.Guest">
         SELECT *

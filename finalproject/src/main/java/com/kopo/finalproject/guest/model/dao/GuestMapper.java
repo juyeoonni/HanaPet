@@ -1,5 +1,6 @@
 package com.kopo.finalproject.guest.model.dao;
 
+import com.kopo.finalproject.guest.model.dto.EndMessageGuest;
 import com.kopo.finalproject.guest.model.dto.Guest;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,6 +12,9 @@ public interface GuestMapper {
     List<Guest> getAllGuest();
 
     // 로그인하기 (select)
+
+    List<EndMessageGuest> getEndMessageGuest(String account_number);
+
     Guest loginGuest(HashMap<String, String> loginData);
 
     Guest selectEmailOneMember(String email);
