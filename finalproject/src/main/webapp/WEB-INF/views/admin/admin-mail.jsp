@@ -1,3 +1,4 @@
+<%@ page import="com.kopo.finalproject.EmailSender" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -311,8 +312,10 @@
                                 <form th:action="@{/mailService}" method="post">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label"
-                                                   style="font-size: 16px;">받는 분</label>
+                                            <%--@declare id="example-text-input"--%><label for="example-text-input"
+                                                                                           class="form-control-label"
+                                                                                           style="font-size: 16px;">받는
+                                            분</label>
                                             <input class="form-control" type="text" name="name" id="name">
                                             <input type="hidden" name="address" placeholder="이메일 주소를 입력하세요" id="email">
 
@@ -332,19 +335,19 @@
                                             <textarea class="form-control" type="text" name="content"
                                                       placeholder="보낼 내용을 입력하세요">
 
-    </textarea>
+                                            </textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <%--@declare id="example-text-input"--%><label for="example-text-input"
-                                                                                           class="form-control-label"
-                                                                                           style="font-size: 16px;">첨부파일</label><br>
-                                            <input type="file" name="attachFileList" class="file-input"/>
-                                        </div>
-                                    </div>
+                                    <%--                                    <div class="col-md-12">--%>
+                                    <%--                                        <div class="form-group">--%>
+                                    <%--                                            &lt;%&ndash;@declare id="example-text-input"&ndash;%&gt;<label for="example-text-input"--%>
+                                    <%--                                                                                           class="form-control-label"--%>
+                                    <%--                                                                                           style="font-size: 16px;">첨부파일</label><br>--%>
+                                    <%--                                            <input type="file" name="attachFileList" class="file-input"/>--%>
+                                    <%--                                        </div>--%>
+                                    <%--                                    </div>--%>
                                     <div class="text-end">
-                                        <button class="btn btn-getstarted btn-sm ms-auto"
+                                        <button class="btn btn-getstarted btn-sm ms-auto" id="sendEmail"
                                                 style="background: #75A989; color: #fff;">
                                             발송
                                         </button>
@@ -385,6 +388,13 @@
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
+<script>
+    $(window).load(function () {
+        $("#sendEmail").click(function () {
+            <%--            <%EmailSender.naverMailSend("yulim13sky@naver.com","적금 상품 새로 나옴","내용 test");%>--%>
+        });
+    });
+</script>
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
