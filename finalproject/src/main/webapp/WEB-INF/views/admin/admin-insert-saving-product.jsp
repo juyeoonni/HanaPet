@@ -15,6 +15,9 @@
     <title>
         product
     </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css"/>
+
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <!-- Nucleo Icons -->
@@ -109,40 +112,45 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="/admin/dashboard">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-clipboard-data fs-5" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">대시보드</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/admin/saving-product">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                <a class="nav-link active " href="/admin/saving-product">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-piggy-bank fs-5" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">적금상품</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-file-medical fs-5" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">보험상품</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-envelope fs-5" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">메일</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-person fs-4" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">손님관리</span>
                 </a>
@@ -180,7 +188,7 @@
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     <div class="input-group">
                         <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" placeholder="Type here...">
+                        <input type="text" class="form-control" placeholder="search">
                     </div>
                 </div>
                 <ul class="navbar-nav  justify-content-end">

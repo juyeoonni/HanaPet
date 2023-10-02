@@ -7,6 +7,8 @@
     <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/admin/apple-icon.png">
     <link rel="icon" type="image/png" href="/resources/img/admin/favicon.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css"/>
 
     <title>
         Argon Dashboard 2 by Creative Tim
@@ -18,7 +20,6 @@
     <link href="/resources/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="/resources/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- CSS Files -->
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
 </head>
@@ -65,8 +66,6 @@
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 ps"
        id="sidenav-main">
     <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-           aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
            target="_blank">
             <img src="/resources/img/main_logo.png" class="navbar-brand-img h-100" alt="main_logo">
@@ -77,40 +76,45 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="/admin/dashboard">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-clipboard-data fs-5" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">대시보드</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active " href="/admin/saving-product">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-piggy-bank fs-5" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">적금상품</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-file-medical fs-5" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">보험상품</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-envelope fs-5" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">메일</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+                         style="margin-top: -8px">
+                        <i class="bi bi-person fs-4" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">손님관리</span>
                 </a>
@@ -150,7 +154,7 @@
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     <div class="input-group">
                         <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" placeholder="Type here...">
+                        <input type="text" class="form-control" placeholder="search">
                     </div>
                 </div>
                 <ul class="navbar-nav  justify-content-end">
