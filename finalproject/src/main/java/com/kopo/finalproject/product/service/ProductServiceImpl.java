@@ -36,4 +36,9 @@ public class ProductServiceImpl implements ProductService {
     public void insertProduct(Product product) {
         productMapper.insertProduct(product);
     }
+
+    @Override
+    public void deleteproduct(String category) {
+        productMapper.deleteproduct(category);
+    }
 }

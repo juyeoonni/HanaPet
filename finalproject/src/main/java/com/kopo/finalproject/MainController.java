@@ -92,6 +92,14 @@ public class MainController {
         return "redirect:/admin/saving-product";
     }
 
+    @PostMapping("/deleteproduct")
+    public String deleteProduct(HttpServletRequest req) {
+
+        String category = req.getParameter("category");
+        productService.deleteproduct(category);
+        return "redirect:/admin/saving-product";
+    }
+
     @RequestMapping("/signInfoPDF")
     public ModelAndView pdf() {
         ModelAndView mav = new ModelAndView();

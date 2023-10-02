@@ -36,5 +36,11 @@
                 #{image})
     </insert>
 
+    <delete id="deleteproduct" parameterType="String">
+        DELETE
+        pet_saving_product
+        WHERE category =
+        #{category}
+    </delete>
 
 </mapper>

@@ -47,6 +47,18 @@
         border: 1px solid #75A989;
     }
 
+    #cancle, #delete {
+        font-size: 17px !important;
+        font-weight: bold;
+        background-color: #75A989;
+        padding: 3px;
+        border-radius: 4px;
+        width: 80px;
+        cursor: pointer;
+        color: white !important;
+        border: 1px solid #75A989;
+    }
+
 </style>
 <body class="g-sidenav-show   bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
@@ -359,14 +371,21 @@
                             상품을 삭제하시겠습니까?
                         </div>
                         <div class="modal-footer" style="border-top: none">
-                            <button id="cancle" data-dismiss="modal" aria-label="Close"> 취소</button>
-                            <form action="admin/deleteproduct" method="post"
+                            <button id="cancle">취소</button>
+                            <form action="/deleteproduct" method="post"
                                   name="deleteproduct">
                                 <input type="hidden" id="category" name="category"
                                        value=${productList.category}>
                                 <button id="delete" type="submit" data-dismiss="modal" aria-label="Close">삭제</button>
                             </form>
                         </div>
+                        <script>
+                            $(document).ready(function () {
+                                $('#cancle').click(function () {
+                                    $('.modal').modal('hide');
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -499,7 +518,6 @@
         del.attr(savingname);
         del.attr("action", "/deleteproduct");
         del.submit();
-
     }
 
     function insertProduct() {
