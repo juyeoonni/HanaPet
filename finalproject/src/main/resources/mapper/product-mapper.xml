@@ -17,5 +17,24 @@
         WHERE category = #{category}
     </select>
 
+    <update id="updateProduct" parameterType="com.kopo.finalproject.product.model.dto.Product">
+        UPDATE pet_saving_product
+        SET rate        = #{rate}
+          , description = #{description}
+          , min_balance = #{min_balance}
+          , max_balance = #{max_balance}
+          , min_period  = #{min_period}
+          , max_period  = #{max_period}
+          , image       = #{image}
+        WHERE category = #{category}
+    </update>
+
+    <insert id="insertProduct" parameterType="com.kopo.finalproject.product.model.dto.Product">
+        INSERT INTO pet_saving_product(category, rate, description, min_balance, max_balance, min_period, max_period,
+                                       image)
+        VALUES (#{category}, #{rate}, #{description}, #{min_balance}, #{max_balance}, #{min_period}, #{max_period},
+                #{image})
+    </insert>
+
 
 </mapper>

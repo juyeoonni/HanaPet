@@ -8,9 +8,7 @@ import com.kopo.finalproject.product.model.dto.Product;
 import com.kopo.finalproject.product.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +78,18 @@ public class MainController {
         System.out.println(product);
         mav.setViewName("admin/admin-update-saving-product");
         return mav;
+    }
+
+    @PostMapping("/productAdminUpdateProc")
+    public String productAdminUpdateProc(@ModelAttribute Product product) {
+        productService.updateProduct(product);
+        return "redirect:/admin/saving-product";
+    }
+
+    @PostMapping("/productAdminInsertProc")
+    public String productAdminInsertProc(@ModelAttribute Product product) {
+        productService.insertProduct(product);
+        return "redirect:/admin/saving-product";
     }
 
     @RequestMapping("/signInfoPDF")

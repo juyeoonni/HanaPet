@@ -299,7 +299,6 @@
                     <h4 style="display: inline-block;">상품 수정</h4>
                 </div>
                 <form name="form1" action="/productAdminUpdateProc" method="post">
-                    <input type="hidden" name="category" value="<c:out value="${product.category}"/>">
                     <div class="card-body" style="padding: 40px 50px 100px 50px;">
                         <div class="row">
                             <div class="col-md-6">
@@ -308,7 +307,7 @@
                                                                                    class="form-control-label"
                                                                                    style="font-size: 18px;">상품
                                     이름</label>
-                                    <input id="form" class="form-control" type="text" name="savingName"
+                                    <input id="form" class="form-control" type="text" name="category"
                                            value="<c:out value="${product.category}"/>">
                                 </div>
                             </div>
@@ -318,6 +317,7 @@
                                            style="font-size: 18px;">상품 이미지</label>
                                     <div class="filebox">
                                         <input class="upload-name" value="${product.image}" disabled>
+                                        <input type="hidden" name="image" value="${product.image}">
                                         <label for="file">파일찾기</label>
                                         <input type="file" id="file">
                                     </div>
@@ -328,7 +328,7 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">상품 상세</label>
-                                        <input id="form" class="form-control" type="text" name="savingDetail"
+                                        <input id="form" class="form-control" type="text" name="description"
                                                value="<c:out value="${product.description}"/>">
                                     </div>
                                 </div>
@@ -336,7 +336,7 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">기본 금리</label>
-                                        <input id="form" class="form-control" type="text" name="baseRate"
+                                        <input id="form" class="form-control" type="text" name="rate"
                                                value="<c:out value="${product.rate}"/>">
                                     </div>
                                 </div>
@@ -352,7 +352,7 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최소 가입 금액</label>
-                                        <input id="form" class="form-control" type="text" name="minAmount"
+                                        <input id="form" class="form-control" type="text" name="min_balance"
                                                value="<c:out value="${product.min_balance}"/>">
                                     </div>
                                 </div>
@@ -360,7 +360,7 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최대 가입 금액</label>
-                                        <input id="form" class="form-control" type="text" name="maxAmount"
+                                        <input id="form" class="form-control" type="text" name="max_balance"
                                                value="<c:out value="${product.max_balance}"/>">
                                     </div>
                                 </div>
@@ -370,7 +370,7 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최소 가입 기간</label>
-                                        <input id="form" class="form-control" type="text" name="minPeriod"
+                                        <input id="form" class="form-control" type="text" name="min_period"
                                                value="<c:out value="${product.min_period}"/>">
                                     </div>
                                 </div>
@@ -378,7 +378,7 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최대 가입 기간</label>
-                                        <input id="form" class="form-control" type="text" name="maxPeriod"
+                                        <input id="form" class="form-control" type="text" name="max_period"
                                                value="<c:out value="${product.max_period}"/>">
                                     </div>
                                 </div>
@@ -526,10 +526,16 @@
 <script src="/resources/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="/resources/js/plugins/chartjs.min.js"></script>
 <script type="text/javascript">
+    // 원래의 이미지 이름을 변수에 저장
+    var originalFileName = "${product.image}";
+
     $("#file").on('change', function () {
         var fileName = $("#file").val();
-        fileName = fileName.split("\\")[2];
-        $(".upload-name").val(fileName);
+        if (fileName !== originalFileName) { // 파일이 선택되었다면
+            fileName = fileName.split("\\")[2];
+            $(".upload-name").val(fileName);
+            $('input[name="image"]').val(fileName);
+        }
     });
 </script>
 <!-- Github buttons -->

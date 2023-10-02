@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/admin/apple-icon.png">
     <link rel="icon" type="image/png" href="/resources/img/admin/favicon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>
         Argon Dashboard 2 by Creative Tim
     </title>
@@ -21,6 +23,11 @@
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
 </head>
 <style>
+    .navbar-vertical.navbar-expand-xs.fixed-start {
+        left: 0;
+        z-index: 0;
+    }
+
     .bg-primary {
         background-color: #75A989 !important;
     }
@@ -243,99 +250,127 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row">
-                <div class="card">
-                    <div class="card-header pb-0" style="margin-bottom: 15px;">
-                        <h4 style="display: inline-block;">적금 상품 목록</h4>
-                        <button id="btn" href="javascript:;" onclick="insertProduct()"
-                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                data-original-title="Edit user"
-                                style="font-size: 22px; position: relative; left: 880px;">
-                            상품 등록
-                        </button>
-                    </div>
-                    <div class="card-body px-0 pt-0 pb-2">
-                        <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0">
-                                <thead>
+            <div class="card">
+                <div class="card-header pb-0" style="margin-bottom: 15px;">
+                    <h4 style="display: inline-block;">적금 상품 목록</h4>
+                    <button id="btn" href="javascript:;" onclick="insertProduct()"
+                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                            data-original-title="Edit user"
+                            style="font-size: 22px; position: relative; left: 880px;">
+                        상품 등록
+                    </button>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    상품명
+                                </th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                    기본금리
+                                </th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    우대금리
+                                </th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    등록일
+                                </th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    상태
+                                </th>
+                                <th class="text-secondary opacity-3"></th>
+                                <th class="text-secondary opacity-3"></th>
+                                <th class="text-secondary opacity-3"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="product" items="${products}" varStatus="vs">
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        상품명
-                                    </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        기본금리
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        우대금리
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        등록일
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        상태
-                                    </th>
-                                    <th class="text-secondary opacity-3"></th>
-                                    <th class="text-secondary opacity-3"></th>
-                                    <th class="text-secondary opacity-3"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="product" items="${products}">
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 py-1">
-                                                <div>
-                                                    <img src="/resources/img/${product.image}"
-                                                         class="avatar avatar-sm me-3"/>
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">${product.category}</h6>
-                                                </div>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div>
+                                                <img src="/resources/img/${product.image}"
+                                                     class="avatar avatar-sm me-3"/>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">${product.rate}%</p>
-                                        </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <span class="text-secondary text-xs font-weight-bold">5.0</span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <span class="badge badge-sm bg-gradient-success">진행중</span>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="font-weight-bold" data-toggle="tooltip"
-                                               data-original-title="Edit user">
-                                                상세보기
-                                            </a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;"
-                                               onclick="updateProduct('${product.category}')"
-                                               class="font-weight-bold" data-toggle="tooltip"
-                                               data-original-title="Edit user">
-                                                <i class="fa-regular fa-pen-to-square"></i>&nbsp&nbsp수정
-                                            </a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a type="button" class="font-weight-bold" data-toggle="modal"
-                                               data-target="#exampleModal${vs.index}" id="openModal${vs.index}"
-                                               onclick="openModal('${productList['SAVINGNAME'] }', '#exampleModal${vs.index}', '${productList['SAVINGCODE'] }')">
-                                                <i class="fa-regular fa-trash-can"></i>&nbsp&nbsp삭제
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">${product.category}</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">${product.rate}%</p>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <span class="text-secondary text-xs font-weight-bold">5.0</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span class="badge badge-sm bg-gradient-success">진행중</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="javascript:;" class="font-weight-bold" data-toggle="tooltip"
+                                           data-original-title="Edit user">
+                                            상세보기
+                                        </a>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="javascript:;"
+                                           onclick="updateProduct('${product.category}')"
+                                           class="font-weight-bold" data-toggle="tooltip"
+                                           data-original-title="Edit user">
+                                            <i class="fa-regular fa-pen-to-square"></i>&nbsp&nbsp수정
+                                        </a>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a type="button" class="font-weight-bold" data-toggle="modal"
+                                           data-target="#exampleModal${vs.index}" id="openModal${vs.index}"
+                                           onclick="openModal('${product.category}', '#exampleModal${vs.index}')">
+                                            <i class="fa-regular fa-trash-can"></i>&nbsp&nbsp삭제
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-                                </tbody>
-                            </table>
+        <!-- Modal -->
+        <c:forEach items="${products}" var="productList" varStatus="vs">
+            <div class="modal fade" id="exampleModal${vs.index}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="margin-top: 240px;">
+                    <div class="modal-content" style="width: 120%; margin-left: 0%;">
+                        <div class="modal-header">
+                            <p class="fw-bold font-sans-serif"
+                               style="color: #555; font-size: 23px; margin-bottom: 0px; padding-left: 12px;">${productList.category}</p>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body fw-bold font-sans-serif"
+                             style="margin-bottom: 15px; padding-top: 20px; font-size: 18px; text-align: center; color: #555; border-bottom: none;">
+                            상품을 삭제하시겠습니까?
+                        </div>
+                        <div class="modal-footer" style="border-top: none">
+                            <button id="cancle" data-dismiss="modal" aria-label="Close"> 취소</button>
+                            <form action="admin/deleteproduct" method="post"
+                                  name="deleteproduct">
+                                <input type="hidden" id="category" name="category"
+                                       value=${productList.category}>
+                                <button id="delete" type="submit" data-dismiss="modal" aria-label="Close">삭제</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-
-        </div>
+            </div>
+        </c:forEach>
 
         <footer class="footer pt-5">
             <div class="container-fluid">
@@ -447,6 +482,26 @@
 <script src="/resources/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="/resources/js/plugins/smooth-scrollbar.min.js"></script>
 <script>
+
+    function openModal(savingname, modalid) {
+
+        $(modalid).modal("show");
+        console.log(modalid);
+        $("#savingname").text(savingname);
+        console.log(savingname)
+
+        document.querySelector(".modal").classList.remove("hidden");
+    }
+
+    function deleteproduct(savingname) {
+        console.log("삭제: " + savingname);
+        let del = $("#del");
+        del.attr(savingname);
+        del.attr("action", "/deleteproduct");
+        del.submit();
+
+    }
+
     function insertProduct() {
         location.href = "/admin/insert-saving-product";
     }
