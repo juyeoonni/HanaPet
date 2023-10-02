@@ -27,12 +27,12 @@
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0934819575 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-9">
-            <stop stop-color="#7A62E4" offset="0%"></stop>
-            <stop stop-color="#656EE4" offset="100%"></stop>
+            <stop stop-color="#75A989" offset="0%"></stop>
+            <stop stop-color="#75A989" offset="100%"></stop>
         </linearGradient>
         <linearGradient x1="6.16024702%" y1="4.93510655%" x2="91.178684%" y2="95.0648934%" id="linearGradient-10">
-            <stop stop-color="#798CFB" offset="0%"></stop>
-            <stop stop-color="#5760D5" offset="100%"></stop>
+            <stop stop-color="#75A989" offset="0%"></stop>
+            <stop stop-color="#75A989" offset="100%"></stop>
         </linearGradient>
         <path d="M124,52.5241774 L124,113.139129 C124,114.722208 122.668841,116 121.025481,116 L47.9821801,116 C46.3388207,116 45,114.722208 45,113.139129 L45,43.8695616 C45,42.2864821 46.3407361,41 47.9821801,41 L64.3908743,41 C65.4110299,40.9941675 66.3646324,41.5070182 66.9239078,42.362324 L70.7076565,48.2856717 C71.2634202,49.1452941 72.2188655,49.6605842 73.24069,49.6517858 L121.028354,49.6517858 C122.668841,49.6585059 124,50.9410979 124,52.5241774 Z" id="path-11"></path>
         <filter x="-48.1%" y="-29.3%" width="196.2%" height="201.3%" filterUnits="objectBoundingBox" id="filter-12">
@@ -41,8 +41,8 @@
             <feColorMatrix values="0 0 0 0 0.411764706   0 0 0 0 0.423529412   0 0 0 0 0.894117647  0 0 0 0.302194022 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
         <linearGradient x1="6.16024702%" y1="27.2920605%" x2="91.178684%" y2="72.7079395%" id="linearGradient-13">
-            <stop stop-color="#798CFB" offset="0%"></stop>
-            <stop stop-color="#5760D5" offset="100%"></stop>
+            <stop stop-color="#75A989" offset="0%"></stop>
+            <stop stop-color="#75A989" offset="100%"></stop>
         </linearGradient>
     </defs>
     <g id="icon-documentation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
