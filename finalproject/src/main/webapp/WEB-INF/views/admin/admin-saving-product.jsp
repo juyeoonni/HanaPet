@@ -319,10 +319,10 @@
                                         <p class="text-xs font-weight-bold mb-0">${product.rate}%</p>
                                     </td>
                                     <td class="align-middle text-center text-sm">
-                                        <span class="text-secondary text-xs font-weight-bold">5.0</span>
+                                        <span class="text-secondary text-xs font-weight-bold">${product.prime_rate}%</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                        <span class="text-secondary text-xs font-weight-bold">${product.creation_date.split(" ")[0]}</span>
                                     </td>
                                     <td class="align-middle text-center">
                                         <span class="badge badge-sm bg-gradient-success">진행중</span>

@@ -351,7 +351,7 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">우대 금리</label>
-                                        <input id="form" class="form-control" type="text" name="primeRate"
+                                        <input id="form" class="form-control" type="text" name="prime_rate"
                                                value="">
                                     </div>
                                 </div>
@@ -392,7 +392,7 @@
                             </div>
                         </div>
                         <div style="position: relative; top: 35px;" align="center">
-                            <input class="openBtn" type="submit" value="수정" style="font-size: 18px;">
+                            <input class="openBtn" type="submit" value="등록" style="font-size: 18px;">
                         </div>
                     </div>
                 </form>

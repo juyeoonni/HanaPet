@@ -351,8 +351,8 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">우대 금리</label>
-                                        <input id="form" class="form-control" type="text" name="primeRate"
-                                               value="<c:out value="${product.rate}"/>">
+                                        <input id="form" class="form-control" type="text" name="prime_rate"
+                                               value="<c:out value="${product.prime_rate}"/>">
                                     </div>
                                 </div>
                                 <div class="col-md-3">

@@ -9,7 +9,9 @@ import lombok.Setter;
 @Setter
 public class Product {
     private String category;
+    private String creation_date;
     private double rate;
+    private double prime_rate;
     private String description;
     private int min_period;
     private int min_balance;
