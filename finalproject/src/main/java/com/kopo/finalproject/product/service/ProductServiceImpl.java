@@ -21,4 +21,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProduct() {
         return productMapper.getAllProduct();
     }
+
+    @Override
+    public Product getProductByCategory(String category) {
+        return productMapper.getProductByCategory(category);
+    }
 }

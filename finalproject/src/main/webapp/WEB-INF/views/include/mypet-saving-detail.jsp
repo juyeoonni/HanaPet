@@ -15,7 +15,7 @@
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/resources/js/apiKey.js"></script>
+    <script src="/resources/javascript/apiKey.js"></script>
 
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
             integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"

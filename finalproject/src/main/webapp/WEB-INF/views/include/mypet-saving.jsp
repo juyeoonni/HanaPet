@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-    <script src="/resources/js/apiKey.js"></script>
+    <script src="/resources/javascript/apiKey.js"></script>
 
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
             integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"

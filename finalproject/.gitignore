@@ -37,6 +37,6 @@ out/
 .vscode/
 
 ### Key 값 ###
-src/main/webapp/resources/js/apiKey.js
+src/main/webapp/resources/javascript/apiKey.js
 config.properties
 src/main/resources/application.properties

@@ -10,4 +10,6 @@ public interface ProductMapper {
 
     // 모든 적금 상품 불러오기 select
     List<Product> getAllProduct();
+
+    Product getProductByCategory(String category);
 }

@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <head>
     <link rel="stylesheet" href="/resources/css/modal.css">
-    <script src="/resources/js/apiKey.js"></script>
+    <script src="/resources/javascript/apiKey.js"></script>
     <style>
         .second-content img {
             border-radius: 50%;

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/login-register.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/resources/js/apiKey.js"></script>
+    <script src="/resources/javascript/apiKey.js"></script>
     <style>
         .button {
             background-color: #75A989;

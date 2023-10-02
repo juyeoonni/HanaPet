@@ -7,7 +7,7 @@
     <title>Calendar</title>
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/calendar.css">
-    <script src="/resources/js/apiKey.js"></script>
+    <script src="/resources/javascript/apiKey.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
             integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"

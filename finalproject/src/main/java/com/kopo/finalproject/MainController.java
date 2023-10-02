@@ -4,12 +4,16 @@ import com.kopo.finalproject.dto.Invite;
 import com.kopo.finalproject.joinsaving.service.JoinSavingService;
 import com.kopo.finalproject.pet.model.dto.Pet;
 import com.kopo.finalproject.pet.service.PetService;
+import com.kopo.finalproject.product.model.dto.Product;
+import com.kopo.finalproject.product.service.ProductService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -17,10 +21,12 @@ import java.util.List;
 public class MainController {
     private final JoinSavingService joinSavingService;
     private final PetService petService;
+    private final ProductService productService;
 
-    public MainController(JoinSavingService joinSavingService, PetService petService) {
+    public MainController(JoinSavingService joinSavingService, PetService petService, ProductService productService) {
         this.joinSavingService = joinSavingService;
         this.petService = petService;
+        this.productService = productService;
     }
 
     @RequestMapping("/")
@@ -33,6 +39,46 @@ public class MainController {
         mav.addObject("pets", pets);
         System.out.println(pets);
         mav.setViewName("index");
+        return mav;
+    }
+
+    @RequestMapping("/admin/dashboard")
+    public ModelAndView adminDash() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("admin/admin-main");
+        return mav;
+    }
+
+    @RequestMapping("/admin/saving-product")
+    public ModelAndView adminSaving() {
+        ModelAndView mav = new ModelAndView();
+        List<Product> savingProducts = null;
+        savingProducts = productService.getAllProduct();
+        mav.addObject("products", savingProducts);
+        System.out.println(savingProducts);
+        mav.setViewName("admin/admin-saving-product");
+        return mav;
+    }
+
+    @RequestMapping("/admin/insert-saving-product")
+    public ModelAndView adminInsertSaving() {
+        ModelAndView mav = new ModelAndView();
+        List<Product> savingProducts = null;
+        savingProducts = productService.getAllProduct();
+        mav.addObject("products", savingProducts);
+        System.out.println(savingProducts);
+        mav.setViewName("admin/admin-insert-saving-product");
+        return mav;
+    }
+
+    @RequestMapping("/admin/update-saving-product")
+    public ModelAndView adminUpdateSaving(HttpServletRequest req, HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        String category = req.getParameter("category");
+        Product product = productService.getProductByCategory(category);
+        mav.addObject("product", product);
+        System.out.println(product);
+        mav.setViewName("admin/admin-update-saving-product");
         return mav;
     }
 

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/resources/css/modal.css">
     <link rel="stylesheet" href="/resources/css/join-product.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/resources/js/common.js"></script>
+    <script src="/resources/javascript/common.js"></script>
     <style>
         .modal {
             height: 1610px;
