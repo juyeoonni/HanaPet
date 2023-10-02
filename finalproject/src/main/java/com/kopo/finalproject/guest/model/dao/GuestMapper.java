@@ -1,5 +1,6 @@
 package com.kopo.finalproject.guest.model.dao;
 
+import com.kopo.finalproject.guest.model.dto.EmailGuest;
 import com.kopo.finalproject.guest.model.dto.EndMessageGuest;
 import com.kopo.finalproject.guest.model.dto.Guest;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,4 +25,6 @@ public interface GuestMapper {
     void insertPet(HashMap<String, String> data);
 
     String getPhone(String guest_id);
+
+    List<EmailGuest> getEmailGuest();
 }

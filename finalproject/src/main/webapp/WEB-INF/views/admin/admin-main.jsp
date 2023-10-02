@@ -122,7 +122,7 @@
                     </li>
                     <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
                 </ol>
-                <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+                <h4 class="font-weight-bolder text-white mb-0">대시보드</h4>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -269,10 +269,10 @@
             <div class="col-lg-7 mb-lg-0 mb-4" style="width: 100%">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
-                        <h6 class="text-capitalize">Sales overview</h6>
+                        <h5 class="text-capitalize">신규 가입자</h5>
                         <p class="text-sm mb-0">
                             <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
-                            <span class="font-weight-bold">4% more</span> in 2021
+                            <span class="font-weight-bold">4% more</span> in 2023
                         </p>
                     </div>
                     <div class="card-body p-3">
@@ -327,9 +327,9 @@
     new Chart(ctx1, {
         type: "line",
         data: {
-            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
             datasets: [{
-                label: "Mobile apps",
+                label: "신규 가입자",
                 tension: 0.4,
                 borderWidth: 0,
                 pointRadius: 0,
@@ -337,7 +337,7 @@
                 backgroundColor: gradientStroke1,
                 borderWidth: 3,
                 fill: true,
-                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                data: [50, 40, 300, 220, 500, 250, 400],
                 maxBarThickness: 6
 
             }],

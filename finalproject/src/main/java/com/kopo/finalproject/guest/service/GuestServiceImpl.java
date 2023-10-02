@@ -2,6 +2,7 @@ package com.kopo.finalproject.guest.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kopo.finalproject.guest.model.dao.GuestMapper;
+import com.kopo.finalproject.guest.model.dto.EmailGuest;
 import com.kopo.finalproject.guest.model.dto.EndMessageGuest;
 import com.kopo.finalproject.guest.model.dto.Guest;
 import com.kopo.finalproject.guest.model.dto.SocialToken;
@@ -132,5 +133,10 @@ public class GuestServiceImpl implements GuestService {
     @Override
     public Guest selectEmailOneMember(String email) {
         return guestMapper.selectEmailOneMember(email);
+    }
+
+    @Override
+    public List<EmailGuest> getEmailGuest() {
+        return guestMapper.getEmailGuest();
     }
 }

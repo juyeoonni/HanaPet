@@ -252,9 +252,11 @@
                                         <span class="badge badge-sm bg-gradient-success">진행중</span>
                                     </td>
                                     <td class="align-middle">
-                                        <a href="javascript:;" class="font-weight-bold" data-toggle="tooltip"
+                                        <a href="javascript:;"
+                                           onclick="EmailProduct('${product.category}')"
+                                           class="font-weight-bold" data-toggle="tooltip"
                                            data-original-title="Edit user">
-                                            상세보기
+                                            메일송부
                                         </a>
                                     </td>
                                     <td class="align-middle">
@@ -369,6 +371,10 @@
 
     function updateProduct(category) {
         location.href = "/admin/update-saving-product?category=" + category;
+    }
+
+    function EmailProduct(category) {
+        location.href = "/admin/email?category=" + category;
     }
 </script>
 <!-- Github buttons -->

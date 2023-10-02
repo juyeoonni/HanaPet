@@ -53,5 +53,12 @@
         VALUES (#{guest_id}, (SELECT pet_id FROM pet WHERE name = #{pet_name}))
     </insert>
 
-
+    <!--이메일 송부할 손님 정보-->
+    <select id="getEmailGuest" resultType="com.kopo.finalproject.guest.model.dto.EmailGuest">
+        SELECT g.guest_id, g.name, g.email, g.reg_date, COUNT(*) as pet_cnt
+        FROM guest_pet gp
+                 JOIN guest g ON g.guest_id = gp.guest_id
+        WHERE g.type = 'GUEST'
+        GROUP BY g.guest_id, g.name, g.email, g.reg_date
+    </select>
 </mapper>

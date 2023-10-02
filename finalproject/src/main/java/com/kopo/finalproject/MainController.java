@@ -1,13 +1,14 @@
 package com.kopo.finalproject;
 
 import com.kopo.finalproject.dto.Invite;
+import com.kopo.finalproject.guest.model.dto.EmailGuest;
+import com.kopo.finalproject.guest.service.GuestService;
 import com.kopo.finalproject.joinsaving.service.JoinSavingService;
 import com.kopo.finalproject.pet.model.dto.Pet;
 import com.kopo.finalproject.pet.service.PetService;
 import com.kopo.finalproject.product.model.dto.Product;
 import com.kopo.finalproject.product.service.ProductService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,11 +21,13 @@ public class MainController {
     private final JoinSavingService joinSavingService;
     private final PetService petService;
     private final ProductService productService;
+    private final GuestService guestService;
 
-    public MainController(JoinSavingService joinSavingService, PetService petService, ProductService productService) {
+    public MainController(JoinSavingService joinSavingService, PetService petService, ProductService productService, GuestService guestService) {
         this.joinSavingService = joinSavingService;
         this.petService = petService;
         this.productService = productService;
+        this.guestService = guestService;
     }
 
     @RequestMapping("/")
@@ -98,6 +101,20 @@ public class MainController {
         String category = req.getParameter("category");
         productService.deleteproduct(category);
         return "redirect:/admin/saving-product";
+    }
+
+    @RequestMapping("/admin/email")
+    public ModelAndView adminEmail(HttpServletRequest req) {
+        ModelAndView mav = new ModelAndView();
+        String category = req.getParameter("category");
+        Product product = productService.getProductByCategory(category);
+        List<EmailGuest> emailGuestList = guestService.getEmailGuest();
+        mav.addObject("product", product);
+        mav.addObject("emailGuestList", emailGuestList);
+
+        System.out.println(emailGuestList);
+        mav.setViewName("admin/admin-mail");
+        return mav;
     }
 
     @RequestMapping("/signInfoPDF")

@@ -1,5 +1,6 @@
 package com.kopo.finalproject.guest.service;
 
+import com.kopo.finalproject.guest.model.dto.EmailGuest;
 import com.kopo.finalproject.guest.model.dto.EndMessageGuest;
 import com.kopo.finalproject.guest.model.dto.Guest;
 
@@ -18,4 +19,6 @@ public interface GuestService {
     Guest getKakaoUserInfo(String access_token);
 
     Guest selectEmailOneMember(String email);
+
+    List<EmailGuest> getEmailGuest();
 }
