@@ -1,7 +1,5 @@
 package com.kopo.finalproject.insurance.controller;
 
-import com.kopo.finalproject.depositaccount.model.dto.History;
-import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -54,14 +52,24 @@ public class InsuranceController {
     public ModelAndView insuranceRecommend(@RequestParam List<String> breed) {
         ModelAndView mav = new ModelAndView();
 
-        List<List<BreedData>> breedDataList = new ArrayList<>(); // 결과를 저장할 리스트
+        List<BreedData> breedDataList = new ArrayList<>(); // 결과를 저장할 리스트
 
         for (String individualBreed : breed) {
-            List<BreedData> individualResult = insuranceService.getBreedData(individualBreed);
+            BreedData individualResult = insuranceService.getBreedOne(individualBreed);
             breedDataList.add(individualResult);
         }
 
+        List<BreedRatio> breedRatioList = insuranceService.getBreedRatio();
+        List<AgeTopThree> ageTopThreeList = insuranceService.getAgeTopThree();
+
+        System.out.println("보험 추천1" + breedDataList);
+        System.out.println("보험 추천2" + breedRatioList);
+        System.out.println("보험 추천3" + ageTopThreeList);
+
         mav.addObject("breedData", breedDataList); // 결과를 뷰에 전달
+        mav.addObject("breedRatio", breedRatioList); // 결과를 뷰에 전달
+        mav.addObject("ageTopThree", ageTopThreeList); // 결과를 뷰에 전달
+
         mav.setViewName("insurance-recommend");
 
         return mav;

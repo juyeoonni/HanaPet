@@ -3,36 +3,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kopo.finalproject.insurance.controller.InsuranceMapper">
-    <select id="getBreedData" resultType="com.kopo.finalproject.insurance.controller.BreedData"
+
+    <!-- 품종으로 1위 가져오기 -->
+    <select id="getBreedOne" resultType="com.kopo.finalproject.insurance.controller.BreedData"
             parameterType="String">
-    <![CDATA[
-        WITH TotalDiseaseCounts AS (SELECT PET_BREED AS X, DISEASE AS Y, COUNT(*) AS count
-        FROM HOSPITAL_HISTORY
-        GROUP BY PET_BREED, DISEASE
-            ),
-            TotalRankedDiseases AS (
-        SELECT X, Y, count, ROW_NUMBER() OVER (PARTITION BY X ORDER BY count DESC) AS r
-        FROM TotalDiseaseCounts
-            )
-                , TotalTop3Diseases AS (
-        SELECT X, Y, count
-        FROM TotalRankedDiseases
-        WHERE r <= 3
-            )
-            , TotalCounts AS (
-        SELECT X, SUM (count) AS total_count
-        FROM TotalDiseaseCounts
-        GROUP BY X
-            )
-        SELECT TotalTop3Diseases.X                                              AS breed,
-               TotalTop3Diseases.Y                                              AS disease,
-               ROUND((TotalTop3Diseases.count / TotalCounts.total_count * 100)) AS percentage
-        FROM TotalTop3Diseases
-                 JOIN TotalCounts ON TotalTop3Diseases.X = TotalCounts.X
-        WHERE TotalTop3Diseases.X = #{breed}
-        ORDER BY TotalTop3Diseases.X, percentage DESC
-        ]]>
-</select>
+        SELECT breed,
+               disease
+        FROM animal_hospital_history
+        WHERE breed = #{breed}
+        GROUP BY breed, disease
+        ORDER BY COUNT(*) DESC
+            FETCH FIRST 1 ROWS ONLY
+    </select>
+
+
+    <!-- 품종 비율 가져오기 -->
+    <select id="getBreedRatio" resultType="com.kopo.finalproject.insurance.controller.BreedRatio">
+        SELECT breed,
+               ROUND((COUNT(*) / (SELECT COUNT(*) FROM animal_hospital_history) * 100), 1) AS percentage
+        FROM animal_hospital_history
+        GROUP BY breed
+        ORDER BY percentage DESC
+    </select>
+
+
+    <!-- 나이별로 top3 -->
+    <select id="getAgeTopThree" resultType="com.kopo.finalproject.insurance.controller.AgeTopThree">
+        WITH TotalCounts AS (SELECT age_group,
+                                    COUNT(*) AS total_count
+                             FROM animal_hospital_history
+                             GROUP BY age_group),
+             RankedDiseases AS (SELECT a.age_group,
+                                       a.disease,
+                                       COUNT(*)                                   AS frequency,
+                                       ROUND((COUNT(*) / b.total_count) * 100, 2) AS disease_percentage,
+                                       RANK()                                        OVER (PARTITION BY a.age_group ORDER BY COUNT(*) DESC) AS disease_rank
+                                FROM animal_hospital_history a
+                                         JOIN
+                                     TotalCounts b ON a.age_group = b.age_group
+                                GROUP BY a.age_group, a.disease, b.total_count)
+        SELECT age_group,
+               MAX(CASE WHEN disease_rank = 1 THEN disease END)            AS top_disease_1,
+               MAX(CASE WHEN disease_rank = 1 THEN disease_percentage END) AS top_disease_1_percentage,
+               MAX(CASE WHEN disease_rank = 2 THEN disease END)            AS top_disease_2,
+               MAX(CASE WHEN disease_rank = 2 THEN disease_percentage END) AS top_disease_2_percentage,
+               MAX(CASE WHEN disease_rank = 3 THEN disease END)            AS top_disease_3,
+               MAX(CASE WHEN disease_rank = 3 THEN disease_percentage END) AS top_disease_3_percentage
+        FROM RankedDiseases
+        GROUP BY age_group
+        ORDER BY age_group ASC
+    </select>
+
 
     <!-- 마이페이지 보험에 들어가야 할 상품-->
     <select id="getAllInsurancesOfPetOfGuest"

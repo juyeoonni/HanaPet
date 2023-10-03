@@ -7,7 +7,11 @@ import java.util.List;
 
 @Mapper
 public interface InsuranceMapper {
-    List<BreedData> getBreedData(String breed);
+    BreedData getBreedOne(String breed);
+
+    List<BreedRatio> getBreedRatio();
+
+    List<AgeTopThree> getAgeTopThree();
 
     List<MyInsurance> getAllInsurancesOfPetOfGuest(HashMap<String, String> data);
 

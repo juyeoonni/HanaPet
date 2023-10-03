@@ -7,7 +7,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class BreedData {
+public class BreedRatio {
     private String breed;
-    private String disease;
+    private String percentage;
 }
