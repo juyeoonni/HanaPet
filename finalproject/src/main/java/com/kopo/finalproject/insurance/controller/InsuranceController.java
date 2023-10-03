@@ -6,9 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class InsuranceController {
@@ -58,9 +57,12 @@ public class InsuranceController {
             BreedData individualResult = insuranceService.getBreedOne(individualBreed);
             breedDataList.add(individualResult);
         }
+        List<String> order = Arrays.asList("1살 미만", "1-3살", "4-6살", "7-9살", "10-12살", "13-15살", "16살 이상");
 
         List<BreedRatio> breedRatioList = insuranceService.getBreedRatio();
-        List<AgeTopThree> ageTopThreeList = insuranceService.getAgeTopThree();
+        List<AgeTopThree> ageTopThreeList = insuranceService.getAgeTopThree().stream()
+                .sorted(Comparator.comparingInt(age -> order.indexOf(age.getAge_group())))
+                .collect(Collectors.toList());
 
         System.out.println("보험 추천1" + breedDataList);
         System.out.println("보험 추천2" + breedRatioList);

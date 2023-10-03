@@ -13,29 +13,59 @@
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        .form-select {
+            width: 200px; /* 원하는 너비 설정 */
+            border-radius: 8px; /* 둥근 모서리 */
+            font-size: 16px; /* 글자 크기 */
+            transition: background-color 0.3s ease; /* 부드러운 효과를 위한 transition */
+        }
+
+        .form-select:hover {
+            background-color: #f8f8f8; /* 마우스 호버 시 배경색 변경 */
+        }
+
+        .menu-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 60px;
+        }
     </style>
+
 
 </head>
 <jsp:include page="include/header.jsp"/>
 
 <div class="body">
-    <h2>반려견의 TOP1</h2>
-    <c:forEach var="dataList" items="${breedData}">
-        <p>${dataList.breed}</p>
-        <p>${dataList.disease}</p>
-    </c:forEach>
-
-    <canvas id="breedChart"></canvas>
-
-    <select id="ageDropdown">
-        <c:forEach var="ageItem" items="${ageTopThree}">
-            <option value="${ageItem.age_group}">${ageItem.age_group}</option>
-        </c:forEach>
-    </select>
-    <div style="width: 400px;">
-        <canvas id="diseaseChart"></canvas>
+    <div class="menu-title">
+        보험 추천
     </div>
+    <div style="display: flex; place-content: center; justify-content: space-between; padding: 0px 50px">
+        <div style="width: 450px; text-align: center">
+            <h5>가장 주의해야할 질병</h5><br><br>
+            <c:forEach var="dataList" items="${breedData}">
+                <p>${dataList.breed} => ${dataList.disease}</p>
+            </c:forEach>
+        </div>
 
+        <div style="width: 400px; text-align: -webkit-center;">
+            <h5>나이대별 질병 TOP3</h5>
+            <select id="ageDropdown" class="form-select">
+                <c:forEach var="ageItem" items="${ageTopThree}">
+                    <option value="${ageItem.age_group}">${ageItem.age_group}</option>
+                </c:forEach>
+            </select>
+            <br>
+            <canvas id="diseaseChart"></canvas>
+        </div>
+
+    </div>
+<br><br>
+    <div style="display:flex; place-content: center">
+        <div style="width: 650px; text-align: center">
+            <h5>가장 많은 품종</h5>
+            <canvas id="breedChart"></canvas>
+        </div>
+    </div>
 
 </div>
 
@@ -58,23 +88,25 @@
                 datasets: [{
                     label: '퍼센트',
                     data: breedPercentages,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
+                    backgroundColor: [
+                        '#edafb8',
+                        '#f7e1d7',
+                        '#dedbd2',
+                        '#b0c4b1',
+                        '#4a5759'
+                    ]
                 }]
             }
         });
 
-
         // Global variable to hold the chart instance
         let myChart;
 
-        document.getElementById("ageDropdown").addEventListener('change', function () {
-            let selectedAge = this.value;
+        function updateDiseaseChart(age) {
             let selectedData;
 
             <c:forEach var="data" items="${ageTopThree}">
-            if ("<c:out value="${data.age_group}"/>" === selectedAge) {
+            if ("${data.age_group}" === age) {
                 selectedData = {
                     diseases: [
                         "${data.top_disease_1}",
@@ -113,68 +145,17 @@
                     }]
                 }
             });
+        }
+
+        // Update the chart when ageDropdown value changes
+        document.getElementById("ageDropdown").addEventListener('change', function () {
+            updateDiseaseChart(this.value);
         });
+
+        // Set default value for ageDropdown and update the chart accordingly
+        let ageDropdown = document.getElementById("ageDropdown");
+        ageDropdown.value = "1살 미만";
+        updateDiseaseChart("1살 미만");
     });
 </script>
 
-
-<%--<div class="body">--%>
-<%--    <div class="chart-container1">--%>
-<%--        <c:forEach var="dataList" items="${breedRatio}">--%>
-<%--            <div class="chart-container1-1">--%>
-<%--                <div class="chart-head">${dataList.breed}</div>--%>
-<%--                <div style="width: 200px">--%>
-<%--                    <canvas id="memberChart_${dataList.breed}"></canvas>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </c:forEach>--%>
-<%--    </div>--%>
-<%--</div>--%>
-
-<%--<script>--%>
-<%--    <c:forEach var="dataList" items="${breedRatio}">--%>
-<%--    var ctx = document.getElementById(`memberChart_${dataList.breed}`).getContext('2d');--%>
-<%--    var labels = [];--%>
-<%--    var data = [];--%>
-
-<%--    labels.push("${dataList.breed}");--%>
-<%--    data.push(${dataList.percentage});--%>
-
-<%--    labels.push("그외");--%>
-<%--    var total = data.reduce((accumulator, currentValue) => accumulator + currentValue, 0);--%>
-<%--    data.push(100 - total);--%>
-
-<%--    var myChart = new Chart(ctx, {--%>
-<%--        type: 'doughnut',--%>
-<%--        data: {--%>
-<%--            labels: labels,--%>
-<%--            datasets: [{--%>
-<%--                data: data,--%>
-<%--                borderColor: '#fff',--%>
-<%--                borderWidth: 1,--%>
-<%--                backgroundColor: [--%>
-<%--                    '#edafb8',--%>
-<%--                    '#f7e1d7',--%>
-<%--                    '#dedbd2',--%>
-<%--                    '#b0c4b1',--%>
-<%--                    '#4a5759'--%>
-<%--                ]--%>
-<%--            }]--%>
-<%--        },--%>
-<%--        options: {--%>
-<%--            plugins: {--%>
-<%--                legend: {--%>
-<%--                    display: false--%>
-<%--                },--%>
-<%--                title: {--%>
-<%--                    display: true,--%>
-<%--                    text: 'TOP3',--%>
-<%--                    font: {--%>
-<%--                        size: 18--%>
-<%--                    }--%>
-<%--                }--%>
-<%--            }--%>
-<%--        }--%>
-<%--    });--%>
-<%--    </c:forEach>--%>
-<%--</script>--%>
