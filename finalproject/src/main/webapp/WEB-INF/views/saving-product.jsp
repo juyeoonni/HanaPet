@@ -121,6 +121,7 @@
                             category: product.category,
                             description: product.description,
                             rate: product.rate,
+                            prime_rate: product.prime_rate,
                             min_period: product.min_period,
                             max_period: product.max_period,
                             min_balance: product.min_balance,
@@ -140,7 +141,7 @@
                 var content =
                     ($("<div>").addClass("card-footer")
                             .append($("<div>")
-                                .html("최대 연 이자율: " + product.rate + "%<br><br>가입 기간: " + product.min_period + "개월 이상 " + product.max_period + "개월 이하<br><br>가입 금액: 매월 " + product.min_balance.toLocaleString('en-US') + "원 이상 ~ " + product.max_balance.toLocaleString('en-US') + "원 이하<br><br>적립 방법: 자유적립식")
+                                .html("최대 연 이자율: " + (product.rate + product.prime_rate * 3) + "%<br><br>가입 기간: " + product.min_period + "개월 이상 " + product.max_period + "개월 이하<br><br>가입 금액: 매월 " + product.min_balance.toLocaleString() + "원 이상 ~ " + product.max_balance.toLocaleString() + "원 이하<br><br>적립 방법: 자유적립식")
                                 .css("color", "white"))
                     );
 
@@ -162,7 +163,7 @@
                     .append($("<img>").attr("src", "/resources/img/" + product.image).addClass("product-image"))
                     .append($("<div>").addClass("card-footer") // 클래스 이름을 'card-footer'로 변경
                         .css("align-self", "center")
-                        .append($("<div>").html("최대 연<br>" + product.rate + "%").css({
+                        .append($("<div>").html("최대 연<br>" + (product.rate + product.prime_rate * 3) + "%").css({
                             "margin-left": "20px",
                             "font-size": "25px",
                             "font-family": "font-medium",

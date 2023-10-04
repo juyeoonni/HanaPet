@@ -17,6 +17,7 @@ public class Invite {
     private String petImg;
     private String category;
     private String rate;
+    private String primeRate;
     private String description;
     private String minBalance;
     private String maxBalance;

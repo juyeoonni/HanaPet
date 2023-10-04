@@ -111,6 +111,7 @@
         }
 
         .centered-div {
+            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -142,15 +143,15 @@
     <div class="bottom-centered-div">특징</div>
 </span>
         <span class="circle2">
-    <div class="centered-div"> 6개월 이상<br>72개월 이하</div>
+    <div class="centered-div"></div>
     <div class="bottom-centered-div">기간</div>
 </span>
         <span class="circle3">
-    <div class="centered-div"> 5,000원 이상<br>1,000,000원 이하</div>
+    <div class="centered-div"></div>
     <div class="bottom-centered-div">가입 금액</div>
 </span>
         <span class="circle4">
-    <div class="centered-div">연 5.00%</div>
+    <div class="centered-div"></div>
     <div class="bottom-centered-div">최대 금리</div>
 </span>
 
@@ -176,13 +177,13 @@
                 <!--accordion-collapse: 펼쳐지거나 접힐 때의 상태를 설정/ collapse: 접혀있음, show: 펼쳐진 상태-->
                 <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
                     <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
-                    <div id="productRate" class="product-info"></div> <!--product-info: 각 항목의 상세 정보-->
-                    <div id="producBalance" class="product-info"></div>
                     <div class="product-info">상품 특징: 만 3세 이하 펫 우대 적금</div>
                     <div class="product-info">가입 대상: 반려견을 등록한 모든 Hanna Pet 손님</div>
+                    <div id="producBalance" class="product-info"></div>
                     <div id="productPeriod" class="product-info"></div>
-                    <div class="product-info">가입 금액: 매월 5,000원 이상 ~ 1,000,000원 이하</div>
-                    <div class="product-info">이자 지급 방법: 만기일시지급식 : 만기(후)해지시 이자를 지급</div>
+                    <div id="productRate" class="product-info"></div> <!--product-info: 각 항목의 상세 정보-->
+                    <div id="productPrimeRate" class="product-info"></div> <!--product-info: 각 항목의 상세 정보-->
+                    <div class="product-info">이자 지급 방법: 만기일시지급식 만기(후)해지시 이자를 지급</div>
                     <div class="product-info">적립 방법: 자유적립식</div>
                 </div>
             </div>
@@ -351,10 +352,19 @@
             $("#productImg").attr("src", "/resources/img/" + productInfo.image);
             $("#productCategory").text(productInfo.category + " 펫 적금");
             $("#productDescription").text(productInfo.description);
-            $("#productRate").text("이자율: " + productInfo.rate + "%");
+            $("#productRate").text("기본 금리: 연 " + productInfo.rate + "%");
+            $("#productPrimeRate").text("우대 금리: 최대 연 " + parseFloat((productInfo.prime_rate * 3).toFixed(2)) + "%");
+            $("#producBalance").text("가입 금액: 매월 " + productInfo.min_balance.toLocaleString() + "원 이상 ~ " + productInfo.max_balance.toLocaleString() + "원 이하");
             $("#productPeriod").text("가입 기간: " + productInfo.min_period + "개월 이상 " + productInfo.max_period + "개월 이하");
-            $("#productBalance").text("가입 금액: " + productInfo.min_balance.toLocaleString('en-US') + "원 이상 " + productInfo.max_balance.toLocaleString('en-US') + "원 이하");
         }
+
+        $(".circle2 .centered-div").html(productInfo.min_period + "개월 이상<br>" + productInfo.max_period + "개월 이하");
+
+        // 가입 금액 정보 설정
+        $(".circle3 .centered-div").html(productInfo.min_balance.toLocaleString() + "원 이상<br>" + productInfo.max_balance.toLocaleString() + "원 이하");
+
+        // 최대 금리 정보 설정
+        $(".circle4 .centered-div").text("연 " + (productInfo.rate + productInfo.prime_rate * 3) + "%");
 
         $("#joinForm").click(function () {
             // 선택된 약관 동의 여부 확인

@@ -38,6 +38,7 @@
                p.image            as petImg,
                sa.category        as category,
                psp.rate           as rate,
+               psp.prime_rate     as primeRate,
                psp.description    as description,
                psp.min_balance    as minBalance,
                psp.max_balance    as maxBalance,
