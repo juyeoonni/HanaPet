@@ -288,7 +288,7 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최소 가입 금액</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control" type="text" name="min_balance"
+                                            <input id="form" class="form-control amount" type="text" name="min_balance"
                                                    value="">원
                                         </div>
                                     </div>
@@ -298,7 +298,7 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최대 가입 금액</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control" type="text" name="max_balance"
+                                            <input id="form" class="form-control amount" type="text" name="max_balance"
                                                    value="">원
                                         </div>
                                     </div>
@@ -370,6 +370,24 @@
         $(".upload-name").val(fileName);
         $('input[name="image"]').val(fileName);
     });
+    $(document).ready(function () {
+        const $inputField = $(".amount");
+
+        // 기존 값을 콤마로 구분된 값으로 변환
+        updateValueWithComma($inputField);
+
+        // 사용자가 값을 변경할 때 콤마를 다시 추가/제거
+        $inputField.on("input", function () {
+            updateValueWithComma($(this));
+        });
+    });
+
+    function updateValueWithComma($element) {
+        const valueWithoutCommas = $element.val().replace(/,/g, '');  // 콤마 제거
+        const formattedValue = Number(valueWithoutCommas).toLocaleString();
+        $element.val(formattedValue === "0" ? "" : formattedValue);
+    }
+
 </script>
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
