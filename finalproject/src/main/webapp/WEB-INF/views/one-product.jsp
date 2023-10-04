@@ -338,6 +338,8 @@
         <input type="hidden" id="max_period" name="max_period">
         <input type="hidden" id="min_balance" name="min_balance">
         <input type="hidden" id="max_balance" name="max_balance">
+        <input type="hidden" id="rate" name="rate">
+        <input type="hidden" id="prime_rate" name="prime_rate">
         <input class="join" value="가입하기" readonly>
     </form>
 </div>
@@ -378,7 +380,9 @@
                     min_period: productInfo.min_period,
                     max_period: productInfo.max_period,
                     min_balance: productInfo.min_balance,
-                    max_balance: productInfo.max_balance
+                    max_balance: productInfo.max_balance,
+                    rate: productInfo.rate,
+                    prime_rate: productInfo.prime_rate
                 };
 
                 // hidden 필드에 데이터 설정
@@ -387,6 +391,8 @@
                 $("#max_period").val(productData.max_period);
                 $("#min_balance").val(productData.min_balance);
                 $("#max_balance").val(productData.max_balance);
+                $("#rate").val(productInfo.rate);
+                $("#prime_rate").val(productInfo.prime_rate);
 
                 // form 제출
                 $("#joinForm").submit();

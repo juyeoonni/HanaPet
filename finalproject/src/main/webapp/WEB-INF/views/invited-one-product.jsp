@@ -310,6 +310,8 @@
     <form id="joinForm" action="/join-product">
         <input type="hidden" id="category" name="category">
         <input type="hidden" id="savingName" name="savingName">
+        <input type="hidden" id="rate" name="rate">
+        <input type="hidden" id="prime_rate" name="prime_rate">
         <input type="hidden" id="min_balance" name="min_balance">
         <input type="hidden" id="max_balance" name="max_balance">
         <input type="hidden" id="petName" name="petName">
@@ -357,6 +359,9 @@
                 $("#accountNumber").val(productInfo.accountNumber);
                 $("#finalAmount").val(productInfo.finalAmount);
                 $("#interestAmount").val(productInfo.interestAmount);
+                $("#rate").val(productInfo.rate);
+                $("#prime_rate").val(productInfo.prime_rate);
+
 
                 // form 제출
                 $("#joinForm").submit();

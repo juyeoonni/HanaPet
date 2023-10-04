@@ -34,6 +34,8 @@
         String accountNumber = request.getParameter("accountNumber");
         String finalAmount = request.getParameter("finalAmount");
         String interestAmount = request.getParameter("interestAmount");
+        String rate = request.getParameter("rate");
+        String primeRate = request.getParameter("prime_rate");
     %>
 
     <form>
@@ -695,7 +697,7 @@
                 const amount = document.getElementById('joinAmount').value.replace(/,/g, '');
 
                 // 월별 입금 금액 및 연 이자율 설정
-                const monthlyInterestRate = (2.5 / 100) / 12;
+                const monthlyInterestRate = (parseFloat('<%=rate%>') / 100) / 12;
 
                 // 기간 계산 (월 단위)
                 const months = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
@@ -719,7 +721,7 @@
                 const amount = parseFloat(document.getElementById('joinAmount').value.replace(/,/g, '')); // 입력된 값을 부동 소수점 숫자로 변환
 
                 // 연 이자율을 일 단위 이자율로 변환
-                const dailyInterestRate = (2.5 / 100) / 365; // 연 이자율을 365일로 나누어 일 단위로 계산
+                const dailyInterestRate = ((parseFloat('<%=rate%>') + parseFloat('<%=primeRate%>')) / 100) / 365; // 연 이자율을 365일로 나누어 일 단위로 계산
 
                 // 기간 계산 (일 단위)
                 const millisecondsPerDay = 24 * 60 * 60 * 1000;
@@ -762,28 +764,25 @@
                 endAmountMessage.textContent = message3;
             });
 
-
-            const interestAmountString = "<%= interestAmount %>"; // 서버 사이드 코드를 통해 받은 문자열
-            const interestAmountInt = parseInt(interestAmountString, 10); // 문자열을 10진수로 파싱
-            const finalAmountString = "<%= finalAmount %>"; // 서버 사이드 코드를 통해 받은 문자열
-            const finalAmountInt = parseInt(finalAmountString, 10); // 문자열을 10진수로 파싱
+            const interestAmountInt = parseInt('<%= interestAmount %>', 10); // 개설자의 이자금액
+            const finalAmountInt = parseInt('<%= finalAmount %>', 10); // 개설자의 총 원금
 
             let finalAmount = 0;
             let interest = 0;
 
             $('#endAmountWeek').click(function () {
-                const aloneInterest = calculateInterestDaily();
-                const endAmountMessage = document.getElementById('endAmountMessage');
-                const joinAmount = document.getElementById('joinAmount').value.replace(/,/g, '');
-                const alonePrincipal = joinAmount * calculateWeeksBetweenDates();
-                finalAmount = finalAmountInt + alonePrincipal;
-                interest = aloneInterest + interestAmountInt;
-                const interestAmount = Math.floor(interest * 0.846);
-                const real = finalAmount + interestAmount;
+                const aloneInterest = calculateInterestDaily(); // 참여자 혼자의 이자율 계산
+                const joinAmount = document.getElementById('joinAmount').value.replace(/,/g, ''); // 참여자의 가입 금액
+                const alonePrincipal = joinAmount * calculateWeeksBetweenDates(); // 참여자 혼자의 원금
+                const changeOriginInterest = parseInt(((interestAmountInt * (parseFloat('<%= rate %>') + parseFloat('<%=primeRate%>>')) / parseFloat('<%= rate %>'))), 10); // 이전에 이자금액 변경 (우대 금리 적용됨)
+                finalAmount = finalAmountInt + alonePrincipal; // 최종 원금
+                interest = aloneInterest + changeOriginInterest; // 세전 이자금액
+                const interestAmount = Math.floor(interest * 0.846); // 세후 이자금액
+                const real = finalAmount + interestAmount; // 실제 총 만기 시 금액
 
-                let message3 = '* 기존 적금의 만기 시 원금은 ' + Number(finalAmountString).toLocaleString() + '원, 이자는 ' + Number(interestAmountString).toLocaleString() + '원 입니다. 손님이 추가로 가입할 시 총 원금은 ' + Number(finalAmount).toLocaleString() + '원이며 총 이자는 ' + Number(interest).toLocaleString() + '원 입니다. 일반 세율 가입 시 총 ' + Number(real).toLocaleString() + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
+                let message3 = '* 기존 적금의 만기 시 원금은 ' + Number(finalAmountInt).toLocaleString() + '원, 이자는 ' + Number(changeOriginInterest).toLocaleString() + '원 입니다. 손님이 추가로 가입할 시 총 원금은 ' + Number(finalAmount).toLocaleString() + '원이며 총 이자는 ' + Number(interest).toLocaleString() + '원 입니다. 일반 세율 가입 시 총 ' + Number(real).toLocaleString() + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
 
-                endAmountMessage.textContent = message3;
+                document.getElementById('endAmountMessage').textContent = message3;
             });
 
             // 오늘부터 적금 만기일까지 주 단위로 납입을 몇번 하는지
