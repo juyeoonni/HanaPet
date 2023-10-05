@@ -50,15 +50,11 @@ public class InsuranceController {
     }
 
     @GetMapping("/insurance-recommend")
-    public ModelAndView insuranceRecommend(@RequestParam List<String> breed) {
+    public ModelAndView insuranceRecommend() {
         ModelAndView mav = new ModelAndView();
 
-        List<BreedData> breedDataList = new ArrayList<>(); // 결과를 저장할 리스트
+        List<BreedData> breedDataList = insuranceService.getBreedOne();
 
-        for (String individualBreed : breed) {
-            BreedData individualResult = insuranceService.getBreedOne(individualBreed);
-            breedDataList.add(individualResult);
-        }
         List<String> order = Arrays.asList("1살 미만", "1-3살", "4-6살", "7-9살", "10-12살", "13-15살", "16살 이상");
 
         List<BreedRatio> breedRatioList = insuranceService.getBreedRatio();
@@ -78,6 +74,13 @@ public class InsuranceController {
 
         return mav;
     }
+
+    @GetMapping("/getInsuRecommend")
+    @ResponseBody
+    public List<InsuranceProduct> getInsuRecommend(@RequestParam String word) {
+        return insuranceService.getInsuRecommend(word);
+    }
+
 
     // 나의 반려견의 보험 목록 가져오기
     @GetMapping("/myinsurances")

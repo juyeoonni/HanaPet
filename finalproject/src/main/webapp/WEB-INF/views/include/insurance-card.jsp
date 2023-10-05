@@ -220,7 +220,7 @@
                 // 클릭된 버튼의 부모 요소를 통해 필요한 정보를 가져옵니다.
                 var cardContent = event.target.closest(".card-content");
                 var insuranceName = cardContent.querySelector(".name").textContent.trim();
-                var insuranceAmount = cardContent.querySelector(".money p").textContent.split(" ")[1].replace("원", "").trim();
+                var insuranceAmount = cardContent.querySelector(".money p").textContent.split(" ")[1].trim();
 
                 // 정보를 객체로 저장
                 var insuranceInfo = {

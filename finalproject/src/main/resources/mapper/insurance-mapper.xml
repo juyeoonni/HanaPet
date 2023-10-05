@@ -12,16 +12,25 @@
         FROM pet_insurance_product
     </select>
 
+    <select id="getInsuRecommend" parameterType="String"
+            resultType="com.kopo.finalproject.insurance.controller.InsuranceProduct">
+        select *
+        from pet_insurance_product
+        where guarantee LIKE '%' || #{word} || '%'
+    </select>
+
     <!-- 품종으로 1위 가져오기 -->
     <select id="getBreedOne" resultType="com.kopo.finalproject.insurance.controller.BreedData"
             parameterType="String">
-        SELECT breed,
-               disease
-        FROM animal_hospital_history
-        WHERE breed = #{breed}
-        GROUP BY breed, disease
-        ORDER BY COUNT(*) DESC
-            FETCH FIRST 1 ROWS ONLY
+        WITH RankedDiseases AS (SELECT breed,
+                                       disease,
+                                       ROW_NUMBER() OVER(PARTITION BY breed ORDER BY COUNT(*) DESC) as row_num
+                                FROM animal_hospital_history
+                                GROUP BY breed, disease)
+        SELECT breed, disease
+        FROM RankedDiseases
+        WHERE row_num = 1
+        ORDER BY breed
     </select>
 
 

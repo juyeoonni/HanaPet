@@ -12,6 +12,7 @@ public class InsuranceProduct {
     private String description;
     private String creation_date;
     private String guarantee;
+    private String rec_guarantee;
     private String year;
     private String period;
     private String amount_desc;

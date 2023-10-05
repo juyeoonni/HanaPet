@@ -21,8 +21,8 @@ public class InsuranceServiceImpl implements InsuranceService {
     }
 
     @Override
-    public BreedData getBreedOne(String breed) {
-        return insuranceMapper.getBreedOne(breed);
+    public List<BreedData> getBreedOne() {
+        return insuranceMapper.getBreedOne();
     }
 
     @Override
@@ -38,6 +38,11 @@ public class InsuranceServiceImpl implements InsuranceService {
     @Override
     public List<MyInsurance> getAllInsurancesOfPetOfGuest(HashMap<String, String> data) {
         return insuranceMapper.getAllInsurancesOfPetOfGuest(data);
+    }
+
+    @Override
+    public List<InsuranceProduct> getInsuRecommend(String word) {
+        return insuranceMapper.getInsuRecommend(word);
     }
 
     @Override

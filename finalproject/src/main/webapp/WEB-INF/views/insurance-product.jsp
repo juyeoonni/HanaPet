@@ -19,6 +19,7 @@
 
         .menu-title {
             text-align: center;
+            font-weight: bold;
             font-size: 30px;
             margin-bottom: 40px;
         }
@@ -63,9 +64,9 @@
     <div class="box">
         <div class="top-box">
             <div>
-                <h4 style="font-weight: bold">우리 아이에게 딱 맞는 펫보험은?</h4>
+                <h4 style="font-weight: bold">우리 아이에게 딱 맞는 펫보험은?🔍</h4>
                 <br>
-                <h6 style="font-weight: bold; color: #75A989">나이와 품종으로 추천 보험을 보러가보개!</h6>
+                <h5 style="font-weight: bold; color: #75A989">나이와 품종으로 추천 보험을 보러가보개!</h5>
             </div>
             <div>
                 <img src="/resources/img/insurance-dog.png" style="margin-top: -10px; width: 190px">

@@ -7,7 +7,7 @@ public interface InsuranceService {
 
     List<InsuranceProduct> getAllInsuranceProduct();
 
-    BreedData getBreedOne(String breed);
+    List<BreedData> getBreedOne();
 
     List<BreedRatio> getBreedRatio();
 
@@ -15,6 +15,8 @@ public interface InsuranceService {
 
     // 손님의 pet_id(펫)이 가진 보험을 모두 가져오기
     List<MyInsurance> getAllInsurancesOfPetOfGuest(HashMap<String, String> data);
+
+    List<InsuranceProduct> getInsuRecommend(String word);
 
     void joinInsurance(HashMap<String, String> data);
 

@@ -22,6 +22,7 @@
 
     .menu-title {
         text-align: center;
+        font-weight: bold;
         font-size: 30px;
         margin-bottom: 20px;
     }

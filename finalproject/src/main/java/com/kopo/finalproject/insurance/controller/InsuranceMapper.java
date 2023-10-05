@@ -10,7 +10,9 @@ public interface InsuranceMapper {
 
     List<InsuranceProduct> getAllInsuranceProduct();
 
-    BreedData getBreedOne(String breed);
+    List<BreedData> getBreedOne();
+
+    List<InsuranceProduct> getInsuRecommend(String word);
 
     List<BreedRatio> getBreedRatio();
 
