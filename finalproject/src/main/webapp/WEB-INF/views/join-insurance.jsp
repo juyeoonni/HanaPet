@@ -142,21 +142,24 @@
                             </tr>
                             <tr>
                                 <td>보험명</td>
-                                <td>프로미 반려동물보험 One형 플랜</td>
+                                <td id="name"></td>
                             </tr>
                             <tr>
                                 <td>보험료</td>
-                                <td>
-                                    403,620원
+                                <td id="amount1">
                                 </td>
                             </tr>
                             <tr>
                                 <td>최종가입료</td>
-                                <td>
-                                    403,620원
+                                <td id="amount2">
                                 </td>
                             </tr>
                         </table>
+                        <script>
+                            document.getElementById('name').textContent = JSON.parse(sessionStorage.getItem("selectedInsurance")).insuranceName;
+                            document.getElementById('amount1').textContent = JSON.parse(sessionStorage.getItem("selectedInsurance")).insuranceAmount;
+                            document.getElementById('amount2').textContent = JSON.parse(sessionStorage.getItem("selectedInsurance")).insuranceAmount;
+                        </script>
                         <br>
                         <p style="font-size: 17px">※ 실제 보험료는 보험기간, 납입기간, 가입금액 등 선택에 따라 달라질 수 있습니다.</p>
                         <br><br>
@@ -168,7 +171,6 @@
                                     <div style="display: flex">
                                         <select class="form-dropdown" id="accountNumberSelection" required
                                                 onchange="updateBalance()">
-                                            <!-- Ajax로 옵션 추가될 예정 -->
                                         </select>
                                         <div class="color">
                                             <div style="display: flex">
@@ -371,8 +373,8 @@
             </div>
 
             <div class="first-content">
-                <span>토리를 위한</span><br>
-                <span id="account-name">프로미 반려동물보험 One형 플랜 보험</span><br>
+                <span id="selectedPetName"></span><br>
+                <span id="account-name"></span><br>
                 <span>에 가입되었습니다.</span>
             </div>
             <div class="second-content">
@@ -422,7 +424,7 @@
             petId: document.getElementById("petSelection").value,
             insuranceName: productInfo.insuranceName,
             depositAccountNumber: selectedOption.textContent.split(" ")[0],
-            insuranceAmount: productInfo.insuranceAmount
+            insuranceAmount: parseInt(productInfo.insuranceAmount.replace(/[^0-9]/g, ""), 10)
         };
 
         console.log("이거야" + requestData);
@@ -498,6 +500,9 @@
                         const selectedOption = petSelection.find(':selected');
                         const selectedBreed = selectedOption.data('breed');
                         const selectedAge = selectedOption.data('age');
+                        const selectedName = selectedOption.text();
+
+                        $('#selectedPetName').text(selectedName + "를 위한");
 
                         // 선택된 반려견의 품종을 테이블에 표시
                         if (selectedBreed) {
@@ -520,6 +525,8 @@
                 console.error('Error fetching pet list:', error);
             }
         });
+
+        document.getElementById('account-name').textContent = JSON.parse(sessionStorage.getItem("selectedInsurance")).insuranceName;
     });
 
 
