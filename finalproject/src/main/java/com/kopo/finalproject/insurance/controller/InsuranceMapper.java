@@ -7,6 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface InsuranceMapper {
+
+    List<InsuranceProduct> getAllInsuranceProduct();
+
     BreedData getBreedOne(String breed);
 
     List<BreedRatio> getBreedRatio();

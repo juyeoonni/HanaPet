@@ -16,6 +16,11 @@ public class InsuranceServiceImpl implements InsuranceService {
     }
 
     @Override
+    public List<InsuranceProduct> getAllInsuranceProduct() {
+        return insuranceMapper.getAllInsuranceProduct();
+    }
+
+    @Override
     public BreedData getBreedOne(String breed) {
         return insuranceMapper.getBreedOne(breed);
     }

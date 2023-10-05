@@ -22,6 +22,8 @@ public class InsuranceController {
     @RequestMapping("/insurance-product")
     public ModelAndView insurance() {
         ModelAndView mav = new ModelAndView();
+        List<InsuranceProduct> insuranceProductList = insuranceService.getAllInsuranceProduct();
+        mav.addObject("insuranceProductList", insuranceProductList);
         mav.setViewName("insurance-product");
         return mav;
     }

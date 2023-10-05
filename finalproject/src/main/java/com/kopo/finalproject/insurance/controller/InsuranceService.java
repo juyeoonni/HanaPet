@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface InsuranceService {
 
+    List<InsuranceProduct> getAllInsuranceProduct();
+
     BreedData getBreedOne(String breed);
 
     List<BreedRatio> getBreedRatio();

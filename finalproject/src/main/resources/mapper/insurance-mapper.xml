@@ -4,6 +4,14 @@
 
 <mapper namespace="com.kopo.finalproject.insurance.controller.InsuranceMapper">
 
+
+    <!-- 모든 보험 상품 -->
+    <select id="getAllInsuranceProduct"
+            resultType="com.kopo.finalproject.insurance.controller.InsuranceProduct">
+        SELECT *
+        FROM pet_insurance_product
+    </select>
+
     <!-- 품종으로 1위 가져오기 -->
     <select id="getBreedOne" resultType="com.kopo.finalproject.insurance.controller.BreedData"
             parameterType="String">
