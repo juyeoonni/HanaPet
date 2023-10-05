@@ -74,7 +74,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active " href="/admin/saving-product">
+                <a class="nav-link " href="/admin/saving-product">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
                          style="margin-top: -8px">
                         <i class="bi bi-piggy-bank fs-5" style="color: #75A989"></i>
@@ -92,7 +92,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/">
+                <a class="nav-link active" href="/">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
                          style="margin-top: -8px">
                         <i class="bi bi-envelope fs-5" style="color: #75A989"></i>
@@ -142,9 +142,6 @@
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                         <div class="input-group">
-                            <span class="input-group-text text-body"><i class="fas fa-search"
-                                                                        aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" placeholder="search">
                         </div>
                     </div>
                 </div>
