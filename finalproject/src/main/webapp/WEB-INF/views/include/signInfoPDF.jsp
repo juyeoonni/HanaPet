@@ -77,7 +77,7 @@
                     <tr>
                         <td class="text-center" style="width:200px;">자택주소</td>
                         <td class="text-start"
-                            style="padding-left: 20px;">경기도 광명시 도덕공원로 59
+                            style="padding-left: 20px;">서울시 강서구 화곡로 11번지
                         </td>
                     </tr>
                     <tr>
@@ -86,11 +86,11 @@
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">반려견 이름</td>
-                        <td class="text-start" style="padding-left: 20px;">010-2027-1810</td>
+                        <td class="text-start" style="padding-left: 20px;">토리</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">반려견 생년월일</td>
-                        <td class="text-start" style="padding-left: 20px;">2018년 02월 12일</td>
+                        <td class="text-start" style="padding-left: 20px;">2018-02-12</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">반려견 품종</td>
@@ -109,10 +109,6 @@
                     <tr>
                         <td class="text-center" style="width:200px;">보험명</td>
                         <td class="text-start" style="padding-left: 20px;">프로미 반려동물보험 One형 플랜</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" style="width:200px;">보험종류</td>
-                        <td class="text-start" style="padding-left: 20px;">질병보험</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">보험료</td>

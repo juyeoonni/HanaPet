@@ -15,16 +15,6 @@
             display: flex;
         }
 
-        .banner2 {
-            background: #BFDFCB;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 30px;
-            width: 300px;
-            height: 193px;
-            margin-left: 20px;
-            margin-bottom: 14px;
-        }
-
         .banner3 {
             background: #F2D8DD;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -32,6 +22,27 @@
             width: 300px;
             height: 193px;
             margin-left: 20px;
+            padding: 30px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .banner2 {
+            background: #BFDFCB;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 30px;
+            width: 300px;
+            height: 192px;
+            margin-left: 20px;
+            padding: 30px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .banner2:hover, .banner3:hover {
+            box-shadow: 2px 2px 10px #a5a5a5;
+            transform: scale(1.02);
         }
 
         .middle-box {
@@ -40,7 +51,7 @@
             border-radius: 30px;
             width: 100%;
             height: 200px;
-            margin-top: 50px;
+            margin-top: 30px;
         }
 
         .m {
@@ -68,30 +79,7 @@
 <body>
 <%@ include file="include/header.jsp" %>
 <div class="body">
-    <% String guest_id = (String) session.getAttribute("guest_id");
-        if (guest_id == null) { %>
-    <div class="banners">
-        <%@ include file="include/banner.jsp" %>
-        <div class="banner-right">
-            <div class="banner2">
-                <button id="openModalButton2">모달 열기</button>
-
-                <div id="myModal2" class="m">
-                    <div class="modal-content">
-                        <div class="close" style="cursor: pointer">&times;</div>
-                        <div id="modalContent2"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="banner3">
-                로그인 안됨
-            </div>
-        </div>
-    </div>
-    <div class="middle-box">
-    </div>
     <%
-    } else {
         // 세션에서 accountNumber 값을 가져옴
         String accountNumber = (String) session.getAttribute("accountNumber");
 
@@ -103,25 +91,31 @@
     <div class="banners">
         <%@ include file="include/banner.jsp" %>
         <div class="banner-right">
-            <div class="banner2">
-                <button id="openModalButton">모달 열기</button>
-
-                <div id="myModal" class="m">
-                    <div class="modal-content">
-                        <div class="close" style="cursor: pointer">&times;</div>
-                        <div id="modalContent"></div>
-                    </div>
+            <div class="banner2" id="insurance-recommend">
+                <div style="margin-top: -20px">
+                    <%--                    <img src="/resources/img/insurance-dog.png" style="width: 130px; margin-left: 30px"/>--%>
                 </div>
+                <h5>추천 보험</h5>
             </div>
-            <div class="banner3">
-                <button id="insurance-recommend">추천 보험</button>
+            <div class="banner3" id="openModalButton">
+                <div style="margin-top: -30px">
+                    <%--                    <img src="/resources/img/main-dog.png" style="width: 170px;"/>--%>
+                </div>
+                <h5>테스트</h5>
             </div>
         </div>
     </div>
+
+    <div id="myModal" class="m">
+        <div class="modal-content">
+            <div class="close" style="cursor: pointer; text-align: end;">&times;</div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
     <div class="middle-box">
+
     </div>
     <%
-            }
         }
     %>
 </div>
@@ -138,11 +132,8 @@
             loadPage("test/start");
         });
 
-        var url = "/insurance-recommend?"
+        var url = "/insurance-recommend"
         document.getElementById("insurance-recommend").addEventListener("click", function () {
-            <c:forEach var="pet" items="${pets}">
-            url += 'breed=' + '${pet.breed}' + '&';
-            </c:forEach>
             window.location.href = url;
         })
 
