@@ -85,7 +85,10 @@
 <jsp:include page="include/header.jsp"/>
 
 <div class="title">펫 캘린더</div>
+
 <div style="text-align: end;padding-right: 200px;">
+
+    <span style="font-size: 14px; margin-right: 225px">* 반려견을 같이 키우는 가족들의 펫 캘린더에 자동으로 공유됩니다.</span>
     <span>
         <button id="openModalButton" style="margin-top: 0px;">+ 일정 추가</button>
     </span>
@@ -108,7 +111,6 @@
         </div>
         <div class="calendar-dates" id="calendarDatesContainer">
         </div>
-
     </div>
     <div class="calendar-right">
         <div class="form-container">
