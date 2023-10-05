@@ -92,7 +92,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/">
+                <a class="nav-link active" href="/admin/email?category">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
                          style="margin-top: -8px">
                         <i class="bi bi-envelope fs-5" style="color: #75A989"></i>
@@ -184,29 +184,44 @@
             <div class="row">
                 <div class="col-md-4" style="width: 100%;">
                     <div class="card card-profile">
+                        <c:choose>
+                            <c:when test="${product == null}">
+                                <!-- 상품 유형 선택 드롭다운 -->
+                                <select id="productType" onchange="updateProductDetails()">
+                                    <option value="" selected disabled>상품 유형을 선택하세요</option>
+                                    <option value="적금">적금</option>
+                                    <option value="보험">보험</option>
+                                </select>
 
-                        <div class="card-header pb-0">
-                            <div class="d-flex align-items-center">
-                                <h5 class="mb-3">상품 관련 정보</h5>
-                            </div>
-                        </div>
-                        <div class="card-body" style="">
-                            <div class="mt-2">
-                                <p class="mb-2" style="display: inline-block;">적금명</p>
-                                <p style="margin-left: 120px; display: inline-block;">${product.category}
-                                </p>
-                                <br>
-                                <p class="mb-2" style="display: inline-block;">상세 설명</p>
-                                <p style="margin-left: 100px; display: inline-block;">${product.description}
-                                </p>
-                                <br>
-                                <p class="mb-0" style="display: inline-block;">기본금리</p>
-                                <p style="margin-left: 106px; display: inline-block;">${product.rate}%</p>
-                                <br>
-                                <p class="mb-0" style="display: inline-block;">우대금리</p>
-                                <p style="margin-left: 106px; display: inline-block;">${product.prime_rate}%</p>
-                            </div>
-                        </div>
+                                <!-- 상품 세부 선택 드롭다운 -->
+                                <select id="productDetail">
+                                    <option>세부 상품을 선택하세요</option>
+                                </select>
+
+                            </c:when>
+                            <c:otherwise>
+                                <div class="card-header pb-0">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="mb-3">상품 관련 정보</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body" style="">
+                                    <div class="mt-2">
+                                        <p class="mb-2" style="display: inline-block;">적금명</p>
+                                        <p style="margin-left: 120px; display: inline-block;">${product.category}</p>
+                                        <br>
+                                        <p class="mb-2" style="display: inline-block;">상세 설명</p>
+                                        <p style="margin-left: 100px; display: inline-block;">${product.description}</p>
+                                        <br>
+                                        <p class="mb-0" style="display: inline-block;">기본금리</p>
+                                        <p style="margin-left: 106px; display: inline-block;">${product.rate}%</p>
+                                        <br>
+                                        <p class="mb-0" style="display: inline-block;">우대금리</p>
+                                        <p style="margin-left: 106px; display: inline-block;">${product.prime_rate}%</p>
+                                    </div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
@@ -314,7 +329,8 @@
                                                                                            style="font-size: 16px;">받는
                                             분</label>
                                             <input class="form-control" type="text" name="name" id="name">
-                                            <input type="hidden" name="address" placeholder="이메일 주소를 입력하세요" id="email">
+                                            <input type="hidden" name="address" placeholder="이메일 주소를 입력하세요"
+                                                   id="email">
 
                                         </div>
                                     </div>
@@ -332,7 +348,7 @@
                                             <textarea class="form-control" type="text" name="content"
                                                       placeholder="보낼 내용을 입력하세요">
 
-                                            </textarea>
+        </textarea>
                                         </div>
                                     </div>
                                     <%--                                    <div class="col-md-12">--%>
@@ -386,6 +402,29 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script>
+    function updateProductDetails() {
+        const productType = document.getElementById("productType").value;
+        const productDetail = document.getElementById("productDetail");
+
+        // 모든 옵션 초기화
+        productDetail.innerHTML = '<option selected disabled>세부 상품을 선택하세요</option>';
+
+        if (productType === '적금') {
+            <c:forEach var="product" items="${productList}">
+            var option = new Option('<c:out value="${product.category}" />', '<c:out value="${product.category}" />');
+            productDetail.add(option);
+            </c:forEach>
+        } else if (productType === '보험') {
+            <c:forEach var="insuProduct" items="${insuranceProductList}">
+            var option = new Option('<c:out value="${insuProduct.insurance_name}" />', '<c:out value="${insuProduct.insurance_name}" />');
+            productDetail.add(option);
+            </c:forEach>
+        }
+    }
+
+
+</script>
+<script>
     $(window).load(function () {
         $("#sendEmail").click(function () {
             <%--            <%EmailSender.naverMailSend("yulim13sky@naver.com","적금 상품 새로 나옴","내용 test");%>--%>
@@ -428,14 +467,14 @@
             $('input[id=chk_list]:checked').each(function () {
 
                 var checkbox = $(this);
-                var tr = checkbox.closest('tr');  // 사용 `closest` 대신 `parent().parent()`
+                var tr = checkbox.closest('tr'); // 사용 `closest` 대신 `parent().parent()`
                 var td = tr.children();
 
                 var name = td.eq(2).text().trim();
                 var email = td.eq(3).text().trim();
 
-                names += name + ' ';  // 이름 추가
-                emails += email + ' ';  // 이메일 추가
+                names += name + ' '; // 이름 추가
+                emails += email + ' '; // 이메일 추가
             });
 
             $('#name').val(names.trim());

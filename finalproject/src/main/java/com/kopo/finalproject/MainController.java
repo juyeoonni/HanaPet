@@ -3,6 +3,8 @@ package com.kopo.finalproject;
 import com.kopo.finalproject.dto.Invite;
 import com.kopo.finalproject.guest.model.dto.EmailGuest;
 import com.kopo.finalproject.guest.service.GuestService;
+import com.kopo.finalproject.insurance.controller.InsuranceProduct;
+import com.kopo.finalproject.insurance.controller.InsuranceService;
 import com.kopo.finalproject.joinsaving.service.JoinSavingService;
 import com.kopo.finalproject.pet.model.dto.Pet;
 import com.kopo.finalproject.pet.service.PetService;
@@ -23,11 +25,14 @@ public class MainController {
     private final ProductService productService;
     private final GuestService guestService;
 
-    public MainController(JoinSavingService joinSavingService, PetService petService, ProductService productService, GuestService guestService) {
+    private final InsuranceService insuranceService;
+
+    public MainController(JoinSavingService joinSavingService, PetService petService, ProductService productService, GuestService guestService, InsuranceService insuranceService) {
         this.joinSavingService = joinSavingService;
         this.petService = petService;
         this.productService = productService;
         this.guestService = guestService;
+        this.insuranceService = insuranceService;
     }
 
     @RequestMapping("/")
@@ -109,10 +114,15 @@ public class MainController {
         String category = req.getParameter("category");
         Product product = productService.getProductByCategory(category);
         List<EmailGuest> emailGuestList = guestService.getEmailGuest();
+        List<Product> productList = productService.getAllProduct();
+        List<InsuranceProduct> insuranceProductList = insuranceService.getAllInsuranceProduct();
+
         mav.addObject("product", product);
         mav.addObject("emailGuestList", emailGuestList);
+        mav.addObject("productList", productList);
+        mav.addObject("insuranceProductList", insuranceProductList);
 
-        System.out.println(emailGuestList);
+        System.out.println(product);
         mav.setViewName("admin/admin-mail");
         return mav;
     }
