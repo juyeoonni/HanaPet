@@ -22,7 +22,7 @@
         }
 
         .header-container {
-            padding: 22.5px 12px 0px 12px !important;
+            padding: 12.5px 12px 0px 12px !important;
         }
 
         /* 모달 열릴 때 body를 흐리게 함 */
@@ -132,6 +132,7 @@
     </div>
 </div>
 </body>
+<%@ include file="include/footer.jsp" %>
 <!-- 모달 창 -->
 <div class="modal">
     <div class="modal_body">

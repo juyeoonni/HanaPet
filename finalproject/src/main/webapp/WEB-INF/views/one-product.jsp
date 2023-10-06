@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
 <head>
     <title>HanaPet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../../resources/css/common.css">
+    <link rel="stylesheet" href="/resources/css/common.css">
     <!-- 부트스트랩 CSS 링크 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- 부트스트랩 JS 링크 -->
@@ -15,7 +14,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
-
         .circle-container {
             display: flex;
             width: 1200px;
@@ -60,7 +58,7 @@
             color: #fff;
             border: none;
             cursor: pointer;
-            background: #75A989;
+            background: var(--primary-color);
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             outline: none;
@@ -97,7 +95,7 @@
 
         .accordion-button {
             color: white !important;
-            background-color: #75A989 !important;
+            background-color: var(--primary-color) !important;
         }
 
         p {
@@ -132,28 +130,27 @@
 
     </style>
 </head>
-<body>
 <%@ include file="include/header.jsp" %>
 <div class="body">
     <%@ include file="include/product-header.jsp" %>
 
     <div class="circle-container">
         <span class="circle1">
-    <div class="centered-div"> 만 3세 이하<br>우대 적금</div>
-    <div class="bottom-centered-div">특징</div>
-</span>
+        <div class="centered-div"> 만 3세 이하<br>우대 적금</div>
+        <div class="bottom-centered-div">특징</div>
+    </span>
         <span class="circle2">
-    <div class="centered-div"></div>
-    <div class="bottom-centered-div">기간</div>
-</span>
+        <div class="centered-div"></div>
+        <div class="bottom-centered-div">기간</div>
+    </span>
         <span class="circle3">
-    <div class="centered-div"></div>
-    <div class="bottom-centered-div">가입 금액</div>
-</span>
+        <div class="centered-div"></div>
+        <div class="bottom-centered-div">가입 금액</div>
+    </span>
         <span class="circle4">
-    <div class="centered-div"></div>
-    <div class="bottom-centered-div">최대 금리</div>
-</span>
+        <div class="centered-div"></div>
+        <div class="bottom-centered-div">최대 금리</div>
+    </span>
 
     </div>
     <div style="font-size: 15px; text-align: end; margin-bottom: 60px">
@@ -343,7 +340,7 @@
         <input class="join" value="가입하기" readonly>
     </form>
 </div>
-</body>
+
 <script>
     $(document).ready(function () {
         // 세션에서 제품 정보 가져오기
@@ -410,4 +407,4 @@
     });
 </script>
 
-</html>
+<%@ include file="include/footer.jsp" %>

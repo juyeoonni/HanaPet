@@ -9,11 +9,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .header-container {
-            padding: 22px 12px 0px 12px !important;
+            padding: 12.5px 12px 0px 12px !important;
         }
 
         .middle-box {
-            background: #75A989;
+            background: var(--primary-color);
             box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             width: auto;
@@ -78,7 +78,7 @@
         }
 
         .card-side.front {
-            /*background-color: #75A989;*/
+            /*background-color: var(--primary-color);*/
         }
 
         .card:hover .card-side.front {
@@ -190,4 +190,5 @@
     });
 </script>
 </body>
+<%@ include file="include/footer.jsp" %>
 </html>

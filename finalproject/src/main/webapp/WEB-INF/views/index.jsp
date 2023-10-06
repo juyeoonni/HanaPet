@@ -16,9 +16,9 @@
         }
 
         .banner2 {
-            background: #BFDFCB;
+            background: var(--primary-color);
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
+            border-radius: 13px;
             width: 300px;
             height: 72px;
             margin-left: 20px;
@@ -28,12 +28,11 @@
 
         .banner3 {
             background: #F2D8DD;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
+            /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);*/
+            /*border-radius: 20px;*/
             width: 300px;
-            height: 313px;
+            height: 200px;
             margin-left: 20px;
-            padding: 5px;
             text-align: center;
         }
 
@@ -42,12 +41,11 @@
         }
 
         .middle-box {
-            background: #E1E6DE;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 30px;
-            width: 100%;
+            /*background: #E1E6DE;*/
+            /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);*/
+            border-radius: 20px;
+            /*width: 70%;*/
             height: 200px;
-            margin-top: 30px;
         }
 
         .m {
@@ -67,75 +65,288 @@
         }
 
         #openModalButton {
-            font-weight: bold;
-            margin-top: 4px;
-            text-align: center;
-            width: 150px;
-            font-size: 16px;
-            padding: 6px;
-            color: #324D3D;
-            border: none;
             cursor: pointer;
-            background: white;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            outline: none;
         }
 
+        /* 바깥 스크린 스크롤 비활성화 */
         /* 바깥 스크린 스크롤 비활성화 */
         .modal-open {
             overflow: hidden;
         }
 
-        MARQUEE {
-            width: 230px;
-            margin-top: 6px;
-            height: 26px;
-            text-align: center;
+        /*MARQUEE {*/
+        /*    width: 230px;*/
+        /*    margin-top: 6px;*/
+        /*    height: 26px;*/
+        /*    text-align: center;*/
+        /*}*//* ETN ì´ëž€? */
+        .section {
+            width: 1080px;
+            margin: 0 auto;
+            padding: 35px 0
         }
+
+        .section_bg {
+            background-color: #ebecee;
+            padding: 92px 0 110px 0
+        }
+
+        .section_title {
+            margin-bottom: 40px;
+            text-align: center
+        }
+
+        .section_title.v2 {
+            margin-bottom: 12px
+        }
+
+        .section_title h3 {
+            font-size: 30px
+        }
+
+        .section_title p {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: 500;
+            color: #333
+        }
+
+        .about_list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px
+        }
+
+        .about_list > li {
+            width: calc(1080px / 3 - 10px);
+            background-color: #fff;
+            border-radius: 10px;
+            transition: all 0.3s
+        }
+
+        .about_list > li:hover {
+            background-color: #e7280e;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3)
+        }
+
+        .about_list > li:hover a {
+            color: #fff;
+        }
+
+        .about_list > li:hover > a .ico_wrap {
+            background-color: #fff;
+        }
+
+        .about_list > li > a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 25px
+        }
+
+        .about_list > li > a .ico_wrap {
+            width: 82px;
+            height: 82px;
+            line-height: 76px;
+            text-align: center;
+            background-color: #f3f4f5;
+            border-radius: 50%
+        }
+
+        .about_list > li > a > .about_title > h4 {
+            font-size: 21px;
+            margin-bottom: 6px
+        }
+
+        .series_list {
+            display: flex;
+        }
+
+        .series_list > li {
+            position: relative;
+            width: calc(1080px / 4);
+            list-style-type: none;
+        }
+
+        .series_list > li + li::before {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: inline-block;
+            width: 1px;
+            height: 120px;
+            background-color: #e2e2e2
+        }
+
+        .series_list > li > a {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+            font-size: 21px;
+            font-weight: 700
+        }
+
+        .series_list > li > a > .list_icon_wrap {
+            height: 160px;
+            line-height: 103px
+        }
+
+        .series_list > li > a > img {
+            margin: 0 auto
+        }
+
+        @media screen and (max-width: 768px) {
+            .series_list {
+                flex-wrap: wrap
+            }
+
+            .series_list > li {
+                width: 50%;
+                padding: 10px 5px
+            }
+
+            .series_list > li > a {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                text-align: left;
+                font-size: 1rem;
+            }
+
+            .series_list > li > a > .list_icon_wrap {
+                width: 64px;
+                line-height: 42px;
+                height: 42px;
+                text-align: center
+            }
+
+            .series_list > li > a > .list_icon_wrap img {
+                width: 63px;
+                height: 200px;
+            }
+
+            .series_list > li:first-child > a > .list_icon_wrap {
+                margin: -5px 0 0 -25px
+            }
+
+            .series_list > li:nth-of-type(2) > a > .list_icon_wrap {
+                margin-top: -2px
+            }
+
+            .series_list > li:nth-of-type(3) > a > .list_icon_wrap img {
+                width: 43px;
+                height: auto;
+                margin-left: 16px
+            }
+
+            .series_list > li:nth-of-type(4) > a > .list_icon_wrap img {
+                width: 45px;
+                height: auto;
+                margin-left: 9px
+            }
+
+            .series_list > li + li::before {
+                display: none;
+            }
+
+            .series_list > li:nth-of-type(2n)::before {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                display: inline-block;
+                content: '';
+                width: 1px;
+                height: 95%;
+                background-color: #e8e8e8
+            }
+
+            .series_list > li:nth-of-type(n+3)::after {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                display: inline-block;
+                content: '';
+                width: calc(100% - 10px);
+                height: 1px;
+                background-color: #e8e8e8
+            }
+
+        }
+
+        a {
+            text-decoration-line: none !important;
+        }
+
     </style>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
+
+<%
+    // 세션에서 accountNumber 값을 가져옴
+    String accountNumber = (String) session.getAttribute("accountNumber");
+
+    // accountNumber가 null이 아닌 경우 /invited로 리디렉션
+    if (accountNumber != null) {
+        response.sendRedirect("/invited");
+    } else {
+%>
+<div class="banners">
+    <%@ include file="include/banner.jsp" %>
+</div>
 <div class="body">
-    <%
-        // 세션에서 accountNumber 값을 가져옴
-        String accountNumber = (String) session.getAttribute("accountNumber");
-
-        // accountNumber가 null이 아닌 경우 /invited로 리디렉션
-        if (accountNumber != null) {
-            response.sendRedirect("/invited");
-        } else {
-    %>
-    <div class="banners">
-        <%@ include file="include/banner.jsp" %>
-        <div class="banner-right">
-            <div class="banner2" id="insurance-recommend">
-                <div style="display: flex; gap: 6px; place-content: center;">
-                    <div style="padding-top: 7px; font-weight: bold">적금 가입자 순위</div>
-                    <div style="padding-top: 12px; font-size: 14px">(누적 가입자 수 기준)</div>
-                </div>
-                <MARQUEE direction="up" scrollamount="1">
-                    1. 어쩌구<br><br>2. 어쩌구<br><br>3. 어쩌구
-                </MARQUEE>
-                <!-- 스크롤 방향 설정, 속도 -->
-            </div>
-            <div class="banner3">
-                <img src="/resources/img/main-test.svg" style="width: 220px; padding-top: 5px">
-                <button id="openModalButton">테스트 해보기</button>
-            </div>
-        </div>
-    </div>
-
     <div id="myModal" class="m">
-        <div class="modal-content">
+        <div class="modal-content" style="margin-top: 0px">
             <div class="close" style="cursor: pointer; text-align: end;">&times;</div>
             <div id="modalContent"></div>
         </div>
     </div>
-    <div class="middle-box">
-
+    <section class="section">
+        <div class="section_title">
+            <h3 class="spot">메리츠시리즈</h3>
+            <p>메리츠증권의 <span class="eng">ETN</span> 상품을 확인해보세요!</p>
+        </div>
+        <ul class="series_list">
+            <li>
+                <a id="openModalButton">
+                    <div class="list_icon_wrap">
+                        <img src="/resources/img/test.png" width="190px">
+                    </div>
+                    <p>테스트</p>
+                </a>
+            </li>
+            <li>
+                <a href="/product">
+                    <div class="list_icon_wrap">
+                        <img src="/resources/img/main2.png" width="120px" style="margin-top: 48px;">
+                    </div>
+                    <p>펫적금</p>
+                </a>
+            </li>
+            <li>
+                <a href="/insurance-product">
+                    <div class="list_icon_wrap">
+                        <img src="/resources/img/main-3.png" width="120px"  style="margin-top: 32px;">
+                    </div>
+                    <p>펫보험</p>
+                </a>
+            </li>
+            <li>
+                <a href="/petcalendar">
+                    <div class="list_icon_wrap">
+                        <img src="/resources/img/main4.png"  width="160px"  style="margin-top: 29px;">
+                    </div>
+                    <p>펫캘린더</p>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <div style="display:flex; margin-top: -5px; justify-content: space-between">
     </div>
+
     <%
         }
     %>

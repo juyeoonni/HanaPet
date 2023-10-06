@@ -116,7 +116,7 @@
                         <input type="radio" id="period2" name="period" value="매월">
                         <label for="period2">매월</label>
                         <% if (savingName != null) {%>
-                        <div style="font-size: 15px; color: #75A989; margin-top: 20px">* 일 단위로 이자를 계산합니다.</div>
+                        <div style="font-size: 15px; color: var(--primary-color); margin-top: 20px">* 일 단위로 이자를 계산합니다.</div>
                         <% } %>
                     </div>
                 </td>
@@ -194,6 +194,7 @@
 </div>
 </form>
 
+<%@ include file="include/footer.jsp" %>
 <div class="modal">
     <div class="modal_body">
         <div class="category">
@@ -223,8 +224,8 @@
         </div>
     </div>
 </div>
-</body>
 
+</body>
 <%
     String guest_id = (String) session.getAttribute("guest_id");
     String guest_name = (String) session.getAttribute("name");

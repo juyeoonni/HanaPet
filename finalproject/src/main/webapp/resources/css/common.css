@@ -23,6 +23,15 @@
     src: url('../font/netmarbleB.ttf');
 }
 
+:root {
+    --primary-color:  #46814c;
+    --secondary-color:  #e1ffef;
+    --black: #000000;
+    --white: #ffffff;
+    --gray: #E1E6DE;
+    --gray-2: #757575;
+}
+
 * {
     font-family: 'font-medium';
     font-size: 19px;

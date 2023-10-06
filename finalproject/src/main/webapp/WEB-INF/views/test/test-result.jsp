@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="top2">
-        <img src="/resources/img/test-result.png" width="710px"/>
+        <img src="/resources/img/test-result.svg" width="710px"/>
     </div>
     <div class="middle">
         <hr>

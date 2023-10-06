@@ -90,7 +90,7 @@
         }
 
         tr {
-            background: #75A989;
+            background: var(--primary-color);
         }
 
         th {
@@ -139,8 +139,8 @@
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-            background: #75A989 !important;
-            border: 1px solid #75A989 !important;
+            background: var(--primary-color) !important;
+            border: 1px solid var(--primary-color) !important;
             color: white !important;
         }
 
@@ -160,7 +160,7 @@
         }
 
         .p-green {
-            background-color: #75A989;
+            background-color: var(--primary-color);
         }
 
         .progress {
@@ -294,7 +294,7 @@
             height: 100%;
             background-color: #fff;
             border-radius: 10px;
-            border: 3px solid #75A989;
+            border: 3px solid var(--primary-color);
             padding: 20px;
         }
 
@@ -360,11 +360,11 @@
             <div class="relative w-64" style="width: 98%; margin-top: 80px; margin-bottom: 45px">
 
                 <div class="absolute left-4 bottom-4 bg-red-600 h-full w-full rounded-xl"
-                     style="background: #75A989"></div>
+                     style="background: var(--primary-color)"></div>
 
                 <div class="relative bg-gray-800 text-gray-50 rounded-xl p-8 space-y-7" style="background: #CFDBC8">
 
-                    <div class="h-2 w-20" style="background: #75A989; margin-left: 60px"></div>
+                    <div class="h-2 w-20" style="background: var(--primary-color); margin-left: 60px"></div>
 
                     <div class="text-5xl font-extrabold text-white"
                          style="display: flex; gap: 150px; padding-left: 60px">
@@ -496,6 +496,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 
 </div>
+<%@ include file="footer.jsp" %>
 </body>
 <script>
     $(document).ready(function () {

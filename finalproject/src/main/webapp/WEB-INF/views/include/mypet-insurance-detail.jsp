@@ -48,7 +48,7 @@
         }
 
         .p-green {
-            background-color: #75A989;
+            background-color: var(--primary-color);
         }
 
         .progress {
@@ -236,7 +236,7 @@
         }
 
         tr {
-            background: #75A989;
+            background: var(--primary-color);
         }
 
         th {
@@ -281,8 +281,8 @@
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-            background: #75A989 !important;
-            border: 1px solid #75A989 !important;
+            background: var(--primary-color) !important;
+            border: 1px solid var(--primary-color) !important;
             color: white !important;
         }
     </style>
@@ -354,8 +354,9 @@
 
         <div style="align-self: end">총 납입보험료: <fmt:formatNumber value="${insu.insuranceAmount}" type="number"
                                                                 pattern="#,###원"/></div>
-        </v>
     </div>
+</div>
+<%@ include file="footer.jsp" %>
 </body>
 
 <script>

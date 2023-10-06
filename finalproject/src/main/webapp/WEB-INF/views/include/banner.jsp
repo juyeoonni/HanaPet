@@ -18,17 +18,30 @@
             width: 1100px;
         }
 
-        /* Rectangle 31 */
-
         #carouselExampleAutoplaying {
-            background: #75A989;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-            border-radius: 20px;
-            padding-top: 30px;
-            width: 790px;
-            height: 400px;
+            background: #E1E6DE;
+            margin-top: 20px;
+            width: 100%;
+            height: 480px;
         }
 
+        .event {
+            font-size: 37px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: white;
+        }
+
+        .event-small {
+            font-family: net-medium;
+            font-size: 27px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .carousel-item {
+            padding: 60px 200px;
+        }
     </style>
 </head>
 
@@ -49,24 +62,36 @@
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                 aria-label="Slide 3"></button>
     </div>
-    <div class="carousel-inner" style="height: 400px; width: 70%; margin-left: 120px;">
-        <div class="carousel-item active" style="height: 400px;" data-bs-interval="1900">
-            <span>이벤트</span>
-            <h3>가족들 초대하면</h3>
-            <h3>최대 연 0.9% 추가 우대!!</h3>
-            <div>가족들과 함께 반려견의 노후를 대비해보세요</div>
-            <div>
-                <button>적금 공유하러 가개</button>
+    <div class="carousel-inner" style="height: 480px; width: 100%;">
+        <div class="carousel-item active"
+             style="background-image: url('/resources/img/test2.svg'); background-color: black; height: 480px"
+             data-bs-interval="2600">
+
+            <div >
+                <span style="font-size: 22px; font-family: 'net-bold'; color: white">이벤트</span>
+                <div class="event">가족들 초대하면<br>최대 연 0.9% 추가 우대</div>
+                <br>
+                <div class="event-small">가족들과 함께 반려견의 노후를 대비해보세요</div>
+                <div style="display:flex; gap: 10px">
+                    <button class="button" id="share">공유 시작하기</button>
+                    <button class="button" id="make">아직 적금이 없다면?</button>
+                </div>
             </div>
         </div>
-        <div class="carousel-item" style="height: 400px;" data-bs-interval="1900">
-            <h3>소중한 우리 반려견의 건강한 삶을 위해 </h3>
-            <h3>하나펫손해보험</h3>
-            <p>우리 아이에게 딱 맞는 보험을 찾으러 가기</p>
+        <div class="carousel-item"
+             style='background-image: url("http://www.chungdamah.co.kr/theme/hp001/img/main_visual1.jpg"); background-color: black; height: 500px; background-position: 50% 10%'
+             data-bs-interval="2600">
+            <h3 class="event">소중한 우리 반려견의 건강한 삶을 위해 </h3>
+            <h3 class="event">하나펫손해보험</h3>
+            <p class="event-small">우리 아이에게 딱 맞는 보험 찾으러 가기</p>
         </div>
-        <div class="carousel-item" style="height: 400px;" data-bs-interval="1900">
-            <h5>Third slide label</h5>
-            <p>Some representative placeholder content for the third slide.</p>
+        <div class="carousel-item dark-overlay" data-bs-interval="2600"
+             style='background-image: url("/resources/img/main3.png"); height: 500px; background-position: 50% 30%; background-repeat: no-repeat; background-size: cover'>
+            <div style="text-align: center">
+                <h3 class="event" style="z-index: 100">소중한 우리 반려견의 건강한 삶을 위해 </h3>
+                <h3 class="event">하나펫손해보험</h3>
+                <p class="event-small">우리 아이에게 딱 맞는 보험 찾으러 가기</p>
+            </div>
         </div>
     </div>
 

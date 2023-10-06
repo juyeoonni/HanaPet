@@ -28,7 +28,7 @@
     }
 
     tr {
-        background: #75A989;
+        background: var(--primary-color);
     }
 
     th {
@@ -73,8 +73,8 @@
     }
 
     .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-        background: #75A989 !important;
-        border: 1px solid #75A989 !important;
+        background: var(--primary-color) !important;
+        border: 1px solid var(--primary-color) !important;
         color: white !important;
     }
 </style>
@@ -117,6 +117,7 @@
         </div>
     </div>
 </div>
+<%@ include file="footer.jsp" %>
 <script>
     $(document).ready(function () {
         new DataTable('#myTable', {
@@ -130,4 +131,5 @@
     document.getElementById('account-name').textContent += "[" + sessionStorage.getItem("accountName") + "]";
 </script>
 </body>
+
 </html>

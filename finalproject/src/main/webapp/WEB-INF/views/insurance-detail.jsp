@@ -165,14 +165,14 @@
             height: 25px;
             text-align: center;
             border-radius: 0.2rem;
-            background: #75A989;
+            background: var(--primary-color);
             color: white;
             font-size: 1rem;
         }
 
         .cRXURy {
             margin-top: 60px;
-            background-color: #75A989;
+            background-color: var(--primary-color);
             border: none;
             color: rgb(255, 255, 255);
             cursor: pointer;
@@ -270,7 +270,7 @@
         }
 
         .accordion-button {
-            background-color: #75A989 !important;
+            background-color: var(--primary-color) !important;
         }
 
         .accordion-button span {

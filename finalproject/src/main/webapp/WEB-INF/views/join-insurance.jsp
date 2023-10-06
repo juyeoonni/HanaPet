@@ -46,7 +46,7 @@
 
         .accordion-button {
             color: white !important;
-            background-color: #75A989 !important;
+            background-color: var(--primary-color) !important;
         }
 
         .f {
@@ -112,7 +112,7 @@
                         <div>
                             <h5>반려견 정보</h5>
                             <table>
-                                <tr id="dog" style=" border-bottom: 3px solid #75A989; height: 45px ">
+                                <tr id="dog" style=" border-bottom: 3px solid var(--primary-color); height: 45px ">
                                     <td class="form-label" style="padding-top: 5px">반려견 이름</td>
                                     <td style="padding-top: 3px">
                                         <select class="form-dropdown" id="petSelection" style="width: 250px;" required>

@@ -25,7 +25,7 @@
         }
 
         .middle-box {
-            background: #75A989;
+            background: #46814c;
             box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             width: auto;
@@ -55,7 +55,7 @@
         }
 
         .btn_block_round {
-            background: #75A989;
+            background: var(--primary-color);
             text-align: center;
             padding: 12px;
             border-radius: 20px;
@@ -80,7 +80,7 @@
             <div>
                 <h4 style="font-weight: bold">우리 아이에게 딱 맞는 펫보험은?🔍</h4>
                 <br>
-                <h5 style="font-weight: bold; color: #75A989">나이와 품종으로 추천 보험을 보러가보개!</h5>
+                <h5 style="font-weight: bold; color: #46814c">나이와 품종으로 추천 보험을 보러가보개!</h5>
             </div>
             <a href="/insurance-recommend" class="btn_block_round">
                 <div style="color: white; font-weight: bold; padding-left: 10px">추천 보험 확인하기 <img
@@ -101,3 +101,4 @@
 </script>
 </body>
 
+<%@ include file="include/footer.jsp" %>

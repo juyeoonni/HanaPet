@@ -11,7 +11,7 @@
     <script src="/resources/javascript/apiKey.js"></script>
     <style>
         .button {
-            background-color: #75A989;
+            background-color: var(--primary-color);
             border: none;
             color: rgb(255, 255, 255);
             cursor: pointer;

@@ -4,7 +4,7 @@
     <style>
         .card-box {
             padding: 30px 35px 25px 35px;
-            border-bottom: 2px solid #75a989 ;
+            border-bottom: 2px solid var(--primary-color);
         }
 
         .toggleSwitch {
@@ -27,11 +27,11 @@
             left: 2px; /* 왼쪽 위치를 조절 */
             transform: translateY(-50%);
             border-radius: 50%;
-            background: #75a989;
+            background: var(--primary-color);
         }
 
         .toggles:checked ~ .toggleSwitch {
-            background: #75a989;
+            background: var(--primary-color);
         }
 
         .toggles:checked ~ .toggleSwitch .toggleButton {
@@ -154,9 +154,9 @@
                     balance.textContent = Number(account.balance).toLocaleString() + '원';
 
                     const history = document.createElement('button');
-                    history.style.backgroundColor = "#75a989";
+                    history.style.backgroundColor = "var(--primary-color)";
                     history.style.color = "white";
-                    history.style.border = "3px solid #75a989";
+                    history.style.border = "3px solid var(--primary-color)";
                     history.style.borderRadius = "10px";
                     history.style.padding = "5px 15px";
                     history.style.marginLeft = "10px";
@@ -167,30 +167,8 @@
                         window.location.href = "/history?account_number=" + account.account_number;
                     })
 
-                    const text = document.createElement("span");
-                    text.style.marginRight = '10px';
-                    text.textContent = '자산 보이기';
-                    const checkbox = document.createElement("input");
-                    checkbox.type = "checkbox";
-                    checkbox.id = "toggle" + index;
-                    checkbox.className = 'toggles';
-                    checkbox.hidden = true;
-                    const label = document.createElement("label");
-                    label.setAttribute("for", "toggle" + index);
-                    label.className = "toggleSwitch";
-                    const span = document.createElement("span");
-                    span.className = "toggleButton";
-                    label.appendChild(span);
-
-                    const togglebox = document.createElement("div");
-                    togglebox.style.display = 'flex';
-                    togglebox.appendChild(text);
-                    togglebox.appendChild(checkbox);
-                    togglebox.appendChild(label);
-
                     const right = document.createElement("right");
-                    right.style.textAlign = 'end';
-                    right.appendChild(togglebox);
+                    right.style.alignSelf = 'center';
                     right.appendChild(history);
 
                     cardBody.appendChild(left);
@@ -199,25 +177,6 @@
 
                     card.appendChild(cardBody);
                     accountBox.appendChild(card);
-
-                    const toggleCheckbox = document.getElementById("toggle" + index);
-                    toggleCheckbox.addEventListener("change", function () {
-                        const toggleButton = toggleCheckbox.nextElementSibling.querySelector(".toggleButton");
-                        if (toggleCheckbox.checked) {
-                            console.log("체크 박스가 체크되었습니다.");
-                            document.getElementById('balance' + index).textContent = "체크";
-                            toggleButton.style.left = 'calc(100% - 22px)';
-                            // toggleButton.style.background = 'white'; // 토글 버튼의 배경색 변경
-                            // toggleCheckbox.style.backgroundColor = '#75a989'; // 토글 체크박스의 배경색 변경
-                        } else {
-                            console.log("체크 박스가 해제되었습니다.");
-                            document.getElementById('balance' + index).textContent = "잔액 숨김 중";
-                            toggleButton.style.left = '2px';
-                            // toggleButton.style.background = '#75a989'; // 토글 버튼의 배경색 변경
-                            // toggleCheckbox.style.backgroundColor = 'white'; // 토글 체크박스의 배경색 변경
-                        }
-                    });
-
                 });
                 document.getElementById("info-text3").textContent += " " + data.length + "개의 계좌가 있습니다.";
                 document.getElementById("text-right3").textContent += totalAmount.toLocaleString() + "원";

@@ -16,11 +16,11 @@
         }
 
         .nav-item .nav-link {
-            border-bottom: #75a989 !important;
+            border-bottom: var(--primary-color) !important;
         }
 
         .nav-tabs .nav-link.active {
-            background: #75a989 !important;
+            background: var(--primary-color) !important;
             color: white !important;
         }
 
@@ -42,7 +42,7 @@
         }
 
         .middle-box {
-            background: #75A989;
+            background: var(--primary-color);
             box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
             border-radius: 10px 10px 0px 0px;
             width: auto;
@@ -79,7 +79,7 @@
 
         /* 기본 버튼 스타일 */
         .custom-btn {
-            background-color: #75A989;
+            background-color: var(--primary-color);
             border: 1px solid #fff;
             color: #fff; /* 텍스트 색상을 흰색으로 지정 */
         }
@@ -246,7 +246,7 @@
                                 leftContainer.append(Div);
 
                                 // 만기 알림
-                                var endDiv = $('<div style="padding-top: 37px; font-size: 22px; font-weight: bold; color: #75a989;">').text('만기된 적금입니다.');
+                                var endDiv = $('<div style="padding-top: 37px; font-size: 22px; font-weight: bold; color: var(--primary-color);">').text('만기된 적금입니다.');
                                 rightContainer.append(endDiv);
 
                             } else {
@@ -265,7 +265,7 @@
 
                                 // 내가 개설자일 때만 "공유하기" 버튼 생성
                                 if (String(openerId) === guest_id) {
-                                    var kakaoLink = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px;  padding: 5px 15px; width: 122px">').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
+                                    var kakaoLink = $('<button style="background: var(--primary-color); color: white; border: 3px solid var(--primary-color) ; border-radius: 10px;  padding: 5px 15px; width: 122px">').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
                                     buttonContainer.append(kakaoLink);
 
                                     // Kakao 공유 버튼을 생성하고 설정
@@ -298,7 +298,7 @@
                                 }
 
                                 // "자세히 보기" 버튼 생성
-                                var detailsButton = $('<button style="background: #75a989; color: white; border: 3px solid #75a989 ; border-radius: 10px; padding: 5px 15px; margin-left: 10px">').text('자세히 보기');
+                                var detailsButton = $('<button style="background: var(--primary-color); color: white; border: 3px solid var(--primary-color) ; border-radius: 10px; padding: 5px 15px; margin-left: 10px">').text('자세히 보기');
 
                                 detailsButton.on('click', function () {
                                     var nextPageUrl = '/mypet-saving/detail?accountNumber=' + encodeURIComponent(account_number);

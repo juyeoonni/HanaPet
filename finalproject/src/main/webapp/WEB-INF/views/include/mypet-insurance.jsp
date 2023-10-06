@@ -147,9 +147,9 @@
                                     .css({
                                         fontSize: "17px",
                                         padding: "5px 10px",
-                                        background: "rgb(117, 169, 137)",
+                                        background: "var(--primary-color)",
                                         color: "white",
-                                        border: "3px solid rgb(117, 169, 137)",
+                                        border: "3px solid var(--primary-color)",
                                         borderRadius:
                                             "10px",
                                         padding:
@@ -166,7 +166,7 @@
                                         window.open('/signInfoPDF', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');
                                     });
 
-                                var detailBtn = $("<button style='font-size: 17px; background: rgb(117, 169, 137); color: white; border: 3px solid rgb(117, 169, 137); border-radius: 10px; padding: 5px 15px; width: 130px; height: 45px; cursor: pointer;'>")
+                                var detailBtn = $("<button style='font-size: 17px; background: var(--primary-color); color: white; border: 3px solid rgb(117, 169, 137); border-radius: 10px; padding: 5px 15px; width: 130px; height: 45px; cursor: pointer;'>")
                                     .text("자세히 보기")
                                     .on('click', function () {
                                         window.location.href = "/mypet-insurance/detail?insu_id=" + insurance.joinInsuranceId;

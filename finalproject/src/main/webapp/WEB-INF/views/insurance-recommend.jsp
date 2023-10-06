@@ -37,7 +37,7 @@
             margin-top: 40px;
             margin-bottom: 30px;
             font-weight: bold;
-            color: #75A989;
+            color: var(--primary-color);
         }
 
         .center {
@@ -101,7 +101,7 @@
 
         .selected-value {
             display: inline-block;
-            background-color: #75A989;
+            background-color: var(--primary-color);
             padding: 5px 10px;
             margin: 5px;
             border-radius: 5px;
@@ -112,7 +112,7 @@
         .details-btn {
             display: inline-block;
             padding: 8px 12px;
-            background-color: #75A989;
+            background-color: var(--primary-color);
             color: #FFFFFF;
             border-radius: 4px;
             text-align: center;
@@ -139,7 +139,7 @@
             <div>
                 <h4 style="font-weight: bold">우리 아이에게 딱 맞는 펫보험은?🔍</h4>
                 <br>
-                <h5 style="font-weight: bold; color: #75A989">나이와 품종으로 추천 보험을 알려줄개, 우리 아이의 정보를 입력해보개!</h5>
+                <h5 style="font-weight: bold; color: var(--primary-color)">나이와 품종으로 추천 보험을 알려줄개, 우리 아이의 정보를 입력해보개!</h5>
             </div>
             <div>
                 <img src="/resources/img/insurance-dog.png" style="margin-top: -10px; width: 190px">

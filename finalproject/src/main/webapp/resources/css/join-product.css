@@ -89,7 +89,7 @@ input[type="number"]::-webkit-outer-spin-button {
     color: #fff;
     border: none;
     cursor: pointer;
-    background: #75A989;
+    background: var(--primary-color);
     border-radius: 10px;
     outline: none;
 }
@@ -116,11 +116,11 @@ input[type="radio"] {
 }
 
 tbody tr:nth-child(1) {
-    border-top: 3px solid #75A989;
+    border-top: 3px solid var(--primary-color);
 }
 
 tbody tr:nth-last-child(1) {
-    border-bottom: 3px solid #75A989;
+    border-bottom: 3px solid var(--primary-color);
 }
 
 /* 홀수 번째 td 배경색 스타일 */
@@ -135,7 +135,7 @@ td:nth-child(odd) {
 #endDateMessage, #pwMessage, #endAmountMessage {
     margin-top: 5px;
     font-size: 16px;
-    color: #75A989;
+    color: var(--primary-color);
 }
 
 .color {
@@ -144,7 +144,7 @@ td:nth-child(odd) {
 
 #current_balance, #able_balance, .color div div {
     font-size: 17px;
-    color: #75A989;
+    color: var(--primary-color);
     margin-right: 6px;
     font-family: font-medium;
 }
@@ -164,7 +164,7 @@ td:nth-child(odd) {
     height: 30px;
     font-size: 18px;
     border: none;
-    border: 1px solid #75A989;
+    border: 1px solid var(--primary-color);
     cursor: pointer;
     background: #ffffff;
     border-radius: 10px;
@@ -181,7 +181,7 @@ td:nth-child(odd) {
     color: #fff;
     border: none;
     cursor: pointer;
-    background: #75A989;
+    background: var(--primary-color);
     border-radius: 10px;
     outline: none;
     padding-top: 11px;

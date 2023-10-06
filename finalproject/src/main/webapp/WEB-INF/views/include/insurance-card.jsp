@@ -15,7 +15,7 @@
     }
 
     .desc {
-        color: #75A989;
+        color: var(--primary-color);
         font-size: 17px;
         margin-top: 20px;
     }
@@ -64,8 +64,8 @@
 
     /* 선택된 체크박스의 색상 */
     input[type="checkbox"]:checked {
-        background-color: #75A989; /* 선택된 상태일 때 배경 색상 변경 */
-        border: 2px solid #75A989; /* 선택된 상태일 때 테두리 색상 변경 */
+        background-color: var(--primary-color); /* 선택된 상태일 때 배경 색상 변경 */
+        border: 2px solid var(--primary-color); /* 선택된 상태일 때 테두리 색상 변경 */
     }
 
     .bold {
@@ -79,7 +79,7 @@
     }
 
     .sc-KfMfS {
-        color: #75A989;
+        color: var(--primary-color);
         margin-right: 20px; /* 원하는 마진 크기로 조정합니다. */
         margin-bottom: 9px;
     }
@@ -93,7 +93,7 @@
         font-weight: bold;
         font-family: font-medium;
         font-size: 29px;
-        color: #75A989;
+        color: var(--primary-color);
     }
 
     .money p:nth-child(2) {
@@ -113,7 +113,7 @@
     }
 
     .join-btn {
-        background-color: #75A989;
+        background-color: var(--primary-color);
         border: none;
         color: rgb(255, 255, 255);
         cursor: pointer;

@@ -28,7 +28,7 @@
             color: #fff;
             border: none;
             cursor: pointer;
-            background: #75A989;
+            background: var(--primary-color);
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             outline: none;
@@ -65,7 +65,7 @@
 
         .accordion-button {
             color: white !important;
-            background-color: #75A989 !important;
+            background-color: var(--primary-color) !important;
         }
 
         p {
