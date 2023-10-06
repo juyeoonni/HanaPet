@@ -14,7 +14,6 @@
 /*}*/
 
 
-
 /*body {*/
 /*    margin: 0;*/
 /*    padding: 0;*/
@@ -35,12 +34,14 @@
 }
 
 .menu {
+    font-weight: bold;
     display: flex;
     align-items: center;
     margin-left: 20px;
 }
 
 .menu-item {
+    font-family: 'font-bold' !important;
     margin-right: 60px;
     cursor: pointer;
     text-decoration: none;
@@ -54,13 +55,15 @@
     margin-right: 0;
 }
 
-.menu-item:hover{
+.menu-item:hover {
     color: #75A989;
 }
+
 .login-register {
     display: flex;
     align-items: center;
     margin-left: 20px;
+    font-family: 'font-medium' !important;
 }
 
 .login,

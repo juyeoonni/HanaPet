@@ -17,31 +17,27 @@
 
         .banner2 {
             background: #BFDFCB;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 30px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
             width: 300px;
-            height: 122px;
+            height: 72px;
             margin-left: 20px;
-            padding: 30px;
             margin-bottom: 15px;
-            cursor: pointer;
             text-align: center;
         }
 
         .banner3 {
             background: #F2D8DD;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 30px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
             width: 300px;
-            height: 263px;
+            height: 313px;
             margin-left: 20px;
             padding: 5px;
-            cursor: pointer;
             text-align: center;
         }
 
-        .banner2:hover, .banner3:hover {
-            box-shadow: 2px 2px 10px #a5a5a5;
+        #openModalButton:hover {
             transform: scale(1.02);
         }
 
@@ -70,9 +66,32 @@
             border-radius: 20px;
         }
 
+        #openModalButton {
+            font-weight: bold;
+            margin-top: 4px;
+            text-align: center;
+            width: 150px;
+            font-size: 16px;
+            padding: 6px;
+            color: #324D3D;
+            border: none;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            outline: none;
+        }
+
         /* 바깥 스크린 스크롤 비활성화 */
         .modal-open {
             overflow: hidden;
+        }
+
+        MARQUEE {
+            width: 230px;
+            margin-top: 6px;
+            height: 26px;
+            text-align: center;
         }
     </style>
 </head>
@@ -92,12 +111,18 @@
         <%@ include file="include/banner.jsp" %>
         <div class="banner-right">
             <div class="banner2" id="insurance-recommend">
-                <div style="margin-top: -20px">
-                    <%--                    <img src="/resources/img/insurance-dog.png" style="width: 130px; margin-left: 30px"/>--%>
+                <div style="display: flex; gap: 6px; place-content: center;">
+                    <div style="padding-top: 7px; font-weight: bold">적금 가입자 순위</div>
+                    <div style="padding-top: 12px; font-size: 14px">(누적 가입자 수 기준)</div>
                 </div>
+                <MARQUEE direction="up" scrollamount="1">
+                    1. 어쩌구<br><br>2. 어쩌구<br><br>3. 어쩌구
+                </MARQUEE>
+                <!-- 스크롤 방향 설정, 속도 -->
             </div>
-            <div class="banner3" id="openModalButton">
-                <img src="/resources/img/main-test.svg" style="width: 220px">
+            <div class="banner3">
+                <img src="/resources/img/main-test.svg" style="width: 220px; padding-top: 5px">
+                <button id="openModalButton">테스트 해보기</button>
             </div>
         </div>
     </div>

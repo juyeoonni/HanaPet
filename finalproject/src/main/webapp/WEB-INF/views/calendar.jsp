@@ -22,7 +22,7 @@
         }
 
         .header-container {
-            padding: 23px 20px 0px 20px !important;
+            padding: 22.5px 12px 0px 12px !important;
         }
 
         /* 모달 열릴 때 body를 흐리게 함 */

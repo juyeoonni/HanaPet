@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="/resources/css/common.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+        .header-container {
+            padding: 22px 12px 0px 12px !important;
+        }
+
         .middle-box {
             background: #75A989;
             box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);

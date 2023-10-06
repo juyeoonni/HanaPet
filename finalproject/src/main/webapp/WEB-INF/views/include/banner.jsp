@@ -22,8 +22,8 @@
 
         #carouselExampleAutoplaying {
             background: #75A989;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 30px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
             padding-top: 30px;
             width: 790px;
             height: 400px;

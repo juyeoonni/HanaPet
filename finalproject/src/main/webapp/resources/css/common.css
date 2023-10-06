@@ -12,6 +12,17 @@
     font-family: 'font-medium';
     src: url('../font/NEXON Medium.ttf');
 }
+
+@font-face {
+    font-family: 'net-medium';
+    src: url('../font/netmarbleM.ttf');
+}
+
+@font-face {
+    font-family: 'net-bold';
+    src: url('../font/netmarbleB.ttf');
+}
+
 * {
     font-family: 'font-medium';
     font-size: 19px;

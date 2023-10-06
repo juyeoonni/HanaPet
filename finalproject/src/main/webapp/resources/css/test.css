@@ -1,3 +1,7 @@
+* {
+    font-family: 'net-bold' !important;
+}
+
 ::-webkit-scrollbar {
     width: 13px; /* 스크롤바의 너비를 조정합니다. */
 }
