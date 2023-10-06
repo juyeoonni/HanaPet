@@ -21,6 +21,10 @@
             pointer-events: none; /* 배경에 마우스 이벤트를 비활성화하여 모달 위의 요소에만 이벤트가 전달되도록 합니다. */
         }
 
+        .header-container {
+            padding: 23px 20px 0px 20px !important;
+        }
+
         /* 모달 열릴 때 body를 흐리게 함 */
         body.modal-open {
             overflow: hidden; /* 스크롤을 숨김 */
@@ -84,13 +88,13 @@
 <body>
 <jsp:include page="include/header.jsp"/>
 
-<div class="title">펫 캘린더</div>
+<div class="title" style="font-weight: bold">펫 캘린더</div>
 
 <div style="text-align: end;padding-right: 200px;">
 
-    <span style="font-size: 14px; margin-right: 225px">* 반려견을 같이 키우는 가족들의 펫 캘린더에 자동으로 공유됩니다.</span>
+    <span style="font-size: 14px; margin-right: 225px;">* 반려견을 같이 키우는 가족들의 펫 캘린더에 자동으로 공유됩니다.</span>
     <span>
-        <button id="openModalButton" style="margin-top: 0px;">+ 일정 추가</button>
+        <button id="openModalButton" style="margin-top: 20px; margin-bottom: 20px">+ 일정 추가</button>
     </span>
 </div>
 <div class="calendar">

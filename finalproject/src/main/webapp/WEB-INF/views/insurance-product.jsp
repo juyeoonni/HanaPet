@@ -53,6 +53,20 @@
             display: flex;
             place-content: center;
         }
+
+        .btn_block_round {
+            background: #75A989;
+            text-align: center;
+            padding: 12px;
+            border-radius: 20px;
+            height: 50px;
+            text-decoration: none !important;
+            align-self: center;
+        }
+
+        .btn_block_round:hover {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body>
@@ -68,6 +82,11 @@
                 <br>
                 <h5 style="font-weight: bold; color: #75A989">나이와 품종으로 추천 보험을 보러가보개!</h5>
             </div>
+            <a href="/insurance-recommend" class="btn_block_round">
+                <div style="color: white; font-weight: bold; padding-left: 10px">추천 보험 확인하기 <img
+                        src="/resources/img/right-arrow.png"
+                        style="width: 30px;"/></div>
+            </a>
             <div>
                 <img src="/resources/img/insurance-dog.png" style="margin-top: -10px; width: 190px">
             </div>

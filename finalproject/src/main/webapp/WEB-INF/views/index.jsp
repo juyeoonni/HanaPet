@@ -15,27 +15,27 @@
             display: flex;
         }
 
-        .banner3 {
-            background: #F2D8DD;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 30px;
-            width: 300px;
-            height: 193px;
-            margin-left: 20px;
-            padding: 30px;
-            cursor: pointer;
-            text-align: center;
-        }
-
         .banner2 {
             background: #BFDFCB;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 30px;
             width: 300px;
-            height: 192px;
+            height: 122px;
             margin-left: 20px;
             padding: 30px;
             margin-bottom: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .banner3 {
+            background: #F2D8DD;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 30px;
+            width: 300px;
+            height: 263px;
+            margin-left: 20px;
+            padding: 5px;
             cursor: pointer;
             text-align: center;
         }
@@ -95,13 +95,9 @@
                 <div style="margin-top: -20px">
                     <%--                    <img src="/resources/img/insurance-dog.png" style="width: 130px; margin-left: 30px"/>--%>
                 </div>
-                <h5>추천 보험</h5>
             </div>
             <div class="banner3" id="openModalButton">
-                <div style="margin-top: -30px">
-                    <%--                    <img src="/resources/img/main-dog.png" style="width: 170px;"/>--%>
-                </div>
-                <h5>테스트</h5>
+                <img src="/resources/img/main-test.svg" style="width: 220px">
             </div>
         </div>
     </div>
@@ -132,10 +128,10 @@
             loadPage("test/start");
         });
 
-        var url = "/insurance-recommend"
-        document.getElementById("insurance-recommend").addEventListener("click", function () {
-            window.location.href = url;
-        })
+        // var url = "/insurance-recommend"
+        // document.getElementById("insurance-recommend").addEventListener("click", function () {
+        //     window.location.href = url;
+        // })
 
 
         closeSpan.addEventListener("click", function () {

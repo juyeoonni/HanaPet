@@ -4,15 +4,15 @@
 <head>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../../resources/css/common.css">
-    <link rel="stylesheet" href="../../../../resources/css/header.css">
+    <link rel="stylesheet" href="/resources/css/common.css">
+    <link rel="stylesheet" href="/resources/css/header.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <header>
     <div class="header-container">
         <a href="/" class="logo">
-            <img src="../../../resources/img/main_logo.png" style="width:170px;">
+            <img src="/resources/img/main_logo.png" style="width:170px;">
         </a>
         <div class="menu">
             <a href="/product" class="menu-item hvr-underline-from-center"> 펫적금 </a>
