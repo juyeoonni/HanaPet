@@ -335,10 +335,10 @@
             <table id="myTable" class="display" style="width:100%">
                 <thead>
                 <tr>
-                    <th>회차</th>
-                    <th>납입일</th>
-                    <th>납입방법</th>
-                    <th>납입금액</th>
+                    <th class="text-white">회차</th>
+                    <th class="text-white">납입일</th>
+                    <th class="text-white">납입방법</th>
+                    <th class="text-white">납입금액</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -77,6 +77,16 @@
         border: 1px solid var(--primary-color) !important;
         color: white !important;
     }
+
+    table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:before, table.dataTable thead > tr > td.sorting:before, table.dataTable thead > tr > td.sorting_asc:before, table.dataTable thead > tr > td.sorting_desc:before, table.dataTable thead > tr > td.sorting_asc_disabled:before, table.dataTable thead > tr > td.sorting_desc_disabled:before {
+        bottom: 54.5%;
+        content: "▲"/"";
+    }
+
+    table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:after {
+        top: 54.5%;
+        content: "▼"/"";
+    }
 </style>
 <body>
 <%@ include file="header.jsp" %>
@@ -92,12 +102,12 @@
             <table id="myTable" class="display" style="width:100%">
                 <thead>
                 <tr>
-                    <th>거래일시</th>
-                    <th>구분</th>
-                    <th>거래 금액</th>
-                    <th>거래 후 잔액</th>
-                    <th>거래 구분</th>
-                    <th>내용</th>
+                    <th style="color:white;">거래일시</th>
+                    <th style="color:white;">구분</th>
+                    <th style="color:white;">거래 금액</th>
+                    <th style="color:white;">거래 후 잔액</th>
+                    <th style="color:white;">거래 구분</th>
+                    <th style="color:white;">내용</th>
                 </tr>
                 </thead>
                 <tbody>

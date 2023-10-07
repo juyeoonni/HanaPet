@@ -49,11 +49,39 @@
 
 
     <style>
-        .menu-title {
-            font-weight: bold;
-            text-align: center;
-            font-size: 30px;
-            margin-bottom: 40px;
+        .name {
+            display: inline-block;
+        }
+
+        .bg-blue {
+            background-color: var(--primary-color);
+            border-radius: 8px;
+        }
+
+        .bg-blue > td {
+            color: white;
+        }
+
+        .table thead th, .table td {
+            border: none;
+        }
+
+        .table tbody td:first-child {
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+        .table tbody td:last-child {
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        #spacing-row {
+            height: 10px;
+        }
+
+        .table > :not(caption) > * > * {
+            background-color: transparent;
         }
 
         button.dt-button, div.dt-button, a.dt-button {
@@ -85,12 +113,9 @@
         }
 
         /* Hide the descending (downward arrow) sorting icon */
+
         .sorting::before .sorting::after {
             display: none !important;
-        }
-
-        tr {
-            background: var(--primary-color);
         }
 
         th {
@@ -106,32 +131,33 @@
         }
 
         /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+
         table.dataTable.stripe > tbody > tr.odd > *, table.dataTable.display > tbody > tr.odd > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
         /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+
         table.dataTable.stripe > tbody > tr.odd.selected > *, table.dataTable.display > tbody > tr.odd.selected > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
         /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+
         table.dataTable.stripe > tbody > tr.even > *, table.dataTable.display > tbody > tr.even > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
         /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+
         table.dataTable.stripe > tbody > tr.even.selected > *, table.dataTable.display > tbody > tr.even.selected > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
-        #transactionTable_wrapper {
-            margin-top: 100px;
-        }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             background: #E1E6DE !important;
@@ -150,95 +176,19 @@
             margin: 0;
         }
 
-        .card {
-            margin: 20px 0;
-            /*padding: 20px 30px;*/
-        }
-
-        .mx1 {
-            margin: 0 1px;
-        }
-
-        .p-green {
-            background-color: var(--primary-color);
-        }
-
         .progress {
             height: 12px;
             position: relative;
             overflow: visible;
         }
 
-
-        .fas {
-            font-size: 20px;
-            color: #636363;
-            padding-right: 20px;
-        }
-
-        .icon1 {
-            font-size: 10px;
-            position: absolute;
-            background-color: #FFFF;
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            right: 0;
-            top: -10px;
-        }
-
-        .icon2 {
-            font-size: 10px;
-            position: absolute;
-            background-color: #FFFF;
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            /*left: 50%;*/
-            top: -10px;
-        }
-
-        .far.fa-star {
-            font-size: 10px;
-            padding: 10px;
-        }
-
-        .fas.fa-check {
-            font-size: 10px;
-            padding: 10px;
-            color: #237518;
-        }
-
-        .flex {
-            -webkit-box-flex: 1;
-            -ms-flex: 1 1 auto;
-            flex: 1 1 auto
-        }
-
-        @media (max-width: 991.98px) {
-            .padding {
-                padding: 1.5rem
-            }
-        }
-
-        @media (max-width: 767.98px) {
-            .padding {
-                padding: 1rem
-            }
-        }
-
-        .padding {
-            padding: 5rem
-        }
-
         .card {
             background: #fff;
-            border-width: 0;
+            /*border-width: 0;*/
             border-radius: .25rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
-            margin-bottom: 1.5rem
+            /*box-shadow: 0 1px 3px rgba(0, 0, 0, .05);*/
+            /*margin-bottom: 1.5rem*/
+            border: none;
         }
 
         .card {
@@ -248,14 +198,14 @@
             min-width: 0;
             word-wrap: break-word;
             background-color: #fff;
-            background-clip: border-box;
-            border-radius: .25rem
+            /*background-clip: border-box;*/
+            /*border-radius: .25rem*/
         }
 
         .card-header {
             text-align: center;
             align-self: center;
-            font-size: 30px;
+            font-size: 34px;
             color: #324D3D;
             padding: .75rem 1.25rem;
             margin-bottom: 0;
@@ -299,12 +249,12 @@
         }
 
         .c-container h4 {
-            font-size: 26px;
+            font-size: 28px;
             margin-bottom: 10px;
         }
 
         .c p {
-            font-size: 17px;
+            font-size: 19px;
         }
 
         .c::after {
@@ -318,129 +268,199 @@
             border-radius: 20px;
             color: #fff;
         }
+
+        table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:before,
+        table.dataTable thead > tr > td.sorting:before,
+        table.dataTable thead > tr > td.sorting_asc:before,
+        table.dataTable thead > tr > td.sorting_desc:before,
+        table.dataTable thead > tr > td.sorting_asc_disabled:before,
+        table.dataTable thead > tr > td.sorting_desc_disabled:before {
+            bottom: 50%;
+            content: "";
+            content: "";
+        }
+
+        table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:after,
+        table.dataTable thead > tr > td.sorting:after,
+        table.dataTable thead > tr > td.sorting_asc:after,
+        table.dataTable thead > tr > td.sorting_desc:after,
+        table.dataTable thead > tr > td.sorting_asc_disabled:after,
+        table.dataTable thead > tr > td.sorting_desc_disabled:after {
+            top: 50%;
+            content: "";
+            content: "";
+        }
+
+        .desc {
+            align-self: center;
+            font-weight: bold;
+        }
+
+        .middle-title {
+            font-family: net-medium;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .info > tr > td {
+            font-size: 20px;
+        }
     </style>
 </head>
 
-<body>
 <%@ include file="header.jsp" %>
 
 <div class="body">
-    <div class="card text-white mb-3" style="padding: 30px 80px">
+    <div class="card text-white mb-3" style="padding: 30px 40px">
         <div class="card-header">
-            <img src="/resources/img/${info[0].categoryImg}" width="80px"/>
+            <img src="/resources/img/${info[0].categoryImg}" width="80px" style="margin-bottom: 10px;"/>
             ${info[0].savingName}</div>
         <div class="card-body">
-
-            <div class="card" style="margin: 0px;
-            border: none;">
+            <div class="card" style="margin: 0px; border: none;">
                 <c:set var="progressRate" value="${info[0].progressRate}"/>
                 <c:set var="progressRateAsDouble" value="${progressRate * 1.0}"/>
 
                 <c:choose>
                     <c:when test="${progressRateAsDouble >= 0 && progressRateAsDouble < 25}">
-                        <div style="align-self: center;">시작은 어렵지만, 꾸준히 모아보세요! 💪</div>
+                        <div class="desc">시작은 어렵지만, 꾸준히 모아보세요! 💪</div>
                     </c:when>
                     <c:when test="${progressRateAsDouble >= 25 && progressRateAsDouble < 50}">
-                        <div style="align-self: center;"> 멋져요! 이미 절반을 향해 달려가고 있어요! 🚀</div>
+                        <div class="desc">멋져요! 이미 절반을 향해 달려가고 있어요! 🚀</div>
                     </c:when>
                     <c:when test="${progressRateAsDouble >= 50 && progressRateAsDouble < 75}">
-                        <div style="align-self: center;">절반 이상을 정복했어요! 끝까지 힘을 내요! 🔥</div>
+                        <div class="desc">절반 이상을 정복했어요! 끝까지 힘을 내요! 🔥</div>
                     </c:when>
                     <c:when test="${progressRateAsDouble >= 75 && progressRateAsDouble <= 100}">
-                        <div style="align-self: center;">목표를 향한 마지막 스퍼트! 🌟</div>
+                        <div class="desc">목표를 향한 마지막 스퍼트! 🌟</div>
                     </c:when>
                 </c:choose>
 
-                <br>
-                <div id="progressBarContainer"></div>
-
-            </div>
-
-
-            <div class="relative w-64" style="width: 98%; margin-top: 80px; margin-bottom: 45px">
-
-                <div class="absolute left-4 bottom-4 bg-red-600 h-full w-full rounded-xl"
-                     style="background: var(--primary-color)"></div>
-
-                <div class="relative bg-gray-800 text-gray-50 rounded-xl p-8 space-y-7" style="background: #CFDBC8">
-
-                    <div class="h-2 w-20" style="background: var(--primary-color); margin-left: 60px"></div>
-
-                    <div class="text-5xl font-extrabold text-white"
-                         style="display: flex; gap: 150px; padding-left: 60px">
-                        <div style="color: white; font-weight: normal">
-                            계좌 번호: ${info[0].accountNumber}
-                            <br> <br>
-                            적금 상품: ${info[0].category}
-                            <br> <br>
-                            개설자: ${info[0].guestName}
-                            <br> <br>
-                            현재 잔액: <fmt:formatNumber value="${info[0].balance}" type="number" pattern="#,###원"/>
-                        </div>
-
-                        <div style="color: white; font-weight: normal">
-                            적금 개설일: ${info[0].openingDate.split(" ")[0]}<br> <br>
-                            적금 만기 예정일: ${info[0].endDate.split(" ")[0]}<br> <br>
-                            적금 만기 시 원금: <fmt:formatNumber value="${info[0].finalAmount}" type="number"
-                                                          pattern="#,###원"/><br> <br>
-                            적금 만기 시 이자: <fmt:formatNumber value="${info[0].interestAmount}" type="number"
-                                                          pattern="#,###원"/>
-                        </div>
-                    </div>
+                <br><br>
+                <div style="justify-content: space-between;display: flex;">
+                    <div class="middle-title">적금 진행도</div>
+                    <div id="progressBarContainer" style="width: 84%; margin-top: 5px"></div>
                 </div>
             </div>
 
-
+            <div class="middle-title" style="margin-top: 80px">적금 상세 정보</div>
+            <table border="1"
+                   style="width: 100%; border-collapse: collapse; display: flex; gap: 250px;">
+                <tbody class="info">
+                <tr>
+                    <td style="padding: 8px; font-weight: bold;">계좌 번호</td>
+                    <td style="width: 30px;"></td>
+                    <td style="padding: 8px;">${info[0].accountNumber}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; font-weight: bold;">적금 상품</td>
+                    <td style="width: 30px;"></td>
+                    <td style="padding: 8px;">${info[0].category}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; font-weight: bold;">개설자</td>
+                    <td style="width: 30px;"></td>
+                    <td style="padding: 8px;">${info[0].guestName}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; font-weight: bold;">현재 잔액</td>
+                    <td style="width: 30px;"></td>
+                    <td style="padding: 8px;"><fmt:formatNumber value="${info[0].balance}" type="number"
+                                                                pattern="#,###원"/></td>
+                </tr>
+                </tbody>
+                <tbody class="info">
+                <tr>
+                    <td style="padding: 8px; font-weight: bold;">적금 개설일</td>
+                    <td style="width: 30px;"></td>
+                    <td style="padding: 8px;">${info[0].openingDate.split(" ")[0]}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; font-weight: bold;">적금 만기 예정일</td>
+                    <td style="width: 30px;"></td>
+                    <td style="padding: 8px;">${info[0].endDate.split(" ")[0]}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; font-weight: bold;">적금 만기 시 원금</td>
+                    <td style="width: 30px;"></td>
+                    <td style="padding: 8px;"><fmt:formatNumber value="${info[0].finalAmount}" type="number"
+                                                                pattern="#,###원"/></td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; font-weight: bold;">적금 만기 시 이자</td>
+                    <td style="width: 30px;"></td>
+                    <td style="padding: 8px;"><fmt:formatNumber value="${info[0].interestAmount}" type="number"
+                                                                pattern="#,###원"/></td>
+                </tr>
+                </tbody>
+            </table>
             <br>
             <hr>
             <div style="display: flex">
-                <div>
-                    <div>참여자 정보</div>
-                    <c:forEach var="infoItem" items="${info}">
-                        <c:if test="${infoItem.openerId eq infoItem.guestId}">
-                            <div class="c" data-label="소유자">
-                                <div class="c-container">
-                                    <p>이름: ${infoItem.guestName}</p>
-                                    <p>가입일: ${infoItem.joinDate.split(" ")[0]}</p>
-                                    <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}"
-                                                                     type="number"
-                                                                     pattern="#,###원"/></p>
-                                    <p>기여도: ${infoItem.contributionRatio}%</p>
-                                    <p>납입 금액: <fmt:formatNumber value="${infoItem.transferAmount}" type="number"
-                                                                pattern="#,###원"/></p>
-                                    <p>납입 주기: ${infoItem.transferPeriod}</p>
-                                </div>
-                            </div>
-                        </c:if>
-                        <c:if test="${infoItem.openerId ne infoItem.guestId}">
-                            <div class="c" data-label="참여자">
-                                <div class="c-container">
-                                    <p>이름: ${infoItem.guestName}</p>
-                                    <p>가입일: ${infoItem.joinDate.split(" ")[0]}</p>
-                                    <p>현재까지 기여 금액: <fmt:formatNumber value="${infoItem.contributionAmount}"
-                                                                     type="number"
-                                                                     pattern="#,###원"/></p>
-                                    <p>기여도: ${infoItem.contributionRatio}%</p>
-                                    <p>납입 금액: <fmt:formatNumber value="${infoItem.transferAmount}" type="number"
-                                                                pattern="#,###원"/></p>
-                                    <p>납입 주기: ${infoItem.transferPeriod}</p>
-                                </div>
-                            </div>
-                        </c:if>
-                    </c:forEach>
-                    <c:if test="${fn:length(info) == 1}">
-                        <style>
-                            .c {
-                                margin-top: 100px;
-                            }
-                        </style>
-                    </c:if>
+                <div class="container rounded mt-0 bg-white p-0">
+                    <div class="middle-title" style="margin-top: 50px">공유 적금 참여자</div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">구분</th>
+                                <th scope="col">이름</th>
+                                <th scope="col">적금 가입일</th>
+                                <th scope="col">총 기여 금액</th>
+                                <th scope="col">기여도</th>
+                                <th scope="col">납입 금액</th>
+                                <th scope="col">납입 주기</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="infoItem" items="${info}">
+                                <!-- 소유자의 정보 -->
+                                <c:if test="${infoItem.openerId eq infoItem.guestId}">
+                                    <tr class="bg-blue">
+                                        <td class="pt-2 mt-1">개설자</td>
+                                        <td class="pt-2 mt-1">${infoItem.guestName}</td>
+                                        <td class="pt-2 mt-1">${infoItem.joinDate.split(" ")[0]}</td>
+                                        <td class="pt-2"><fmt:formatNumber value="${infoItem.contributionAmount}"
+                                                                           type="number" pattern="#,###원"/></td>
+                                        <td class="pt-2">${infoItem.contributionRatio}%</td>
+                                        <td class="pt-2"><fmt:formatNumber value="${infoItem.transferAmount}"
+                                                                           type="number"
+                                                                           pattern="#,###원"/></td>
+                                        <td class="pt-2">${infoItem.transferPeriod}</td>
+                                    </tr>
+                                    <tr id="spacing-row">
+                                        <td></td>
+                                    </tr>
+                                </c:if>
+
+                                <!-- 참여자의 정보 -->
+                                <c:if test="${infoItem.openerId ne infoItem.guestId}">
+                                    <tr class="bg-blue ">
+                                        <td class="pt-2 mt-1">참여자</td>
+                                        <td class="pt-2 mt-1">${infoItem.guestName}</td>
+                                        <td class="pt-2 mt-1">${infoItem.joinDate.split(" ")[0]}</td>
+                                        <td class="pt-2"><fmt:formatNumber value="${infoItem.contributionAmount}"
+                                                                           type="number" pattern="#,###원"/></td>
+                                        <td class="pt-2">${infoItem.contributionRatio}%</td>
+                                        <td class="pt-2"><fmt:formatNumber value="${infoItem.transferAmount}"
+                                                                           type="number"
+                                                                           pattern="#,###원"/></td>
+                                        <td class="pt-2">${infoItem.transferPeriod}</td>
+                                    </tr>
+                                    <tr id="spacing-row">
+                                        <td></td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
 
                 <div class="card"
-                     style="align-self: center; margin-top: 50px; width: 100%; border: 1px solid rgba(19, 24, 44, .125);">
-                    <div class="card-header" style="align-self: center; margin-bottom: 25px;">기여도</div>
-                    <div class="card-body" style=" padding: 20px; width: 100%;">
+                     style="align-self: center; margin-top: 90px; width: 45%;">
+                    <%--                <div class="card-header" style="align-self: center; margin-bottom: 25px;">기여도</div>--%>
+                    <div class="card-body" style="width: 100%; padding: 0px;">
                         <iframe class="chartjs-hidden-iframe"
                                 style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
                         <iframe class="chartjs-hidden-iframe"
@@ -456,22 +476,22 @@
                                 <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
                             </div>
                         </div>
-                        <canvas id="chart-line" class="chartjs-render-monitor"
-                                style="display: block; height: 105px; width: 210px;" height="131" width="262"></canvas>
+                        <canvas id="chart-line" class="chartjs-render-monitor"></canvas>
                     </div>
                 </div>
             </div>
 
+            <div class="middle-title" style="margin-top: 50px">이체 내역</div>
             <table id="transactionTable" class="display" style="width:100%">
                 <thead>
-                <tr>
-                    <th>회차</th>
-                    <th>이름</th>
-                    <th>입금 계좌</th>
-                    <th>출금 계좌</th>
-                    <th>납입일</th>
-                    <th>납입금</th>
-                    <th>잔액</th>
+                <tr style="background: var(--primary-color) !important">
+                    <th class="text-white">회차</th>
+                    <th class="text-white">이름</th>
+                    <th class="text-white">입금 계좌</th>
+                    <th class="text-white">출금 계좌</th>
+                    <th class="text-white">납입일</th>
+                    <th class="text-white">납입금</th>
+                    <th class="text-white">잔액</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -496,8 +516,9 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 
 </div>
+</html>
+
 <%@ include file="footer.jsp" %>
-</body>
 <script>
     $(document).ready(function () {
         // DataTable 초기화
@@ -512,11 +533,17 @@
             },
             "order": [[0, 'desc']], // 거래일시를 내림차순으로 정렬
             "paging": false, // 페이지 나누기 사용
-            "info": false
-        });
+            "info": false,
+            "initComplete": function (settings, json) {
+                // '엑설' 버튼의 span 요소를 선택
+                let excelButtonSpan = document.querySelector('.buttons-excel span');
 
-        // Find the button element by its class name
-        $(".buttons-excel span").text("엑셀");
+                // span의 텍스트를 '엑셀'로 변경
+                if (excelButtonSpan) {
+                    excelButtonSpan.textContent = '엑셀';
+                }
+            }
+        });
     });
 
 
@@ -569,7 +596,4 @@
 
         return container;
     }
-
-
 </script>
-</html>
