@@ -47,9 +47,9 @@
             margin: 0 1px;
         }
 
-        .p-green {
-            background-color: var(--primary-color);
-        }
+        /*.p-green {*/
+        /*    background-color: var(--primary-color);*/
+        /*}*/
 
         .progress {
             height: 12px;
@@ -235,9 +235,9 @@
             margin-bottom: 20px;
         }
 
-        tr {
-            background: var(--primary-color);
-        }
+        /*tr {*/
+        /*    background: var(--primary-color);*/
+        /*}*/
 
         th {
             font-size: 18px;
@@ -275,15 +275,24 @@
             background-color: white !important;
         }
 
-        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            background: #E1E6DE !important;
-            border: 1px solid #E1E6DE !important;
+        table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:before, table.dataTable thead > tr > td.sorting:before, table.dataTable thead > tr > td.sorting_asc:before, table.dataTable thead > tr > td.sorting_desc:before, table.dataTable thead > tr > td.sorting_asc_disabled:before, table.dataTable thead > tr > td.sorting_desc_disabled:before {
+            bottom: 54.5%;
+            content: "▲"/"";
         }
 
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-            background: var(--primary-color) !important;
-            border: 1px solid var(--primary-color) !important;
-            color: white !important;
+        table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:after {
+            top: 54.5%;
+            content: "▼"/"";
+        }
+
+        .middle-title {
+            font-family: net-medium;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .info > tr > td {
+            font-size: 20px;
         }
     </style>
 </head>
@@ -292,49 +301,59 @@
 <%@ include file="header.jsp" %>
 
 <div class="body">
-    <div class="card text-white mb-3">
+    <div class="card text-white mb-3" style="padding: 0 40px">
         <img src="/resources/img/insurance-logo.png" width="160px" style="align-self: center"/>
         <div class="card-header"> ${insu.insuranceName}</div>
-        <table>
+        <div style="margin-top: 60px;" class="middle-title">보험 상세 정보
+        </div>
+        <table style="width: 100%; border-collapse: collapse; display: flex; gap: 250px;">
+            <tbody class="info">
             <tr>
-                <th>이름</th>
-                <td>${insu.guestName}</td>
+                <td style="padding: 8px; font-weight: bold;">이름</td>
+                <td style="width: 30px;"></td>
+                <td style="padding: 8px;">${insu.guestName}</td>
             </tr>
             <tr>
-                <th>반려견 이름</th>
-                <td>${insu.petName}</td>
+                <td style="padding: 8px; font-weight: bold;">반려견 이름</td>
+                <td style="width: 30px;"></td>
+                <td style="padding: 8px;">${insu.petName}</td>
             </tr>
             <tr>
-                <th>가입 일자</th>
-                <td>${insu.joinDate.split(" ")[0]}</td>
+                <td style="padding: 8px; font-weight: bold;">가입 일자</td>
+                <td style="width: 30px;"></td>
+                <td style="padding: 8px;">${insu.joinDate.split(" ")[0]}</td>
             </tr>
             <tr>
-                <th>연결 계좌</th>
-                <td>${insu.depositAccountNumber}</td>
+                <td style="padding: 8px; font-weight: bold;">연결 계좌</td>
+                <td style="width: 30px;"></td>
+                <td style="padding: 8px;">${insu.depositAccountNumber}</td>
+            </tr>
+            </tbody>
+            <tbody class="info">
+            <tr>
+                <td style="padding: 8px; font-weight: bold;">보험 납입금</td>
+                <td style="width: 30px;"></td>
+                <td style="padding: 8px;"><fmt:formatNumber value="${insu.insuranceAmount}" type="number"
+                                                            pattern="#,###원"/></td>
             </tr>
             <tr>
-                <th>보험 납입금</th>
-                <td><fmt:formatNumber value="${insu.insuranceAmount}" type="number" pattern="#,###원"/></td>
+                <td style="padding: 8px; font-weight: bold;">납입 횟수</td>
+                <td style="width: 30px;"></td>
+                <td style="padding: 8px;">${insu.paymentCount}</td>
             </tr>
             <tr>
-                <th>납입 횟수</th>
-                <td>${insu.paymentCount}</td>
+                <td style="padding: 8px; font-weight: bold;">최종납입월</td>
+                <td style="width: 30px;"></td>
+                <td style="padding: 8px;">${insu.joinDate.substring(0,7)}</td>
             </tr>
-            <tr>
-                <th>납입 횟수</th>
-                <td>${insu.paymentCount}</td>
-            </tr>
-            <tr>
-                <th>최종납입월</th>
-                <td>${insu.joinDate.substring(0,7)}</td>
-            </tr>
+            </tbody>
         </table>
 
-
-        <div class="card-body">
+        <div style="margin-top: 60px; margin-bottom: 15px;" class="middle-title">보험 납입 내역</div>
+        <div class="cards">
             <table id="myTable" class="display" style="width:100%">
                 <thead>
-                <tr>
+                <tr style="background: var(--primary-color);">
                     <th class="text-white">회차</th>
                     <th class="text-white">납입일</th>
                     <th class="text-white">납입방법</th>
@@ -352,8 +371,9 @@
             </table>
         </div>
 
-        <div style="align-self: end">총 납입보험료: <fmt:formatNumber value="${insu.insuranceAmount}" type="number"
-                                                                pattern="#,###원"/></div>
+        <div style="align-self: end; margin-top: 20px;">총 납입보험료: <fmt:formatNumber value="${insu.insuranceAmount}"
+                                                                                   type="number"
+                                                                                   pattern="#,###원"/></div>
     </div>
 </div>
 <%@ include file="footer.jsp" %>
