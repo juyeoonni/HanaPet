@@ -83,7 +83,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/">
+                <a class="nav-link " href="/admin/insu-product">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
                          style="margin-top: -8px">
                         <i class="bi bi-file-medical fs-5" style="color: #75A989"></i>

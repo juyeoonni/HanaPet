@@ -233,7 +233,7 @@
                             var buttonContainer = $('<div>').addClass('button-container');
 
                             // 이미지 요소 생성 및 추가
-                            var imgElement = $('<img style="width: 65px;">').attr('src', 'resources/img/' + categoryImg).addClass('category-img');
+                            var imgElement = $('<img style="width: 65px; height: 60px">').attr('src', 'resources/img/' + categoryImg).addClass('category-img');
                             leftContainer.append(imgElement);
 
                             if (account.balance == '1000') {

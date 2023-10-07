@@ -61,9 +61,10 @@
         }
 
         .form-submit {
-            background-color: #F2D8DD;
+            background-color: var(--primary-color);
             color: #fff;
             font-size: 18px;
+            font-weight: bold;
             padding: 10px 30px;
             border: none;
             border-radius: 5px;
@@ -71,7 +72,6 @@
         }
 
         .form-submit:hover {
-            box-shadow: 2px 2px 10px #a5a5a5;
             transform: scale(1.03);
         }
 
@@ -92,7 +92,7 @@
 
 <div style="text-align: end;padding-right: 200px;">
 
-    <span style="font-size: 14px; margin-right: 225px;">* 반려견을 같이 키우는 가족들의 펫 캘린더에 자동으로 공유됩니다.</span>
+    <span style="font-size: 16px; margin-right: 225px;">* 함께 반려견을 키우는 가족들의 펫 캘린더에 자동으로 공유됩니다.</span>
     <span>
         <button id="openModalButton" style="margin-top: 20px; margin-bottom: 20px">+ 일정 추가</button>
     </span>
@@ -118,7 +118,7 @@
     </div>
     <div class="calendar-right">
         <div class="form-container">
-            <div id="calendar-title">일정🗓️️</div>
+            <div id="calendar-title" style="color: #324D3D">일정🗓️️</div>
             <hr>
             <form id="eventForm">
                 <div class="form-group">

@@ -1,6 +1,7 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,10 +61,6 @@
         border: 1px solid #75A989;
     }
 
-    .table > :not(caption) > * > * {
-        padding: 0.6rem 0.6rem;
-    }
-
 </style>
 <body class="g-sidenav-show   bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
@@ -88,7 +85,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active " href="/admin/saving-product">
+                <a class="nav-link " href="/admin/saving-product">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
                          style="margin-top: -8px">
                         <i class="bi bi-piggy-bank fs-5" style="color: #75A989"></i>
@@ -97,7 +94,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/admin/insu-product">
+                <a class="nav-link active" href="/admin/insu-product">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
                          style="margin-top: -8px">
                         <i class="bi bi-file-medical fs-5" style="color: #75A989"></i>
@@ -150,9 +147,9 @@
                 <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a>
                     </li>
-                    <li class="breadcrumb-item text-sm text-white active" aria-current="page">saving-products</li>
+                    <li class="breadcrumb-item text-sm text-white active" aria-current="page">insurance-products</li>
                 </ol>
-                <h4 class="font-weight-bolder text-white mb-0" style="font-size: 25px;">적금 상품</h4>
+                <h4 class="font-weight-bolder text-white mb-0" style="font-size: 25px;">보험 상품</h4>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -194,8 +191,8 @@
         <div class="row">
             <div class="card">
                 <div class="card-header pb-0" style="margin-bottom: 15px;">
-                    <h4 style="display: inline-block;">적금 상품 목록</h4>
-                    <button id="btn" href="javascript:;" onclick="insertProduct()"
+                    <h4 style="display: inline-block;">보험 상품 목록</h4>
+                    <button id="btn" href="javascript:;"
                             class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                             data-original-title="Edit user"
                             style="font-size: 22px; position: relative; left: 880px;">
@@ -211,10 +208,13 @@
                                     상품명
                                 </th>
                                 <th class="text-uppercase text-secondary text-m font-weight-bolder opacity-7 ps-2">
-                                    기본금리
+                                    가입기간
                                 </th>
                                 <th class="text-center text-uppercase text-secondary text-m font-weight-bolder opacity-7">
-                                    우대금리
+                                    납입방법
+                                </th>
+                                <th class="text-center text-uppercase text-secondary text-m font-weight-bolder opacity-7">
+                                    납입방법
                                 </th>
                                 <th class="text-center text-uppercase text-secondary text-m font-weight-bolder opacity-7">
                                     등록일
@@ -231,21 +231,22 @@
                             <c:forEach var="product" items="${products}" varStatus="vs">
                                 <tr>
                                     <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="/resources/img/${product.image}"
-                                                     class="avatar avatar-sm me-3"/>
-                                            </div>
+                                        <div class="text-xs font-weight-bold mb-0">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">${product.category}</h6>
+                                                <h6 class="mb-0 text-sm">${product.insurance_name}</h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">${product.rate}%</p>
+                                        <p class="text-xs font-weight-bold mb-0">${product.year}</p>
                                     </td>
                                     <td class="align-middle text-center text-sm">
-                                        <span class="text-secondary text-xs font-weight-bold">${product.prime_rate}%</span>
+                                        <span class="text-secondary text-xs font-weight-bold">${product.period}</span>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <span class="text-secondary text-xs font-weight-bold">
+                                            <fmt:formatNumber value="${product.amount}" type="number" pattern="#,###"/>원
+                                        </span>
                                     </td>
                                     <td class="align-middle text-center">
                                         <span class="text-secondary text-xs font-weight-bold">${product.creation_date.split(" ")[0]}</span>
@@ -255,22 +256,24 @@
                                     </td>
                                     <td class="align-middle">
                                         <a href="javascript:;"
-                                           onclick="EmailProduct('${product.category}')"
-                                           class="font-weight-bold">
+                                           onclick="EmailProduct('${product.insurance_name}')"
+                                           class="font-weight-bold" data-toggle="tooltip"
+                                           data-original-title="Edit user">
                                             <i class="bi bi-envelope fs-5" style="color: #75A989"></i>&nbsp메일송부
                                         </a>
                                     </td>
                                     <td class="align-middle">
                                         <a href="javascript:;"
-                                           onclick="updateProduct('${product.category}')"
-                                           class="font-weight-bold">
+                                           onclick="updateProduct('${product.insurance_name}')"
+                                           class="font-weight-bold" data-toggle="tooltip"
+                                           data-original-title="Edit user">
                                             <i class="bi bi-pencil-square fs-5" style="color: #75A989"></i>&nbsp수정
                                         </a>
                                     </td>
                                     <td class="align-middle">
                                         <a type="button" class="font-weight-bold" data-toggle="modal"
                                            data-target="#exampleModal${vs.index}" id="openModal${vs.index}"
-                                           onclick="openModal('${product.category}', '#exampleModal${vs.index}')">
+                                           onclick="openModal('${product.insurance_name}', '#exampleModal${vs.index}')">
                                             <i class="bi bi-trash fs-5" style="color: #75A989"></i>&nbsp삭제
                                         </a>
                                     </td>
@@ -282,44 +285,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Modal -->
-        <c:forEach items="${products}" var="productList" varStatus="vs">
-            <div class="modal fade" id="exampleModal${vs.index}" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document" style="margin-top: 240px;">
-                    <div class="modal-content" style="width: 120%; margin-left: 0%;">
-                        <div class="modal-header">
-                            <p class="fw-bold font-sans-serif"
-                               style="color: #555; font-size: 23px; margin-bottom: 0px; padding-left: 12px;">${productList.category}</p>
-                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"></span>
-                            </button>
-                        </div>
-                        <div class="modal-body fw-bold font-sans-serif"
-                             style="margin-bottom: 15px; padding-top: 20px; font-size: 18px; text-align: center; color: #555; border-bottom: none;">
-                            상품을 삭제하시겠습니까?
-                        </div>
-                        <div class="modal-footer" style="border-top: none">
-                            <button id="cancle">취소</button>
-                            <form action="/deleteproduct" method="post"
-                                  name="deleteproduct">
-                                <input type="hidden" id="category" name="category"
-                                       value=${productList.category}>
-                                <button id="delete" type="submit" data-dismiss="modal" aria-label="Close">삭제</button>
-                            </form>
-                        </div>
-                        <script>
-                            $(document).ready(function () {
-                                $('#cancle').click(function () {
-                                    $('.modal').modal('hide');
-                                });
-                            });
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
 
         <footer class="footer pt-5">
             <div class="container-fluid">

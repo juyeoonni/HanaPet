@@ -91,6 +91,9 @@
             background-color: #75A989 !important;
         }
 
+        .end{
+            text-align: end;
+        }
     </style>
 </head>
 
@@ -129,7 +132,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/">
+                <a class="nav-link " href="/admin/insu-product">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
                          style="margin-top: -8px">
                         <i class="bi bi-file-medical fs-5" style="color: #75A989"></i>
@@ -266,7 +269,7 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">기본 금리</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control" type="text" name="rate"
+                                            <input id="form" class="form-control end" type="text" name="rate"
                                                    value="<c:out value="${product.rate}"/>">%
                                         </div>
                                     </div>
@@ -276,7 +279,7 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">우대 금리</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control" type="text" name="prime_rate"
+                                            <input id="form" class="form-control end" type="text" name="prime_rate"
                                                    value="<c:out value="${product.prime_rate}"/>">%
                                         </div>
                                     </div>
@@ -286,7 +289,7 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최소 가입 금액</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control amount" type="text" name="min_balance"
+                                            <input id="form" class="form-control amount end" type="text" name="min_balance"
                                                    value="<c:out value="${product.min_balance}"/>">원
                                         </div>
                                     </div>
@@ -296,7 +299,7 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최대 가입 금액</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control amount" type="text" name="max_balance"
+                                            <input id="form" class="form-control amount end" type="text" name="max_balance"
                                                    value="<c:out value="${product.max_balance}"/>">원
                                         </div>
                                     </div>
@@ -308,7 +311,7 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최소 가입 기간</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control" type="text" name="min_period"
+                                            <input id="form" class="form-control end" type="text" name="min_period"
                                                    value="<c:out value="${product.min_period}"/>">주
                                         </div>
                                     </div>
@@ -318,7 +321,7 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최대 가입 기간</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control" type="text" name="max_period"
+                                            <input id="form" class="form-control end" type="text" name="max_period"
                                                    value="<c:out value="${product.max_period}"/>">주
                                         </div>
                                     </div>
@@ -357,6 +360,23 @@
 <script src="/resources/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="/resources/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="/resources/js/plugins/chartjs.min.js"></script>
+<script>
+    document.querySelector('form[name="form1"]').addEventListener('submit', function (event) {
+        // 이벤트의 기본 동작(폼 제출)을 일시 중지
+        event.preventDefault();
+
+        var amounts = document.querySelectorAll('.amount');
+
+        amounts.forEach(function (input) {
+            // 쉼표 제거
+            input.value = input.value.replace(/,/g, '');
+        });
+
+        // 폼 제출
+        event.target.submit();
+    });
+
+</script>
 <script type="text/javascript">
     // 원래의 이미지 이름을 변수에 저장
     var originalFileName = "${product.image}";
@@ -371,13 +391,15 @@
     });
 
     $(document).ready(function () {
-        const $inputField = $(".amount");
+        const $inputFields = $(".amount"); // 이렇게 하면 모든 .amount 요소들이 $inputFields에 저장됩니다.
 
         // 기존 값을 콤마로 구분된 값으로 변환
-        updateValueWithComma($inputField);
+        $inputFields.each(function () {
+            updateValueWithComma($(this));
+        });
 
         // 사용자가 값을 변경할 때 콤마를 다시 추가/제거
-        $inputField.on("input", function () {
+        $inputFields.on("input", function () {
             updateValueWithComma($(this));
         });
     });

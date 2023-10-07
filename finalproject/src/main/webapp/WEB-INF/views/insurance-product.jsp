@@ -9,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            crossorigin="anonymous"></script>
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"--%>
+<%--            crossorigin="anonymous"></script>--%>
 
     <style>
         .menu-item {
@@ -25,7 +25,7 @@
         }
 
         .middle-box {
-            background: #46814c;
+            background: var(--primary-color);
             box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             width: auto;
@@ -54,22 +54,33 @@
             place-content: center;
         }
 
-        .btn_block_round {
-            background: var(--primary-color);
+        .button {
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 10px;
             text-align: center;
-            padding: 12px;
-            border-radius: 20px;
+            border: 2px solid transparent;
+            -webkit-transition: all ease-out .15s;
+            transition: all ease-out .15s;
+            cursor: pointer;
+            margin: 0 10px;
+            width: 250px;
+            border-radius: 50px;
+            background: var(--primary-color);
             height: 50px;
-            text-decoration: none !important;
-            align-self: center;
+            color: white;
+            font-size: 20px;
+            font-family: net-bold;
         }
 
-        .btn_block_round:hover {
-            transform: scale(1.02);
+        .button:hover {
+            transform: scale(1.04);
         }
     </style>
 </head>
-<body>
 <jsp:include page="include/header.jsp"/>
 <div class="body">
     <div class="menu-title">
@@ -82,10 +93,10 @@
                 <br>
                 <h5 style="font-weight: bold; color: #46814c">나이와 품종으로 추천 보험을 보러가보개!</h5>
             </div>
-            <a href="/insurance-recommend" class="btn_block_round">
-                <div style="color: white; font-weight: bold; padding-left: 10px">추천 보험 확인하기 <img
-                        src="/resources/img/right-arrow.png"
-                        style="width: 30px;"/></div>
+            <a href="/insurance-recommend" class="btn_block_round" style="align-self: center">
+                <button class="button" style="font-weight: bold; padding-left: 10px">추천 보험 확인하기 <img
+                        src="/resources/img/foot.svg"
+                        style="width: 30px; margin-left: 10px;"/></button>
             </a>
             <div>
                 <img src="/resources/img/insurance-dog.png" style="margin-top: -10px; width: 190px">
@@ -98,7 +109,19 @@
     <jsp:include page="include/insurance-card.jsp"/>
 </div>
 <script>
+    // .button--border-point 클래스를 가진 모든 요소를 가져옵니다.
+    var buttons = document.querySelectorAll('.button');
+
+    // 각 요소에 대해 함수를 실행합니다.
+    buttons.forEach(function (button) {
+        button.addEventListener('mouseover', function () {
+            this.querySelector('img').src = "/resources/img/foot-fill.svg";
+        });
+
+        button.addEventListener('mouseout', function () {
+            this.querySelector('img').src = "/resources/img/foot.svg";
+        });
+    });
 </script>
-</body>
 
 <%@ include file="include/footer.jsp" %>

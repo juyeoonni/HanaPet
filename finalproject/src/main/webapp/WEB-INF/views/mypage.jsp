@@ -41,11 +41,11 @@
             margin-bottom: 40px;
         }
 
-
+        .nav-link:hover {
+            transform: none !important;
+        }
 
     </style>
-    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"--%>
-    <%--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--%>
 </head>
 <body>
 <%
@@ -57,14 +57,17 @@
     <div class="menu-title"> 마이 페이지</div>
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
-            <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab" style="font-weight: bold">반려견 적금</a>
+            <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab"
+               style="font-weight: bold">반려견 적금</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab" style="font-weight: bold">반려견
+            <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab"
+               style="font-weight: bold">반려견
                 보험</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" data-bs-toggle="tab" href="#d" aria-selected="false" role="tab" style="font-weight: bold">내 계좌</a>
+            <a class="nav-link" data-bs-toggle="tab" href="#d" aria-selected="false" role="tab"
+               style="font-weight: bold">내 계좌</a>
         </li>
     </ul>
     <div id="myTabContent" class="tab-content">

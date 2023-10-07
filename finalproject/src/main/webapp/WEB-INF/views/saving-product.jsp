@@ -66,7 +66,7 @@
             padding: 30px;
             display: flex;
             flex-direction: column;
-            border: 3px solid #BFDFCB; /* 5px 크기의 #BFDFCB 테두리 설정 */
+            border: 3px solid var(--primary-color); /* 5px 크기의 var(--primary-color) 테두리 설정 */
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 20px;
             height: 160px;
@@ -74,7 +74,7 @@
 
         .card-side.back {
             transform: rotateY(-180deg);
-            background-color: #BFDFCB;
+            background-color: var(--primary-color);
         }
 
         .card-side.front {
@@ -89,6 +89,9 @@
             transform: rotateY(0deg);
         }
 
+        #total{
+            color: white;
+        }
     </style>
 </head>
 
@@ -99,8 +102,8 @@
         펫 적금 상품
     </div>
     <div class="middle-box">
-        <span>전체 7개 적금</span>
-        <span style="font-size: 16px;">(조회 기준일자: 2023-08-29, 우대금리포함)</span>
+        <span id="total"></span>
+        <span style="font-size: 14px;">(조회 기준일자: 2023-08-29, 우대금리포함)</span>
     </div>
     <div class="grid-container">
     </div>
@@ -112,6 +115,7 @@
         dataType: "json",
         success: function (products) {
             var productList = $(".grid-container");
+            document.getElementById('total').textContent = "전체 " + products.length + "개 적금";
 
             products.forEach(function (product) {
                 var productCard = $("<div>").addClass("card")

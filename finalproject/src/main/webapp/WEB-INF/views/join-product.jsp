@@ -20,13 +20,13 @@
         }
     </style>
 </head>
-<body>
+<>
 <%@ include file="include/header.jsp" %>
 <div class="body">
     <%@ include file="include/product-header.jsp" %>
     <div class="title">적금 상품 가입</div>
 
-    <%
+        <%
         String savingName = request.getParameter("savingName");
         String petName = request.getParameter("petName");
         String joinPeriod = request.getParameter("joinPeriod");
@@ -116,7 +116,8 @@
                         <input type="radio" id="period2" name="period" value="매월">
                         <label for="period2">매월</label>
                         <% if (savingName != null) {%>
-                        <div style="font-size: 15px; color: var(--primary-color); margin-top: 20px">* 일 단위로 이자를 계산합니다.</div>
+                        <div style="font-size: 15px; color: var(--primary-color); margin-top: 20px">* 일 단위로 이자를 계산합니다.
+                        </div>
                         <% } %>
                     </div>
                 </td>
@@ -158,74 +159,72 @@
                             <span style="cursor:pointer;">계산</span>
                         </div>
                     </div>
-                        <% } %>
-</div>
-<div id="conditionMessage1" class="mt-2 text-danger"></div>
-<div id="endAmountMessage" style="margin-top: 20px;"></div>
-</td>
+                    <% } %>
+                    <div id="conditionMessage1" class="mt-2 text-danger"></div>
+                    <div id="endAmountMessage" style="margin-top: 20px;"></div>
+                </td>
 
-</tr>
-<tr>
-    <td class="form-label">자동이체 SMS 통보</td>
-    <td>
-        <div class="pe" id="transferSMS" required>
-            <input type="radio" id="transferSMSyes" name="transferSMS" value="Y" checked><label
-                for="transferSMSyes">신청함</label>
-            <input type="radio" id="transferSMSno" name="transferSMS" value="N"><label for="transferSMSno">신청안함</label>
-        </div>
-    </td>
-</tr>
-<tr>
-    <td class="form-label">적금 만기 SMS 통보</td>
-    <td>
-        <div class="pe" id="finishSMS" required>
-            <input type="radio" id="finishSMSyes" name="finishSMS" value="Y" checked><label
-                for="finishSMSyes">신청함</label>
-            <input type="radio" id="finishSMSno" name="finishSMS" value="N"><label
-                for="finishSMSno">신청안함</label>
-        </div>
-    </td>
-</tr>
-</table>
+            </tr>
+            <tr>
+                <td class="form-label">자동이체 SMS 통보</td>
+                <td>
+                    <div class="pe" id="transferSMS" required>
+                        <input type="radio" id="transferSMSyes" name="transferSMS" value="Y" checked><label
+                            for="transferSMSyes">신청함</label>
+                        <input type="radio" id="transferSMSno" name="transferSMS" value="N"><label for="transferSMSno">신청안함</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="form-label">적금 만기 SMS 통보</td>
+                <td>
+                    <div class="pe" id="finishSMS" required>
+                        <input type="radio" id="finishSMSyes" name="finishSMS" value="Y" checked><label
+                            for="finishSMSyes">신청함</label>
+                        <input type="radio" id="finishSMSno" name="finishSMS" value="N"><label
+                            for="finishSMSno">신청안함</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
-<!-- 조건 충족 여부에 따른 가입 버튼 -->
-<div style="text-align: center">
-    <button type="button" class="Button" id="joinButton">가입하기</button>
-</div>
-</form>
+    </form>
+    <!-- 조건 충족 여부에 따른 가입 버튼 -->
+    <div style="text-align: center">
+        <button type="button" class="Button" id="joinButton">가입하기</button>
+    </div>
 
-<%@ include file="include/footer.jsp" %>
-<div class="modal">
-    <div class="modal_body">
-        <div class="category">
-            <img src="/resources/img/product-의료건강.svg" width="42px"
-                 style="padding-left: 5px; padding-top: 3px; margin-right: 15px;">
-            <span style="font-size: 26px">의료/건강</span>
-        </div>
 
-        <div class="contents">
-            <div class="first-content">
-                <img src=""/>
-                <span>토리를 위한 </span>
-                <span id="account-name">백내장 수술 적금</span>
-                <span>에 가입되었습니다.</span>
+    <div class="modal">
+        <div class="modal_body">
+            <div class="category">
+                <img src="/resources/img/product-의료건강.svg" width="42px"
+                     style="padding-left: 5px; padding-top: 3px; margin-right: 15px;">
+                <span style="font-size: 26px">의료/건강</span>
             </div>
-            <div class="second-content">
-                <img src="/resources/img/checked.png" width="100px"/>
-            </div>
-            <div class="third-content" style="padding-bottom: 30px">
-                <a href="/">
-                    <button>HOME으로</button>
-                </a>
-                <a href="/mypage">
-                    <button>마이페이지로</button>
-                </a>
+
+            <div class="contents">
+                <div class="first-content">
+                    <img src=""/>
+                    <span>토리를 위한</span> <!--바꾸기-->
+                    <span id="account-name">백내장 수술 적금</span>
+                    <span>에 가입되었습니다.</span>
+                </div>
+                <div class="second-content">
+                    <img src="/resources/img/checked.png" width="100px"/>
+                </div>
+                <div class="third-content" style="padding-bottom: 30px">
+                    <a href="/">
+                        <button>HOME으로</button>
+                    </a>
+                    <a href="/mypage">
+                        <button>마이페이지로</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-</body>
 <%
     String guest_id = (String) session.getAttribute("guest_id");
     String guest_name = (String) session.getAttribute("name");
@@ -848,3 +847,4 @@
         modal.style.display = 'block';
     });
 </script>
+<%@ include file="include/footer.jsp" %>

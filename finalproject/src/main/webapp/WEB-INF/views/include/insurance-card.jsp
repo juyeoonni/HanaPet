@@ -129,85 +129,87 @@
 
 </style>
 
-<body>
-<c:forEach var="insuranceProduct" items="${insuranceProductList}" varStatus="loop">
-    <div class="card">
-        <img src="resources/img/${insuranceProduct.image}"/>
-        <div class="card-content">
-            <div class="desc">${insuranceProduct.description}</div>
-            <div class="name">${insuranceProduct.insurance_name}
-            </div>
-            <div class="content-detail">
-                <div class="left">
-                        ${insuranceProduct.guarantee}
+<div>
+    <c:forEach var="insuranceProduct" items="${insuranceProductList}" varStatus="loop">
+        <div class="card">
+            <img src="resources/img/${insuranceProduct.image}"/>
+            <div class="card-content">
+                <div class="desc">${insuranceProduct.description}</div>
+                <div class="name">${insuranceProduct.insurance_name}
                 </div>
-                <div class="right">
-                    <p class="bold">보험료 납입 옵션</p>
-                    <div class="check-option">
-                        <div class="sc-cHPgQl eHGAsI">
-                            <label for="1year${loop.index}" class="sc-KfMfS lauCaU
+                <div class="content-detail">
+                    <div class="left">
+                            ${insuranceProduct.guarantee}
+                    </div>
+                    <div class="right">
+                        <p class="bold">보험료 납입 옵션</p>
+                        <div class="check-option">
+                            <div class="sc-cHPgQl eHGAsI">
+                                <label for="1year${loop.index}" class="sc-KfMfS lauCaU
                                     ${(insuranceProduct.year != '1년형') ? 'disabled' : ''}">
-                                <input type="radio"
-                                       name="period${loop.index}"
-                                       id="1year${loop.index}"
-                                       class="sc-gHLcSH bRNyiY"
-                                       value="1년형"
-                                    ${(insuranceProduct.year == '1년형') ? 'checked' : ''}
-                                    ${(insuranceProduct.year != '1년형') ? 'disabled' : ''}>
-                                1년형
-                            </label>
-                            <label for="3year${loop.index}" class="sc-KfMfS lauCaU
+                                    <input type="radio"
+                                           name="period${loop.index}"
+                                           id="1year${loop.index}"
+                                           class="sc-gHLcSH bRNyiY"
+                                           value="1년형"
+                                        ${(insuranceProduct.year == '1년형') ? 'checked' : ''}
+                                        ${(insuranceProduct.year != '1년형') ? 'disabled' : ''}>
+                                    1년형
+                                </label>
+                                <label for="3year${loop.index}" class="sc-KfMfS lauCaU
                                     ${(insuranceProduct.year != '3년형') ? 'disabled' : ''}">
-                                <input type="radio"
-                                       name="period${loop.index}"
-                                       id="3year${loop.index}"
-                                       class="sc-gHLcSH bRNyiY"
-                                       value="3년형"
-                                    ${(insuranceProduct.year == '3년형') ? 'checked' : ''}
-                                    ${(insuranceProduct.year != '3년형') ? 'disabled' : ''}>
-                                3년형
-                            </label>
-                        </div>
-                        <div class="sc-cHPgQl eHGAsI">
-                            <label for="lump${loop.index}" class="sc-KfMfS lauCaU
+                                    <input type="radio"
+                                           name="period${loop.index}"
+                                           id="3year${loop.index}"
+                                           class="sc-gHLcSH bRNyiY"
+                                           value="3년형"
+                                        ${(insuranceProduct.year == '3년형') ? 'checked' : ''}
+                                        ${(insuranceProduct.year != '3년형') ? 'disabled' : ''}>
+                                    3년형
+                                </label>
+                            </div>
+                            <div class="sc-cHPgQl eHGAsI">
+                                <label for="lump${loop.index}" class="sc-KfMfS lauCaU
                                     ${(insuranceProduct.period != '일시납') ? 'disabled' : ''}">
-                                <input type="radio"
-                                       name="payment${loop.index}"
-                                       id="lump${loop.index}"
-                                       class="sc-gHLcSH bRNyiY"
-                                       value="일시납"
-                                    ${(insuranceProduct.period == '일시납') ? 'checked' : ''}
-                                    ${(insuranceProduct.period != '일시납') ? 'disabled' : ''}>
-                                일시납
-                            </label>
-                            <label for="monthly${loop.index}" class="sc-KfMfS lauCaU
+                                    <input type="radio"
+                                           name="payment${loop.index}"
+                                           id="lump${loop.index}"
+                                           class="sc-gHLcSH bRNyiY"
+                                           value="일시납"
+                                        ${(insuranceProduct.period == '일시납') ? 'checked' : ''}
+                                        ${(insuranceProduct.period != '일시납') ? 'disabled' : ''}>
+                                    일시납
+                                </label>
+                                <label for="monthly${loop.index}" class="sc-KfMfS lauCaU
                                     ${(insuranceProduct.period !='월납') ? 'disabled' : ''}">
-                                <input type="radio"
-                                       name="payment${loop.index}"
-                                       id="monthly${loop.index}"
-                                       class="sc-gHLcSH bRNyiY"
-                                       value="월납"
-                                    ${(insuranceProduct.period == '월납') ? 'checked' : ''}
-                                    ${(insuranceProduct.period != '월납') ? 'disabled' : ''}>
-                                월납
-                            </label>
+                                    <input type="radio"
+                                           name="payment${loop.index}"
+                                           id="monthly${loop.index}"
+                                           class="sc-gHLcSH bRNyiY"
+                                           value="월납"
+                                        ${(insuranceProduct.period == '월납') ? 'checked' : ''}
+                                        ${(insuranceProduct.period != '월납') ? 'disabled' : ''}>
+                                    월납
+                                </label>
+                            </div>
+                        </div>
+                        <div class="money">
+                            <p>${insuranceProduct.period} <fmt:formatNumber value="${insuranceProduct.amount}"
+                                                                            type="number"
+                                                                            pattern="#,###"/>원</p>
+                            <p>${insuranceProduct.amount_desc}</p>
+                        </div>
+                        <div class="buttons">
+                            <button class="join-btn">가입하기
+                            </button>
                         </div>
                     </div>
-                    <div class="money">
-                        <p>${insuranceProduct.period} <fmt:formatNumber value="${insuranceProduct.amount}" type="number"
-                                                                        pattern="#,###"/>원</p>
-                        <p>${insuranceProduct.amount_desc}</p>
-                    </div>
-                    <div class="buttons">
-                        <button class="join-btn">가입하기
-                        </button>
-                    </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
-</c:forEach>
+    </c:forEach>
+</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -237,4 +239,3 @@
         }
     });
 </script>
-</body>

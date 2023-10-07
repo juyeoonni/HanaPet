@@ -24,8 +24,8 @@
 }
 
 :root {
-    --primary-color:  #46814c;
-    --secondary-color:  #e1ffef;
+    --primary-color: #46814c;
+    --secondary-color: #e1ffef;
     --black: #000000;
     --white: #ffffff;
     --gray: #E1E6DE;
@@ -36,6 +36,10 @@
     font-family: 'font-medium';
     font-size: 19px;
     color: #324D3D;
+}
+
+a:hover {
+    transform: scale(1.07) !important;
 }
 
 header {

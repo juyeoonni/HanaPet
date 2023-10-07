@@ -66,6 +66,17 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping("/admin/insu-product")
+    public ModelAndView adminInsu() {
+        ModelAndView mav = new ModelAndView();
+        List<InsuranceProduct> insuProducts = null;
+        insuProducts = insuranceService.getAllInsuranceProduct();
+        mav.addObject("products", insuProducts);
+        System.out.println(insuProducts);
+        mav.setViewName("admin/admin-insu-product");
+        return mav;
+    }
+
     @RequestMapping("/admin/insert-saving-product")
     public ModelAndView adminInsertSaving() {
         ModelAndView mav = new ModelAndView();

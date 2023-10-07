@@ -6,7 +6,7 @@
 <head>
     <title>Document</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../../resources/css/common.css">
+    <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
@@ -36,18 +36,6 @@
             text-align: center;
         }
 
-        #openModalButton:hover {
-            transform: scale(1.02);
-        }
-
-        .middle-box {
-            /*background: #E1E6DE;*/
-            /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);*/
-            border-radius: 20px;
-            /*width: 70%;*/
-            height: 200px;
-        }
-
         .m {
             padding: 25px;
             display: none;
@@ -64,35 +52,18 @@
             border-radius: 20px;
         }
 
-        #openModalButton {
+        .openModalButton {
             cursor: pointer;
         }
 
-        /* 바깥 스크린 스크롤 비활성화 */
-        /* 바깥 스크린 스크롤 비활성화 */
-        .modal-open {
-            overflow: hidden;
-        }
-
-        /*MARQUEE {*/
-        /*    width: 230px;*/
-        /*    margin-top: 6px;*/
-        /*    height: 26px;*/
-        /*    text-align: center;*/
-        /*}*//* ETN ì´ëž€? */
         .section {
             width: 1080px;
             margin: 0 auto;
             padding: 35px 0
         }
 
-        .section_bg {
-            background-color: #ebecee;
-            padding: 92px 0 110px 0
-        }
-
         .section_title {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-align: center
         }
 
@@ -108,54 +79,6 @@
             font-size: 18px;
             margin-top: 10px;
             font-weight: 500;
-            color: #333
-        }
-
-        .about_list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px
-        }
-
-        .about_list > li {
-            width: calc(1080px / 3 - 10px);
-            background-color: #fff;
-            border-radius: 10px;
-            transition: all 0.3s
-        }
-
-        .about_list > li:hover {
-            background-color: #e7280e;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3)
-        }
-
-        .about_list > li:hover a {
-            color: #fff;
-        }
-
-        .about_list > li:hover > a .ico_wrap {
-            background-color: #fff;
-        }
-
-        .about_list > li > a {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 25px
-        }
-
-        .about_list > li > a .ico_wrap {
-            width: 82px;
-            height: 82px;
-            line-height: 76px;
-            text-align: center;
-            background-color: #f3f4f5;
-            border-radius: 50%
-        }
-
-        .about_list > li > a > .about_title > h4 {
-            font-size: 21px;
-            margin-bottom: 6px
         }
 
         .series_list {
@@ -173,9 +96,10 @@
             top: 50%;
             transform: translateY(-50%);
             display: inline-block;
+            content: '';
             width: 1px;
             height: 120px;
-            background-color: #e2e2e2
+            background-color: #e2e2e2;
         }
 
         .series_list > li > a {
@@ -306,12 +230,12 @@
     </div>
     <section class="section">
         <div class="section_title">
-            <h3 class="spot">메리츠시리즈</h3>
-            <p>메리츠증권의 <span class="eng">ETN</span> 상품을 확인해보세요!</p>
+            <h3 style="font-weight: bold">HanaPet 서비스</h3>
+            <p>나랑 평생 함께하개!</p>
         </div>
         <ul class="series_list">
             <li>
-                <a id="openModalButton">
+                <a class="openModalButton">
                     <div class="list_icon_wrap">
                         <img src="/resources/img/test.png" width="190px">
                     </div>
@@ -323,13 +247,13 @@
                     <div class="list_icon_wrap">
                         <img src="/resources/img/main2.png" width="120px" style="margin-top: 48px;">
                     </div>
-                    <p>펫적금</p>
+                    <p>펫공유적금</p>
                 </a>
             </li>
             <li>
                 <a href="/insurance-product">
                     <div class="list_icon_wrap">
-                        <img src="/resources/img/main-3.png" width="120px"  style="margin-top: 32px;">
+                        <img src="/resources/img/main-3.png" width="120px" style="margin-top: 32px;">
                     </div>
                     <p>펫보험</p>
                 </a>
@@ -337,15 +261,35 @@
             <li>
                 <a href="/petcalendar">
                     <div class="list_icon_wrap">
-                        <img src="/resources/img/main4.png"  width="160px"  style="margin-top: 29px;">
+                        <img src="/resources/img/main4.png" width="160px" style="margin-top: 29px;">
                     </div>
                     <p>펫캘린더</p>
                 </a>
             </li>
         </ul>
     </section>
-    <div style="display:flex; margin-top: -5px; justify-content: space-between">
-    </div>
+<%--    <div class="section">--%>
+<%--        <p>평생을 함께하는 가족인 반려견을 위한 특별한 금융 플랫폼, 그것이 "펫 금융 프로젝트"입니다. 반려견을 가족으로 여기고 그 노후를 위한 준비를 함께 할 수 있는 이 플랫폼은 오직--%>
+<%--            돈의 문제만이 아닌, 가족 모두가 소통하고 협력하는 곳입니다.</p>--%>
+<%--    </div>--%>
+
+<%--    <!-- Section 1 -->--%>
+<%--    <div class="section">--%>
+<%--        <h2>펫 캘린더와 일정 공유</h2>--%>
+<%--        <p>가족들과 함께하는 펫 캘린더로 손쉽게 반려견의 일정을 관리하세요. 중요한 일정을 빠르게 공유하며 가족들과 더 밀접하게 소통하세요.</p>--%>
+<%--        &lt;%&ndash;        <img src="../../../resources/img/main_펫캘린더.svg" width="500px"/>&ndash;%&gt;--%>
+<%--    </div>--%>
+
+<%--    <!-- Section 5 -->--%>
+<%--    <div class="section">--%>
+<%--        <h2>적금 공유와 모임적금</h2>--%>
+<%--        <p>선택한 적금을 가족들과 함께 공유하며, 반려견의 노후를 준비하세요. 모임 적금으로 더 많은 가족들이 함께 참여하여 특별한 순간을 만드세요.</p>--%>
+<%--    </div>--%>
+
+<%--    <!-- Final Section -->--%>
+<%--    <div class="section">--%>
+<%--        <p>"나랑 평생 함께하개"는 당신의 가족과 반려견, 그리고 소중한 적금을 통해 더 특별한 순간을 만들어 나갑니다. 더 많은 행복과 소중한 추억을 함께 나누어보세요!</p>--%>
+<%--    </div>--%>
 
     <%
         }
@@ -353,22 +297,18 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const openModalButton = document.getElementById("openModalButton");
+        const openModalButtons = document.querySelectorAll(".openModalButton");
         const m = document.getElementById("myModal");
         const modalContent = document.getElementById("modalContent");
         const closeSpan = document.getElementsByClassName("close")[0];
 
-        openModalButton.addEventListener("click", function () {
-            // "test-start.jsp"의 내용을 가져와 모달 내에 채웁니다.
-            document.body.classList.add("modal-open"); // 바깥 스크린 스크롤 비활성화
-            loadPage("test/start");
+        openModalButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                // "test-start.jsp"의 내용을 가져와 모달 내에 채웁니다.
+                document.body.classList.add("modal-open"); // 바깥 스크린 스크롤 비활성화
+                loadPage("test/start");
+            });
         });
-
-        // var url = "/insurance-recommend"
-        // document.getElementById("insurance-recommend").addEventListener("click", function () {
-        //     window.location.href = url;
-        // })
-
 
         closeSpan.addEventListener("click", function () {
             m.style.display = "none";
