@@ -214,7 +214,7 @@
                                     납입방법
                                 </th>
                                 <th class="text-center text-uppercase text-secondary text-m font-weight-bolder opacity-7">
-                                    납입방법
+                                    납입금액
                                 </th>
                                 <th class="text-center text-uppercase text-secondary text-m font-weight-bolder opacity-7">
                                     등록일
@@ -243,7 +243,7 @@
                                     <td class="align-middle text-center text-sm">
                                         <span class="text-secondary text-xs font-weight-bold">${product.period}</span>
                                     </td>
-                                    <td class="align-middle text-center text-sm">
+                                    <td class="align-middle text-center text-sm" style="text-align: end !important;">
                                         <span class="text-secondary text-xs font-weight-bold">
                                             <fmt:formatNumber value="${product.amount}" type="number" pattern="#,###"/>원
                                         </span>

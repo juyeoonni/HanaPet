@@ -485,13 +485,13 @@
             <table id="transactionTable" class="display" style="width:100%">
                 <thead>
                 <tr style="background: var(--primary-color) !important">
-                    <th class="text-white">회차</th>
-                    <th class="text-white">이름</th>
-                    <th class="text-white">입금 계좌</th>
-                    <th class="text-white">출금 계좌</th>
-                    <th class="text-white">납입일</th>
-                    <th class="text-white">납입금</th>
-                    <th class="text-white">잔액</th>
+                    <th class="text-white" style="text-align: center">회차</th>
+                    <th class="text-white" style="text-align: center">이름</th>
+                    <th class="text-white" style="text-align: center">입금 계좌</th>
+                    <th class="text-white" style="text-align: center">출금 계좌</th>
+                    <th class="text-white" style="text-align: center">납입일</th>
+                    <th class="text-white" style="text-align: center">납입금</th>
+                    <th class="text-white" style="text-align: center">잔액</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -499,12 +499,12 @@
                 <c:forEach var="historyItem" items="${history_info}">
                     <tr>
                         <td>${i}회차</td>
-                        <td>${historyItem.guestName}</td>
-                        <td>${historyItem.accountNumberIn}</td>
-                        <td>${historyItem.accountNumberOut}</td>
-                        <td>${historyItem.transferDate.split(" ")[0]}</td>
-                        <td><fmt:formatNumber value="${historyItem.amount}" type="number" pattern="#,###원"/></td>
-                        <td><fmt:formatNumber value="${historyItem.balanceAfterIn}" type="number"
+                        <td style="text-align: center">${historyItem.guestName}</td>
+                        <td style="text-align: center">${historyItem.accountNumberIn}</td>
+                        <td style="text-align: center">${historyItem.accountNumberOut}</td>
+                        <td style="text-align: center">${historyItem.transferDate.split(" ")[0]}</td>
+                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.amount}" type="number" pattern="#,###원"/></td>
+                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.balanceAfterIn}" type="number"
                                               pattern="#,###원"/></td>
                     </tr>
                     <c:set var="i" value="${i - 1}"/>

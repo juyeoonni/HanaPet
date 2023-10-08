@@ -102,23 +102,23 @@
             <table id="myTable" class="display" style="width:100%">
                 <thead>
                 <tr>
-                    <th style="color:white;">거래일시</th>
-                    <th style="color:white;">구분</th>
-                    <th style="color:white;">거래 금액</th>
-                    <th style="color:white;">거래 후 잔액</th>
-                    <th style="color:white;">거래 구분</th>
-                    <th style="color:white;">내용</th>
+                    <th style="color:white; text-align: center">거래일시</th>
+                    <th style="color:white; text-align: center">구분</th>
+                    <th style="color:white; text-align: center">거래 금액</th>
+                    <th style="color:white; text-align: center">거래 후 잔액</th>
+                    <th style="color:white; text-align: center">거래 구분</th>
+                    <th style="color:white; text-align: center">내용</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="historyItem" items="${historyList}">
                     <tr>
-                        <td>${historyItem.transaction_date}</td>
-                        <td>${historyItem.inout}</td>
-                        <td><fmt:formatNumber value="${historyItem.transaction_amount}" type="number"
-                                              pattern="#,###"/></td>
-                        <td><fmt:formatNumber value="${historyItem.balance}" type="number" pattern="#,###"/></td>
-                        <td>${historyItem.transaction_class}</td>
+                        <td style="text-align: center">${historyItem.transaction_date}</td>
+                        <td style="text-align: center">${historyItem.inout}</td>
+                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.transaction_amount}" type="number"
+                                              pattern="#,###원"/></td>
+                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.balance}" type="number" pattern="#,###원"/></td>
+                        <td style="text-align: center">${historyItem.transaction_class}</td>
                         <td>${historyItem.content}</td>
                     </tr>
                 </c:forEach>

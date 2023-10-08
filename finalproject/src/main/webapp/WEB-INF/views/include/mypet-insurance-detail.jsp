@@ -354,18 +354,18 @@
             <table id="myTable" class="display" style="width:100%">
                 <thead>
                 <tr style="background: var(--primary-color);">
-                    <th class="text-white">회차</th>
-                    <th class="text-white">납입일</th>
-                    <th class="text-white">납입방법</th>
-                    <th class="text-white">납입금액</th>
+                    <th class="text-white" style="text-align: center">회차</th>
+                    <th class="text-white" style="text-align: center">납입일</th>
+                    <th class="text-white" style="text-align: center">납입방법</th>
+                    <th class="text-white" style="text-align: center">납입금액</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>${insu.paymentCount}회차</td>
-                    <td>${insu.joinDate.split(" ")[0]}</td>
-                    <td>자동이체</td>
-                    <td><fmt:formatNumber value="${insu.insuranceAmount}" type="number" pattern="#,###원"/></td>
+                    <td style="text-align: center">${insu.paymentCount}회차</td>
+                    <td style="text-align: center">${insu.joinDate.split(" ")[0]}</td>
+                    <td style="text-align: center">자동이체</td>
+                    <td style="text-align: end"><fmt:formatNumber value="${insu.insuranceAmount}" type="number" pattern="#,###원"/></td>
                 </tr>
                 </tbody>
             </table>
