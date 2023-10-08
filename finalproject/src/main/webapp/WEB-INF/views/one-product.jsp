@@ -87,10 +87,13 @@
         }
 
         .product-info {
-            font-size: 17px;
-            margin-bottom: 7px;
-            margin-top: 7px;
+            font-size: 19px;
+            padding-bottom: 15px;
             font-family: font-medium;
+        }
+
+        .product-info-bold {
+            font-family: font-bold;
         }
 
         .accordion-button {
@@ -157,7 +160,6 @@
         (2023.05.10 기준, 세전)
     </div>
 
-
     <div class="accordion" id="productAccordion"> <!-- 아코디언을 감싸는 컨테이너 -->
         <div class="accordion-item"> <!--아코디언의 각 항목을 나타내고, 하나의 아코디언 항목은 헤더와 본문으로 구성됨-->
             <h2 class="accordion-header"> <!--아코디언 항목의 헤더 역할, 펼치기/접기 버튼이 들어감-->
@@ -172,16 +174,70 @@
             <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#productAccordion">
                 <!--accordion-collapse: 펼쳐지거나 접힐 때의 상태를 설정/ collapse: 접혀있음, show: 펼쳐진 상태-->
-                <div class="accordion-body" style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
+                <div class="accordion-body"
+                     style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px; padding: 100px 240px">
                     <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
-                    <div class="product-info">상품 특징: 만 3세 이하 펫 우대 적금</div>
-                    <div class="product-info">가입 대상: 반려견을 등록한 모든 Hanna Pet 손님</div>
-                    <div id="producBalance" class="product-info"></div>
-                    <div id="productPeriod" class="product-info"></div>
-                    <div id="productRate" class="product-info"></div> <!--product-info: 각 항목의 상세 정보-->
-                    <div id="productPrimeRate" class="product-info"></div> <!--product-info: 각 항목의 상세 정보-->
-                    <div class="product-info">이자 지급 방법: 만기일시지급식 만기(후)해지시 이자를 지급</div>
-                    <div class="product-info">적립 방법: 자유적립식</div>
+                   <table align="center" width=100%>
+                        <tr>
+                            <td class="product-info-bold">상품 특징</td>
+                            <td class="product-info" style="padding-left: 150px;">만 3세 이하 펫 우대 적금</td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold">가입 대상</td>
+                            <td class="product-info" style="padding-left: 150px;">반려견을 등록한 모든 Hanna Pet 손님</td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold" id="producBalanceLabel">가입 금액</td>
+                            <td class="product-info" id="producBalance" style="padding-left: 150px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold" id="productPeriodLabel">가입 기간</td>
+                            <td class="product-info" id="productPeriod" style="padding-left: 150px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold" id="productRateLabel">기본 금리</td>
+                            <td class="product-info" id="productRate" style="padding-left: 150px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold" id="productPrimeRateLabel">우대 금리</td>
+                            <td class="product-info" id="productPrimeRate" style="padding-left: 150px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold">적립 방법</td>
+                            <td class="product-info" style="padding-left: 150px;">자유적립식</td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold">이자 지급 방법</td>
+                            <td class="product-info" style="padding-left: 150px;">만기일시지급식 만기(후)해지시 이자를 지급</td>
+                        </tr>
+                    </table>
+                    <br><br>
+                    <tr>
+                        <td style="padding-left: 0px;">
+                            <table align="center" width=100%>
+                                <thead>
+                                <tr>
+                                    <th style="color: #555; font-weight: bold; border-bottom: 1.5px solid">적금 참여자</th>
+                                    <th style="color: #555; font-weight: bold; border-bottom: 1.5px solid">우대금리</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style="height: 40px;">2명</td>
+                                    <td id="primeRate2"></td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 40px;">3명</td>
+                                    <td id="primeRate3"></td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 40px;">4명</td>
+                                    <td id="primeRate4"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
                 </div>
             </div>
         </div>
@@ -351,11 +407,15 @@
             $("#productImg").attr("src", "/resources/img/" + productInfo.image);
             $("#productCategory").text(productInfo.category + " 펫 적금");
             $("#productDescription").text(productInfo.description);
-            $("#productRate").text("기본 금리: 연 " + productInfo.rate + "%");
-            $("#productPrimeRate").text("우대 금리: 최대 연 " + parseFloat((productInfo.prime_rate * 3).toFixed(2)) + "%");
-            $("#producBalance").text("가입 금액: 매월 " + productInfo.min_balance.toLocaleString() + "원 이상 ~ " + productInfo.max_balance.toLocaleString() + "원 이하");
-            $("#productPeriod").text("가입 기간: " + productInfo.min_period + "개월 이상 " + productInfo.max_period + "개월 이하");
+            $("#productRate").text("연 " + productInfo.rate + "%");
+            $("#productPrimeRate").text("최대 연 " + parseFloat((productInfo.prime_rate * 3).toFixed(2)) + "%");
+            $("#producBalance").text("매월 " + productInfo.min_balance.toLocaleString() + "원 이상 ~ " + productInfo.max_balance.toLocaleString() + "원 이하");
+            $("#productPeriod").text(productInfo.min_period + "개월 이상 " + productInfo.max_period + "개월 이하");
         }
+
+        $("#primeRate2").text(parseFloat((productInfo.prime_rate).toFixed(2)) + "%");
+        $("#primeRate3").text(parseFloat((productInfo.prime_rate * 2).toFixed(2)) + "%");
+        $("#primeRate4").text(parseFloat((productInfo.prime_rate * 3).toFixed(2)) + "%");
 
         $(".circle2 .centered-div").html(productInfo.min_period + "개월 이상<br>" + productInfo.max_period + "개월 이하");
 
