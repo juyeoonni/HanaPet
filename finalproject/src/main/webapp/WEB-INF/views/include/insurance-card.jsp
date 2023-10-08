@@ -9,7 +9,7 @@
     .card {
         padding: 30px;
         margin-bottom: 30px;
-        border: 3px solid #BFDFCB; /* 5px 크기의 #BFDFCB 테두리 설정 */
+        border: 3px solid #E1E6DE; /* 5px 크기의 #BFDFCB 테두리 설정 */
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
     }

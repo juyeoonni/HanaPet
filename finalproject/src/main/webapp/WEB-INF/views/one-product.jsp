@@ -59,7 +59,7 @@
             border: none;
             cursor: pointer;
             background: var(--primary-color);
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
             border-radius: 10px;
             outline: none;
         }
@@ -105,7 +105,7 @@
 
         #joinForm {
             text-align-last: center;
-            margin-top: 50px;
+            margin-top: 120px;
         }
 
         .centered-div {
@@ -172,7 +172,7 @@
             <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#productAccordion">
                 <!--accordion-collapse: 펼쳐지거나 접힐 때의 상태를 설정/ collapse: 접혀있음, show: 펼쳐진 상태-->
-                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                <div class="accordion-body" style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
                     <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
                     <div class="product-info">상품 특징: 만 3세 이하 펫 우대 적금</div>
                     <div class="product-info">가입 대상: 반려견을 등록한 모든 Hanna Pet 손님</div>
@@ -203,7 +203,7 @@
             </h2>
             <div id="collapseAgree1" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion1">
-                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                <div class="accordion-body" style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
                     <div class="accordion-body">
                         <p style="text-align: right; margin-bottom: 30px; font-size: 12px;">개정준법감시인 심의필
                             제2022-약관-104호(2022.06.23)</p>
@@ -265,7 +265,7 @@
             </h2>
             <div id="collapseAgree2" class="accordion-collapse collapse" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion">
-                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                <div class="accordion-body" style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
                     <div class="accordion-body">
                         <p style="text-align: right; margin-bottom: 30px; font-size: 12px;">개정준법감시인 심사필번호
                             제2021-약관-121호(2021.03.22)</p>
@@ -300,7 +300,7 @@
             </h2>
             <div id="collapseAgree3" class="accordion-collapse collapse" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion3">
-                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                <div class="accordion-body" style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
                     <div class="accordion-body">
                         <p style="text-align: right;">개정준법감시인 심사필번호 제2021-약관-121호(2021.03.22)</p>
                     </div>
@@ -320,7 +320,7 @@
             </h2>
             <div id="collapseAgree4" class="accordion-collapse collapse" aria-labelledby="headingProduct"
                  data-bs-parent="#agreeAccordion3">
-                <div class="accordion-body" style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                <div class="accordion-body" style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
                     <div class="accordion-body">
                         <p style="text-align: right;">개정준법감시인 심사필번호 제2021-약관-121호(2021.03.22)</p>
                     </div>

@@ -60,9 +60,9 @@
             text-align: start;
         }
 
-        #myModal {
-            height: 390px;
-        }
+        /*#myModal {*/
+        /*    height: 390px;*/
+        /*}*/
 
         .modal_body {
             height: 410px;
@@ -234,7 +234,7 @@
                                          aria-labelledby="headingProduct"
                                          data-bs-parent="#agreeAccordion1">
                                         <div class="accordion-body"
-                                             style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                                             style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
                                             <div class="accordion-body">
                                                 「신용정보의 이용 및 보호에 관한 법률」 제32조 제2항에 따라 귀사가 아래와 같은 내용으로 손해보험협회, 생명보험협회 등
                                                 신용정보집중기관, 금융위원회,
@@ -271,7 +271,7 @@
                                          aria-labelledby="headingProduct"
                                          data-bs-parent="#agreeAccordion">
                                         <div class="accordion-body"
-                                             style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                                             style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
                                             <div class="accordion-body">
                                                 「신용정보의 이용 및 보호에 관한 법률」 제32조 제2항에 따라 귀사가 아래와 같은 내용으로 손해보험협회, 생명보험협회 등
                                                 신용정보집중기관, 금융위원회,
@@ -305,7 +305,7 @@
                                          aria-labelledby="headingProduct"
                                          data-bs-parent="#agreeAccordion3">
                                         <div class="accordion-body"
-                                             style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                                             style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
                                             <div class="accordion-body">
                                                 「신용정보의 이용 및 보호에 관한 법률」 제32조 제2항에 따라 귀사가 아래와 같은 내용으로 손해보험협회, 생명보험협회 등
                                                 신용정보집중기관, 금융위원회,
@@ -337,7 +337,7 @@
                                          aria-labelledby="headingProduct"
                                          data-bs-parent="#agreeAccordion3">
                                         <div class="accordion-body"
-                                             style="border: 3px solid #BFDFCB; border-radius: 0px 0px 5px 5px;">
+                                             style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
                                             <div class="accordion-body">
                                                 「신용정보의 이용 및 보호에 관한 법률」 제32조 제2항에 따라 귀사가 아래와 같은 내용으로 손해보험협회, 생명보험협회 등
                                                 신용정보집중기관, 금융위원회,
@@ -391,6 +391,7 @@
         </div>
     </div>
 </div>
+<%@ include file="include/footer.jsp" %>
 
 <%
     String guest_id = (String) session.getAttribute("guest_id");

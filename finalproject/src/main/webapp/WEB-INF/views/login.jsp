@@ -19,8 +19,7 @@
             width: 100%;
             border-radius: 10px;
             font-size: 18px;
-            padding: 10px 30px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            padding: 13px 30px;
             outline: none;
         }
 
@@ -34,65 +33,94 @@
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
-<div id="container" class="container">
-    <!-- FORM SECTION -->
-    <div class="row">
-        <div class="col align-items-center flex-col sign-up">
-        </div>
-        <!-- SIGN IN -->
-        <div class="col align-items-center flex-col sign-in" style="padding-left: 50px;">
-            <div class="form-wrapper align-items-center">
-                <div class="form sign-in" style="text-align: -webkit-center;">
-                    <b style="font-size: 28px">Login</b>
-                    <form id="loginForm" method="post" style="width: 62%;"> <!-- 로그인 폼 시작 -->
-                        <div class="input-group">
-                            <i class='bx bxs-user'></i>
-                            <input type="text" placeholder="아이디" id="guest_id">
-                        </div>
-                        <div class="input-group">
-                            <i class='bx bxs-lock-alt'></i>
-                            <input type="password" placeholder="비밀번호" id="pw">
-                        </div>
-                        <input type="button" class="button" value="로그인" onclick="loginFormFunc(); return false;">
-                    </form> <!-- 로그인 폼 종료 -->
-                    <div style="display: flex; padding: 30px 0px; justify-content: center;">
-                        <b class= "pointer" style="margin-right: 15px; font-size: 17px;align-self: center;">
-                            비밀번호 찾기
-                        </b>
-                        <b onclick="toggle()" class="pointer">
-                            <a href="/register" style="font-size: 17px">회원가입</a>
-                        </b>
 
-                    </div>
-                    <br>
-                    <div style="text-align: center; cursor:pointer;">
-                        <img src="/resources/img/kakao_login_btn.png" onclick="kakaoLogin();"/>
-                    </div>
-                </div>
+
+<div style="
+    padding: 100px 0px 90px 0px;
+    text-align: -webkit-center;
+">
+    <div style="width: 41.5%;;">
+        <b style="font-size: 28px">Login</b>
+        <form id="loginForm" method="post" style="width: 62%;"> <!-- 로그인 폼 시작 -->
+            <div class="input-group">
+                <i class='bx bxs-user'></i>
+                <input type="text" placeholder="아이디" id="guest_id">
             </div>
-            <div class="form-wrapper">
-
+            <div class="input-group">
+                <i class='bx bxs-lock-alt'></i>
+                <input type="password" placeholder="비밀번호" id="pw">
             </div>
+            <input type="button" class="button" value="로그인" onclick="loginFormFunc(); return false;">
+        </form> <!-- 로그인 폼 종료 -->
+        <div style="display: flex; padding: 30px 0px; justify-content: center;">
+            <b class="pointer" style="margin-right: 15px; font-size: 17px;align-self: center;">
+                비밀번호 찾기
+            </b>
+            <b onclick="toggle()" class="pointer">
+                <a href="/register" style="font-size: 17px">회원가입</a>
+            </b>
         </div>
-        <!-- END SIGN IN -->
-
+        <div style="text-align: center; cursor:pointer;">
+            <img src="/resources/img/kakao_login_btn.svg" onclick="kakaoLogin();"/>
+        </div>
     </div>
-    <!-- END FORM SECTION -->
-    <!-- CONTENT SECTION -->
-    <div class="row content-row">
-        <!-- SIGN IN CONTENT -->
-        <div class="col align-items-center flex-col">
-            <div class="img sign-in" style="
-                 margin-left: 130px;
-                 padding-bottom: 90px;"
-            >
-                <img src="../../../resources/img/dog.png" style="width: 500px">
-            </div>
-        </div>
-        <!-- END SIGN IN CONTENT -->
-    </div>
-    <!-- END CONTENT SECTION -->
 </div>
+<%--<div id="container" class="container">--%>
+<%--    <!-- FORM SECTION -->--%>
+<%--    <div class="row">--%>
+<%--        <div class="col align-items-center flex-col sign-up">--%>
+<%--        </div>--%>
+<%--        <!-- SIGN IN -->--%>
+<%--        <div class="col align-items-center flex-col sign-in" style="padding-left: 50px;">--%>
+<%--            <div class="form-wrapper align-items-center">--%>
+<%--                <div class="form sign-in" style="text-align: -webkit-center;">--%>
+<%--                    <b style="font-size: 28px">Login</b>--%>
+<%--                    <form id="loginForm" method="post" style="width: 62%;"> <!-- 로그인 폼 시작 -->--%>
+<%--                        <div class="input-group">--%>
+<%--                            <i class='bx bxs-user'></i>--%>
+<%--                            <input type="text" placeholder="아이디" id="guest_id">--%>
+<%--                        </div>--%>
+<%--                        <div class="input-group">--%>
+<%--                            <i class='bx bxs-lock-alt'></i>--%>
+<%--                            <input type="password" placeholder="비밀번호" id="pw">--%>
+<%--                        </div>--%>
+<%--                        <input type="button" class="button" value="로그인" onclick="loginFormFunc(); return false;">--%>
+<%--                    </form> <!-- 로그인 폼 종료 -->--%>
+<%--                    <div style="display: flex; padding: 30px 0px; justify-content: center;">--%>
+<%--                        <b class="pointer" style="margin-right: 15px; font-size: 17px;align-self: center;">--%>
+<%--                            비밀번호 찾기--%>
+<%--                        </b>--%>
+<%--                        <b onclick="toggle()" class="pointer">--%>
+<%--                            <a href="/register" style="font-size: 17px">회원가입</a>--%>
+<%--                        </b>--%>
+
+<%--                    </div>--%>
+<%--                    <br>--%>
+<%--                    <div style="text-align: center; cursor:pointer;">--%>
+<%--                        <img src="/resources/img/kakao_login_btn.png" onclick="kakaoLogin();"/>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="form-wrapper">--%>
+
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <!-- END SIGN IN -->--%>
+
+<%--    </div>--%>
+<!-- END FORM SECTION -->
+<!-- CONTENT SECTION -->
+<%--    <div class="row content-row">--%>
+<%--        <!-- SIGN IN CONTENT -->--%>
+<%--        <div class="col align-items-center flex-col">--%>
+<%--            <div class="img sign-in" style="margin-left: 130px; padding-bottom: 90px;">--%>
+<%--                <img src="/resources/img/dog.png" style="width: 500px">--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <!-- END SIGN IN CONTENT -->--%>
+<%--    </div>--%>
+<!-- END CONTENT SECTION -->
+<%--</div>--%>
 </body>
 <script>
     function kakaoLogin() {

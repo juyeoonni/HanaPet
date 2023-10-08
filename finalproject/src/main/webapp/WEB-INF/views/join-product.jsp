@@ -12,21 +12,20 @@
     <script src="/resources/javascript/common.js"></script>
     <style>
         .modal {
-            height: 1610px;
+            height: 1870px;
         }
 
         .modal_body {
-            top: 75%;
+            top: 60%;
         }
     </style>
 </head>
-<>
 <%@ include file="include/header.jsp" %>
 <div class="body">
     <%@ include file="include/product-header.jsp" %>
     <div class="title">적금 상품 가입</div>
 
-        <%
+    <%
         String savingName = request.getParameter("savingName");
         String petName = request.getParameter("petName");
         String joinPeriod = request.getParameter("joinPeriod");
@@ -53,11 +52,11 @@
                         <div class="color">
                             <div style="display: flex">
                                 <div>현재 잔액:</div>
-                                <div id="current_balance"></div>
+                                <div id="current_balance" style="font-weight: bold"></div>
                             </div>
                             <div style="display: flex">
                                 <div>출금 가능 금액:</div>
-                                <div id="able_balance"></div>
+                                <div id="able_balance" style="font-weight: bold"></div>
                             </div>
                         </div>
                     </div>
@@ -69,7 +68,6 @@
                     <div style="display: flex">
                         <div>
                             <input type="password" class="input-form" id="accountPassword"
-                                   placeholder="계좌 비밀번호를 입력해주세요."
                                    required>
                             <div id="pwMessage"></div>
                         </div>
@@ -89,6 +87,7 @@
                     <%=petName%>
                     <%} else {%>
                     <select class="form-dropdown" id="petSelection" required>
+                        <option selected disabled>반려견을 선택하세요.</option>
                     </select>
                     <%
                         }
@@ -101,7 +100,7 @@
                     <% if (savingName != null) { %>
                     <%=savingName%>
                     <%} else {%>
-                    <input type="text" class="input-form" id="accountName" placeholder="적금 계좌명을 입력해주세요." required>
+                    <input type="text" class="input-form" id="accountName" required>
                     <%
                         }
                     %>
@@ -124,13 +123,13 @@
             </tr>
             <tr>
                 <td class="form-label">가입 기간</td>
-
                 <td>
                     <% if (joinPeriod != null) { %>
                     <%=joinPeriod%>개월
                     <div id="endDateMessage"> 적금 만기 예정일은 <%=endDate.split(" ")[0]%> 입니다.</div>
                     <%} else {%>
-                    <input type="number" class="input-form" id="joinPeriod" placeholder="적금 기간을 입력해주세요" required><span
+                    <input type="number" class="input-form" id="joinPeriod"
+                           style="text-align: end" required><span
                         id="period_text"></span>
                     <div id="conditionMessage2" class="mt-2 text-danger"></div>
                     <div id="endDateMessage"></div>
@@ -143,7 +142,8 @@
                 <td class="form-label">가입 금액</td>
                 <td>
                     <div style="display: flex">
-                        <input type="text" class="input-form" id="joinAmount" placeholder="금액을 입력해주세요."
+                        <input type="text" class="input-form" id="joinAmount" style="text-align: end"
+
                                onkeyup="inputNumberFormat(this)"
                                required><span style="align-self: center;">원</span>
                         <% if (savingName != null) { %>

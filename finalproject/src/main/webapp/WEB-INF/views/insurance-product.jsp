@@ -104,7 +104,7 @@
         </div>
     </div>
     <div class="middle-box">
-        <span>전체 ${insuranceProductList.size()}개 보험</span>
+        <span style="color: white">전체 ${insuranceProductList.size()}개 보험</span>
     </div>
     <jsp:include page="include/insurance-card.jsp"/>
 </div>
