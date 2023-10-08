@@ -21,4 +21,9 @@ public class JoinSavingServiceImpl implements JoinSavingService {
         return joinSavingMapper.getInvitedInfo(accountNumber);
     }
 
+    @Override
+    public int getCnt(String accountNumber) {
+        return joinSavingMapper.getCnt(accountNumber);
+    }
+
 }

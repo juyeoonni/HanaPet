@@ -27,6 +27,13 @@
         WHERE guest_id = #{guest_id}
     </select>
 
+    <select id="getCnt" parameterType="String"
+            resultType="int">
+        select count(*)
+        from join_saving
+        where account_number = #{account_number}
+    </select>
+
     <select id="getInvitedInfo" parameterType="String" resultType="com.kopo.finalproject.dto.Invite">
 
         select g2.name            as openerName,

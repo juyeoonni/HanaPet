@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface JoinSavingService {
     List<Invite> getInvitedInfo(String accountNumber);
+    int getCnt(String accountNumber);
 }

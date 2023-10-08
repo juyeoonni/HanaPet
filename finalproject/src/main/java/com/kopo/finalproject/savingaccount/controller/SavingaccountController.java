@@ -1,5 +1,6 @@
 package com.kopo.finalproject.savingaccount.controller;
 
+import com.kopo.finalproject.joinsaving.service.JoinSavingService;
 import com.kopo.finalproject.pet.model.dto.Pet;
 import com.kopo.finalproject.pet.service.PetService;
 import com.kopo.finalproject.savingaccount.model.dto.MyAccountsOfPet;
@@ -24,9 +25,13 @@ public class SavingaccountController {
     @Autowired
     private final PetService petService;
 
-    public SavingaccountController(SavingaccountService savingaccountService, PetService petService) {
+    @Autowired
+    private final JoinSavingService joinSavingService;
+
+    public SavingaccountController(SavingaccountService savingaccountService, PetService petService, JoinSavingService joinSavingService) {
         this.savingaccountService = savingaccountService;
         this.petService = petService;
+        this.joinSavingService = joinSavingService;
     }
 
     @GetMapping("/savingaccounts")
@@ -54,8 +59,8 @@ public class SavingaccountController {
         List<MyPageHistoryInfo> historyInfos = savingaccountService.getHistoryInfo(accountNumber);
         mav.addObject("info", infos);
         mav.addObject("history_info", historyInfos);
-        System.out.println("infos: "+ infos);
-        System.out.println("historyInfos: "+ historyInfos);
+        System.out.println("infos: " + infos);
+        System.out.println("historyInfos: " + historyInfos);
         return mav;
     }
 
@@ -70,5 +75,11 @@ public class SavingaccountController {
         savingaccountService.joinInvited(data);
         session.removeAttribute("accountNumber");
         return ResponseEntity.ok("초대 적금 가입 성공");
+    }
+
+    @GetMapping("/getCnt")
+    public ResponseEntity<Integer> getCnt(@RequestParam String account_number) {
+        int savingaccounts = joinSavingService.getCnt(account_number); // 몇명이서 같이 참여하는지
+        return ResponseEntity.ok(savingaccounts);
     }
 }

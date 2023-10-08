@@ -712,6 +712,23 @@
             }
 
             const ed = "<%= endDate %>";
+            let cnt = 0;
+
+            $.ajax({
+                url: '/getCnt',
+                method: 'GET',
+                data: {
+                    account_number: '<%=accountNumber%>'
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log("cnt" + data);
+                    cnt = data;
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching:', error);
+                }
+            });
 
             function calculateInterestDaily() {
                 // 시작 날짜와 종료 날짜를 JavaScript Date 객체로 변환
@@ -721,13 +738,11 @@
                 const amount = parseFloat(document.getElementById('joinAmount').value.replace(/,/g, '')); // 입력된 값을 부동 소수점 숫자로 변환
 
                 // 연 이자율을 일 단위 이자율로 변환
-                const dailyInterestRate = ((parseFloat('<%=rate%>') + parseFloat('<%=primeRate%>')) / 100) / 365; // 연 이자율을 365일로 나누어 일 단위로 계산
+                const dailyInterestRate = ((parseFloat('<%=rate%>') + parseFloat('<%=primeRate%>') * cnt) / 100) / 365; // 연 이자율을 365일로 나누어 일 단위로 계산
 
                 // 기간 계산 (일 단위)
                 const millisecondsPerDay = 24 * 60 * 60 * 1000;
                 const days = Math.floor((endDate - startDate) / millisecondsPerDay); // 오늘 날짜 포함, 종료 날짜 제외
-
-                // console.log("여기입니다. " + startDate + "  " + endDate + "   " + amount + "  " + millisecondsPerDay + "  " + days);
 
                 // 총 이자 계산
                 // 예를 들어 9/18 ~ 10/17 만기라면

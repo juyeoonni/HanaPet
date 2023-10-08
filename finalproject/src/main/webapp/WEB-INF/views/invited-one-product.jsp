@@ -5,7 +5,7 @@
 <head>
     <title>HanaPet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../../resources/css/common.css">
+    <link rel="stylesheet" href="/resources/css/common.css">
     <!-- 부트스트랩 CSS 링크 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- 부트스트랩 JS 링크 -->
