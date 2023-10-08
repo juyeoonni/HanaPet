@@ -59,7 +59,7 @@ class GuestController {
 
     @GetMapping(value = "/kakao-login", produces = MediaType.APPLICATION_JSON_VALUE)
     public ModelAndView getKakaoUserInfo(String code, HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
+        ModelAndView mav = new ModelAndView("/index");
         HttpSession session = request.getSession();
 
         //토큰 생성 함수
@@ -72,9 +72,9 @@ class GuestController {
         Guest memberInfo = guestService.selectEmailOneMember(member.getEmail());
         if (memberInfo != null) {
             session.setAttribute("accessToken", access_token);
-            mav.setViewName("message");
-            mav.addObject("msg", "로그인 성공");
-            mav.addObject("loc", "/");
+//            mav.setViewName("/index");
+//            mav.addObject("msg", "로그인 성공");
+//            mav.addObject("loc", "/");
             session.setAttribute("guest_id", memberInfo.getGuest_id());
             session.setAttribute("name", memberInfo.getName());
             session.setAttribute("phone", memberInfo.getPhone());
@@ -88,13 +88,13 @@ class GuestController {
     @GetMapping(value = "/logout")
     public ModelAndView deleteMember(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        ModelAndView mav = new ModelAndView();
+        ModelAndView mav = new ModelAndView("/index");
         if (session != null) {
             session.invalidate();
         }
-        mav.addObject("msg", "로그아웃 성공");
-        mav.addObject("loc", "/");
-        mav.setViewName("/message");
+//        mav.addObject("msg", "로그아웃 성공");
+//        mav.addObject("loc", "/");
+//        mav.setViewName("/message");
         return mav;
     }
 }

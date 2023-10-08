@@ -159,8 +159,7 @@
             success: function (response) {
                 if (response === "로그인 성공") {
                     // 로그인 성공 시 처리
-                    alert("로그인 성공");
-                    console.error("로그인 성공");
+                    // alert("로그인 성공");
                     var link = document.createElement("a");
                     link.href = "/";
                     link.click();

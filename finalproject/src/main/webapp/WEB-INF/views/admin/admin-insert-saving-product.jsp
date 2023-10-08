@@ -149,16 +149,6 @@
                     <span class="nav-link-text ms-1">메일</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-                         style="margin-top: -8px">
-                        <i class="bi bi-person fs-4" style="color: #75A989"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">손님관리</span>
-                </a>
-            </li>
-
         </ul>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>

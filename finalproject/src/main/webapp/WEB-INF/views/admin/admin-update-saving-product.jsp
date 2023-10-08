@@ -91,7 +91,7 @@
             background-color: #75A989 !important;
         }
 
-        .end{
+        .end {
             text-align: end;
         }
     </style>
@@ -147,15 +147,6 @@
                         <i class="bi bi-envelope fs-5" style="color: #75A989"></i>
                     </div>
                     <span class="nav-link-text ms-1">메일</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
-                         style="margin-top: -8px">
-                        <i class="bi bi-person fs-4" style="color: #75A989"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">손님관리</span>
                 </a>
             </li>
 
@@ -289,7 +280,8 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최소 가입 금액</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control amount end" type="text" name="min_balance"
+                                            <input id="form" class="form-control amount end" type="text"
+                                                   name="min_balance"
                                                    value="<c:out value="${product.min_balance}"/>">원
                                         </div>
                                     </div>
@@ -299,7 +291,8 @@
                                         <label for="example-text-input" class="form-control-label"
                                                style="font-size: 18px;">최대 가입 금액</label>
                                         <div style="display: flex; align-items: center;">
-                                            <input id="form" class="form-control amount end" type="text" name="max_balance"
+                                            <input id="form" class="form-control amount end" type="text"
+                                                   name="max_balance"
                                                    value="<c:out value="${product.max_balance}"/>">원
                                         </div>
                                     </div>
