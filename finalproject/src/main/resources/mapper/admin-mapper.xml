@@ -68,15 +68,11 @@
     </select>
 
     <select id="getInsuranceCnt" resultType="com.kopo.finalproject.admin.dto.AdminInsurance">
-        WITH TotalInsurance AS (SELECT COUNT(DISTINCT GUEST_ID) AS total_guests
-                                FROM JOIN_INSURANCE)
-
         SELECT INSURANCE_NAME,
-               COUNT(DISTINCT GUEST_ID)                                                                 AS insurance_guests,
-               ROUND((COUNT(DISTINCT GUEST_ID) * 100.0 / (SELECT total_guests FROM TotalInsurance)), 1) AS percentage
+               COUNT(*)                                                         AS insurance_guests,
+               ROUND(COUNT(*) / (SELECT COUNT(*) FROM JOIN_INSURANCE) * 100, 1) AS PERCENTAGE
         FROM JOIN_INSURANCE
         GROUP BY INSURANCE_NAME
-        ORDER BY INSURANCE_NAME
-
+        ORDER BY insurance_guests DESC
     </select>
 </mapper>

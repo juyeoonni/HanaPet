@@ -157,7 +157,7 @@ public class MainController {
         mav.addObject("productList", productList);
         mav.addObject("insuranceProductList", insuranceProductList);
 
-        System.out.println(product);
+        System.out.println(emailGuestList);
         mav.setViewName("admin/admin-mail");
         return mav;
     }

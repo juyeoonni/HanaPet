@@ -199,6 +199,7 @@
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row">
+                                <h5 style="text-align: center">반려견 성별 분포</h5>
                                 <div class="chart">
                                     <canvas id="chart-line4" class="chart-canvas" height="300" width="577"
                                             style="display: block; box-sizing: border-box; height: 300px; width: 300px;"></canvas>
@@ -211,22 +212,24 @@
 
         </div>
         <div class="row">
-            <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-7 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
+                            <h5 style="text-align: center">반려견 나이별 분포</h5>
                             <div class="chart">
-                                <canvas id="chart-line2" class="chart-canvas" height="375" width="577"
+                                <canvas id="chart-line2" class="chart-canvas" height="260" width="577"
                                         style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
+                            <h5 style="text-align: center">반려견 품종별 분포</h5>
                             <div class="chart">
                                 <canvas id="chart-line3" class="chart-canvas" height="375" width="577"
                                         style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>
@@ -243,7 +246,7 @@
                 <div class="card ">
                     <div class="card">
                         <div class="card-header pb-0 p-3">
-                            <h6 class="mb-0">펫 적금 순위</h6>
+                            <h5 class="mb-0">펫 적금 순위</h5>
                         </div>
                         <div class="card-body p-3">
                             <ul class="list-group">
@@ -257,7 +260,6 @@
                                             </div>
                                             <span class="text-xs">${data.category_accounts}개</span>
                                             <span class="text-xs">${data.account_percentage}%</span>
-                                            <span class="text-xs">총 ${data.category_guests}명</span>
                                         </div>
                                         <div class="d-flex">
                                             <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
@@ -285,7 +287,7 @@
             <div class="col-lg-7">
                 <div class="card">
                     <div class="card-header pb-0 p-3">
-                        <h6 class="mb-0">펫 보험 순위</h6>
+                        <h5 class="mb-0">펫 보험 순위</h5>
                     </div>
                     <div class="card-body p-3">
                         <ul class="list-group">
@@ -298,7 +300,7 @@
                                         <div class="d-flex flex-column">
                                             <h6 class="mb-1 text-dark text-sm">${data.INSURANCE_NAME}</h6>
                                         </div>
-                                        <span class="text-xs">${data.insurance_guests}명</span>
+                                        <span class="text-xs">${data.insurance_guests}개</span>
                                         <span class="text-xs">${data.percentage}%</span>
                                     </div>
                                     <div class="d-flex">
@@ -501,12 +503,10 @@
                     '#edafb8',
                     '#f7e1d7',
                     '#dedbd2',
-                    '#b0c4b1',
-                    '#4a5759'
+                    '#b0c4b1'
                 ]
             }]
         },
-
         options: {
             plugins: {
                 tooltip: {
@@ -568,8 +568,7 @@
                     '#edafb8',
                     '#f7e1d7',
                     '#dedbd2',
-                    '#b0c4b1',
-                    '#4a5759'
+                    '#b0c4b1'
                 ]
             }]
         },
@@ -634,11 +633,7 @@
                 label: "매달 신규 가입자",
                 data: counts,
                 backgroundColor: [
-                    '#edafb8',
-                    '#f7e1d7',
-                    '#dedbd2',
-                    '#b0c4b1',
-                    '#4a5759'
+                    '#f7e1d7'
                 ]
             }],
         },
