@@ -152,109 +152,9 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
-                                    <h5 class="font-weight-bolder">
-                                        $53,000
-                                    </h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                        since yesterday
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-4 text-end">
-                                <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Users</p>
-                                    <h5 class="font-weight-bolder">
-                                        2,300
-                                    </h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                        since last week
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-4 text-end">
-                                <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
-                                    <h5 class="font-weight-bolder">
-                                        +3,462
-                                    </h5>
-                                    <p class="mb-0">
-                                        <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                        since last
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-4 text-end">
-                                <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6">
-                <div class="card">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
-                                    <h5 class="font-weight-bolder">
-                                        $103,430
-                                    </h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-4 text-end">
-                                <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-lg-7 mb-lg-0 mb-4" style="width: 100%">
+        <div class="row mb-4" style="display: flex;">
+
+            <div class="col-lg-7 mb-lg-0 mb-4" style="width: 65%">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
                         <h5 class="text-capitalize">신규 가입자</h5>
@@ -268,6 +168,222 @@
                             <canvas id="chart-line" class="chart-canvas" height="375" width="577"
                                     style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 35%;">
+                <div class="col-xl-3 col-sm-6 mb-xl-0" style="width: 100%">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">총 반려견 수</p>
+                                        <h5 class="font-weight-bolder">
+                                            ${petCnt}마리
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-sm-6 mt-4" style="width: 100%">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="chart">
+                                    <canvas id="chart-line4" class="chart-canvas" height="375" width="577"
+                                            style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="chart">
+                                <canvas id="chart-line2" class="chart-canvas" height="375" width="577"
+                                        style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="chart">
+                                <canvas id="chart-line3" class="chart-canvas" height="375" width="577"
+                                        style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-lg-6">
+                <div class="card ">
+                    <div class="card">
+                        <div class="card-header pb-0 p-3">
+                            <h6 class="mb-0">Categories</h6>
+                        </div>
+                        <div class="card-body p-3">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                                            <i class="ni ni-mobile-button text-white opacity-10"></i>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Devices</h6>
+                                            <span class="text-xs">250 in stock, <span
+                                                    class="font-weight-bold">346+ sold</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                            <i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                                            <i class="ni ni-tag text-white opacity-10"></i>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Tickets</h6>
+                                            <span class="text-xs">123 closed, <span
+                                                    class="font-weight-bold">15 open</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                            <i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                                            <i class="ni ni-box-2 text-white opacity-10"></i>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Error logs</h6>
+                                            <span class="text-xs">1 is active, <span
+                                                    class="font-weight-bold">40 closed</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                            <i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                                            <i class="ni ni-satisfied text-white opacity-10"></i>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">Happy users</h6>
+                                            <span class="text-xs font-weight-bold">+ 430</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                            <i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header pb-0 p-3">
+                        <h6 class="mb-0">Categories</h6>
+                    </div>
+                    <div class="card-body p-3">
+                        <ul class="list-group">
+                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                                        <i class="ni ni-mobile-button text-white opacity-10"></i>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-1 text-dark text-sm">Devices</h6>
+                                        <span class="text-xs">250 in stock, <span
+                                                class="font-weight-bold">346+ sold</span></span>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                        <i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                                </div>
+                            </li>
+                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                                        <i class="ni ni-tag text-white opacity-10"></i>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-1 text-dark text-sm">Tickets</h6>
+                                        <span class="text-xs">123 closed, <span class="font-weight-bold">15 open</span></span>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                        <i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                                </div>
+                            </li>
+                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                                        <i class="ni ni-box-2 text-white opacity-10"></i>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-1 text-dark text-sm">Error logs</h6>
+                                        <span class="text-xs">1 is active, <span
+                                                class="font-weight-bold">40 closed</span></span>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                        <i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                                </div>
+                            </li>
+                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                                        <i class="ni ni-satisfied text-white opacity-10"></i>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-1 text-dark text-sm">Happy users</h6>
+                                        <span class="text-xs font-weight-bold">+ 430</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                        <i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -304,12 +420,279 @@
 <script src="/resources/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="/resources/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="/resources/js/plugins/chartjs.min.js"></script>
+
+<script>
+    var genders = [];
+    var gender_counts = [];
+    var gender_percentages = [];
+
+    <c:forEach var="data" items="${adminPetGenderList}">
+    genders.push("${data.gender}");
+    gender_counts.push(${data.gender_count});
+    gender_percentages.push(${data.gender_percentage});
+    </c:forEach>
+
+    var ctx4 = document.getElementById("chart-line4").getContext("2d");
+    new Chart(ctx4, {
+        type: "bar",
+        data: {
+            labels: genders,
+            datasets: [{
+                tension: 0.4,
+                pointRadius: 0,
+                borderColor: "#5e72e4",
+                borderWidth: 3,
+                fill: true,
+                data: gender_counts,
+                maxBarThickness: 30
+            }]
+        },
+        options: {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var index = context.dataIndex;
+                            var count = gender_counts[index];
+                            var percentage = gender_percentages[index];
+                            return count + '마리, ' + percentage + '%';
+                        }
+                    }
+                }, legend: {
+                    display: false,
+                }
+            }, responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#fbfbfb',
+                        font: {
+                            size: 11,
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+                // x: {
+                //     grid: {
+                //         drawBorder: false,
+                //         display: false,
+                //         drawOnChartArea: false,
+                //         drawTicks: false,
+                //         borderDash: [5, 5]
+                //     },
+                //     ticks: {
+                //         display: true,
+                //         color: '#ccc',
+                //         padding: 20,
+                //         font: {
+                //             size: 11,
+                //             style: 'normal',
+                //             lineHeight: 2
+                //         },
+                //     }
+                // },
+            },
+        }
+    });
+</script>
+<script>
+    var ages = [];
+    var age_counts = [];
+    var percentages = [];
+
+    <c:forEach var="data" items="${adminPetAgeList}">
+    ages.push("${data.age}");
+    age_counts.push(${data.age_count});
+    percentages.push(${data.age_percentage});
+    </c:forEach>
+
+    var ctx2 = document.getElementById("chart-line2").getContext("2d");
+    new Chart(ctx2, {
+        type: "bar",
+        data: {
+            labels: ages,
+            datasets: [{
+                tension: 0.4,
+                pointRadius: 0,
+                borderColor: "#5e72e4",
+                borderWidth: 3,
+                fill: true,
+                data: age_counts,
+                maxBarThickness: 30
+            }]
+        },
+        options: {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var index = context.dataIndex;
+                            var count = age_counts[index];
+                            var percentage = percentages[index];
+                            return count + '마리, ' + percentage + '%';
+                        }
+                    }
+                }, legend: {
+                    display: false,
+                }
+            }, responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#fbfbfb',
+                        font: {
+                            size: 11,
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+                // x: {
+                //     grid: {
+                //         drawBorder: false,
+                //         display: false,
+                //         drawOnChartArea: false,
+                //         drawTicks: false,
+                //         borderDash: [5, 5]
+                //     },
+                //     ticks: {
+                //         display: true,
+                //         color: '#ccc',
+                //         padding: 20,
+                //         font: {
+                //             size: 11,
+                //             style: 'normal',
+                //             lineHeight: 2
+                //         },
+                //     }
+                // },
+            },
+        }
+    });
+</script>
+<script>
+    var breeds = [];
+    var bree_counts = [];
+    var breed_percentages = [];
+
+    <c:forEach var="data" items="${adminPetBreedList}">
+    breeds.push("${data.breed}");
+    bree_counts.push(${data.breed_count});
+    breed_percentages.push(${data.breed_percentage});
+    </c:forEach>
+
+    var ctx3 = document.getElementById("chart-line3").getContext("2d");
+    new Chart(ctx3, {
+        type: "bar",
+        data: {
+            labels: breeds,
+            datasets: [{
+                tension: 0.4,
+                pointRadius: 0,
+                borderColor: "#5e72e4",
+                borderWidth: 3,
+                fill: true,
+                data: bree_counts,
+                maxBarThickness: 30
+            }]
+        },
+        options: {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var index = context.dataIndex;
+                            var count = bree_counts[index];
+                            var percentage = breed_percentages[index];
+                            return count + '마리, ' + percentage + '%';
+                        }
+                    }
+                }, legend: {
+                    display: false,
+                }
+            }, responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#fbfbfb',
+                        font: {
+                            size: 11,
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+                // x: {
+                //     grid: {
+                //         drawBorder: false,
+                //         display: false,
+                //         drawOnChartArea: false,
+                //         drawTicks: false,
+                //         borderDash: [5, 5]
+                //     },
+                //     ticks: {
+                //         display: true,
+                //         color: '#ccc',
+                //         padding: 20,
+                //         font: {
+                //             size: 11,
+                //             style: 'normal',
+                //             lineHeight: 2
+                //         },
+                //     }
+                // },
+            },
+        }
+    });
+</script>
 <script>
     var months = [];
     var counts = [];
 
     <c:forEach var="data" items="${adminGuestMonthlyList}">
-    console.log("sdf" + '${data.month}')
     months.push("${data.month}");
     counts.push(${data.monthly_guest_count});
     </c:forEach>

@@ -66,7 +66,7 @@ public class MainController {
         List<AdminInsurance> adminInsuranceList = adminService.getInsuranceCnt();
 
 //        System.out.println(petCnt);
-//        System.out.println(adminPetAgeList);
+        System.out.println(adminPetAgeList);
 //        System.out.println(adminPetBreedList);
 //        System.out.println(adminPetGenderList);
 //        System.out.println(adminGuestMonthlyList);
