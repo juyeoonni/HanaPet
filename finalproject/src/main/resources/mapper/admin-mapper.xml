@@ -4,6 +4,11 @@
 
 <mapper namespace="com.kopo.finalproject.admin.AdminMapper">
 
+    <select id="getGuestCnt" resultType="Integer">
+        SELECT COUNT(*)
+        FROM guest
+    </select>
+
     <select id="getPetCnt" resultType="Integer">
         SELECT COUNT(*)
         FROM pet
@@ -59,7 +64,7 @@
                  JOIN
              JOIN_SAVING JS ON SA.ACCOUNT_NUMBER = JS.ACCOUNT_NUMBER
         GROUP BY SA.CATEGORY
-        ORDER BY SA.CATEGORY
+        ORDER BY account_percentage DESC, category_guests desc
     </select>
 
     <select id="getInsuranceCnt" resultType="com.kopo.finalproject.admin.dto.AdminInsurance">

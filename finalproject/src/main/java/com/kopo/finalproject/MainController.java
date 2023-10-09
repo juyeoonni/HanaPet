@@ -57,6 +57,7 @@ public class MainController {
     @RequestMapping("/admin/dashboard")
     public ModelAndView adminDash() {
         ModelAndView mav = new ModelAndView();
+        int guestCnt = adminService.getGuestCnt();
         int petCnt = adminService.getPetCnt();
         List<AdminPetAge> adminPetAgeList = adminService.getPetAgeCnt();
         List<AdminPetBreed> adminPetBreedList = adminService.getPetBreedCnt();
@@ -65,14 +66,7 @@ public class MainController {
         List<AdminSaving> adminSavingList = adminService.getSavingCnt();
         List<AdminInsurance> adminInsuranceList = adminService.getInsuranceCnt();
 
-//        System.out.println(petCnt);
-        System.out.println(adminPetAgeList);
-//        System.out.println(adminPetBreedList);
-//        System.out.println(adminPetGenderList);
-//        System.out.println(adminGuestMonthlyList);
-//        System.out.println(adminSavingList);
-//        System.out.println(adminInsuranceList);
-
+        mav.addObject("guestCnt", guestCnt);
         mav.addObject("petCnt", petCnt);
         mav.addObject("adminPetAgeList", adminPetAgeList);
         mav.addObject("adminPetBreedList", adminPetBreedList);

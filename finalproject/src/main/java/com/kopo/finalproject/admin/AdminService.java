@@ -6,6 +6,10 @@ import com.kopo.finalproject.admin.dto.*;
 import java.util.List;
 
 public interface AdminService {
+
+    // 총 손님 수
+    public Integer getGuestCnt();
+
     // 총 반려견 수
     public Integer getPetCnt();
 

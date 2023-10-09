@@ -17,6 +17,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public Integer getGuestCnt() {
+        return adminMapper.getGuestCnt();
+    }
+
+    @Override
     public Integer getPetCnt() {
         return adminMapper.getPetCnt();
     }

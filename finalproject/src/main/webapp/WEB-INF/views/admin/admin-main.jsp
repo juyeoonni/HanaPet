@@ -157,15 +157,15 @@
             <div class="col-lg-7 mb-lg-0 mb-4" style="width: 65%">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
-                        <h5 class="text-capitalize">신규 가입자</h5>
+                        <h5 class="text-capitalize">매달 신규 가입자</h5>
                         <p class="text-sm mb-0">
                             <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
                             <span class="font-weight-bold">4% more</span> in 2023
                         </p>
                     </div>
                     <div class="card-body p-3">
-                        <div class="chart">
-                            <canvas id="chart-line" class="chart-canvas" height="375" width="577"
+                        <div class="chart" style="height: 315px">
+                            <canvas id="chart-line" class="chart-canvas" height="315" width="577"
                                     style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>
                         </div>
                     </div>
@@ -177,7 +177,20 @@
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row">
-                                <div class="col-8">
+                                <div class="col-3 text-start">
+                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                        <i class="bi bi-check2-circle fs-4"></i>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">총 회원 수</p>
+                                        <h5 class="font-weight-bolder">
+                                            ${guestCnt}명
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-5">
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">총 반려견 수</p>
                                         <h5 class="font-weight-bolder">
@@ -185,11 +198,7 @@
                                         </h5>
                                     </div>
                                 </div>
-                                <div class="col-4 text-end">
-                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -238,155 +247,90 @@
         </div>
 
         <div class="row mt-4">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <div class="card ">
                     <div class="card">
                         <div class="card-header pb-0 p-3">
-                            <h6 class="mb-0">Categories</h6>
+                            <h6 class="mb-0">펫 적금 순위</h6>
                         </div>
                         <div class="card-body p-3">
                             <ul class="list-group">
-                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                            <i class="ni ni-mobile-button text-white opacity-10"></i>
+                                <c:forEach var="data" items="${adminSavingList}">
+                                    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                        <div class="d-flex align-items-center" style="gap: 20px">
+                                            <i class="bi bi-award fs-3"></i>
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-1 text-dark text-sm">${data.category}</h6>
+
+                                            </div>
+                                            <span class="text-xs">${data.category_accounts}개</span>
+                                            <span class="text-xs">${data.account_percentage}%</span>
+                                            <span class="text-xs">총 ${data.category_guests}명</span>
                                         </div>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Devices</h6>
-                                            <span class="text-xs">250 in stock, <span
-                                                    class="font-weight-bold">346+ sold</span></span>
+                                        <div class="d-flex">
+                                            <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                                <i class="bi bi-chevron-right fs-4"></i></button>
                                         </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                            <i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                                    </div>
-                                </li>
-                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                            <i class="ni ni-tag text-white opacity-10"></i>
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Tickets</h6>
-                                            <span class="text-xs">123 closed, <span
-                                                    class="font-weight-bold">15 open</span></span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                            <i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                                    </div>
-                                </li>
-                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                            <i class="ni ni-box-2 text-white opacity-10"></i>
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Error logs</h6>
-                                            <span class="text-xs">1 is active, <span
-                                                    class="font-weight-bold">40 closed</span></span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                            <i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                                    </div>
-                                </li>
-                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                                    <div class="d-flex align-items-center">
-                                        <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                            <i class="ni ni-satisfied text-white opacity-10"></i>
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Happy users</h6>
-                                            <span class="text-xs font-weight-bold">+ 430</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                            <i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                                    </div>
-                                </li>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <%--            <div class="col-lg-2">--%>
+            <%--                <div class="card">--%>
+            <%--                    <div class="card-body p-3">--%>
+            <%--                        <div class="row">--%>
+            <%--                            <div class="chart">--%>
+            <%--                                <canvas id="chart-line5" class="chart-canvas" height="375" width="577"--%>
+            <%--                                        style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
+            <div class="col-lg-7">
                 <div class="card">
                     <div class="card-header pb-0 p-3">
-                        <h6 class="mb-0">Categories</h6>
+                        <h6 class="mb-0">펫 보험 순위</h6>
                     </div>
                     <div class="card-body p-3">
                         <ul class="list-group">
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-mobile-button text-white opacity-10"></i>
+                            <c:forEach var="data" items="${adminInsuranceList}">
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center" style="gap: 20px">
+                                        <div>
+                                            <i class="bi bi-award fs-3"></i>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">${data.INSURANCE_NAME}</h6>
+                                        </div>
+                                        <span class="text-xs">${data.insurance_guests}명</span>
+                                        <span class="text-xs">${data.percentage}%</span>
                                     </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">Devices</h6>
-                                        <span class="text-xs">250 in stock, <span
-                                                class="font-weight-bold">346+ sold</span></span>
+                                    <div class="d-flex">
+                                        <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
+                                            <i class="bi bi-chevron-right fs-4"></i></button>
                                     </div>
-                                </div>
-                                <div class="d-flex">
-                                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                        <i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-tag text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">Tickets</h6>
-                                        <span class="text-xs">123 closed, <span class="font-weight-bold">15 open</span></span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                        <i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-box-2 text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">Error logs</h6>
-                                        <span class="text-xs">1 is active, <span
-                                                class="font-weight-bold">40 closed</span></span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                        <i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-satisfied text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">Happy users</h6>
-                                        <span class="text-xs font-weight-bold">+ 430</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                        <i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                                </div>
-                            </li>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
             </div>
+            <%--            <div class="col-lg-3">--%>
+            <%--                <div class="card">--%>
+            <%--                    <div class="card-body p-3">--%>
+            <%--                        <div class="row">--%>
+            <%--                            <div class="chart">--%>
+            <%--                                <canvas id="chart-line6" class="chart-canvas" height="375" width="577"--%>
+            <%--                                        style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>--%>
+            <%--                            </div>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
         </div>
 
         <footer class="footer pt-5">
@@ -422,6 +366,54 @@
 <script src="/resources/js/plugins/chartjs.min.js"></script>
 
 <script>
+    var insurance_names = [];
+    var insurance_percentages = [];
+
+    <c:forEach var="data" items="${adminInsuranceList}">
+    insurance_names.push("${data.INSURANCE_NAME}");
+    insurance_percentages.push(${data.percentage});
+    </c:forEach>
+
+    var ctx6 = document.getElementById("chart-line6").getContext("2d");
+    new Chart(ctx6, {
+        type: "pie",
+        data: {
+            labels: insurance_names,
+            datasets: [{
+                tension: 0.4,
+                borderColor: "#5e72e4",
+                borderWidth: 2,
+                fill: true,
+                data: insurance_percentages,
+            }]
+        }
+    });
+</script>
+<script>
+    var categories = [];
+    var account_percentages = [];
+
+    <c:forEach var="data" items="${adminSavingList}">
+    categories.push("${data.category}");
+    account_percentages.push(${data.account_percentage});
+    </c:forEach>
+
+    var ctx5 = document.getElementById("chart-line5").getContext("2d");
+    new Chart(ctx5, {
+        type: "pie",
+        data: {
+            labels: categories,
+            datasets: [{
+                tension: 0.4,
+                borderColor: "#5e72e4",
+                borderWidth: 2,
+                fill: true,
+                data: account_percentages,
+            }]
+        }
+    });
+</script>
+<script>
     var genders = [];
     var gender_counts = [];
     var gender_percentages = [];
@@ -434,7 +426,7 @@
 
     var ctx4 = document.getElementById("chart-line4").getContext("2d");
     new Chart(ctx4, {
-        type: "bar",
+        type: "pie",
         data: {
             labels: genders,
             datasets: [{
@@ -708,7 +700,7 @@
         data: {
             labels: months,
             datasets: [{
-                label: "신규 가입자",
+                label: "매달 신규 가입자",
                 tension: 0.4,
                 pointRadius: 0,
                 borderColor: "#5e72e4",
@@ -732,25 +724,25 @@
                 mode: 'index',
             },
             scales: {
-                y: {
-                    grid: {
-                        drawBorder: false,
-                        display: true,
-                        drawOnChartArea: true,
-                        drawTicks: false,
-                        borderDash: [5, 5]
-                    },
-                    ticks: {
-                        display: true,
-                        padding: 10,
-                        color: '#fbfbfb',
-                        font: {
-                            size: 11,
-                            style: 'normal',
-                            lineHeight: 2
-                        },
-                    }
-                },
+                // y: {
+                //     grid: {
+                //         drawBorder: false,
+                //         display: true,
+                //         drawOnChartArea: true,
+                //         drawTicks: false,
+                //         borderDash: [5, 5]
+                //     },
+                //     ticks: {
+                //         display: true,
+                //         padding: 10,
+                //         color: '#fbfbfb',
+                //         font: {
+                //             size: 11,
+                //             style: 'normal',
+                //             lineHeight: 2
+                //         },
+                //     }
+                // },
                 x: {
                     grid: {
                         drawBorder: false,

@@ -13,7 +13,6 @@ public class AdminSaving {
     private String account_percentage;
     private String category_guests;
 
-
     public AdminSaving() {
     }
 }

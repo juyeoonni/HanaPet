@@ -8,6 +8,8 @@ import java.util.List;
 @Mapper
 public interface AdminMapper {
 
+    Integer getGuestCnt();
+
     Integer getPetCnt();
 
     List<AdminPetAge> getPetAgeCnt();
