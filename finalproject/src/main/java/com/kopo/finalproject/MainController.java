@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -148,7 +149,10 @@ public class MainController {
     @RequestMapping("/invited")
     public ModelAndView invited(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        List<Invite> inviteInfo = joinSavingService.getInvitedInfo((String) session.getAttribute("accountNumber"));
+        HashMap<String,String> data = new HashMap<>();
+        data.put("accountNumber", (String) session.getAttribute("accountNumber"));
+        data.put("guestId", (String) session.getAttribute("guest_id"));
+        List<Invite> inviteInfo = joinSavingService.getInvitedInfo(data);
         mav.setViewName("include/invited-saving-card");
         mav.addObject("inviteInfo", inviteInfo);
         return mav;

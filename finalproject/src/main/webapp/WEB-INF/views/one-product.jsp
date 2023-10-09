@@ -88,7 +88,8 @@
 
         .product-info {
             font-size: 19px;
-            padding-bottom: 15px;
+            padding-bottom: 7px;
+            padding-top: 7px;
             font-family: font-medium;
         }
 
@@ -177,7 +178,7 @@
                 <div class="accordion-body"
                      style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px; padding: 100px 240px">
                     <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
-                   <table align="center" width=100%>
+                    <table align="center" width=100%>
                         <tr>
                             <td class="product-info-bold">상품 특징</td>
                             <td class="product-info" style="padding-left: 150px;">만 3세 이하 펫 우대 적금</td>
@@ -208,7 +209,7 @@
                         </tr>
                         <tr>
                             <td class="product-info-bold">이자 지급 방법</td>
-                            <td class="product-info" style="padding-left: 150px;">만기일시지급식 만기(후)해지시 이자를 지급</td>
+                            <td class="product-info" style="padding-left: 150px;">만기일시지급식 : 만기(후)해지시 이자를 지급</td>
                         </tr>
                     </table>
                     <br><br>

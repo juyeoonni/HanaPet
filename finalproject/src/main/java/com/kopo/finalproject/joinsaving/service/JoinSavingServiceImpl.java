@@ -5,6 +5,7 @@ import com.kopo.finalproject.joinsaving.model.dao.JoinSavingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -17,8 +18,8 @@ public class JoinSavingServiceImpl implements JoinSavingService {
     }
 
     @Override
-    public List<Invite> getInvitedInfo(String accountNumber) {
-        return joinSavingMapper.getInvitedInfo(accountNumber);
+    public List<Invite> getInvitedInfo(HashMap<String, String> data) {
+        return joinSavingMapper.getInvitedInfo(data);
     }
 
     @Override

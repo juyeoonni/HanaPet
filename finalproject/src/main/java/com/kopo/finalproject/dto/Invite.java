@@ -9,9 +9,8 @@ import lombok.Setter;
 @Setter
 public class Invite {
     private String openerName;
-    private String invitedGuestId;
     private String accountNumber;
-    private String inviteDate;
+//    private String inviteDate;
     private String savingName;
     private String petName;
     private String petImg;

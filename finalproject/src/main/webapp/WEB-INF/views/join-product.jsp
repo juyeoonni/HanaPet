@@ -126,7 +126,7 @@
                 <td>
                     <% if (joinPeriod != null) { %>
                     <%=joinPeriod%>개월
-                    <div id="endDateMessage"> 적금 만기 예정일은 <%=endDate.split(" ")[0]%> 입니다.</div>
+                    <div id="endDateMessage">적금 만기 예정일은 <%=endDate.split(" ")[0]%> 입니다.</div>
                     <%} else {%>
                     <input type="number" class="input-form" id="joinPeriod"
                            style="text-align: end" required><span
@@ -696,17 +696,24 @@
                 const endDate = new Date($("#endDateMessage").text().split(" ")[3]);
                 const amount = document.getElementById('joinAmount').value.replace(/,/g, '');
 
+
+                console.log(startDate + " " + endDate + " " + amount)
+
                 // 월별 입금 금액 및 연 이자율 설정
                 const monthlyInterestRate = (parseFloat('<%=rate%>') / 100) / 12;
 
                 // 기간 계산 (월 단위)
                 const months = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
 
+                console.log(months + " " + monthlyInterestRate)
+
                 // 총 이자 계산
                 let totalInterest = 0.0;
                 for (let i = 1; i <= months; i++) {
                     totalInterest += (amount * monthlyInterestRate * i);
                 }
+
+                console.log(totalInterest);
 
                 return Math.floor(totalInterest);
             }
@@ -723,7 +730,11 @@
                 dataType: 'json',
                 success: function (data) {
                     console.log("cnt" + data);
-                    cnt = data;
+                    if (cnt < 4) {
+                        cnt = data;
+                    } else if (cnt >= 4) {
+                        cnt = 3;
+                    }
                 },
                 error: function (xhr, status, error) {
                     console.error('Error fetching:', error);
@@ -786,10 +797,21 @@
             let interest = 0;
 
             $('#endAmountWeek').click(function () {
-                const aloneInterest = calculateInterestDaily(); // 참여자 혼자의 이자율 계산
+                let aloneInterest = 0; // 참여자 혼자의 이자율 계산
+                let alonePrincipal = 0; // 참여자 혼자의 원금
                 const joinAmount = document.getElementById('joinAmount').value.replace(/,/g, ''); // 참여자의 가입 금액
-                const alonePrincipal = joinAmount * calculateWeeksBetweenDates(); // 참여자 혼자의 원금
-                const changeOriginInterest = parseInt(((interestAmountInt * (parseFloat('<%= rate %>') + parseFloat('<%=primeRate%>>')) / parseFloat('<%= rate %>'))), 10); // 이전에 이자금액 변경 (우대 금리 적용됨)
+
+                const radioWeekly = document.getElementById("period1");
+                if (radioWeekly.checked) { // 매주일 때
+                    aloneInterest = calculateInterestDaily(); // 참여자 혼자의 이자율 계산
+                    alonePrincipal = joinAmount * calculateWeeksBetweenDates(); // 참여자 혼자의 원금
+                } else { // 매월일 때
+                    aloneInterest = calculateTotalInterest();
+                    console.log(aloneInterest + "이게 혼자 매월 이자")
+                    alonePrincipal = joinAmount * '<%=joinPeriod%>';
+                }
+
+                const changeOriginInterest = parseInt(((interestAmountInt * ((parseFloat('<%= rate %>') + parseFloat('<%=primeRate%>>') * cnt))) / ((parseFloat('<%= rate %>') + parseFloat('<%=primeRate%>') * (cnt - 1)))), 10); // 이전에 이자금액 변경 (우대 금리 적용됨)
                 finalAmount = finalAmountInt + alonePrincipal; // 최종 원금
                 interest = aloneInterest + changeOriginInterest; // 세전 이자금액
                 const interestAmount = Math.floor(interest * 0.846); // 세후 이자금액

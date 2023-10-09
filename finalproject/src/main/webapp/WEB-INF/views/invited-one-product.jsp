@@ -57,10 +57,14 @@
         }
 
         .product-info {
-            font-size: 17px;
-            margin-bottom: 7px;
-            margin-top: 7px;
+            font-size: 19px;
+            padding-bottom: 7px;
+            padding-top: 7px;
             font-family: font-medium;
+        }
+
+        .product-info-bold {
+            font-family: font-bold;
         }
 
         .accordion-button {
@@ -108,15 +112,43 @@
             </h2>
             <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#productAccordion">
-                <div class="accordion-body" style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px;">
-                    <div class="product-info">상품 특징: 만 3세 이하 펫 우대 적금</div>
-                    <div class="product-info">가입 대상: 반려견을 등록한 모든 Hanna Pet 손님</div>
-                    <div class="product-info">이자 지급 방법: 만기일시지급식 : 만기(후)해지시 이자를 지급</div>
-                    <div class="product-info">적립 방법: 자유적립식</div>
-                    <div id="productRate" class="product-info"></div>
-                    <div id="productBalance" class="product-info"></div>
-                    <div id="productJoinPeriod" class="product-info"></div>
-                    <div id="productEndDate" class="product-info"></div>
+                <div class="accordion-body"
+                     style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px; padding: 100px 200px">
+                    <table align="center" width=100%>
+                        <tr>
+                            <td class="product-info-bold">상품 특징</td>
+                            <td class="product-info" style="padding-left: 150px;">만 3세 이하 펫 우대 적금</td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold">가입 대상</td>
+                            <td class="product-info" style="padding-left: 150px;">반려견을 등록한 모든 Hanna Pet 손님</td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold">이자 지급 방법</td>
+                            <td class="product-info" style="padding-left: 150px;">만기일시지급식 : 만기(후)해지시 이자를 지급</td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold">적립 방법</td>
+                            <td class="product-info" style="padding-left: 150px;">자유적립식</td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold" id="productRateLabel">금리</td>
+                            <td class="product-info-bold" id="productRate" style="padding-left: 150px; color: red"></td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold" id="producBalanceLabel">가입 금액</td>
+                            <td class="product-info" id="productBalance" style="padding-left: 150px;"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="product-info-bold" id="productPeriodLabel">가입 기간</td>
+                            <td class="product-info" id="productJoinPeriod" style="padding-left: 150px;"></td>
+                        </tr>
+                        <tr>
+                            <td class="product-info-bold" id="productEndLabel">적금 예상 만기일</td>
+                            <td class="product-info" id="productEndDate" style="padding-left: 150px;"></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -326,18 +358,47 @@
 </body>
 <script>
     $(document).ready(function () {
+
         // 세션에서 제품 정보 가져오기
         const productInfo = JSON.parse(sessionStorage.getItem("selectedProduct"));
+        let cnt = 0;
+
+        $.ajax({
+            url: '/getCnt',
+            method: 'GET',
+            data: {
+                account_number: productInfo.accountNumber
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log("cnt" + data);
+                if (cnt < 4) {
+                    cnt = data;
+                } else if (cnt >= 4) {
+                    cnt = 3;
+                }
+                if (productInfo) {
+                    let baseRate = parseFloat(productInfo.rate);
+                    let extraRate = parseFloat(productInfo.prime_rate) * cnt;
+                    let totalRate = (baseRate + extraRate).toFixed(1);
+
+                    let displayText = baseRate + "% (기본 금리) + " + extraRate.toFixed(1) + "% (우대 금리) = " + totalRate + "%";
+                    $("#productRate").text(displayText);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching:', error);
+            }
+        });
 
         // 제품 정보를 화면에 표시
         if (productInfo) {
             $("#productImg").attr("src", "/resources/img/" + productInfo.image);
             $("#productCategory").text(productInfo.category + " 펫 적금");
             $("#productDescription").text(productInfo.description);
-            $("#productRate").text("이자율: " + productInfo.rate + "%");
-            $("#productBalance").text("가입 금액: " + Number(productInfo.min_balance).toLocaleString() + "원 이상 " + Number(productInfo.max_balance).toLocaleString() + "원 이하");
-            $("#productEndDate").text("적금 예상 만기일: " + productInfo.endDate.split(" ")[0]);
-            $("#productJoinPeriod").text("가입 기간: " + productInfo.joinPeriod + "개월");
+            $("#productBalance").text(Number(productInfo.min_balance).toLocaleString() + "원 이상 " + Number(productInfo.max_balance).toLocaleString() + "원 이하");
+            $("#productEndDate").text(productInfo.endDate.split(" ")[0]);
+            $("#productJoinPeriod").text(productInfo.joinPeriod + "개월");
 
         }
 

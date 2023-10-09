@@ -15,7 +15,7 @@ public interface JoinSavingMapper {
 
     void updateContributionAmount(HashMap<String, String> data);
 
-    List<Invite> getInvitedInfo(String accountNumber);
+    List<Invite> getInvitedInfo(HashMap<String, String> data);
 
     int getCnt(String accountNumber);
 }
