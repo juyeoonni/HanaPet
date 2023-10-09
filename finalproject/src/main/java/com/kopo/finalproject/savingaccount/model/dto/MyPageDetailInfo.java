@@ -16,6 +16,7 @@ public class MyPageDetailInfo {
     private String category;
     private String categoryImg;
     private String openerId;
+    private String openerName;
     private String balance;
     private String savingName;
     private String petName;
