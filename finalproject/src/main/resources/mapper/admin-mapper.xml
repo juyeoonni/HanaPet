@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kopo.finalproject.admin.AdminMapper">
+
+    <select id="getPetCnt" resultType="Integer">
+        SELECT COUNT(*)
+        FROM pet
+    </select>
+
+    <select id="getPetBreedCnt" resultType="com.kopo.finalproject.admin.dto.AdminPetBreed">
+        SELECT BREED,
+               COUNT(*)                                                AS breed_count,
+               ROUND((COUNT(*) / (SELECT COUNT(*) FROM PET) * 100), 1) AS breed_percentage
+        FROM PET
+        GROUP BY BREED
+    </select>
+
+    <select id="getPetAgeCnt" resultType="com.kopo.finalproject.admin.dto.AdminPetAge">
+        SELECT AGE,
+               COUNT(*)                                                AS age_count,
+               ROUND((COUNT(*) / (SELECT COUNT(*) FROM PET) * 100), 1) AS age_percentage
+        FROM PET
+        GROUP BY AGE
+        ORDER BY AGE
+    </select>
+
+    <select id="getPetGenderCnt" resultType="com.kopo.finalproject.admin.dto.AdminPetGender">
+        SELECT gender,
+               COUNT(*)                                                AS gender_count,
+               ROUND((COUNT(*) / (SELECT COUNT(*) FROM PET) * 100), 1) AS gender_percentage
+        FROM PET
+        GROUP BY gender
+        ORDER BY gender_count
+
+    </select>
+
+
+    <select id="getGuestJoinCnt" resultType="com.kopo.finalproject.admin.dto.AdminGuestMonthly">
+        SELECT TO_CHAR(REG_DATE, 'YYYY-MM') AS month,
+    COUNT(*) AS monthly_guest_count
+        FROM GUEST
+        GROUP BY TO_CHAR(REG_DATE, 'YYYY-MM')
+        ORDER BY month
+    </select>
+
+    <select id="getSavingCnt" resultType="com.kopo.finalproject.admin.dto.AdminSaving">
+        WITH TotalSavings AS (SELECT COUNT(DISTINCT ACCOUNT_NUMBER) AS total_accounts,
+                                     COUNT(DISTINCT GUEST_ID)       AS total_guests
+                              FROM JOIN_SAVING)
+
+        SELECT SA.CATEGORY,
+               COUNT(DISTINCT JS.ACCOUNT_NUMBER)                     AS category_accounts,
+               ROUND((COUNT(DISTINCT JS.ACCOUNT_NUMBER) * 100.0 /
+                      (SELECT total_accounts FROM TotalSavings)), 1) AS account_percentage,
+               COUNT(DISTINCT JS.GUEST_ID)                           AS category_guests
+        FROM SAVING_ACCOUNT SA
+                 JOIN
+             JOIN_SAVING JS ON SA.ACCOUNT_NUMBER = JS.ACCOUNT_NUMBER
+        GROUP BY SA.CATEGORY
+        ORDER BY SA.CATEGORY
+    </select>
+
+    <select id="getInsuranceCnt" resultType="com.kopo.finalproject.admin.dto.AdminInsurance">
+        WITH TotalInsurance AS (SELECT COUNT(DISTINCT GUEST_ID) AS total_guests
+                                FROM JOIN_INSURANCE)
+
+        SELECT INSURANCE_NAME,
+               COUNT(DISTINCT GUEST_ID)                                                                 AS insurance_guests,
+               ROUND((COUNT(DISTINCT GUEST_ID) * 100.0 / (SELECT total_guests FROM TotalInsurance)), 1) AS percentage
+        FROM JOIN_INSURANCE
+        GROUP BY INSURANCE_NAME
+        ORDER BY INSURANCE_NAME
+
+    </select>
+</mapper>

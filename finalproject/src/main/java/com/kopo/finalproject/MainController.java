@@ -1,5 +1,7 @@
 package com.kopo.finalproject;
 
+import com.kopo.finalproject.admin.AdminService;
+import com.kopo.finalproject.admin.dto.*;
 import com.kopo.finalproject.dto.Invite;
 import com.kopo.finalproject.guest.model.dto.EmailGuest;
 import com.kopo.finalproject.guest.service.GuestService;
@@ -28,12 +30,15 @@ public class MainController {
 
     private final InsuranceService insuranceService;
 
-    public MainController(JoinSavingService joinSavingService, PetService petService, ProductService productService, GuestService guestService, InsuranceService insuranceService) {
+    private final AdminService adminService;
+
+    public MainController(JoinSavingService joinSavingService, PetService petService, ProductService productService, GuestService guestService, InsuranceService insuranceService, AdminService adminService) {
         this.joinSavingService = joinSavingService;
         this.petService = petService;
         this.productService = productService;
         this.guestService = guestService;
         this.insuranceService = insuranceService;
+        this.adminService = adminService;
     }
 
     @RequestMapping("/")
@@ -52,6 +57,24 @@ public class MainController {
     @RequestMapping("/admin/dashboard")
     public ModelAndView adminDash() {
         ModelAndView mav = new ModelAndView();
+        int petCnt = adminService.getPetCnt();
+        List<AdminPetAge> adminPetAgeList = adminService.getPetAgeCnt();
+        List<AdminPetBreed> adminPetBreedList = adminService.getPetBreedCnt();
+        List<AdminPetGender> adminPetGenderList = adminService.getPetGenderCnt();
+        List<AdminGuestMonthly> adminGuestMonthlyList = adminService.getGuestJoinCnt();
+        List<AdminSaving> adminSavingList = adminService.getSavingCnt();
+        List<AdminInsurance> adminInsuranceList = adminService.getInsuranceCnt();
+
+        System.out.println(petCnt);
+        System.out.println(adminPetAgeList);
+        System.out.println(adminPetBreedList);
+        System.out.println(adminPetGenderList);
+        System.out.println(adminGuestMonthlyList);
+        System.out.println(adminSavingList);
+        System.out.println(adminInsuranceList);
+
+
+
         mav.setViewName("admin/admin-main");
         return mav;
     }
@@ -149,7 +172,7 @@ public class MainController {
     @RequestMapping("/invited")
     public ModelAndView invited(HttpSession session) {
         ModelAndView mav = new ModelAndView();
-        HashMap<String,String> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
         data.put("accountNumber", (String) session.getAttribute("accountNumber"));
         data.put("guestId", (String) session.getAttribute("guest_id"));
         List<Invite> inviteInfo = joinSavingService.getInvitedInfo(data);
