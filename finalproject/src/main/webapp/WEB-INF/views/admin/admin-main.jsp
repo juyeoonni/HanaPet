@@ -27,11 +27,6 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet">
 </head>
-<style>
-    .bg-primary {
-        background-color: #75A989 !important;
-    }
-</style>
 
 <body class="g-sidenav-show   bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
@@ -154,31 +149,28 @@
     <div class="container-fluid py-4">
         <div class="row mb-4" style="display: flex;">
 
-            <div class="col-lg-7 mb-lg-0 mb-4" style="width: 65%">
+            <div class="col-lg-7 mb-lg-0 mb-4" style="width: 75%">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
                         <h5 class="text-capitalize">매달 신규 가입자</h5>
-                        <p class="text-sm mb-0">
-                            <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
-                            <span class="font-weight-bold">4% more</span> in 2023
-                        </p>
                     </div>
                     <div class="card-body p-3">
-                        <div class="chart" style="height: 315px">
-                            <canvas id="chart-line" class="chart-canvas" height="315" width="577"
-                                    style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>
+                        <div class="chart" style="height: 300px">
+                            <canvas id="chart-line" class="chart-canvas" height="380" width="577"
+                                    style="display: block; box-sizing: border-box; height: 370px; width: 461.8px;"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div style="width: 35%;">
+            <div style="width: 25%;">
                 <div class="col-xl-3 col-sm-6 mb-xl-0" style="width: 100%">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row">
                                 <div class="col-3 text-start">
-                                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                    <div class="icon icon-shape shadow-primary text-center rounded-circle"
+                                         style="background: #b0c4b1">
                                         <i class="bi bi-check2-circle fs-4"></i>
                                     </div>
                                 </div>
@@ -208,8 +200,8 @@
                         <div class="card-body p-3">
                             <div class="row">
                                 <div class="chart">
-                                    <canvas id="chart-line4" class="chart-canvas" height="375" width="577"
-                                            style="display: block; box-sizing: border-box; height: 300px; width: 461.8px;"></canvas>
+                                    <canvas id="chart-line4" class="chart-canvas" height="300" width="577"
+                                            style="display: block; box-sizing: border-box; height: 300px; width: 300px;"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -365,61 +357,62 @@
 <script src="/resources/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="/resources/js/plugins/chartjs.min.js"></script>
 
-<script>
-    var insurance_names = [];
-    var insurance_percentages = [];
+<%--<script>--%>
+<%--    var insurance_names = [];--%>
+<%--    var insurance_percentages = [];--%>
 
-    <c:forEach var="data" items="${adminInsuranceList}">
-    insurance_names.push("${data.INSURANCE_NAME}");
-    insurance_percentages.push(${data.percentage});
-    </c:forEach>
+<%--    <c:forEach var="data" items="${adminInsuranceList}">--%>
+<%--    insurance_names.push("${data.INSURANCE_NAME}");--%>
+<%--    insurance_percentages.push(${data.percentage});--%>
+<%--    </c:forEach>--%>
 
-    var ctx6 = document.getElementById("chart-line6").getContext("2d");
-    new Chart(ctx6, {
-        type: "pie",
-        data: {
-            labels: insurance_names,
-            datasets: [{
-                tension: 0.4,
-                borderColor: "#5e72e4",
-                borderWidth: 2,
-                fill: true,
-                data: insurance_percentages,
-            }]
-        }
-    });
-</script>
-<script>
-    var categories = [];
-    var account_percentages = [];
+<%--    var ctx6 = document.getElementById("chart-line6").getContext("2d");--%>
+<%--    new Chart(ctx6, {--%>
+<%--        type: "pie",--%>
+<%--        data: {--%>
+<%--            labels: insurance_names,--%>
+<%--            datasets: [{--%>
+<%--                data: insurance_percentages,--%>
+<%--            }]--%>
+<%--        },--%>
+<%--        options: {--%>
+<%--            legend: {--%>
+<%--                display: true,--%>
+<%--            }--%>
+<%--        }--%>
+<%--    });--%>
+<%--</script>--%>
+<%--<script>--%>
+<%--    var categories = [];--%>
+<%--    var account_percentages = [];--%>
 
-    <c:forEach var="data" items="${adminSavingList}">
-    categories.push("${data.category}");
-    account_percentages.push(${data.account_percentage});
-    </c:forEach>
+<%--    <c:forEach var="data" items="${adminSavingList}">--%>
+<%--    categories.push("${data.category}");--%>
+<%--    account_percentages.push(${data.account_percentage});--%>
+<%--    </c:forEach>--%>
 
-    var ctx5 = document.getElementById("chart-line5").getContext("2d");
-    new Chart(ctx5, {
-        type: "pie",
-        data: {
-            labels: categories,
-            datasets: [{
-                tension: 0.4,
-                borderColor: "#5e72e4",
-                borderWidth: 2,
-                fill: true,
-                data: account_percentages,
-            }]
-        }
-    });
-</script>
+<%--    var ctx5 = document.getElementById("chart-line5").getContext("2d");--%>
+<%--    new Chart(ctx5, {--%>
+<%--        type: "pie",--%>
+<%--        data: {--%>
+<%--            labels: categories,--%>
+<%--            datasets: [{--%>
+<%--                tension: 0.4,--%>
+<%--                borderColor: "#5e72e4",--%>
+<%--                borderWidth: 2,--%>
+<%--                fill: true,--%>
+<%--                data: account_percentages,--%>
+<%--            }]--%>
+<%--        }--%>
+<%--    });--%>
+<%--</script>--%>
 <script>
     var genders = [];
     var gender_counts = [];
     var gender_percentages = [];
 
     <c:forEach var="data" items="${adminPetGenderList}">
-    genders.push("${data.gender}");
+    genders.push("${data.gender}" == 'F' ? "암컷" : "수컷");
     gender_counts.push(${data.gender_count});
     gender_percentages.push(${data.gender_percentage});
     </c:forEach>
@@ -430,13 +423,14 @@
         data: {
             labels: genders,
             datasets: [{
-                tension: 0.4,
-                pointRadius: 0,
-                borderColor: "#5e72e4",
-                borderWidth: 3,
-                fill: true,
                 data: gender_counts,
-                maxBarThickness: 30
+                backgroundColor: [
+                    '#edafb8',
+                    '#f7e1d7',
+                    '#dedbd2',
+                    '#b0c4b1',
+                    '#4a5759'
+                ]
             }]
         },
         options: {
@@ -451,13 +445,15 @@
                         }
                     }
                 }, legend: {
-                    display: false,
+                    labels: {
+                        // 글자 크기 조정
+                        font: {
+                            size: 17, // 원하는 글자 크기를 설정합니다.
+                            weight: 'bold'
+                        },
+                        padding: 20
+                    }
                 }
-            }, responsive: true,
-            maintainAspectRatio: false,
-            interaction: {
-                intersect: false,
-                mode: 'index',
             },
             scales: {
                 y: {
@@ -479,25 +475,7 @@
                         },
                     }
                 },
-                // x: {
-                //     grid: {
-                //         drawBorder: false,
-                //         display: false,
-                //         drawOnChartArea: false,
-                //         drawTicks: false,
-                //         borderDash: [5, 5]
-                //     },
-                //     ticks: {
-                //         display: true,
-                //         color: '#ccc',
-                //         padding: 20,
-                //         font: {
-                //             size: 11,
-                //             style: 'normal',
-                //             lineHeight: 2
-                //         },
-                //     }
-                // },
+
             },
         }
     });
@@ -508,7 +486,7 @@
     var percentages = [];
 
     <c:forEach var="data" items="${adminPetAgeList}">
-    ages.push("${data.age}");
+    ages.push("${data.age}살");
     age_counts.push(${data.age_count});
     percentages.push(${data.age_percentage});
     </c:forEach>
@@ -519,15 +497,16 @@
         data: {
             labels: ages,
             datasets: [{
-                tension: 0.4,
-                pointRadius: 0,
-                borderColor: "#5e72e4",
-                borderWidth: 3,
-                fill: true,
-                data: age_counts,
-                maxBarThickness: 30
+                data: age_counts, backgroundColor: [
+                    '#edafb8',
+                    '#f7e1d7',
+                    '#dedbd2',
+                    '#b0c4b1',
+                    '#4a5759'
+                ]
             }]
         },
+
         options: {
             plugins: {
                 tooltip: {
@@ -542,52 +521,28 @@
                 }, legend: {
                     display: false,
                 }
-            }, responsive: true,
-            maintainAspectRatio: false,
-            interaction: {
-                intersect: false,
-                mode: 'index',
-            },
-            scales: {
+            }, scales: {
                 y: {
                     grid: {
                         drawBorder: false,
-                        display: true,
-                        drawOnChartArea: true,
-                        drawTicks: false,
-                        borderDash: [5, 5]
+                        drawOnChartArea: false,
+                        drawTicks: true,
                     },
+                    precision: 0,
+                    beginAtZero: true,
                     ticks: {
-                        display: true,
-                        padding: 10,
-                        color: '#fbfbfb',
-                        font: {
-                            size: 11,
-                            style: 'normal',
-                            lineHeight: 2
-                        },
+                        callback: function (value) {
+                            if (Number.isInteger(value) && value > 0) {
+                                return value + '마리'
+                            } else {
+                                return "";
+                            }
+
+                        }
                     }
-                },
-                // x: {
-                //     grid: {
-                //         drawBorder: false,
-                //         display: false,
-                //         drawOnChartArea: false,
-                //         drawTicks: false,
-                //         borderDash: [5, 5]
-                //     },
-                //     ticks: {
-                //         display: true,
-                //         color: '#ccc',
-                //         padding: 20,
-                //         font: {
-                //             size: 11,
-                //             style: 'normal',
-                //             lineHeight: 2
-                //         },
-                //     }
-                // },
-            },
+                }
+            }
+
         }
     });
 </script>
@@ -608,13 +563,14 @@
         data: {
             labels: breeds,
             datasets: [{
-                tension: 0.4,
-                pointRadius: 0,
-                borderColor: "#5e72e4",
-                borderWidth: 3,
-                fill: true,
                 data: bree_counts,
-                maxBarThickness: 30
+                backgroundColor: [
+                    '#edafb8',
+                    '#f7e1d7',
+                    '#dedbd2',
+                    '#b0c4b1',
+                    '#4a5759'
+                ]
             }]
         },
         options: {
@@ -631,52 +587,27 @@
                 }, legend: {
                     display: false,
                 }
-            }, responsive: true,
-            maintainAspectRatio: false,
-            interaction: {
-                intersect: false,
-                mode: 'index',
-            },
-            scales: {
+            }, scales: {
                 y: {
                     grid: {
                         drawBorder: false,
-                        display: true,
-                        drawOnChartArea: true,
-                        drawTicks: false,
-                        borderDash: [5, 5]
+                        drawOnChartArea: false,
+                        drawTicks: true,
                     },
+                    precision: 0,
+                    beginAtZero: true,
                     ticks: {
-                        display: true,
-                        padding: 10,
-                        color: '#fbfbfb',
-                        font: {
-                            size: 11,
-                            style: 'normal',
-                            lineHeight: 2
-                        },
+                        callback: function (value) {
+                            if (Number.isInteger(value) && value > 0) {
+                                return value + '마리';
+                            } else {
+                                return "";
+                            }
+                        }
                     }
-                },
-                // x: {
-                //     grid: {
-                //         drawBorder: false,
-                //         display: false,
-                //         drawOnChartArea: false,
-                //         drawTicks: false,
-                //         borderDash: [5, 5]
-                //     },
-                //     ticks: {
-                //         display: true,
-                //         color: '#ccc',
-                //         padding: 20,
-                //         font: {
-                //             size: 11,
-                //             style: 'normal',
-                //             lineHeight: 2
-                //         },
-                //     }
-                // },
-            },
+                }
+            }
+
         }
     });
 </script>
@@ -701,14 +632,14 @@
             labels: months,
             datasets: [{
                 label: "매달 신규 가입자",
-                tension: 0.4,
-                pointRadius: 0,
-                borderColor: "#5e72e4",
-                backgroundColor: gradientStroke1,
-                borderWidth: 3,
-                fill: true,
                 data: counts,
-                maxBarThickness: 6
+                backgroundColor: [
+                    '#edafb8',
+                    '#f7e1d7',
+                    '#dedbd2',
+                    '#b0c4b1',
+                    '#4a5759'
+                ]
             }],
         },
         options: {
@@ -724,25 +655,25 @@
                 mode: 'index',
             },
             scales: {
-                // y: {
-                //     grid: {
-                //         drawBorder: false,
-                //         display: true,
-                //         drawOnChartArea: true,
-                //         drawTicks: false,
-                //         borderDash: [5, 5]
-                //     },
-                //     ticks: {
-                //         display: true,
-                //         padding: 10,
-                //         color: '#fbfbfb',
-                //         font: {
-                //             size: 11,
-                //             style: 'normal',
-                //             lineHeight: 2
-                //         },
-                //     }
-                // },
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#fbfbfb',
+                        font: {
+                            size: 11,
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
                 x: {
                     grid: {
                         drawBorder: false,

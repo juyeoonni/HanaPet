@@ -29,10 +29,6 @@
         z-index: 0;
     }
 
-    .bg-primary {
-        background-color: #75A989 !important;
-    }
-
     .avatar {
         border-radius: 0px;
     }

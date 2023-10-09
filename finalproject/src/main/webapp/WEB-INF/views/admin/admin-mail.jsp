@@ -25,7 +25,6 @@
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
 
     <style>
-
         .btn-getstarted, .btn-getstarted:hover {
             font-size: 16px;
             color: #fff;
@@ -50,7 +49,7 @@
     </style>
 </head>
 <body class="g-sidenav-show bg-gray-100">
-<div class="min-height-300 position-absolute w-100" style="background: #75A989"></div>
+<div class="min-height-300 position-absolute w-100" style="background: #46814c"></div>
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
        id="sidenav-main">
     <div class="sidenav-header">

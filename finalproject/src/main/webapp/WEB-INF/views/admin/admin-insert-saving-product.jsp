@@ -87,10 +87,6 @@
             border: 1px solid #75A989;
         }
 
-        .bg-primary {
-            background-color: #75A989 !important;
-        }
-
         .end {
             text-align: end;
         }
