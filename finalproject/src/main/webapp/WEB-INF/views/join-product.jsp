@@ -14,11 +14,21 @@
 
     <style>
         .modal {
-            height: 1870px;
+            height: 2190px;
         }
 
         .modal_body {
-            top: 60%;
+            top: 67%;
+        }
+
+        .category {
+            background: white;
+            box-shadow: none;
+            width: auto;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0px 10px;
         }
 
         .password-wrapper {
@@ -280,16 +290,16 @@
     <div class="modal">
         <div class="modal_body">
             <div class="category">
-                <img src="/resources/img/product-의료건강.svg" width="42px"
+                <img width="42px" id="categoryImg"
                      style="padding-left: 5px; padding-top: 3px; margin-right: 15px;">
-                <span style="font-size: 26px">의료/건강</span>
+                <span id="category" style="font-size: 26px; color: var(--primary-color);}"></span>
             </div>
 
             <div class="contents">
                 <div class="first-content">
                     <img src=""/>
-                    <span>토리를 위한</span> <!--바꾸기-->
-                    <span id="account-name">백내장 수술 적금</span>
+                    <span id="pet-name"></span> <!--바꾸기-->
+                    <span id="account-name"></span>
                     <span>에 가입되었습니다.</span>
                 </div>
                 <div class="second-content">
@@ -501,6 +511,8 @@
             if (productInfo) {
                 $("#productImg").attr("src", "/resources/img/" + productInfo.image);
                 $("#productCategory").text(productInfo.category + " 펫 적금");
+                $("#categoryImg").attr("src", "/resources/img/" + productInfo.image);
+                $("#category").text(productInfo.category + " 적금");
                 $("#productDescription").text(productInfo.description);
                 $("#productRate").text("이자율: " + productInfo.rate);
                 $("#productMinPeriod").text("최소 기간: " + productInfo.min_period);
@@ -1004,6 +1016,22 @@
     );
 
 
+</script>
+<!-- 모달 창에 뜨는 문구 생성 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('petSelection').addEventListener('change', function () {
+            var selectedOption = this.options[this.selectedIndex].text;
+            document.getElementById('pet-name').textContent = selectedOption + '를 위한 ';
+        });
+        if (typeof savingName !== 'undefined' && savingName !== null) {
+            document.getElementById('account-name').textContent = savingName;
+        } else {
+            document.getElementById('accountName').addEventListener('input', function () {
+                document.getElementById('account-name').textContent = this.value;
+            });
+        }
+    });
 </script>
 <script>
     const modal = document.querySelector('.modal');

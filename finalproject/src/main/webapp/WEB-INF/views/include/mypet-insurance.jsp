@@ -201,7 +201,7 @@
 
                 $.when.apply($, promises2, iszero, cnt).then(function () {
                     if (!iszero) {
-                        infoText = "가입된 보험이 없습니다.\n 추천 보험 보러가기";
+                        infoText = "가입된 보험이 없습니다.";
                     } else {
                         infoText += cnt + "개의 보험에 가입되어 있습니다.";
                     }

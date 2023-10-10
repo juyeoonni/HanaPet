@@ -60,15 +60,19 @@
             text-align: start;
         }
 
-        /*#myModal {*/
-        /*    height: 390px;*/
-        /*}*/
-
         .modal_body {
             height: 410px;
         }
 
-
+        .category {
+            background: white;
+            box-shadow: none;
+            width: auto;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0px 10px;
+        }
     </style>
 </head>
 <%@ include file="include/header.jsp" %>
