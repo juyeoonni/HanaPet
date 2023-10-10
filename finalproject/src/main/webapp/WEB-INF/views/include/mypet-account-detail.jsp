@@ -16,9 +16,48 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 
     <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/KOREAN.json"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" type="text/css"
+          rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 
 </head>
 <style>
+    button.dt-button, div.dt-button, a.dt-button {
+        position: relative;
+        display: inline-block;
+        box-sizing: border-box;
+        margin-right: 0.333em;
+        margin-bottom: 0.333em;
+        padding: 10px 10px 7px 10px;
+        border: 1px solid white;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 10px;
+        line-height: 1.6em;
+        color: #324D3D;
+        white-space: nowrap;
+        overflow: hidden;
+        background-color: #e9e9e9;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        text-decoration: none;
+        outline: none
+    }
+
+    button.dt-button span {
+        font-size: 17px;
+    }
 
     .menu-title {
         text-align: center;
@@ -81,17 +120,19 @@
     table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:before, table.dataTable thead > tr > td.sorting:before, table.dataTable thead > tr > td.sorting_asc:before, table.dataTable thead > tr > td.sorting_desc:before, table.dataTable thead > tr > td.sorting_asc_disabled:before, table.dataTable thead > tr > td.sorting_desc_disabled:before {
         bottom: 54.5%;
         content: "▲"/"";
+        font-size: 10px;
     }
 
     table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:after {
         top: 54.5%;
         content: "▼"/"";
+        font-size: 10px;
     }
 </style>
 <body>
 <%@ include file="header.jsp" %>
 <div class="body">
-    <div class="card text-white mb-3">
+    <div class="card text-white" style="padding: 45px">
         <div class="menu-title">거래 내역 조회</div>
         <div style="text-align: center;" id="account-name">
             ${historyList[0].account_number}
@@ -115,9 +156,11 @@
                     <tr>
                         <td style="text-align: center">${historyItem.transaction_date}</td>
                         <td style="text-align: center">${historyItem.inout}</td>
-                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.transaction_amount}" type="number"
-                                              pattern="#,###원"/></td>
-                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.balance}" type="number" pattern="#,###원"/></td>
+                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.transaction_amount}"
+                                                                      type="number"
+                                                                      pattern="#,###원"/></td>
+                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.balance}" type="number"
+                                                                      pattern="#,###원"/></td>
                         <td style="text-align: center">${historyItem.transaction_class}</td>
                         <td>${historyItem.content}</td>
                     </tr>
@@ -130,11 +173,26 @@
 <%@ include file="footer.jsp" %>
 <script>
     $(document).ready(function () {
-        new DataTable('#myTable', {
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json',
+        // DataTable 초기화
+        $.noConflict();
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf', 'print'
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json"
             },
-            order: [[0, 'desc']] // 첫 번째 열(거래일시)을 내림차순으로 정렬
+            "order": [[0, 'desc']], // 거래일시를 내림차순으로 정렬
+            "paging": true,
+            "info": true,
+            "initComplete": function (settings, json) {
+                // '엑설' 버튼의 span 요소를 선택
+                let excelButtonSpan = document.querySelector('.buttons-excel span');
+                if (excelButtonSpan) {
+                    excelButtonSpan.textContent = '엑셀';
+                }
+            }
         });
     });
 

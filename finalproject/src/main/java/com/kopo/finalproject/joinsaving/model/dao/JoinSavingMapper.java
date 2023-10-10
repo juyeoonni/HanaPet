@@ -18,4 +18,6 @@ public interface JoinSavingMapper {
     List<Invite> getInvitedInfo(HashMap<String, String> data);
 
     int getCnt(String accountNumber);
+
+    String getInvitedPW(String accountNumber);
 }

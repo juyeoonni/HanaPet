@@ -17,6 +17,7 @@
         SELECT *
         FROM history
         WHERE account_number = #{account_number}
+        ORDER BY transaction_date DESC
     </select>
 
     <!-- 예금 계좌 비밀번호 확인 -->

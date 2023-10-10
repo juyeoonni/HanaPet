@@ -13,7 +13,8 @@
                sa.current_balance as balance,
                sa.saving_name     as savingName,
                sa.progress_rate   as progressRate,
-               psd.image          as categoryImg
+               psd.image          as categoryImg,
+               sa.saving_pw       as savingPW
         FROM saving_account sa
                  join pet_saving_product psd on psd.category = sa.category
                  join join_saving js on js.account_number = sa.account_number
@@ -30,9 +31,9 @@
     <!-- 적금 계좌 테이블 생성 -->
     <insert id="createSavingAccounts" parameterType="HashMap">
         INSERT INTO saving_account(account_number, join_period, end_date, category, opener_id, saving_name, pet_id,
-                                   final_amount, interest_amount)
+                                   final_amount, interest_amount, saving_pw)
         VALUES (#{account_number}, #{join_period}, TO_DATE(#{end_date}, 'YYYY-MM-DD'), #{category}, #{guest_id},
-                #{saving_name}, #{pet_id}, #{final_amount}, #{interest_amount})
+                #{saving_name}, #{pet_id}, #{final_amount}, #{interest_amount}, #{saving_pw})
     </insert>
 
     <!-- 적금 가입하면서 자동이체 시 적금 계좌에 돈 입금됨 + finalAmount랑 interestAmount 변경하기 -->
@@ -67,26 +68,27 @@
     </select>
 
     <select id="getDetailInfo">
-        select js.guest_id            as guestId,
-               g.name                 as guestName,
-               sa.account_number      as accountNumber,
-               sa.opening_date        as openingDate,
-               sa.end_date            as endDate,
-               psd.category           as category,
-               psd.image              as categoryImg,
-               sa.opener_id           as openerId,
-               g2.name                as openerName,
-               sa.current_balance     as balance,
-               sa.saving_name         as savingName,
-               pet.name               as petName,
-               sa.progress_rate       as progressRate,
-               sa.final_amount        as finalAmount,
-               sa.interest_amount     as interestAmount,
-               js.join_date           as joinDate,
-               js.contribution_amount as contributionAmount,
-               js.contribution_ratio  as contributionRatio,
-               js.transfer_amount     as transferAmount,
-               js.transfer_period     as transferPeriod
+        select js.guest_id               as guestId,
+               g.name                    as guestName,
+               sa.account_number         as accountNumber,
+               sa.opening_date           as openingDate,
+               sa.end_date               as endDate,
+               psd.category              as category,
+               psd.image                 as categoryImg,
+               sa.opener_id              as openerId,
+               g2.name                   as openerName,
+               sa.current_balance        as balance,
+               sa.saving_name            as savingName,
+               pet.name                  as petName,
+               sa.progress_rate          as progressRate,
+               sa.final_amount           as finalAmount,
+               sa.interest_amount        as interestAmount,
+               js.join_date              as joinDate,
+               js.contribution_amount    as contributionAmount,
+               js.contribution_ratio     as contributionRatio,
+               js.transfer_amount        as transferAmount,
+               js.transfer_period        as transferPeriod,
+               js.DEPOSIT_ACCOUNT_NUMBER as depositAccountNumber
         from saving_account sa
                  join join_saving js on sa.account_number = js.account_number
                  join pet_saving_product psd on psd.category = sa.category

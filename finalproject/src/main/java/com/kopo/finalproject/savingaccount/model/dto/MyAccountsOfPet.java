@@ -14,6 +14,7 @@ public class MyAccountsOfPet {
     private String progressRate;
     private String openerId;
     private String categoryImg;
+    private String savingPW;
 
     public MyAccountsOfPet() {
     }

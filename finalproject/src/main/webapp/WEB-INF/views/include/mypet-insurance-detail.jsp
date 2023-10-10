@@ -23,13 +23,68 @@
 
     <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/KOREAN.json"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" type="text/css"
+          rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 
     <style>
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #E1E6DE !important;
+            border: 1px solid #E1E6DE !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: var(--primary-color) !important;
+            border: 1px solid var(--primary-color) !important;
+            color: white !important;
+        }
+
+        button.dt-button, div.dt-button, a.dt-button {
+            position: relative;
+            display: inline-block;
+            box-sizing: border-box;
+            margin-right: 0.333em;
+            margin-bottom: 0.333em;
+            padding: 10px 10px 7px 10px;
+            border: 1px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 10px;
+            line-height: 1.6em;
+            color: #324D3D;
+            white-space: nowrap;
+            overflow: hidden;
+            background-color: #e9e9e9;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-decoration: none;
+            outline: none
+        }
+
+        button.dt-button span {
+            font-size: 17px;
+        }
+
         .menu-title {
             font-weight: bold;
             text-align: center;
             font-size: 30px;
             margin-bottom: 40px;
+        }
+
+        input[type="search" i] {
+            margin-bottom: 25px;
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
@@ -41,62 +96,6 @@
         .card {
             margin: 20px 0;
             padding: 20px 30px;
-        }
-
-        .mx1 {
-            margin: 0 1px;
-        }
-
-        /*.p-green {*/
-        /*    background-color: var(--primary-color);*/
-        /*}*/
-
-        .progress {
-            height: 12px;
-            position: relative;
-            overflow: visible;
-        }
-
-
-        .fas {
-            font-size: 20px;
-            color: #636363;
-            padding-right: 20px;
-        }
-
-        .icon1 {
-            font-size: 10px;
-            position: absolute;
-            background-color: #FFFF;
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            right: 0;
-            top: -10px;
-        }
-
-        .icon2 {
-            font-size: 10px;
-            position: absolute;
-            background-color: #FFFF;
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            /*left: 50%;*/
-            top: -10px;
-        }
-
-        .far.fa-star {
-            font-size: 10px;
-            padding: 10px;
-        }
-
-        .fas.fa-check {
-            font-size: 10px;
-            padding: 10px;
-            color: #237518;
         }
 
         .flex {
@@ -126,18 +125,13 @@
             border-width: 0;
             border-radius: .25rem;
             box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
-            margin-bottom: 1.5rem
-        }
-
-        .card {
+            margin-bottom: 1.5rem;
             position: relative;
             display: flex;
             flex-direction: column;
             min-width: 0;
             word-wrap: break-word;
-            background-color: #fff;
             background-clip: border-box;
-            border-radius: .25rem
         }
 
         .card-header {
@@ -235,10 +229,6 @@
             margin-bottom: 20px;
         }
 
-        /*tr {*/
-        /*    background: var(--primary-color);*/
-        /*}*/
-
         th {
             font-size: 18px;
         }
@@ -278,11 +268,13 @@
         table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:before, table.dataTable thead > tr > td.sorting:before, table.dataTable thead > tr > td.sorting_asc:before, table.dataTable thead > tr > td.sorting_desc:before, table.dataTable thead > tr > td.sorting_asc_disabled:before, table.dataTable thead > tr > td.sorting_desc_disabled:before {
             bottom: 54.5%;
             content: "▲"/"";
+            font-size: 10px;
         }
 
         table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:after {
             top: 54.5%;
             content: "▼"/"";
+            font-size: 10px;
         }
 
         .middle-title {
@@ -365,7 +357,8 @@
                     <td style="text-align: center">${insu.paymentCount}회차</td>
                     <td style="text-align: center">${insu.joinDate.split(" ")[0]}</td>
                     <td style="text-align: center">자동이체</td>
-                    <td style="text-align: end"><fmt:formatNumber value="${insu.insuranceAmount}" type="number" pattern="#,###원"/></td>
+                    <td style="text-align: end"><fmt:formatNumber value="${insu.insuranceAmount}" type="number"
+                                                                  pattern="#,###원"/></td>
                 </tr>
                 </tbody>
             </table>
@@ -381,14 +374,27 @@
 
 <script>
     $(document).ready(function () {
-        new DataTable('#myTable', {
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json',
+        // DataTable 초기화
+        $.noConflict();
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf', 'print'
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json"
             },
-            searching: false,     // 검색창 비활성화
-            paging: false,        // 페이지네이션 비활성화
-            lengthChange: false,   // 페이지당 표시 항목 수 설정 비활성화
-            info: false
+            "paging": true, // 페이지 나누기 사용
+            "info": true,
+            "initComplete": function (settings, json) {
+                // '엑설' 버튼의 span 요소를 선택
+                let excelButtonSpan = document.querySelector('.buttons-excel span');
+
+                // span의 텍스트를 '엑셀'로 변경
+                if (excelButtonSpan) {
+                    excelButtonSpan.textContent = '엑셀';
+                }
+            }
         });
     });
 

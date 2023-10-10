@@ -28,6 +28,7 @@ public class MyPageDetailInfo {
     private String contributionRatio;
     private String transferAmount;
     private String transferPeriod;
+    private String depositAccountNumber;
 
     public MyPageDetailInfo() {
     }

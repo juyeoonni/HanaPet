@@ -222,6 +222,7 @@
                             var account_number = account.accountNumber;
                             var openerId = account.openerId;
                             var progress_rate = account.progressRate;
+                            var savingPW = account.savingPW;
 
                             total_balance += parseInt(balance);
 
@@ -277,7 +278,7 @@
                                             objectType: 'feed',
                                             content: {
                                                 title: 'HanaPet 공유 적금에 초대되었어요!',
-                                                description: pet.name + '를 위해 공유 적금에 참여해보세요!🐶 비밀번호는 381924입니다.',
+                                                description: pet.name + '를 위해 공유 적금에 참여해보세요!🐶 비밀번호는 ' + savingPW + '입니다.',
                                                 imageUrl: 'https://postfiles.pstatic.net/MjAyMzA5MTBfMTg2/MDAxNjk0MzM0MzI1NTIy.4l3dX_IM59DAvZREh6SKYk8pxBVd6kttYnha-5qNyuUg.a-pIK9JsI0PZPa1grgYGbTeQUtMjVL4aE-xGA-q3j80g.PNG.yulim_choi/A4_-_1.png?type=w966',
                                                 link: {
                                                     mobileWebUrl: sharedUrl,

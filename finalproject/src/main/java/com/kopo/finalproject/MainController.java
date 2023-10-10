@@ -185,7 +185,10 @@ public class MainController {
     public ModelAndView invitedPw(@RequestParam(name = "account-number", required = false) String
                                           accountNumber, HttpSession session) {
         ModelAndView mav = new ModelAndView();
+        String accountPW = joinSavingService.getInvitedPW(accountNumber);
+        mav.addObject("accountPW", accountPW);
         mav.setViewName("include/invited-password-card");
+        System.out.println(accountPW+"야");
         if (accountNumber != null) session.setAttribute("accountNumber", accountNumber);
         return mav;
     }

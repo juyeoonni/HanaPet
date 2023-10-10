@@ -14,6 +14,7 @@
 
         .card {
             margin-bottom: 50px;
+            margin-top: 30px;
         }
 
         .letter-image {
@@ -208,7 +209,7 @@
         <div class="shadow"></div>
     </div>
 
-    <div class="card" style="display: none">
+    <div class="card" style="display: none;">
         <div class="category small">
             <img src="/resources/img/invitation.svg" width="40px"
                  style="padding-left: 5px; padding-top: 3px; margin-right: 15px;">
@@ -223,7 +224,7 @@
             <div class="relative mb-1">
                 <span class="ml-2 bg-white px-2 absolute -top-3 text-sm">Password</span>
                 <input class="transition duration-500 border h-12 rounded w-full px-2 mb-2"
-                       style="border-radius: 5px; margin-left: 5px; padding: 3px 5px">
+                       type="password" style="border-radius: 5px; margin-left: 5px; padding: 3px 5px">
             </div>
             <br>
             <div class="third-content">
@@ -243,7 +244,7 @@
         const enteredPassword = document.querySelector(".transition").value;
 
         // 실제 비밀번호
-        var actualPassword = "381924";
+        var actualPassword = '${accountPW}';
 
         // 입력한 비밀번호와 실제 비밀번호를 비교
         if (enteredPassword === actualPassword) {

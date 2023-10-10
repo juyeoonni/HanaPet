@@ -13,6 +13,7 @@
 
         .card {
             margin-bottom: 50px;
+            margin-top: 30px;
         }
     </style>
 </head>

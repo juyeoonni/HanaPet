@@ -170,6 +170,15 @@
             color: white !important;
         }
 
+        /*table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:before, table.dataTable thead > tr > td.sorting:before, table.dataTable thead > tr > td.sorting_asc:before, table.dataTable thead > tr > td.sorting_desc:before, table.dataTable thead > tr > td.sorting_asc_disabled:before, table.dataTable thead > tr > td.sorting_desc_disabled:before {*/
+        /*    bottom: 54.5%;*/
+        /*    content: "▲"/"";*/
+        /*}*/
+
+        /*table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:after {*/
+        /*    top: 54.5%;*/
+        /*    content: "▼"/"";*/
+        /*}*/
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
         p {
@@ -367,6 +376,15 @@
                     <td style="padding: 8px;"><fmt:formatNumber value="${info[0].balance}" type="number"
                                                                 pattern="#,###원"/></td>
                 </tr>
+                <tr>
+                    <td style="padding: 8px; font-weight: bold;">연결 계좌</td>
+                    <td style="width: 30px;"></td>
+                    <c:forEach var="infoItem" items="${info}">
+                        <c:if test="${sessionScope.guest_id eq infoItem.guestId}">
+                            <td style="padding: 8px;">${infoItem.depositAccountNumber}</td>
+                        </c:if>
+                    </c:forEach>
+                </tr>
                 </tbody>
                 <tbody class="info">
                 <tr>
@@ -459,7 +477,6 @@
 
                 <div class="card"
                      style="align-self: center; margin-top: 90px; width: 45%;">
-                    <%--                <div class="card-header" style="align-self: center; margin-bottom: 25px;">기여도</div>--%>
                     <div class="card-body" style="width: 100%; padding: 0px;">
                         <iframe class="chartjs-hidden-iframe"
                                 style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
@@ -503,9 +520,11 @@
                         <td style="text-align: center">${historyItem.accountNumberIn}</td>
                         <td style="text-align: center">${historyItem.accountNumberOut}</td>
                         <td style="text-align: center">${historyItem.transferDate.split(" ")[0]}</td>
-                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.amount}" type="number" pattern="#,###원"/></td>
-                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.balanceAfterIn}" type="number"
-                                              pattern="#,###원"/></td>
+                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.amount}" type="number"
+                                                                      pattern="#,###원"/></td>
+                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.balanceAfterIn}"
+                                                                      type="number"
+                                                                      pattern="#,###원"/></td>
                     </tr>
                     <c:set var="i" value="${i - 1}"/>
                 </c:forEach>
@@ -531,9 +550,9 @@
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json"
             },
-            "order": [[0, 'desc']], // 거래일시를 내림차순으로 정렬
-            "paging": false, // 페이지 나누기 사용
-            "info": false,
+            "order": [[4, 'desc']], // 거래일시를 내림차순으로 정렬
+            "paging": true, // 페이지 나누기 사용
+            "info": true,
             "initComplete": function (settings, json) {
                 // '엑설' 버튼의 span 요소를 선택
                 let excelButtonSpan = document.querySelector('.buttons-excel span');
@@ -545,8 +564,6 @@
             }
         });
     });
-
-
 </script>
 <script>
     $(document).ready(function () {

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/resources/css/join-product.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/resources/javascript/common.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         .modal {
             height: 1870px;
@@ -18,6 +20,20 @@
         .modal_body {
             top: 60%;
         }
+
+        .password-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <%@ include file="include/header.jsp" %>
@@ -163,8 +179,24 @@
                     <div id="conditionMessage1" class="mt-2 text-danger"></div>
                     <div id="endAmountMessage" style="margin-top: 20px;"></div>
                 </td>
-
             </tr>
+            <% if (savingName == null) { %>
+            <tr>
+                <td class="form-label">적금 계좌 비밀번호</td>
+                <td>
+                    <div style="display: flex">
+                        <div>
+                            <div class="password-wrapper">
+                                <input type="password" class="input-form" id="savingPassword" pattern="\d*"
+                                       maxlength="6" required>
+                                <i class="eye-icon fas fa-eye-slash" onclick="togglePasswordVisibility()"></i>
+                            </div>
+
+                            <div id="savingPwMessage"></div>
+                        </div>
+                    </div>
+            </tr>
+            <% }%>
             <tr>
                 <td class="form-label">자동이체 SMS 통보</td>
                 <td>
@@ -231,6 +263,22 @@
     String phone = (String) session.getAttribute("phone");
 %>
 <script>
+
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('savingPassword');
+        const eyeIcon = document.querySelector('.eye-icon');
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye'); // 숨기는 아이콘
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash'); // 보이는 아이콘
+        }
+    }
+
     let flag1 = false;
     let flag2 = false;
     let endDateFormat = null;
@@ -495,7 +543,8 @@
                     contribution_amount: amount,
                     contribution_ratio: 100,
                     final_amount: (selectedValue3 === "매월") ? final_amount_month : final_amount_week,
-                    interest_amount: calculateTotalInterest()
+                    interest_amount: calculateTotalInterest(),
+                    saving_pw: document.getElementById('savingPassword').value
                 };
                 let account_number = selectedAccountNumber.toString().slice(0, 3) + '******' + selectedAccountNumber.toString().slice(12, 17);
                 // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -61,4 +61,10 @@
         where sa.account_number = #{accountNumber}
     </select>
 
+    <select id="getInvitedPW" parameterType="String" resultType="String">
+        select saving_pw
+        from saving_account
+        where account_number = #{accountNumber}
+    </select>
+
 </mapper>
