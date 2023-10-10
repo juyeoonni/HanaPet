@@ -7,7 +7,7 @@
         left: 0;
         height: 20px;
         width: 0;
-        background: #FAC6CE;
+        background: #b6aa94;
         animation: progress 1s ease forwards;
     }
 
@@ -37,7 +37,7 @@
 <div class="modal-c">
     <div class="top1">
         <div style="display: flex; align-items: center">
-            <img src="/resources/img/left-arrow-test.png" width="30px"/>
+            <img src="/resources/img/left-arrow.svg" width="30px"/>
             <div class="progressbar">
                 <span class="progress"></span>
             </div>
@@ -50,7 +50,7 @@
         <hr>
         <div class="iQ__s6Fi4hhs t-1 ResultCardText" style="color: rgb(0, 0, 0);"><p
                 style="text-align:center; line-height:2;"><span
-                style="font-weight: bold; font-size: 26px; color: #F4AFB7">펫보험과 적금을 섞어서 대비해봐요!</span><br>
+                style="font-weight: bold; font-size: 26px; color: #b6aa94">펫보험과 적금을 섞어서 대비해봐요!</span><br>
         </p>
             <div class="contents" style="padding-left: 80px; padding-right: 80px;">
                 <div style="line-height:2;">혹시 모를 일에 대비하여 상대적으로 저렴할 때 펫보험을 가입해 대비하고 적금도 동시에 준비해 안전성을 챙기는 것을 추천드립니다.
@@ -63,9 +63,9 @@
                 <div style="line-height:2;">
                     저희가 제안드린 부분은 절대적인 정답이 아니니 반려인분의 상황에 따라 잘 따져보고 결정하시길&nbsp;바랍니다.💭
                 </div>
-                <div style="line-height:2; text-align: center; color: #F4AFB7">------<br/>
+                <div style="line-height:2; text-align: center; color: #b6aa94">------<br/>
                 </div>
-                <div style="line-height:2; text-align: center; font-size: 26px; font-weight: bold; color: #F4AFB7">
+                <div style="line-height:2; text-align: center; font-size: 26px; font-weight: bold; color: #b6aa94">
                     펫적금이란?
                 </div>
                 <br/>

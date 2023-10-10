@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/resources/css/test.css">
 <style>
     .top div:nth-child(1) {
-        color: #F4AFB7;
+        color: #b6aa94;
         font-size: 40px;
         font-weight: bold;
         margin-bottom: 10px;

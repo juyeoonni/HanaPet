@@ -8,7 +8,7 @@
 
 /* 스크롤바의 썸네일(드래그 가능한 부분) */
 ::-webkit-scrollbar-thumb {
-    background-color: #FAC6CE; /* 썸네일의 배경색을 변경합니다. */
+    background-color: #b6aa94; /* 썸네일의 배경색을 변경합니다. */
     border-radius: 5px; /* 썸네일의 모서리를 둥글게 만듭니다. */
 }
 
@@ -51,7 +51,7 @@
 }
 
 .end div:nth-child(1) {
-    color: #F4AFB7;
+    color: #b6aa94;
     font-size: 25px;
     font-weight: bold;
     padding: 10px 0px;
@@ -61,7 +61,7 @@
     font-family: font-bold;
     width: 260px;
     height: 45px;
-    background: #FAC6CE;
+    background: #b6aa94;
     box-shadow: 1px 1px 12px 0px rgb(0 0 0 /20%);
     border-radius: 30px;
     display: flex;

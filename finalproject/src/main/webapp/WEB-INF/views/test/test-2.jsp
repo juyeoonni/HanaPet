@@ -8,7 +8,7 @@
         left: 0;
         height: 20px;
         width: 0;
-        background: #FAC6CE;
+        background: #b6aa94;
         animation: progress 1s ease forwards;
     }
 
@@ -26,14 +26,14 @@
     <div class="top">
         <div>2/4</div>
         <div style="display: flex; align-items: center">
-            <img src="/resources/img/left-arrow-test.png" width="30px"/>
+            <img src="/resources/img/left-arrow.svg" width="30px"/>
             <div class="progressbar">
                 <span class="progress"></span>
             </div>
         </div>
     </div>
     <div class="middle">
-        <img src="/resources/img/test2.png" width="423px"/>
+        <img src="/resources/img/test-2.svg" width="423px"/>
     </div>
     <div class="end">
         <div>Q2</div>

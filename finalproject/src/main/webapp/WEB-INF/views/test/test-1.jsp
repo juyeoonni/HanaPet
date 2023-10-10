@@ -5,14 +5,14 @@
     <div class="top">
         <div>1/4</div>
         <div style="display: flex; align-items: center">
-            <img src="/resources/img/left-arrow-test.png" width="30px"/>
+            <img src="/resources/img/left-arrow.svg" width="30px"/>
             <div class="progressbar">
                 <span class="progress"></span>
             </div>
         </div>
     </div>
     <div class="middle">
-        <img src="/resources/img/test1.png" width="423px"/>
+        <img src="/resources/img/test1.svg" width="423px"/>
     </div>
     <div class="end">
         <div>Q1</div>

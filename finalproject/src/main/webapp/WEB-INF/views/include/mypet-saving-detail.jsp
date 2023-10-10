@@ -579,9 +579,9 @@
     });
 
     function createProgressBar(progressRate) {
-        var progressBarContainer = $("<div style='width: 100%; height: 30px; border-radius: 20px; background: #f2f2f2;'>").addClass("progress");
+        var progressBarContainer = $("<div style='width: 100%; height: 30px; border-radius: 20px; background: #e7e0e0;'>").addClass("progress");
 
-        var progressBar = $("<div style='background:linear-gradient(to right, #d3959b, #bfe6ba)'>").addClass("progress-bar")
+        var progressBar = $("<div style='background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);'>").addClass("progress-bar")
             .attr("role", "progressbar")
             .attr("aria-valuemin", "0")
             .attr("aria-valuemax", "100")

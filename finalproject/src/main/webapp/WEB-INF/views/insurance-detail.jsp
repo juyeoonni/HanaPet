@@ -287,7 +287,7 @@
 <jsp:include page="include/header.jsp"/>
 <div class="body">
     <div class="sc-fFtkDt jKVTZV">
-        <img src="resources/img/left-arrow.png" width="17px" onclick="goBack()"/>
+        <img src="resources/img/left-arrow.svg" width="17px" onclick="goBack()"/>
         <span onclick="goBack()">보험목록으로 돌아가기</span></div>
     <div class="sc-gDeeJ cmNFit">
         <div class="sc-cjbZfG kofJdj">

@@ -339,7 +339,7 @@
             <tr>
                 <td style="padding: 8px; font-weight: bold;">납입 횟수</td>
                 <td style="width: 30px;"></td>
-                <td style="padding: 8px;">${insu.paymentCount}</td>
+                <td style="padding: 8px;">${insu.paymentCount}회</td>
             </tr>
             <tr>
                 <td style="padding: 8px; font-weight: bold;">최종납입월</td>

@@ -48,7 +48,7 @@
             width: 60%;
             max-height: 90vh; /* 모달 창의 최대 높이를 화면 높이의 80%로 설정 */
             overflow-y: auto; /* 내부 스크롤을 auto로 변경 */
-            border: 3.5px solid #FAC6CE;
+            border: 3.5px solid #b6aa94;
             border-radius: 20px;
         }
 
