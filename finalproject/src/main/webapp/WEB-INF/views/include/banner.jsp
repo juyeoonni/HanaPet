@@ -89,35 +89,9 @@
                 aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner" style="height: 480px; width: 100%;">
-        <div class="carousel-item active"
-             style="background-image: url('/resources/img/test2.svg'); background-color: black; height: 480px"
-             data-bs-interval="2600">
-
+        <div class="carousel-item dark-overlay active" data-bs-interval="2600"
+             style='background-image: url("http://www.chungdamah.co.kr/theme/hp001/img/main_visual1.jpg"); height: 500px; background-position: 50% 10%; background-repeat: no-repeat; background-size: cover'>
             <div>
-                <span style="font-size: 22px; font-family: 'net-bold'; color: white">혜택</span>
-                <div class="event">가족들 초대하면<br>최대 연 0.9% 추가 우대</div>
-                <br>
-                <div class="event-small">가족들과 함께 반려견의 노후를 대비해보세요</div>
-                <a href="/product" class="button button--border-point">
-                    보러가기
-                    <img src="/resources/img/foot.svg" width="20px" style="margin-left: 10px"/>
-                </a>
-            </div>
-        </div>
-        <div class="carousel-item"
-             style='background-image: url("http://www.chungdamah.co.kr/theme/hp001/img/main_visual1.jpg"); background-color: black; height: 500px; background-position: 50% 10%'
-             data-bs-interval="2600">
-            <h3 class="event">소중한 우리 반려견의 건강한 삶을 위해, </h3>
-            <h3 class="event">하나펫손해보험</h3><br>
-            <p class="event-small">우리 아이에게 딱 맞는 보험 찾으러 가기</p>
-            <a href="/insurance-recommend" class="button button--border-point">
-                추천보험
-                <img src="/resources/img/foot.svg" width="20px" style="margin-left: 10px"/>
-            </a>
-        </div>
-        <div class="carousel-item dark-overlay" data-bs-interval="2600"
-             style='background-image: url("/resources/img/main3.png"); height: 500px; background-position: 50% 30%; background-repeat: no-repeat; background-size: cover'>
-            <div style="text-align: center">
                 <br>
                 <h3 class="event" style="z-index: 100">반려동물 1500만 시대</h3>
                 <h3 class="event">우리 아이를 평생 책임질 금융 플랫폼을 찾고 있다면,</h3><br>
@@ -130,6 +104,35 @@
                 </a>
             </div>
         </div>
+        <div class="carousel-item"
+             style="background-image: url('/resources/img/test2.svg'); background-color: black; height: 480px"
+             data-bs-interval="2600">
+
+            <div style="text-align: center;">
+                <span style="font-size: 22px; font-family: 'net-bold'; color: white">혜택</span>
+                <div class="event">가족들 초대하면<br>최대 연 0.9% 추가 우대</div>
+                <br>
+                <div class="event-small">가족들과 함께 반려견의 노후를 대비해보세요</div>
+                <a href="/product" class="button button--border-point">
+                    보러가기
+                    <img src="/resources/img/foot.svg" width="20px" style="margin-left: 10px"/>
+                </a>
+            </div>
+        </div>
+        <div class="carousel-item"
+             style='background-image: url("/resources/img/main3.png"); background-color: black; height: 500px; background-position: 50% 30%; background-repeat: no-repeat; background-size: cover'
+             data-bs-interval="2600">
+            <div style="text-align: center">
+                <h3 class="event" style="margin-top: 40px;">소중한 우리 반려견의 건강한 삶을 위해, </h3>
+                <h3 class="event">하나펫손해보험</h3><br>
+                <p class="event-small">우리 아이에게 딱 맞는 보험 찾으러 가기</p>
+                <a href="/insurance-recommend" class="button button--border-point">
+                    추천보험
+                    <img src="/resources/img/foot.svg" width="20px" style="margin-left: 10px"/>
+                </a>
+            </div>
+        </div>
+
     </div>
 
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"

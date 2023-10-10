@@ -250,13 +250,12 @@
                         </div>
                         <div class="card-body p-3">
                             <ul class="list-group">
-                                <c:forEach var="data" items="${adminSavingList}">
+                                <c:forEach var="data" items="${adminSavingList}" varStatus="vs">
                                     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                         <div class="d-flex align-items-center" style="gap: 20px">
                                             <i class="bi bi-award fs-3"></i>
                                             <div class="d-flex flex-column">
-                                                <h6 class="mb-1 text-dark text-sm">${data.category}</h6>
-
+                                                <h6 class="mb-1 text-dark text-sm">${vs.index+1}위 ${data.category}</h6>
                                             </div>
                                             <span class="text-xs">${data.category_accounts}개</span>
                                             <span class="text-xs">${data.account_percentage}%</span>
@@ -291,14 +290,14 @@
                     </div>
                     <div class="card-body p-3">
                         <ul class="list-group">
-                            <c:forEach var="data" items="${adminInsuranceList}">
+                            <c:forEach var="data" items="${adminInsuranceList}" varStatus="vs">
                                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                     <div class="d-flex align-items-center" style="gap: 20px">
                                         <div>
                                             <i class="bi bi-award fs-3"></i>
                                         </div>
                                         <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">${data.INSURANCE_NAME}</h6>
+                                            <h6 class="mb-1 text-dark text-sm">${vs.index+1}위 ${data.INSURANCE_NAME}</h6>
                                         </div>
                                         <span class="text-xs">${data.insurance_guests}개</span>
                                         <span class="text-xs">${data.percentage}%</span>

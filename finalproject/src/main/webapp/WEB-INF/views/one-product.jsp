@@ -232,7 +232,7 @@
                                     <td id="primeRate3"></td>
                                 </tr>
                                 <tr>
-                                    <td style="height: 40px;">4명</td>
+                                    <td style="height: 40px;">4명 이상</td>
                                     <td id="primeRate4"></td>
                                 </tr>
                                 </tbody>

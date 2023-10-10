@@ -139,7 +139,8 @@
             <div>
                 <h4 style="font-weight: bold">우리 아이에게 딱 맞는 펫보험은?🔍</h4>
                 <br>
-                <h5 style="font-weight: bold; color: var(--primary-color)">나이와 품종으로 추천 보험을 알려줄개, 우리 아이의 정보를 입력해보개!</h5>
+                <h5 style="font-weight: bold; color: var(--primary-color); margin-top: -20px;">나이와 품종으로 추천 보험을 알려줄개, 우리 아이의 정보를 입력해보개!</h5>
+                <p style="font-size: 14px">*제휴 동물 병원 진료내역 5181건 기반</p>
             </div>
             <div>
                 <img src="/resources/img/insurance-dog.png" style="margin-top: -10px; width: 190px">
@@ -155,6 +156,23 @@
                     <c:forEach var="breedItem" items="${breedData}">
                         <option value="${breedItem.disease}">${breedItem.breed}</option>
                     </c:forEach>
+                    <option value="웰시코기">웰시코기</option>
+                    <option value="진돗개">진돗개</option>
+                    <option value="비글">비글</option>
+                    <option value="골든 리드리버">골든 리드리버</option>
+                    <option value="사모예드">사모예드</option>
+                    <option value="시베리아허스키">시베리아허스키</option>
+                    <option value="시바견">시바견</option>
+                    <option value="스피츠">스피츠</option>
+                    <option value="비숑">비숑</option>
+                    <option value="슈나우저">슈나우저</option>
+                    <option value="미니어처">미니어처</option>
+                    <option value="퍼그">퍼그</option>
+                    <option value="불독">불독</option>
+                    <option value="시베리안 허스키">시베리안 허스키</option>
+                    <option value="코커 스패니엘">코커 스패니엘</option>
+                    <option value="레브라도 리트리버">레브라도 리트리버</option>
+                    <option value="보더콜리">보더콜리</option>
                 </select>
             </div>
             <div class="d-card">
@@ -165,7 +183,6 @@
                     </div>
                 </div>
             </div>
-            <%--            <p style="font-size: 14px">*제휴 동물 병원 진료내역 5181건 기반</p>--%>
         </div>
 
 

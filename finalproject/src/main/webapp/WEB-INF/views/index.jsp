@@ -9,47 +9,12 @@
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="path/to/bootstrap.css">
+    <script src="path/to/bootstrap.js"></script>
     <style>
 
         .banners {
             display: flex;
-        }
-
-        .banner2 {
-            background: var(--primary-color);
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 13px;
-            width: 300px;
-            height: 72px;
-            margin-left: 20px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .banner3 {
-            background: #F2D8DD;
-            /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);*/
-            /*border-radius: 20px;*/
-            width: 300px;
-            height: 200px;
-            margin-left: 20px;
-            text-align: center;
-        }
-
-        .m {
-            padding: 25px;
-            display: none;
-            background: #FFFFFF;
-            position: fixed;
-            top: 50%; /* 화면 세로 중앙 */
-            left: 50%; /* 화면 가로 중앙 */
-            transform: translate(-50%, -50%); /* 화면 정중앙으로 위치 조정 */
-            z-index: 9999;
-            width: 60%;
-            max-height: 90vh; /* 모달 창의 최대 높이를 화면 높이의 80%로 설정 */
-            overflow-y: auto; /* 내부 스크롤을 auto로 변경 */
-            border: 3.5px solid #b6aa94;
-            border-radius: 20px;
         }
 
         .openModalButton {
@@ -204,6 +169,15 @@
             text-decoration-line: none !important;
         }
 
+        #myModal .modal-dialog {
+            top: 30px;
+            width: 900px;
+            max-width: 100%;
+            height: 500px;
+            margin: auto; /* 모달을 화면 중앙에 위치시킴 */
+            padding: 30px;
+        }
+
     </style>
 </head>
 <body>
@@ -221,13 +195,8 @@
 <div class="banners">
     <%@ include file="include/banner.jsp" %>
 </div>
+
 <div class="body">
-    <div id="myModal" class="m">
-        <div class="modal-content" style="margin-top: 0px">
-            <div class="close" style="cursor: pointer; text-align: end;">&times;</div>
-            <div id="modalContent"></div>
-        </div>
-    </div>
     <section class="section">
         <div class="section_title">
             <h3 style="font-weight: bold">HanaPet 서비스</h3>
@@ -268,63 +237,61 @@
             </li>
         </ul>
     </section>
-<%--    <div class="section">--%>
-<%--        <p>평생을 함께하는 가족인 반려견을 위한 특별한 금융 플랫폼, 그것이 "펫 금융 프로젝트"입니다. 반려견을 가족으로 여기고 그 노후를 위한 준비를 함께 할 수 있는 이 플랫폼은 오직--%>
-<%--            돈의 문제만이 아닌, 가족 모두가 소통하고 협력하는 곳입니다.</p>--%>
-<%--    </div>--%>
-
-<%--    <!-- Section 1 -->--%>
-<%--    <div class="section">--%>
-<%--        <h2>펫 캘린더와 일정 공유</h2>--%>
-<%--        <p>가족들과 함께하는 펫 캘린더로 손쉽게 반려견의 일정을 관리하세요. 중요한 일정을 빠르게 공유하며 가족들과 더 밀접하게 소통하세요.</p>--%>
-<%--        &lt;%&ndash;        <img src="../../../resources/img/main_펫캘린더.svg" width="500px"/>&ndash;%&gt;--%>
-<%--    </div>--%>
-
-<%--    <!-- Section 5 -->--%>
-<%--    <div class="section">--%>
-<%--        <h2>적금 공유와 모임적금</h2>--%>
-<%--        <p>선택한 적금을 가족들과 함께 공유하며, 반려견의 노후를 준비하세요. 모임 적금으로 더 많은 가족들이 함께 참여하여 특별한 순간을 만드세요.</p>--%>
-<%--    </div>--%>
-
-<%--    <!-- Final Section -->--%>
-<%--    <div class="section">--%>
-<%--        <p>"나랑 평생 함께하개"는 당신의 가족과 반려견, 그리고 소중한 적금을 통해 더 특별한 순간을 만들어 나갑니다. 더 많은 행복과 소중한 추억을 함께 나누어보세요!</p>--%>
-<%--    </div>--%>
-
     <%
         }
     %>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalContent">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+    document.getElementById("myModal").addEventListener('hidden.bs.modal', function () {
+        const modalBackdrop = document.querySelector('.modal-backdrop');
+        if (modalBackdrop) modalBackdrop.remove();
+    });
     document.addEventListener("DOMContentLoaded", function () {
         const openModalButtons = document.querySelectorAll(".openModalButton");
-        const m = document.getElementById("myModal");
-        const modalContent = document.getElementById("modalContent");
-        const closeSpan = document.getElementsByClassName("close")[0];
+        const modalInstance = new bootstrap.Modal(document.getElementById("myModal"));
 
         openModalButtons.forEach(button => {
-            button.addEventListener("click", function() {
-                // "test-start.jsp"의 내용을 가져와 모달 내에 채웁니다.
-                document.body.classList.add("modal-open"); // 바깥 스크린 스크롤 비활성화
+            button.addEventListener("click", function () {
                 loadPage("test/start");
+                modalInstance.show();
             });
         });
 
-        closeSpan.addEventListener("click", function () {
-            m.style.display = "none";
+        // "Close" 버튼을 클릭했을 때 모달 내용을 지우는 이벤트
+        document.getElementById("myModal").addEventListener('hidden.bs.modal', function () {
+            const modalContent = document.getElementById("modalContent");
             modalContent.innerHTML = ""; // 모달 내용 초기화
-            document.body.classList.remove("modal-open");
+            // 스크롤 활성화
+            document.body.style.overflow = "";
         });
 
         function loadPage(url) {
+
+            // 모달의 배경 삭제
+            const modalBackdrop = document.querySelector('.modal-backdrop');
+            if (modalBackdrop) modalBackdrop.remove();
+
             // AJAX를 통해 페이지를 로드하여 모달 내에 채웁니다.
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
-                    modalContent.innerHTML = data;
+                    document.getElementById("modalContent").innerHTML = data;
 
                     // 모달 내 링크 클릭 이벤트 처리
-                    modalContent.addEventListener("click", function (event) {
+                    document.getElementById("modalContent").addEventListener("click", function (event) {
                         if (event.target.tagName === "A") {
                             console.log(url);
                             event.preventDefault();
@@ -336,21 +303,28 @@
                     });
                 });
 
-            m.style.display = "block";
+            // 부트스트랩 API를 사용하여 모달을 표시
+            const modalInstance = new bootstrap.Modal(document.getElementById("myModal"));
+            modalInstance.show();
         }
     });
 
     function resultFunc() {
         setTimeout(function () {
-            $('.modal-c .top1').css('display', 'none');
-            $('.modal-c .top2').css('display', 'block');
-            $('.modal-c .middle').css('display', 'block');
-            $('.modal-c .end').css('display', 'flex');
-            $('.modal-c .end').css('justify-content', 'center');
-            $('.modal-c .end').css('gap', '25px');
+            const modalContent = document.querySelector('.modal-c');
+
+            // Display changes
+            modalContent.querySelector('.top1').style.display = 'none';
+            modalContent.querySelector('.top2').style.display = 'block';
+            modalContent.querySelector('.middle').style.display = 'block';
+            const endSection = modalContent.querySelector('.end');
+            endSection.style.display = 'flex';
+
+            // Flex properties
+            endSection.style.justifyContent = 'center';
+            endSection.style.gap = '25px';
         }, 1200);
     }
 </script>
-
 </body>
 <%@ include file="include/footer.jsp" %>
