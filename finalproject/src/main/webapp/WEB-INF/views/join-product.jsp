@@ -34,6 +34,22 @@
             cursor: pointer;
         }
 
+        .div-1 {
+            width: 58%;
+            place-content: space-between;
+            display: flex;
+            font-weight: bold;
+        }
+
+        .mtb {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .r {
+            color: red;
+        }
+
     </style>
 </head>
 <%@ include file="include/header.jsp" %>
@@ -159,7 +175,6 @@
                 <td>
                     <div style="display: flex">
                         <input type="text" class="input-form" id="joinAmount" style="text-align: end"
-
                                onkeyup="inputNumberFormat(this)"
                                required><span style="align-self: center;">원</span>
                         <% if (savingName != null) { %>
@@ -174,10 +189,46 @@
                                  style="cursor:pointer; margin-left: 40px;">
                             <span style="cursor:pointer;">계산</span>
                         </div>
+                        <% } %>
                     </div>
-                    <% } %>
                     <div id="conditionMessage1" class="mt-2 text-danger"></div>
-                    <div id="endAmountMessage" style="margin-top: 20px;"></div>
+
+                    <div id="endAmountMessage" style="display: none">
+                        <% if (savingName != null) { %>
+                        <div style="display: flex">
+                            <img src="/resources/img/prior-rate.png" width="40px"
+                                 style="margin-top: 30px; margin-right: 5px">
+                            <div class="part0"
+                                 style="font-size: 20px; margin-top: 40px; font-weight: bold; color: var(--primary-color); "></div>
+
+                        </div>
+                        <% } %>
+                        <div class="part1 mtb" style="font-size: 22px; margin-top: 45px"></div>
+                        <div class="div-1">
+                            <div class="mtb">원금:</div>
+                            <div class="part2 mtb"></div>
+                        </div>
+                        <div class="div-1">
+                            <div class="mtb">이자:</div>
+                            <div class="part3 mtb"></div>
+                        </div>
+
+                        <div class="div-1">
+                            <div style="margin-top: 20px;"> 이자 과세:</div>
+                            <div class="part4 mtb"></div>
+                        </div>
+                        <div style="width: 58%">
+                            <hr>
+                        </div>
+                        <div class="div-1">
+                            <div class="mtb r">총 예상 만기 수령 금액:</div>
+                            <div class="part5 mtb r"></div>
+                        </div>
+                        <div class="part6" style="font-size: 14px; margin-top: 23px"></div>
+                        <% if (savingName != null) { %>
+                        <div class="part7" style="font-size: 14px; margin-top: 5px"></div>
+                        <% } %>
+                    </div>
                 </td>
             </tr>
             <% if (savingName == null) { %>
@@ -225,7 +276,6 @@
     <div style="text-align: center">
         <button type="button" class="Button" id="joinButton">가입하기</button>
     </div>
-
 
     <div class="modal">
         <div class="modal_body">
@@ -828,15 +878,26 @@
 
             $('#endAmount').click(function () {
                 const interest = calculateTotalInterest();
-                const endAmountMessage = document.getElementById('endAmountMessage');
                 const joinAmount = document.getElementById('joinAmount').value.replace(/,/g, '');
                 const joinPeriod = document.getElementById('joinPeriod').value;
                 const principal = joinAmount * joinPeriod;
                 const real = Math.floor(principal + interest * 0.846);
 
-                let message3 = '원금 ' + Number(joinAmount).toLocaleString() + '원을 ' + joinPeriod + '개월 동안 적금 시 원금 ' + Number(principal).toLocaleString() + '원, 이자 ' + Number(interest).toLocaleString() + '원\n일반 세율 가입 시 총 ' + Number(real).toLocaleString() + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
+                let text1 = joinPeriod + '개월 동안 ' + Number(joinAmount).toLocaleString() + '원 적금 시 (연이율 ' + parseFloat('<%=rate%>') + '%)';
+                let text2 = Number(principal).toLocaleString() + '원';
+                let text3 = ' + ' + Number(interest).toLocaleString() + '원';
+                let text4 = ' - ' + Number(Math.ceil(interest * 0.154)).toLocaleString() + '원';
+                let text5 = Number(real).toLocaleString() + '원';
+                let text6 = '* 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
 
-                endAmountMessage.textContent = message3;
+                document.querySelector('#endAmountMessage .part1').textContent = text1;
+                document.querySelector('#endAmountMessage .part2').textContent = text2;
+                document.querySelector('#endAmountMessage .part3').textContent = text3;
+                document.querySelector('#endAmountMessage .part4').textContent = text4;
+                document.querySelector('#endAmountMessage .part5').textContent = text5;
+                document.querySelector('#endAmountMessage .part6').textContent = text6;
+
+                $('#endAmountMessage').css('display', 'block');
             });
 
             const interestAmountInt = parseInt('<%= interestAmount %>', 10); // 개설자의 이자금액
@@ -866,9 +927,28 @@
                 const interestAmount = Math.floor(interest * 0.846); // 세후 이자금액
                 const real = finalAmount + interestAmount; // 실제 총 만기 시 금액
 
-                let message3 = '* 기존 적금의 만기 시 원금은 ' + Number(finalAmountInt).toLocaleString() + '원, 이자는 ' + Number(changeOriginInterest).toLocaleString() + '원 입니다. 손님이 추가로 가입할 시 총 원금은 ' + Number(finalAmount).toLocaleString() + '원이며 총 이자는 ' + Number(interest).toLocaleString() + '원 입니다. 일반 세율 가입 시 총 ' + Number(real).toLocaleString() + '원을 수령하시게 됩니다. 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
+                let selectedValue = document.querySelector('input[name="period"]:checked').value;
 
-                document.getElementById('endAmountMessage').textContent = message3;
+                let text0 = '${sessionScope.name}님이 공유 적금에 참여하시면, 적금 참여자 총 ' + (cnt + 1) + '명으로 우대 금리 (+ ' + parseFloat(parseFloat('<%=primeRate%>>') * cnt).toFixed(1) + '%) 적용';
+                let text1 = '기존 적금 참여자와 함께 ' + selectedValue + ' ' + Number(joinAmount).toLocaleString() + '원 적금 시 (연이율 ' + parseFloat((parseFloat('<%= rate %>') + parseFloat('<%=primeRate%>>') * cnt)).toFixed(1) + '%)';
+                let text2 = Number(finalAmount).toLocaleString() + '원';
+                let text3 = ' + ' + Number(interest).toLocaleString() + '원';
+                let text4 = ' - ' + Number(Math.ceil(interest * 0.154)).toLocaleString() + '원';
+                let text5 = Number(real).toLocaleString() + '원';
+                let text6 = '* 일반 과세의 경우는 이자금액의 연 15.4% (이자소득 14% + 주민세 1.4%)가 원천징수됩니다.';
+                let text7 = '* 만기 수령 시 모든 금액은 적금 개설자의 계좌로 입금됩니다.';
+
+                document.querySelector('#endAmountMessage .part0').textContent = text0;
+                document.querySelector('#endAmountMessage .part1').textContent = text1;
+                document.querySelector('#endAmountMessage .part2').textContent = text2;
+                document.querySelector('#endAmountMessage .part3').textContent = text3;
+                document.querySelector('#endAmountMessage .part4').textContent = text4;
+                document.querySelector('#endAmountMessage .part5').textContent = text5;
+                document.querySelector('#endAmountMessage .part6').textContent = text6;
+                document.querySelector('#endAmountMessage .part7').textContent = text7;
+
+                $('#endAmountMessage').css('display', 'block');
+
             });
 
             // 오늘부터 적금 만기일까지 주 단위로 납입을 몇번 하는지
