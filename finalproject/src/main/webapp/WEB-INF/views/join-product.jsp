@@ -514,7 +514,7 @@
                 $("#categoryImg").attr("src", "/resources/img/" + productInfo.image);
                 $("#category").text(productInfo.category + " 적금");
                 $("#productDescription").text(productInfo.description);
-                $("#productRate").text("이자율: " + productInfo.rate);
+                $("#productRate").text("금리: " + productInfo.rate);
                 $("#productMinPeriod").text("최소 기간: " + productInfo.min_period);
                 $("#productMinBalance").text("최소 잔액: " + productInfo.min_balance.toLocaleString());
             }
@@ -895,7 +895,7 @@
                 const principal = joinAmount * joinPeriod;
                 const real = Math.floor(principal + interest * 0.846);
 
-                let text1 = joinPeriod + '개월 동안 ' + Number(joinAmount).toLocaleString() + '원 적금 시 (연이율 ' + parseFloat('<%=rate%>') + '%)';
+                let text1 = joinPeriod + '개월 동안 ' + Number(joinAmount).toLocaleString() + '원 적금 시 (연금리 ' + parseFloat('<%=rate%>') + '%)';
                 let text2 = Number(principal).toLocaleString() + '원';
                 let text3 = ' + ' + Number(interest).toLocaleString() + '원';
                 let text4 = ' - ' + Number(Math.ceil(interest * 0.154)).toLocaleString() + '원';
@@ -942,7 +942,7 @@
                 let selectedValue = document.querySelector('input[name="period"]:checked').value;
 
                 let text0 = '${sessionScope.name}님이 공유 적금에 참여하시면, 적금 참여자 총 ' + (cnt + 1) + '명으로 우대 금리 (+ ' + parseFloat(parseFloat('<%=primeRate%>>') * cnt).toFixed(1) + '%) 적용';
-                let text1 = '기존 적금 참여자와 함께 ' + selectedValue + ' ' + Number(joinAmount).toLocaleString() + '원 적금 시 (연이율 ' + parseFloat((parseFloat('<%= rate %>') + parseFloat('<%=primeRate%>>') * cnt)).toFixed(1) + '%)';
+                let text1 = '기존 적금 참여자와 함께 ' + selectedValue + ' ' + Number(joinAmount).toLocaleString() + '원 적금 시 (연금리 ' + parseFloat((parseFloat('<%= rate %>') + parseFloat('<%=primeRate%>>') * cnt)).toFixed(1) + '%)';
                 let text2 = Number(finalAmount).toLocaleString() + '원';
                 let text3 = ' + ' + Number(interest).toLocaleString() + '원';
                 let text4 = ' - ' + Number(Math.ceil(interest * 0.154)).toLocaleString() + '원';

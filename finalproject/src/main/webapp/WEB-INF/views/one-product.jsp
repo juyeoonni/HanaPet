@@ -140,7 +140,7 @@
 
     <div class="circle-container">
         <span class="circle1">
-        <div class="centered-div"> 만 3세 이하<br>우대 적금</div>
+        <div class="centered-div"> 펫코노미 시대<br>반려동물을 위한<br>목돈마련 저축상품</div>
         <div class="bottom-centered-div">특징</div>
     </span>
         <span class="circle2">
@@ -176,12 +176,14 @@
                  data-bs-parent="#productAccordion">
                 <!--accordion-collapse: 펼쳐지거나 접힐 때의 상태를 설정/ collapse: 접혀있음, show: 펼쳐진 상태-->
                 <div class="accordion-body"
-                     style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px; padding: 100px 240px">
+                     style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px; padding: 100px 150px">
                     <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
                     <table align="center" width=100%>
                         <tr>
                             <td class="product-info-bold">상품 특징</td>
-                            <td class="product-info" style="padding-left: 150px;">만 3세 이하 펫 우대 적금</td>
+                            <td class="product-info" style="padding-left: 150px;">펫코노미 시대(반려인 1,500만명) 반려동물을 위한 목돈마련
+                                저축상품
+                            </td>
                         </tr>
                         <tr>
                             <td class="product-info-bold">가입 대상</td>
@@ -208,7 +210,7 @@
                             <td class="product-info" style="padding-left: 150px;">자유적립식</td>
                         </tr>
                         <tr>
-                            <td class="product-info-bold">이자 지급 방법</td>
+                            <td class="product-info-bold">이자지급방법</td>
                             <td class="product-info" style="padding-left: 150px;">만기일시지급식 : 만기(후)해지시 이자를 지급</td>
                         </tr>
                     </table>
@@ -410,7 +412,7 @@
             $("#productDescription").text(productInfo.description);
             $("#productRate").text("연 " + productInfo.rate + "%");
             $("#productPrimeRate").text("최대 연 " + parseFloat((productInfo.prime_rate * 3).toFixed(2)) + "%");
-            $("#producBalance").text("매월 " + productInfo.min_balance.toLocaleString() + "원 이상 ~ " + productInfo.max_balance.toLocaleString() + "원 이하");
+            $("#producBalance").text("월 " + productInfo.min_balance.toLocaleString() + "원 이상 ~ " + productInfo.max_balance.toLocaleString() + "원 이하");
             $("#productPeriod").text(productInfo.min_period + "개월 이상 " + productInfo.max_period + "개월 이하");
         }
 

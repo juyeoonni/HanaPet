@@ -113,18 +113,20 @@
             <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#productAccordion">
                 <div class="accordion-body"
-                     style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px; padding: 100px 200px">
+                     style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px; padding: 100px 150px">
                     <table align="center" width=100%>
                         <tr>
                             <td class="product-info-bold">상품 특징</td>
-                            <td class="product-info" style="padding-left: 150px;">만 3세 이하 펫 우대 적금</td>
+                            <td class="product-info" style="padding-left: 150px;">펫코노미 시대(반려인 1,500만명) 반려동물을 위한 목돈마련
+                                저축상품
+                            </td>
                         </tr>
                         <tr>
                             <td class="product-info-bold">가입 대상</td>
                             <td class="product-info" style="padding-left: 150px;">반려견을 등록한 모든 Hanna Pet 손님</td>
                         </tr>
                         <tr>
-                            <td class="product-info-bold">이자 지급 방법</td>
+                            <td class="product-info-bold">이자지급방법</td>
                             <td class="product-info" style="padding-left: 150px;">만기일시지급식 : 만기(후)해지시 이자를 지급</td>
                         </tr>
                         <tr>

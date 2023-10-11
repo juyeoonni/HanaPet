@@ -89,7 +89,7 @@
             transform: rotateY(0deg);
         }
 
-        #total{
+        #total {
             color: white;
         }
     </style>
@@ -150,7 +150,7 @@
                 var content =
                     ($("<div>").addClass("card-footer")
                             .append($("<div>")
-                                .html("최대 연 이자율: " + (product.rate + product.prime_rate * 3) + "%<br><br>가입 기간: " + product.min_period + "개월 이상 " + product.max_period + "개월 이하<br><br>가입 금액: 매월 " + product.min_balance.toLocaleString() + "원 이상 ~ " + product.max_balance.toLocaleString() + "원 이하<br><br>적립 방법: 자유적립식")
+                                .html("최대 금리(연율): " + (product.rate + product.prime_rate * 3) + "%<br><br>가입 기간: " + product.min_period + "개월 이상 " + product.max_period + "개월 이하<br><br>가입 금액: 매월 " + product.min_balance.toLocaleString() + "원 이상 ~ " + product.max_balance.toLocaleString() + "원 이하<br><br>적립 방법: 자유적립식")
                                 .css("color", "white"))
                     );
 

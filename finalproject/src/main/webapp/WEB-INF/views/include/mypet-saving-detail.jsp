@@ -383,7 +383,7 @@
                                                                     pattern="#,###원"/></td>
                     </tr>
                     <tr>
-                        <td style="padding: 8px; font-weight: bold;">이자율(연)</td>
+                        <td style="padding: 8px; font-weight: bold;">금리(연율)</td>
                         <td style="width: 30px;"></td>
                         <c:if test="${info.size() == 1}">
                             <td style="padding: 8px;">${info[0].rate}% (기본 금리)</td>
