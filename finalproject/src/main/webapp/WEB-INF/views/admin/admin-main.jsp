@@ -108,7 +108,7 @@
                     </li>
                     <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
                 </ol>
-                <h4 class="font-weight-bolder text-white mb-0">대시보드</h4>
+                <h4 class="font-weight-bolder text-white mb-0" style="font-size: 25px;">대시보드</h4>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">

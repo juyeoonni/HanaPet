@@ -7,6 +7,7 @@
     <title>Calendar</title>
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/calendar.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/resources/javascript/apiKey.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
@@ -118,15 +119,26 @@
     </div>
     <div class="calendar-right">
         <div class="form-container">
-            <div id="calendar-title" style="color: #324D3D">일정🗓️️</div>
-            <hr>
-            <form id="eventForm">
-                <div class="form-group">
-                    <span class="events" id="eventDate"></span>
+            <div style="height: 83%">
+                <div id="calendar-title" style="color: #324D3D">일정 <i class="fa fa-calendar-check-o"
+                                                                     aria-hidden="true"></i></div>
+                <hr>
+                <form id="eventForm">
+                    <div class="form-group">
+                        <span class="events" id="eventDate"></span>
+                    </div>
+                </form>
+                <div id="eventsListContainer">
                 </div>
-            </form>
-            <div id="eventsListContainer">
-                <!-- Display events for the selected date here -->
+            </div>
+            <div style="height: 17%">
+                <button id="updateBtn"
+                        style="margin-top: 20px; margin-left: -10px; width: 210px; height: 37px">수정하기
+                </button>
+                <button id="deleteBtn"
+                        style="margin-top: 5px; margin-left: -10px; margin-bottom: 20px; width: 210px; height: 37px">
+                    삭제하기
+                </button>
             </div>
         </div>
     </div>

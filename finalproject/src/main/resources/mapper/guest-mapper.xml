@@ -60,5 +60,6 @@
                  JOIN guest g ON g.guest_id = gp.guest_id
         WHERE g.type = 'GUEST'
         GROUP BY g.guest_id, g.name, g.email, g.reg_date
+        ORDER BY g.name
     </select>
 </mapper>

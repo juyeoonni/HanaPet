@@ -24,7 +24,131 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css"/>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+    <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/KOREAN.json"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" type="text/css"
+          rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+
     <style>
+        button.dt-button, div.dt-button, a.dt-button {
+            position: relative;
+            display: inline-block;
+            box-sizing: border-box;
+            margin-right: 0.333em;
+            margin-bottom: 0.333em;
+            padding: 10px 10px 7px 10px;
+            border: 1px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 10px;
+            line-height: 1.6em;
+            color: #324D3D;
+            white-space: nowrap;
+            overflow: hidden;
+            background-color: #e9e9e9;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-decoration: none;
+            outline: none
+        }
+
+        button.dt-button span {
+            font-size: 17px;
+        }
+
+        .menu-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        tr {
+            background: var(--primary-color);
+        }
+
+        th {
+            font-size: 16px;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        label {
+            font-size: 16px;
+        }
+
+
+        input[type="search" i] {
+            margin-bottom: 25px;
+        }
+
+        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.odd > *, table.dataTable.display > tbody > tr.odd > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.odd.selected > *, table.dataTable.display > tbody > tr.odd.selected > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.even > *, table.dataTable.display > tbody > tr.even > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
+        table.dataTable.stripe > tbody > tr.even.selected > *, table.dataTable.display > tbody > tr.even.selected > * {
+            box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
+            background-color: white !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #E1E6DE !important;
+            border: 1px solid #E1E6DE !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: #46814CFF !important;
+            border: 1px solid var(--primary-color) !important;
+            color: white !important;
+        }
+
+
+        table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:before, table.dataTable thead > tr > td.sorting:before, table.dataTable thead > tr > td.sorting_asc:before, table.dataTable thead > tr > td.sorting_desc:before, table.dataTable thead > tr > td.sorting_asc_disabled:before, table.dataTable thead > tr > td.sorting_desc_disabled:before {
+            bottom: 50%;
+            content: "▲"/"";
+            font-size: 10px;
+        }
+
+        table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:after {
+            top: 50%;
+            content: "▼"/"";
+            font-size: 10px;
+        }
+
         .btn-getstarted, .btn-getstarted:hover {
             font-size: 16px;
             color: #fff;
@@ -125,7 +249,7 @@
                     </li>
                     <li class="breadcrumb-item text-sm text-white active" aria-current="page">mail</li>
                 </ol>
-                <h4 class="font-weight-bolder text-white mb-0">메일송부</h4>
+                <h4 class="font-weight-bolder text-white mb-0" style="font-size: 25px;">메일송부</h4>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -191,22 +315,22 @@
                             <c:otherwise>
                                 <div class="card-header pb-0">
                                     <div class="d-flex align-items-center">
-                                        <h5 class="mb-3">상품 관련 정보</h5>
+                                        <h5 class="text-xl text-bold">상품 관련 정보</h5>
                                     </div>
                                 </div>
                                 <div class="card-body" style="">
                                     <div class="mt-2">
                                         <p class="mb-2" style="display: inline-block;">적금명</p>
-                                        <p style="margin-left: 120px; display: inline-block;">${product.category}</p>
+                                        <p style="margin-left: 120px; display: inline-block; font-weight: bold">${product.category}</p>
                                         <br>
                                         <p class="mb-2" style="display: inline-block;">상세 설명</p>
-                                        <p style="margin-left: 100px; display: inline-block;">${product.description}</p>
+                                        <p style="margin-left: 100px; display: inline-block; font-weight: bold">${product.description}</p>
                                         <br>
-                                        <p class="mb-0" style="display: inline-block;">기본금리</p>
-                                        <p style="margin-left: 106px; display: inline-block;">${product.rate}%</p>
+                                        <p class="mb-2" style="display: inline-block;">기본금리</p>
+                                        <p style="margin-left: 106px; display: inline-block; font-weight: bold">${product.rate}%</p>
                                         <br>
-                                        <p class="mb-0" style="display: inline-block;">우대금리</p>
-                                        <p style="margin-left: 106px; display: inline-block;">${product.prime_rate}%</p>
+                                        <p class="mb-2" style="display: inline-block;">우대금리</p>
+                                        <p style="margin-left: 106px; display: inline-block; font-weight: bold">${product.prime_rate}%</p>
                                     </div>
                                 </div>
                             </c:otherwise>
@@ -221,7 +345,7 @@
                 <div class="card card-profile">
                     <div class="card-header pb-0">
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0">메일 송부 고객 선택</h5>
+                            <h5 class="text-bold text-xl">메일 송부 고객 선택</h5>
                             <button id="checkVal" type="button" class="btn btn-getstarted btn-sm ms-auto"
                                     style="margin: 0;">확인
                             </button>
@@ -234,60 +358,35 @@
                              aria-labelledby="userinfo-tab">
 
                             <div class="card-body pt-0">
-
                                 <div class="text-center mt-4">
-                                    <table border="1" id="list">
-
+                                    <table id="myTable" class="display" style="width:100%">
                                         <thead>
                                         <tr>
-                                            <th style="width: 30px;">
+                                            <th style="width: 100px; text-align: start">
                                                 <input type="checkbox" id="chk_all" name="chk_all"/>
                                             </th>
-                                            <th style="width: 230px;">
-                                                아이디
-                                            </th>
-                                            <th style="width: 230px;">
-                                                이름
-                                            </th>
-                                            <th style="width: 230px;">
-                                                이메일
-                                            </th>
-                                            <th style="width: 230px;">
-                                                가입일
-                                            </th>
-                                            <th style="width: 230px;">
-                                                반려견 수
-                                            </th>
+                                            <th style="text-align: start">아이디</th>
+                                            <th style="text-align: start;">이름</th>
+                                            <th style="text-align: start">이메일</th>
+                                            <th style="text-align: start">가입일</th>
+                                            <th style=" text-align: start">반려견 수</th>
                                         </tr>
                                         </thead>
-                                        <c:forEach items="${emailGuestList}" begin="0" end="10" step="1"
-                                                   var="emailGuest"
-                                                   varStatus="loop">
-                                            <tbody>
+                                        <tbody>
+                                        <c:forEach var="emailGuest" items="${emailGuestList}">
                                             <tr>
-                                                <td style="width: 30px;">
+                                                <td style="width: 30px; text-align: start">
                                                     <input type="checkbox" id="chk_list" name="chk_list"
                                                            value="list1"/>
                                                 </td>
-                                                <td style="width: 230px;">
-                                                        ${emailGuest.guest_id}
-                                                </td>
-                                                <td style="width: 230px;">
-                                                        ${emailGuest.name}
-                                                </td>
-                                                <td style="width: 230px;">
-                                                        ${emailGuest.email}
-                                                </td>
-                                                <td style="width: 230px;">
-                                                        ${emailGuest.reg_date.split(" ")[0]}
-                                                </td>
-                                                <td style="width: 230px;">
-                                                        ${emailGuest.pet_cnt}마리
-                                                </td>
+                                                <td style="text-align: start;">${emailGuest.guest_id}</td>
+                                                <td style="text-align: start; width: 200px">${emailGuest.name}</td>
+                                                <td style="text-align: start"> ${emailGuest.email}</td>
+                                                <td style="text-align: start"> ${emailGuest.reg_date.split(" ")[0]}</td>
+                                                <td style="text-align: start"> ${emailGuest.pet_cnt}마리</td>
                                             </tr>
-
-                                            </tbody>
                                         </c:forEach>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -305,7 +404,7 @@
                     <div class="card">
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
-                                <h5 class="mb-0">메일 송부하기</h5>
+                                <h5 class="text-bold text-xl">메일 송부하기</h5>
                             </div>
                         </div>
                         <div class="card-body">
@@ -456,14 +555,14 @@
             $('input[id=chk_list]:checked').each(function () {
 
                 var checkbox = $(this);
-                var tr = checkbox.closest('tr'); // 사용 `closest` 대신 `parent().parent()`
+                var tr = checkbox.closest('tr');
                 var td = tr.children();
 
                 var name = td.eq(2).text().trim();
                 var email = td.eq(3).text().trim();
 
-                names += name + ' '; // 이름 추가
-                emails += email + ' '; // 이메일 추가
+                names += name + ' ';
+                emails += email + ' ';
             });
 
             $('#name').val(names.trim());
@@ -472,7 +571,31 @@
 
     });
 
-
+</script>
+<script>
+    $(document).ready(function () {
+        // DataTable 초기화
+        $.noConflict();
+        $('#myTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf', 'print'
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json"
+            },
+            "order": [[2, 'asc']], // 이름 오름차순으로 정렬
+            "paging": true,
+            "info": true,
+            "initComplete": function (settings, json) {
+                // '엑설' 버튼의 span 요소를 선택
+                let excelButtonSpan = document.querySelector('.buttons-excel span');
+                if (excelButtonSpan) {
+                    excelButtonSpan.textContent = '엑셀';
+                }
+            }
+        });
+    });
 </script>
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
