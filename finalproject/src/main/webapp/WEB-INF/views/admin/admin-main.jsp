@@ -426,11 +426,8 @@
             datasets: [{
                 data: gender_counts,
                 backgroundColor: [
-                    '#edafb8',
-                    '#f7e1d7',
-                    '#dedbd2',
                     '#b0c4b1',
-                    '#4a5759'
+                    '#edafb8'
                 ]
             }]
         },
@@ -550,11 +547,29 @@
     var bree_counts = [];
     var breed_percentages = [];
 
+    <c:set var="mixWelshCount" value="0"/>
+    <c:set var="mixWelshPercentage" value="0.0"/>
+
     <c:forEach var="data" items="${adminPetBreedList}">
-    breeds.push("${data.breed}");
+    <c:choose>
+    <c:when test="${data.breed == '믹스견' || data.breed == '웰시코기'}">
+    <c:set var="mixWelshCount" value="${mixWelshCount + data.breed_count}"/>
+    <c:set var="mixWelshPercentage" value="${mixWelshPercentage + data.breed_percentage}"/>
+    </c:when>
+    <c:otherwise>
+    breeds.push('${data.breed}');
     bree_counts.push(${data.breed_count});
     breed_percentages.push(${data.breed_percentage});
+    </c:otherwise>
+    </c:choose>
     </c:forEach>
+
+    // '그 외' 분류 추가
+    if ('${mixWelshCount}' > 0) {
+        breeds.push('그 외');
+        bree_counts.push(${mixWelshCount});
+        breed_percentages.push(${mixWelshPercentage});
+    }
 
     var ctx3 = document.getElementById("chart-line3").getContext("2d");
     new Chart(ctx3, {
@@ -632,7 +647,7 @@
                 label: "매달 신규 가입자",
                 data: counts,
                 backgroundColor: [
-                    '#f7e1d7'
+                    '#46814c'
                 ]
             }],
         },
@@ -660,7 +675,7 @@
                     ticks: {
                         display: true,
                         padding: 10,
-                        color: '#fbfbfb',
+                        color: '#46814c',
                         font: {
                             size: 11,
                             style: 'normal',
@@ -678,7 +693,7 @@
                     },
                     ticks: {
                         display: true,
-                        color: '#ccc',
+                        color: '#46814c',
                         padding: 20,
                         font: {
                             size: 11,

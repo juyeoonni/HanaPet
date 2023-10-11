@@ -1,32 +1,31 @@
 package com.kopo.finalproject;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.internet.*;
 
 public class EmailSender {
 
-
     static String password = "";
 
-    public static void naverMailSend(String toEmail, String subject, String messageBody) {
+    public static void naverMailSend(String toEmail, String subject, String messageBody, String pdfFilePath) {
 
         Properties properties = new Properties();
         try (InputStream input = new FileInputStream("config.properties")) {
             properties.load(input);
-            password = properties.getProperty("naver");// 네이버 계정 비밀번호
+            password = properties.getProperty("naver");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String host = "smtp.naver.com"; // 네이버 SMTP 서버
-        String user = "yu_limmi_@naver.com"; // 네이버 계정
+        String host = "smtp.naver.com";
+        String user = "yu_limmi_@naver.com";
 
-        System.out.println(password);
         // SMTP 서버 정보를 설정한다.
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
@@ -46,12 +45,27 @@ public class EmailSender {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-
-            // 메일 제목
             message.setSubject(subject);
 
-            // 메일 내용
-            message.setText(messageBody);
+            // 멀티파트 메시지 생성
+            Multipart multipart = new MimeMultipart();
+
+            // 메시지 본문 추가
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText(messageBody);
+            multipart.addBodyPart(messageBodyPart);
+
+            // PDF 첨부
+            if (pdfFilePath != null && !pdfFilePath.isEmpty()) {
+                MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+                FileDataSource source = new FileDataSource(pdfFilePath);
+                attachmentBodyPart.setDataHandler(new DataHandler(source));
+                attachmentBodyPart.setFileName(new File(pdfFilePath).getName());
+                multipart.addBodyPart(attachmentBodyPart);
+            }
+
+            // 멀티파트를 메시지에 설정
+            message.setContent(multipart);
 
             // 메일 전송
             Transport.send(message);
@@ -62,5 +76,6 @@ public class EmailSender {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+
     }
 }

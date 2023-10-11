@@ -417,7 +417,21 @@
             alert("약관에 동의해주세요.");
         } else {
             joinInsurance();
-            <%EmailSender.naverMailSend((String) session.getAttribute("email"),"하나펫손해보험 가입","내용 test");%>
+            <%EmailSender.naverMailSend((String) session.getAttribute("email"),"하나펫 손해보험 - 프로미 반려동물보험 One형 플랜 가입 확정 안내", "안녕하세요 "+ (String)session.getAttribute("name")+"님\n" +
+"\n" +
+"하나펫 손해보험에 프로미 반려동물보험 One형 플랜을 가입해 주셔서 진심으로 감사드립니다.\n" +
+"\n" +
+"가입하신 보험의 주요 내용 및 유의사항을 첨부된 PDF에서 확인하실 수 있습니다. 보험에 대한 자세한 내용과 유의사항을 꼭 확인하시어 보험 이용에 차질이 없도록 해주시기 바랍니다.\n" +
+"\n" +
+"첨부 파일:\n" +
+"프로미 반려동물보험 One형 플랜 유의사항 및 상세 안내\n" +
+"보험과 관련하여 궁금한 사항이나 문의사항이 있으시면 언제든지 고객센터로 연락 주시기 바랍니다.\n" +
+"\n" +
+"다시 한번 가입해 주셔서 감사드리며, 항상 건강하고 행복한 시간을 보내시길 바랍니다.\n" +
+"\n" +
+"감사합니다.\n" +
+"\n" +
+"하나펫 손해보험 드림.", "C:\\Users\\ChoiYuLim\\yulim\\hanaTI\\hanaPet\\finalproject\\src\\main\\webapp\\resources\\pdf\\insurance_프로미 반려동물보험 One형 플랜 유의사항.pdf");%>
         }
     });
 
