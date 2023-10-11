@@ -864,16 +864,16 @@
 
                 // 기간 계산 (일 단위)
                 const millisecondsPerDay = 24 * 60 * 60 * 1000;
-                const days = Math.floor((endDate - startDate) / millisecondsPerDay); // 오늘 날짜 포함, 종료 날짜 제외
+                const days = Math.floor((endDate - startDate) / millisecondsPerDay) + 1; // 오늘 날짜 포함, 종료 날짜 포함
 
                 // 총 이자 계산
                 // 예를 들어 9/18 ~ 10/17 만기라면
-                // 1. 9/18 ~ 10/17까지 총 29일 => (amount * dailyInterestRate * 29일)
-                // 2. 9/25 ~ 10/17까지 총 22일 => (amount * dailyInterestRate * 22일)
+                // 1. 9/18 ~ 10/17까지 총 30일 => (amount * dailyInterestRate * 30일)
+                // 2. 9/25 ~ 10/17까지 총 23일 => (amount * dailyInterestRate * 23일)
                 // ...
-                // 5. 10/16 ~ 10/17까지 총 1일 => (amount * dailyInterestRate * 1일)
-                // 공식 : (amount *  dailyInterestRate) * (29 + 22 + 15 + 8 + 1)
-                // (29 + 22 + 15 + 8 + 1) 이 부분을 표현하면 n부터 7씩 빼면서 더이상 못 뺄 때까지 더하는 공식 -> calculateSum(n)
+                // 5. 10/16 ~ 10/17까지 총 2일 => (amount * dailyInterestRate * 2일)
+                // 공식 : (amount *  dailyInterestRate) * (30 + 23 + 16 + 9 + 2)
+                // (30 + 23 + 16 + 9 + 2) 이 부분을 표현하면 n부터 7씩 빼면서 더이상 못 뺄 때까지 더하는 공식 -> calculateSum(n)
                 const totalInterest = amount * dailyInterestRate * calculateSum(days);
 
                 return Math.floor(totalInterest); // 정수로 버림된 총 이자를 반환
