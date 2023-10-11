@@ -10,6 +10,7 @@
             resultType="com.kopo.finalproject.insurance.controller.InsuranceProduct">
         SELECT *
         FROM pet_insurance_product
+        ORDER BY insurance_name
     </select>
 
     <select id="getInsuRecommend" parameterType="String"

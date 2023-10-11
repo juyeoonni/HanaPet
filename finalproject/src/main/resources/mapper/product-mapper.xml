@@ -8,7 +8,7 @@
             resultType="com.kopo.finalproject.product.model.dto.Product">
         SELECT *
         FROM pet_saving_product
-        ORDER BY creation_date DESC
+        ORDER BY category
     </select>
 
     <select id="getProductByCategory" parameterType="String"

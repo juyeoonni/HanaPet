@@ -300,7 +300,8 @@
                                                style="font-size: 18px;">최소 가입 기간</label>
                                         <div style="display: flex; align-items: center;">
                                             <input id="form" class="form-control end" type="text" name="min_period"
-                                                   value="<c:out value="${product.min_period}"/>">개월
+                                                   value="<c:out value="${product.min_period}"/>"><span
+                                                style="width: 41px; text-align: end">개월</span>
                                         </div>
                                     </div>
                                 </div>
@@ -310,7 +311,8 @@
                                                style="font-size: 18px;">최대 가입 기간</label>
                                         <div style="display: flex; align-items: center;">
                                             <input id="form" class="form-control end" type="text" name="max_period"
-                                                   value="<c:out value="${product.max_period}"/>">개월
+                                                   value="<c:out value="${product.max_period}"/>"><span
+                                                style="width: 41px; text-align: end">개월</span>
                                         </div>
                                     </div>
                                 </div>

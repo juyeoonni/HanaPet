@@ -204,7 +204,7 @@
                                     우대금리
                                 </th>
                                 <th class="text-center text-uppercase text-secondary text-m font-weight-bolder opacity-7">
-                                    등록일
+                                    등록/수정일
                                 </th>
                                 <th class="text-center text-uppercase text-secondary text-m font-weight-bolder opacity-7">
                                     상태

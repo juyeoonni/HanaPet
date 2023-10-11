@@ -320,7 +320,13 @@
 
                         $("#total-" + pet.pet_id).text("총 잔액 " + total_balance.toLocaleString() + "원");
                         totalAmount += total_balance;
-                        document.getElementById("petAccountCnt" + pet.pet_id).textContent = myAccountsOfPet.length + "개의 적금 보유";
+                        if (myAccountsOfPet.length == 0) {
+                            document.getElementById("petAccountCnt" + pet.pet_id).textContent = "적금 없음";
+                            accordionBody.append("<div style='padding: 15px 40px !important;'>적금이 없습니다.</div>");
+                        } else {
+                            document.getElementById("petAccountCnt" + pet.pet_id).textContent = myAccountsOfPet.length + "개의 적금 보유";
+                        }
+
                     }).fail(function () {
                         console.log("Error fetching savingaccounts data.");
                     });
