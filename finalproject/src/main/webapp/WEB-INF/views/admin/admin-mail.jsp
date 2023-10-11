@@ -173,7 +173,7 @@
     </style>
 </head>
 <body class="g-sidenav-show bg-gray-100">
-<div class="min-height-300 position-absolute w-100" style="background: #46814c"></div>
+<div class="min-height-300 position-absolute w-100" style="background: #75A989"></div>
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
        id="sidenav-main">
     <div class="sidenav-header">
@@ -499,7 +499,7 @@
 
         if (productType === '적금') {
             <c:forEach var="product" items="${productList}">
-            var option = new Option('<c:out value="${product.category}" />', '<c:out value="${product.category}" />');
+            var option = new Option('<c:out value="${product.category}" />', '<c:out value="${product.category}"/>');
             productDetail.add(option);
             </c:forEach>
         } else if (productType === '보험') {
@@ -510,6 +510,12 @@
         }
     }
 
+    document.getElementById('chk_all').addEventListener('change', function () {
+        var checkboxes = document.querySelectorAll('input[name="chk_list"]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = this.checked;
+        }
+    });
 
 </script>
 <script>
