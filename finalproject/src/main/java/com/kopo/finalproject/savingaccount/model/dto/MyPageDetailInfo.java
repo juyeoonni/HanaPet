@@ -29,6 +29,8 @@ public class MyPageDetailInfo {
     private String transferAmount;
     private String transferPeriod;
     private String depositAccountNumber;
+    private String rate;
+    private String priorRate;
 
     public MyPageDetailInfo() {
     }

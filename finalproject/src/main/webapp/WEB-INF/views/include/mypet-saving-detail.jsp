@@ -352,184 +352,203 @@
             </div>
 
             <div class="middle-title" style="margin-top: 80px">적금 상세 정보</div>
+            <c:if test="${info.size() == 1}">
             <table border="1"
                    style="width: 100%; border-collapse: collapse; display: flex; gap: 250px;">
-                <tbody class="info">
-                <tr>
-                    <td style="padding: 8px; font-weight: bold;">계좌 번호</td>
-                    <td style="width: 30px;"></td>
-                    <td style="padding: 8px;">${info[0].accountNumber}</td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; font-weight: bold;">적금 상품</td>
-                    <td style="width: 30px;"></td>
-                    <td style="padding: 8px;">${info[0].category}</td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; font-weight: bold;">개설자</td>
-                    <td style="width: 30px;"></td>
-                    <td style="padding: 8px;">${info[0].guestName}</td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; font-weight: bold;">현재 잔액</td>
-                    <td style="width: 30px;"></td>
-                    <td style="padding: 8px;"><fmt:formatNumber value="${info[0].balance}" type="number"
-                                                                pattern="#,###원"/></td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; font-weight: bold;">연결 계좌</td>
-                    <td style="width: 30px;"></td>
-                    <c:forEach var="infoItem" items="${info}">
-                        <c:if test="${sessionScope.guest_id eq infoItem.guestId}">
-                            <td style="padding: 8px;">${infoItem.depositAccountNumber}</td>
-                        </c:if>
-                    </c:forEach>
-                </tr>
-                </tbody>
-                <tbody class="info">
-                <tr>
-                    <td style="padding: 8px; font-weight: bold;">적금 개설일</td>
-                    <td style="width: 30px;"></td>
-                    <td style="padding: 8px;">${info[0].openingDate.split(" ")[0]}</td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; font-weight: bold;">적금 만기 예정일</td>
-                    <td style="width: 30px;"></td>
-                    <td style="padding: 8px;">${info[0].endDate.split(" ")[0]}</td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; font-weight: bold;">적금 만기 시 원금</td>
-                    <td style="width: 30px;"></td>
-                    <td style="padding: 8px;"><fmt:formatNumber value="${info[0].finalAmount}" type="number"
-                                                                pattern="#,###원"/></td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px; font-weight: bold;">적금 만기 시 이자</td>
-                    <td style="width: 30px;"></td>
-                    <td style="padding: 8px;"><fmt:formatNumber value="${info[0].interestAmount}" type="number"
-                                                                pattern="#,###원"/></td>
-                </tr>
-                </tbody>
-            </table>
-            <br>
-            <hr>
-            <div style="display: flex">
-                <div class="container rounded mt-0 bg-white p-0">
-                    <div class="middle-title" style="margin-top: 50px">공유 적금 참여자</div>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">구분</th>
-                                <th scope="col">이름</th>
-                                <th scope="col">적금 가입일</th>
-                                <th scope="col">총 기여 금액</th>
-                                <th scope="col">기여도</th>
-                                <th scope="col">납입 금액</th>
-                                <th scope="col">납입 주기</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="infoItem" items="${info}">
-                                <!-- 소유자의 정보 -->
-                                <c:if test="${infoItem.openerId eq infoItem.guestId}">
-                                    <tr class="bg-blue">
-                                        <td class="pt-2 mt-1">개설자</td>
-                                        <td class="pt-2 mt-1">${infoItem.guestName}</td>
-                                        <td class="pt-2 mt-1">${infoItem.joinDate.split(" ")[0]}</td>
-                                        <td class="pt-2"><fmt:formatNumber value="${infoItem.contributionAmount}"
-                                                                           type="number" pattern="#,###원"/></td>
-                                        <td class="pt-2">${infoItem.contributionRatio}%</td>
-                                        <td class="pt-2"><fmt:formatNumber value="${infoItem.transferAmount}"
-                                                                           type="number"
-                                                                           pattern="#,###원"/></td>
-                                        <td class="pt-2">${infoItem.transferPeriod}</td>
-                                    </tr>
-                                    <tr id="spacing-row">
-                                        <td></td>
-                                    </tr>
-                                </c:if>
-
-                                <!-- 참여자의 정보 -->
-                                <c:if test="${infoItem.openerId ne infoItem.guestId}">
-                                    <tr class="bg-blue ">
-                                        <td class="pt-2 mt-1">참여자</td>
-                                        <td class="pt-2 mt-1">${infoItem.guestName}</td>
-                                        <td class="pt-2 mt-1">${infoItem.joinDate.split(" ")[0]}</td>
-                                        <td class="pt-2"><fmt:formatNumber value="${infoItem.contributionAmount}"
-                                                                           type="number" pattern="#,###원"/></td>
-                                        <td class="pt-2">${infoItem.contributionRatio}%</td>
-                                        <td class="pt-2"><fmt:formatNumber value="${infoItem.transferAmount}"
-                                                                           type="number"
-                                                                           pattern="#,###원"/></td>
-                                        <td class="pt-2">${infoItem.transferPeriod}</td>
-                                    </tr>
-                                    <tr id="spacing-row">
-                                        <td></td>
-                                    </tr>
-                                </c:if>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-
-                <div class="card"
-                     style="align-self: center; margin-top: 90px; width: 45%;">
-                    <div class="card-body" style="width: 100%; padding: 0px;">
-                        <iframe class="chartjs-hidden-iframe"
-                                style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
-                        <iframe class="chartjs-hidden-iframe"
-                                style="width: 400px;display: block;border: 0px;height: 0px;margin: 0px;position: absolute;inset: 0px;"></iframe>
-                        <div class="chartjs-size-monitor"
-                             style="position: absolute;left: 0px;top: 0px;right: 0px;bottom: 0px;overflow: hidden;pointer-events: none;visibility: hidden;width: 400px;z-index: -1;">
-                            <div class="chartjs-size-monitor-expand"
-                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                            </div>
-                            <div class="chartjs-size-monitor-shrink"
-                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                            </div>
-                        </div>
-                        <canvas id="chart-line" class="chartjs-render-monitor"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="middle-title" style="margin-top: 50px">이체 내역</div>
-            <table id="transactionTable" class="display" style="width:100%">
-                <thead>
-                <tr style="background: var(--primary-color) !important">
-                    <th class="text-white" style="text-align: center">회차</th>
-                    <th class="text-white" style="text-align: center">이름</th>
-                    <th class="text-white" style="text-align: center">입금 계좌</th>
-                    <th class="text-white" style="text-align: center">출금 계좌</th>
-                    <th class="text-white" style="text-align: center">납입일</th>
-                    <th class="text-white" style="text-align: center">납입금</th>
-                    <th class="text-white" style="text-align: center">잔액</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:set var="i" value="${history_info.size()}"/>
-                <c:forEach var="historyItem" items="${history_info}">
+                </c:if>
+                <c:if test="${info.size() > 1}">
+                <table border="1"
+                       style="width: 100%; border-collapse: collapse; display: flex; gap: 30px;">
+                    </c:if>
+                    <tbody class="info">
                     <tr>
-                        <td>${i}회차</td>
-                        <td style="text-align: center">${historyItem.guestName}</td>
-                        <td style="text-align: center">${historyItem.accountNumberIn}</td>
-                        <td style="text-align: center">${historyItem.accountNumberOut}</td>
-                        <td style="text-align: center">${historyItem.transferDate.split(" ")[0]}</td>
-                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.amount}" type="number"
-                                                                      pattern="#,###원"/></td>
-                        <td style="text-align: end"><fmt:formatNumber value="${historyItem.balanceAfterIn}"
-                                                                      type="number"
-                                                                      pattern="#,###원"/></td>
+                        <td style="padding: 8px; font-weight: bold;">계좌 번호</td>
+                        <td style="width: 30px;"></td>
+                        <td style="padding: 8px;">${info[0].accountNumber}</td>
                     </tr>
-                    <c:set var="i" value="${i - 1}"/>
-                </c:forEach>
-                </tbody>
-            </table>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">적금 상품</td>
+                        <td style="width: 30px;"></td>
+                        <td style="padding: 8px;">${info[0].category}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">개설자</td>
+                        <td style="width: 30px;"></td>
+                        <td style="padding: 8px;">${info[0].guestName}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">현재 잔액</td>
+                        <td style="width: 30px;"></td>
+                        <td style="padding: 8px;"><fmt:formatNumber value="${info[0].balance}" type="number"
+                                                                    pattern="#,###원"/></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">이자율(연)</td>
+                        <td style="width: 30px;"></td>
+                        <c:if test="${info.size() == 1}">
+                            <td style="padding: 8px;">${info[0].rate}% (기본 금리)</td>
+                        </c:if>
+                        <c:if test="${info.size() > 1}">
+                            <td style="padding: 8px;">${info[0].rate}% (기본 금리) + <span
+                                    style="color: var(--primary-color); font-weight: bold; font-size: 20px">${info[0].priorRate * (info.size()-1)}% (우대 금리 적용)</span>=
+                                <span style="font-size: 20px; font-weight: bold; color: var(--primary-color)">${info[0].rate + info[0].priorRate * (info.size()-1)}%</span>
+                            </td>
+                        </c:if>
+                    </tr>
+                    </tbody>
+                    <tbody class="info">
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">연결 계좌</td>
+                        <td style="width: 30px;"></td>
+                        <c:forEach var="infoItem" items="${info}">
+                            <c:if test="${sessionScope.guest_id eq infoItem.guestId}">
+                                <td style="padding: 8px;">${infoItem.depositAccountNumber}</td>
+                            </c:if>
+                        </c:forEach>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">적금 개설일</td>
+                        <td style="width: 30px;"></td>
+                        <td style="padding: 8px;">${info[0].openingDate.split(" ")[0]}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">적금 만기 예정일</td>
+                        <td style="width: 30px;"></td>
+                        <td style="padding: 8px;">${info[0].endDate.split(" ")[0]}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">적금 만기 시 원금</td>
+                        <td style="width: 30px;"></td>
+                        <td style="padding: 8px;"><fmt:formatNumber value="${info[0].finalAmount}" type="number"
+                                                                    pattern="#,###원"/></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">적금 만기 시 이자</td>
+                        <td style="width: 30px;"></td>
+                        <td style="padding: 8px;"><fmt:formatNumber value="${info[0].interestAmount}" type="number"
+                                                                    pattern="#,###원"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <hr>
+                <div style="display: flex">
+                    <div class="container rounded mt-0 bg-white p-0">
+                        <div class="middle-title" style="margin-top: 50px">공유 적금 참여자</div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">구분</th>
+                                    <th scope="col">이름</th>
+                                    <th scope="col">적금 가입일</th>
+                                    <th scope="col">총 기여 금액</th>
+                                    <th scope="col">기여도</th>
+                                    <th scope="col">납입 금액</th>
+                                    <th scope="col">납입 주기</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="infoItem" items="${info}">
+                                    <!-- 소유자의 정보 -->
+                                    <c:if test="${infoItem.openerId eq infoItem.guestId}">
+                                        <tr class="bg-blue">
+                                            <td class="pt-2 mt-1">개설자</td>
+                                            <td class="pt-2 mt-1">${infoItem.guestName}</td>
+                                            <td class="pt-2 mt-1">${infoItem.joinDate.split(" ")[0]}</td>
+                                            <td class="pt-2"><fmt:formatNumber value="${infoItem.contributionAmount}"
+                                                                               type="number" pattern="#,###원"/></td>
+                                            <td class="pt-2">${infoItem.contributionRatio}%</td>
+                                            <td class="pt-2"><fmt:formatNumber value="${infoItem.transferAmount}"
+                                                                               type="number"
+                                                                               pattern="#,###원"/></td>
+                                            <td class="pt-2">${infoItem.transferPeriod}</td>
+                                        </tr>
+                                        <tr id="spacing-row">
+                                            <td></td>
+                                        </tr>
+                                    </c:if>
+
+                                    <!-- 참여자의 정보 -->
+                                    <c:if test="${infoItem.openerId ne infoItem.guestId}">
+                                        <tr class="bg-blue ">
+                                            <td class="pt-2 mt-1">참여자</td>
+                                            <td class="pt-2 mt-1">${infoItem.guestName}</td>
+                                            <td class="pt-2 mt-1">${infoItem.joinDate.split(" ")[0]}</td>
+                                            <td class="pt-2"><fmt:formatNumber value="${infoItem.contributionAmount}"
+                                                                               type="number" pattern="#,###원"/></td>
+                                            <td class="pt-2">${infoItem.contributionRatio}%</td>
+                                            <td class="pt-2"><fmt:formatNumber value="${infoItem.transferAmount}"
+                                                                               type="number"
+                                                                               pattern="#,###원"/></td>
+                                            <td class="pt-2">${infoItem.transferPeriod}</td>
+                                        </tr>
+                                        <tr id="spacing-row">
+                                            <td></td>
+                                        </tr>
+                                    </c:if>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="card"
+                         style="align-self: center; margin-top: 90px; width: 45%;">
+                        <div class="card-body" style="width: 100%; padding: 0px;">
+                            <iframe class="chartjs-hidden-iframe"
+                                    style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
+                            <iframe class="chartjs-hidden-iframe"
+                                    style="width: 400px;display: block;border: 0px;height: 0px;margin: 0px;position: absolute;inset: 0px;"></iframe>
+                            <div class="chartjs-size-monitor"
+                                 style="position: absolute;left: 0px;top: 0px;right: 0px;bottom: 0px;overflow: hidden;pointer-events: none;visibility: hidden;width: 400px;z-index: -1;">
+                                <div class="chartjs-size-monitor-expand"
+                                     style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink"
+                                     style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                </div>
+                            </div>
+                            <canvas id="chart-line" class="chartjs-render-monitor"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="middle-title" style="margin-top: 50px">이체 내역</div>
+                <table id="transactionTable" class="display" style="width:100%">
+                    <thead>
+                    <tr style="background: var(--primary-color) !important">
+                        <th class="text-white" style="text-align: center">회차</th>
+                        <th class="text-white" style="text-align: center">이름</th>
+                        <th class="text-white" style="text-align: center">입금 계좌</th>
+                        <th class="text-white" style="text-align: center">출금 계좌</th>
+                        <th class="text-white" style="text-align: center">납입일</th>
+                        <th class="text-white" style="text-align: center">납입금</th>
+                        <th class="text-white" style="text-align: center">잔액</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:set var="i" value="${history_info.size()}"/>
+                    <c:forEach var="historyItem" items="${history_info}">
+                        <tr>
+                            <td>${i}회차</td>
+                            <td style="text-align: center">${historyItem.guestName}</td>
+                            <td style="text-align: center">${historyItem.accountNumberIn}</td>
+                            <td style="text-align: center">${historyItem.accountNumberOut}</td>
+                            <td style="text-align: center">${historyItem.transferDate.split(" ")[0]}</td>
+                            <td style="text-align: end"><fmt:formatNumber value="${historyItem.amount}" type="number"
+                                                                          pattern="#,###원"/></td>
+                            <td style="text-align: end"><fmt:formatNumber value="${historyItem.balanceAfterIn}"
+                                                                          type="number"
+                                                                          pattern="#,###원"/></td>
+                        </tr>
+                        <c:set var="i" value="${i - 1}"/>
+                    </c:forEach>
+                    </tbody>
+                </table>
         </div>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>

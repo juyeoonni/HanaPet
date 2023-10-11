@@ -73,8 +73,8 @@
                sa.account_number         as accountNumber,
                sa.opening_date           as openingDate,
                sa.end_date               as endDate,
-               psd.category              as category,
-               psd.image                 as categoryImg,
+               psp.category              as category,
+               psp.image                 as categoryImg,
                sa.opener_id              as openerId,
                g2.name                   as openerName,
                sa.current_balance        as balance,
@@ -88,10 +88,12 @@
                js.contribution_ratio     as contributionRatio,
                js.transfer_amount        as transferAmount,
                js.transfer_period        as transferPeriod,
-               js.DEPOSIT_ACCOUNT_NUMBER as depositAccountNumber
+               js.DEPOSIT_ACCOUNT_NUMBER as depositAccountNumber,
+               psp.rate                  as rate,
+               psp.prime_rate            as priorRate
         from saving_account sa
                  join join_saving js on sa.account_number = js.account_number
-                 join pet_saving_product psd on psd.category = sa.category
+                 join pet_saving_product psp on psp.category = sa.category
                  join pet on pet.pet_id = sa.pet_id
                  join guest g on g.guest_id = js.guest_id
                  join guest g2 on g2.guest_id = sa.opener_id
