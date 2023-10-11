@@ -55,21 +55,26 @@
 <%@ include file="include/header.jsp" %>
 <div class="body">
     <div class="menu-title"> 마이 페이지</div>
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item" role="presentation">
-            <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab"
-               style="font-weight: bold">반려견 적금</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab"
-               style="font-weight: bold">반려견
-                보험</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" data-bs-toggle="tab" href="#d" aria-selected="false" role="tab"
-               style="font-weight: bold">내 계좌</a>
-        </li>
-    </ul>
+    <div class="d-flex align-items-center">
+        <ul class="nav nav-tabs flex-grow-1" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" data-bs-toggle="tab" href="#home" aria-selected="true" role="tab"
+                   style="font-weight: bold">반려견 적금</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab"
+                   style="font-weight: bold">반려견 보험</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" data-bs-toggle="tab" href="#d" aria-selected="false" role="tab"
+                   style="font-weight: bold">내 계좌</a>
+            </li>
+        </ul>
+        <div style="border-bottom: 1px solid var(--primary-color); margin-bottom: -13.2px; padding-bottom: 6px; padding-right: 6px; font-weight: bold; color: var(--primary-color); cursor: pointer;">
+            내 정보 수정
+        </div>
+    </div>
+
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade show active" id="home" role="tabpanel">
             <%@ include file="include/mypet-saving.jsp" %>
