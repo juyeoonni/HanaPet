@@ -10,11 +10,6 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="/resources/img/admin/apple-icon.png">
-    <link rel="icon" type="image/png" href="/resources/img/admin/favicon.png">
-    <title>
-        product
-    </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <!-- Nucleo Icons -->
@@ -29,7 +24,6 @@
 
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/b3a7369db8.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/resources/css/main.css"/>
     <script
             src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -93,7 +87,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-<div class="min-height-300 position-absolute w-100">
+<div class="min-height-300 position-absolute w-100" style="background:#75A989 !important;">
 </div>
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
        id="sidenav-main">

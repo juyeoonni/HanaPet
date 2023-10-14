@@ -608,9 +608,10 @@
                     interest_amount: calculateTotalInterest(),
                     saving_pw: document.getElementById('savingPassword').value
                 };
-                let account_number = selectedAccountNumber.toString().slice(0, 3) + '******' + selectedAccountNumber.toString().slice(12, 17);
-                // 일단 테스트 완료!!!!!!!!!!!!!!!!!!!!!!!!!
+                let account_number_parts = selectedAccountNumber.toString().split('-');
+                let account_number = account_number_parts[0] + "******" + account_number_parts[3];
 
+                document.getElementById('account-name').textContent = document.getElementById('accountName').value;
                 console.log(requestData);
                 $.ajax({
                     url: "/join-savingaccounts",
@@ -621,10 +622,12 @@
                         console.log(response)
                         if (response === "적금 생성 성공") {
                             if (requestData.sms_transfer) {
-                                let content = '[HanaPet]' + '<%=guest_name%>님의 출금계좌 ' + account_number + ' ' + selectedValue3 + ' ' + requestData.amount.toLocaleString() + '원 자동이체가 등록되었습니다.';
-                                sendSmsRequest(content)
-                                content = '[HanaPet] 출금계좌 ' + account_number + ' ' + requestData.amount.toLocaleString() + '원 자동이체 완료.';
-                                sendSmsRequest(content)
+                                let content = '[HanaPet]\n' + '<%=guest_name%>님의 출금계좌(' + account_number + ') 자동이체 등록';
+
+                                console.log(content)
+                                //sendSmsRequest(content)
+                                content = '[HanaPet]\n' + account_number + '\n출금' + requestData.amount.toLocaleString() + '원\n자동이체';
+                                //sendSmsRequest(content)
                             }
                             modal.style.display = "block";
                         } else {
@@ -635,6 +638,7 @@
                         console.log("Error post.");
                     }
                 });
+
             }
 
 
@@ -645,25 +649,25 @@
                 };
 
                 // 서버로 POST 요청을 보냅니다.
-                // fetch('/user/sms', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     },
-                //     body: JSON.stringify(requestData)
-                // })
-                //     .then(response => response.json())
-                //     .then(data => {
-                //         // 서버에서 받은 응답을 처리합니다.
-                //         console.log(data);
-                //         console.log("됐다")
-                //         // 여기에서 원하는 동작을 수행할 수 있습니다.
-                //     })
-                //     .catch(error => {
-                //         // 오류가 발생한 경우 처리합니다.
-                //         console.error('Error sending SMS request:', error);
-                //         alert('인증번호 전송 중 오류가 발생했습니다.');
-                //     });
+                fetch('/user/sms', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // 서버에서 받은 응답을 처리합니다.
+                        console.log(data);
+                        console.log("됐다")
+                        // 여기에서 원하는 동작을 수행할 수 있습니다.
+                    })
+                    .catch(error => {
+                        // 오류가 발생한 경우 처리합니다.
+                        console.error('Error sending SMS request:', error);
+                        alert('인증번호 전송 중 오류가 발생했습니다.');
+                    });
             }
 
             function joinInvitedSavingLogic() {
@@ -728,9 +732,11 @@
                     pet_name: '<%=petName%>'
                 };
 
-                let account_number = selectedAccountNumber.toString().slice(0, 3) + '*******' + selectedAccountNumber.toString().slice(10, 14);
+                let account_number_parts = selectedAccountNumber.toString().split('-');
+                let account_number = account_number_parts[0] + "******" + account_number_parts[3];
                 console.log(requestData);
-
+                document.getElementById('account-name').textContent = '<%=accountNumber%>';
+                document.getElementById('pet-name').textContent = '<%=petName%>' + '를 위한 ';
                 $.ajax({
                     url: "/join-invited",
                     type: "POST",
@@ -740,10 +746,10 @@
                         console.log(response)
                         if (response === "초대 적금 가입 성공") {
                             if (requestData.sms_transfer) {
-                                let content = '[HanaPet]' + '<%=guest_name%>님의 출금계좌 ' + account_number + ' ' + selectedValue3 + ' ' + requestData.amount + '원 자동이체가 등록되었습니다.';
-                                sendSmsRequest(content)
-                                content = '[HanaPet] 출금계좌 ' + account_number + ' ' + requestData.amount + '원 자동이체 완료.';
-                                sendSmsRequest(content)
+                                let content = '[HanaPet]\n' + '<%=guest_name%>님의 출금계좌(' + account_number + ') 자동이체 등록';
+                                //sendSmsRequest(content)
+                                content = '[HanaPet]\n' + account_number + '\n출금' + requestData.amount.toLocaleString() + '원\n자동이체';
+                                //sendSmsRequest(content)
                             }
                             modal.style.display = "block";
                         } else {
@@ -1024,13 +1030,6 @@
             var selectedOption = this.options[this.selectedIndex].text;
             document.getElementById('pet-name').textContent = selectedOption + '를 위한 ';
         });
-        if (typeof '<%=savingName%>' !== 'undefined' && '<%=savingName%>' !== null) {
-            document.getElementById('account-name').textContent = '<%=savingName%>';
-        } else {
-            document.getElementById('accountName').addEventListener('input', function () {
-                document.getElementById('account-name').textContent = this.value;
-            });
-        }
     });
 </script>
 <script>

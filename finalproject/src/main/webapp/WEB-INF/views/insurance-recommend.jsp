@@ -296,7 +296,7 @@
                         scrollTop: $(".recommend").offset().top
                     }, 90);
                 },
-                
+
                 error: function (xhr, status, error) {
                     console.error('Error fetching account list:', error);
                 }
