@@ -139,8 +139,8 @@
             <div>
                 <h4 style="font-weight: bold">우리 아이에게 딱 맞는 펫보험은?🔍</h4>
                 <br>
-                <h5 style="font-weight: bold; color: var(--primary-color); margin-top: -20px;">나이와 품종으로 추천 보험을 알려줄개, 우리 아이의 정보를 입력해보개!</h5>
-                <p style="font-size: 14px">*제휴 동물 병원 진료내역 5181건 기반</p>
+                <h5 style="font-weight: bold; color: var(--primary-color);">나이와 품종으로 추천 보험을 알려줄개, 우리
+                    아이의 정보를 입력해보개!</h5>
             </div>
             <div>
                 <img src="/resources/img/insurance-dog.png" style="margin-top: -10px; width: 190px">
@@ -285,7 +285,7 @@
 
                         resultHTML += '<div class="tags">' + tags + '</div>';
                         resultHTML += '<br><h5 style="text-align: end; font-weight: bold">' + data[i].period + ' ' + Number(data[i].amount).toLocaleString() + '원</h5>';
-                        resultHTML += '<div style="text-align: end"><a href="/insurance-detail" class="details-btn">자세히 보기</a></div>';
+                        resultHTML += '<div style="text-align: end"><a href="/insurance-detail" class="details-btn" onclick="saveInsuranceInfo(\'' + data[i].insurance_name + '\', ' + 'Number(data[i].amount).toLocaleString()원' + ')">자세히 보기</a></div>';
                         resultHTML += '</div>';
                     }
 
@@ -296,8 +296,7 @@
                         scrollTop: $(".recommend").offset().top
                     }, 90);
                 },
-
-
+                
                 error: function (xhr, status, error) {
                     console.error('Error fetching account list:', error);
                 }
@@ -305,6 +304,17 @@
         });
 
     });
+
+    // 각각의 data[i].insurance_name과 data[i].amount을 클릭 이벤트 핸들러에 전달하기 위한 함수
+    function saveInsuranceInfo(insuranceName, amount) {
+        var insuranceInfo = {
+            insuranceName: insuranceName,
+            insuranceAmount: amount
+        };
+
+        // 세션에 정보 저장
+        sessionStorage.setItem("selectedInsurance", JSON.stringify(insuranceInfo));
+    }
 
     document.addEventListener('DOMContentLoaded', function () {
         // breedRatio를 위한 막대차트

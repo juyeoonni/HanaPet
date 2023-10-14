@@ -305,7 +305,6 @@
                                     <option value="적금">적금</option>
                                     <option value="보험">보험</option>
                                 </select>
-
                                 <!-- 상품 세부 선택 드롭다운 -->
                                 <select id="productDetail">
                                     <option>세부 상품을 선택하세요</option>
@@ -434,6 +433,7 @@
                                             <label for="example-text-input" class="form-control-label"
                                                    style="font-size: 16px;">내용</label>
                                             <textarea class="form-control" type="text" name="content"
+                                                      style="height: 350px"
                                                       placeholder="보낼 내용을 입력하세요">
 
         </textarea>
@@ -521,7 +521,45 @@
 <script>
     $(window).load(function () {
         $("#sendEmail").click(function () {
-            <%--            <%EmailSender.naverMailSend("yulim13sky@naver.com","적금 상품 새로 나옴","내용 test");%>--%>
+            <%EmailSender.naverMailSend("yulim13sky@hanmail.net","HanaPet - 새로운 적금 출시 알림!","안녕하세요,\n" +
+"\n" +
+"새로운 적금 상품 소식을 전해드리게 되어 기쁩니다. 반려동물을 사랑하는 우리 모두의 행복한 미래를 위한 특별한 저축 상품을 소개해 드립니다.\n" +
+"\n" +
+"\uD83D\uDC3E Hanna Pet 적금 상품\n" +
+"\n" +
+"상품 특징:\n" +
+"펫코노미 시대! 반려인 1,500만명에 합류하신 여러분을 위한 특별한 저축 상품\n" +
+"반려동물의 미래를 위한 목돈 마련이 이제 Hanna Pet와 함께 가능합니다.\n" +
+"\n" +
+"가입 대상:\n" +
+"Hanna Pet에 반려견을 등록하신 모든 고객님께서는 가입이 가능합니다.\n" +
+"\n" +
+"가입 금액:\n" +
+"월 5,000원 이상 ~ 800,000원까지 자유롭게 설정하실 수 있습니다.\n" +
+"\n" +
+"가입 기간:\n" +
+"짧게는 6개월부터, 길게는 48개월까지 선택하실 수 있습니다.\n" +
+"\n" +
+"금리 정보:\n" +
+"기본 금리: 연 2.7%\n" +
+"우대 금리: 최대 연 0.9%\n" +
+"\n" +
+"이자 지급 방법:\n" +
+"만기일시지급식: 만기(후)해지시 이자를 지급합니다.\n" +
+"\n" +
+"\uD83C\uDF89 우대 금리 혜택!\n" +
+"참여하신 친구와 함께 더 큰 이자를 받아보세요!\n" +
+"\n" +
+"2명 참여 시: 0.3% 추가 우대\n" +
+"3명 참여 시: 0.6% 추가 우대\n" +
+"4명 이상 참여 시: 최대 0.9% 추가 우대\n" +
+"\n" +
+"이런 특별한 적금 상품을 놓치지 마세요! Hanna Pet와 함께 반려동물의 미래를 더 풍요롭게 만들어 가세요.\n" +
+"\n" +
+"감사합니다.\n" +
+"Hanna Pet 드림.\n" +
+"        ", null);%>
+            alert("메일이 성공적으로 발송되었습니다.");
         });
     });
 </script>
@@ -571,7 +609,7 @@
                 emails += email + ' ';
             });
 
-            $('#name').val(names.trim());
+            $('#name').val('강은지 강희진 구옥순 권성민 김경희 김보람 김수자 김영식 김은정 김준영 김준호 김지아 김지은 김지형 김지훈 김현우 김현정 나재현 남정호 남혜진 문아름 박성진 박영진 박영호 박영희 박옥순 박준하 박준형 배예원 배예지 백지연 서상호 성상호 송성진 안건우 안상호 오민지 오영철 오현숙 윤영식 윤현우 이민지 이선옥 이영일 이종수 지민아 최영진 최유림 최유정 허우진 황하윤');
             $('#email').val(emails.trim());
         });
 

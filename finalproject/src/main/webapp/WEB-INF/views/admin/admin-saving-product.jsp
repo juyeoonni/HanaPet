@@ -228,7 +228,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td style="padding-left: 25px;">
                                         <p class="text-xs font-weight-bold mb-0">${product.rate}%</p>
                                     </td>
                                     <td class="align-middle text-center text-sm">

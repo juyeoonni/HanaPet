@@ -7,6 +7,7 @@
     <select id="getGuestCnt" resultType="Integer">
         SELECT COUNT(*)
         FROM guest
+        WHERE type = 'GUEST'
     </select>
 
     <select id="getPetCnt" resultType="Integer">
@@ -46,6 +47,7 @@
         SELECT TO_CHAR(REG_DATE, 'YYYY-MM') AS month,
     COUNT(*) AS monthly_guest_count
         FROM GUEST
+        WHERE TYPE ='GUEST'
         GROUP BY TO_CHAR(REG_DATE, 'YYYY-MM')
         ORDER BY month
     </select>

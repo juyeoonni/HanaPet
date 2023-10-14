@@ -206,10 +206,6 @@
                             <td class="product-info" id="productPrimeRate" style="padding-left: 150px;"></td>
                         </tr>
                         <tr>
-                            <td class="product-info-bold">적립 방법</td>
-                            <td class="product-info" style="padding-left: 150px;">자유적립식</td>
-                        </tr>
-                        <tr>
                             <td class="product-info-bold">이자지급방법</td>
                             <td class="product-info" style="padding-left: 150px;">만기일시지급식 : 만기(후)해지시 이자를 지급</td>
                         </tr>

@@ -1024,8 +1024,8 @@
             var selectedOption = this.options[this.selectedIndex].text;
             document.getElementById('pet-name').textContent = selectedOption + '를 위한 ';
         });
-        if (typeof savingName !== 'undefined' && savingName !== null) {
-            document.getElementById('account-name').textContent = savingName;
+        if (typeof '<%=savingName%>' !== 'undefined' && '<%=savingName%>' !== null) {
+            document.getElementById('account-name').textContent = '<%=savingName%>';
         } else {
             document.getElementById('accountName').addEventListener('input', function () {
                 document.getElementById('account-name').textContent = this.value;
