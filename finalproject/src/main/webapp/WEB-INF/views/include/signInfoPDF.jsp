@@ -90,7 +90,7 @@
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">반려견 생년월일</td>
-                        <td class="text-start" style="padding-left: 20px;">2018-02-12</td>
+                        <td class="text-start" style="padding-left: 20px;">2020-02-12</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">반려견 품종</td>
@@ -116,7 +116,7 @@
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">가입날짜</td>
-                        <td class="text-start" style="padding-left: 20px;">2023-10-09</td>
+                        <td class="text-start" style="padding-left: 20px;">2023-10-10</td>
                     </tr>
                     <tr>
                         <td class="text-center" style="width:200px;">비고</td>

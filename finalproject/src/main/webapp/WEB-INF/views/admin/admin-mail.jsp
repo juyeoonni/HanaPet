@@ -344,7 +344,7 @@
                 <div class="card card-profile">
                     <div class="card-header pb-0">
                         <div class="d-flex align-items-center">
-                            <h5 class="text-bold text-xl">메일 송부 고객 선택</h5>
+                            <h5 class="text-bold text-xl">메일 송부 손님 선택</h5>
                             <button id="checkVal" type="button" class="btn btn-getstarted btn-sm ms-auto"
                                     style="margin: 0;">확인
                             </button>
@@ -535,13 +535,13 @@
 "Hanna Pet에 반려견을 등록하신 모든 고객님께서는 가입이 가능합니다.\n" +
 "\n" +
 "가입 금액:\n" +
-"월 5,000원 이상 ~ 800,000원까지 자유롭게 설정하실 수 있습니다.\n" +
+"월 5,000원 이상 ~ 500,000원까지 자유롭게 설정하실 수 있습니다.\n" +
 "\n" +
 "가입 기간:\n" +
-"짧게는 6개월부터, 길게는 48개월까지 선택하실 수 있습니다.\n" +
+"짧게는 6개월부터, 길게는 36개월까지 선택하실 수 있습니다.\n" +
 "\n" +
 "금리 정보:\n" +
-"기본 금리: 연 2.7%\n" +
+"기본 금리: 연 2.9%\n" +
 "우대 금리: 최대 연 0.9%\n" +
 "\n" +
 "이자 지급 방법:\n" +

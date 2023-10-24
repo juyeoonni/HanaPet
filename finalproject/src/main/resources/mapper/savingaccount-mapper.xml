@@ -98,7 +98,7 @@
                  join guest g on g.guest_id = js.guest_id
                  join guest g2 on g2.guest_id = sa.opener_id
         where sa.account_number = #{accountNumber}
-        order by js.join_date
+        order by js.transfer_amount desc
     </select>
 
 

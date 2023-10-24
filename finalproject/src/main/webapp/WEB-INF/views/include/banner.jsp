@@ -89,7 +89,7 @@
                 aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner" style="height: 480px; width: 100%;">
-        <div class="carousel-item dark-overlay active" data-bs-interval="2600"
+        <div class="carousel-item dark-overlay active" data-bs-interval="2550"
              style='background-image: url("http://www.chungdamah.co.kr/theme/hp001/img/main_visual1.jpg"); height: 500px; background-position: 50% 10%; background-repeat: no-repeat; background-size: cover'>
             <div>
                 <br>
@@ -106,7 +106,7 @@
         </div>
         <div class="carousel-item"
              style="background-image: url('/resources/img/test2.svg'); background-color: black; height: 480px"
-             data-bs-interval="2600">
+             data-bs-interval="2550">
 
             <div style="text-align: center;">
                 <span style="font-size: 22px; font-family: 'net-bold'; color: white">혜택</span>
@@ -121,7 +121,7 @@
         </div>
         <div class="carousel-item"
              style='background-image: url("/resources/img/main3.png"); background-color: black; height: 500px; background-position: 50% 30%; background-repeat: no-repeat; background-size: cover'
-             data-bs-interval="2600">
+             data-bs-interval="2550">
             <div style="text-align: center">
                 <h3 class="event" style="margin-top: 40px;">소중한 우리 반려견의 건강한 삶을 위해, </h3>
                 <h3 class="event">하나펫손해보험</h3><br>

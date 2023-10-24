@@ -144,11 +144,11 @@
                 <thead>
                 <tr>
                     <th style="color:white; text-align: center; width: 200px" >거래일시</th>
-                    <th style="color:white; text-align: center;">구분</th>
-                    <th style="color:white; text-align: center">&nbsp&nbsp거래 금액</th>
-                    <th style="color:white; text-align: center">거래 후 잔액</th>
-                    <th style="color:white; text-align: center;=">거래 구분</th>
-                    <th style="color:white; text-align: center">내용</th>
+                    <th style="color:white; text-align: center; width: 70px">&nbsp&nbsp구분</th>
+                    <th style="color:white; text-align: center; width: 70px">&nbsp&nbsp거래 금액</th>
+                    <th style="color:white; text-align: center; width: 70px">&nbsp&nbsp거래 후 잔액</th>
+                    <th style="color:white; text-align: center; width: 70px">&nbsp&nbsp거래 구분</th>
+                    <th style="color:white; text-align: center; width: 70px">내용</th>
                 </tr>
                 </thead>
                 <tbody>

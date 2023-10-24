@@ -121,7 +121,7 @@
         <div class="form-container">
             <div style="height: 83%">
                 <div id="calendar-title" style="color: #324D3D">일정 <i class="fa fa-calendar-check-o"
-                                                                     aria-hidden="true"></i></div>
+                                                                      aria-hidden="true"></i></div>
                 <hr>
                 <form id="eventForm">
                     <div class="form-group">
@@ -476,7 +476,6 @@
                         document.getElementById("calendar_start_date").value = "";
                         document.getElementById("calendar_end_date").value = "";
                         document.getElementById("eventDescription").value = "";
-                        sendKakaoTalkMessage();
                         console.log("insert 성공");
                         modal.style.display = "none";
                         renderCalendar(currentDate.getMonth());
@@ -531,6 +530,7 @@
 
                 // <ul> 엘리먼트를 생성하여 이벤트 목록 추가
                 const eventsList = document.createElement("ul");
+                eventsList.style.padding = "5px";
                 petEvents.forEach(event => {
                     const eventItem = document.createElement("li");
                     eventItem.innerText = event.content;
@@ -609,69 +609,5 @@
         });
         renderCalendar(currentDate.getMonth());
     });
-
-    // KakaoTalk 메시지 보내기 함수
-    function sendKakaoTalkMessage() {
-        //
-        // Kakao.API.request({
-        //     url: '/v1/api/talk/friends',
-        // })
-        //     .then(function (response) {
-        //         console.log(response);
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-        //
-
-        // 메시지 받을 친구의 UUID
-        const receiverUuid = "VmNRZF1uWmNQfE1_Tn5GcUB4TGBRYVJrXj4";
-        const access_token = 'Bearer ' + '<%= access_token %>';
-
-        console.log("토큰" + access_token)
-
-        // 캘린더 메시지 템플릿 데이터 설정
-        const messageTemplate = {
-            object_type: "calendar",
-            content: {
-                title: "일정 제목",
-                description: "일정 설명",
-                image_url: "https://이미지URL.com/calendar.png",
-                link: {
-                    web_url: "http://localhost:8080/", // 웹 URL
-                    mobile_web_url: "http://localhost:8080/", // 모바일 웹 URL
-                },
-            },
-            buttons: [
-                {
-                    title: "일정 정보 보기",
-                    link: {
-                        web_url: "http://localhost:8080/", // 일정 정보 웹 페이지 URL
-                        mobile_web_url: "http://localhost:8080/", // 모바일 일정 정보 웹 페이지 URL
-                    },
-                },
-            ],
-            id_type: "event",
-            id: "일정 고유 ID",
-        };
-
-        // KakaoTalk 메시지 전송 요청
-        Kakao.API.request({
-            url: "/v1/api/talk/friends/message/default/send",
-            data: {
-                receiver_uuids: [receiverUuid],
-                template_object: messageTemplate
-            }
-        })
-            .then(function (response) {
-                console.log("카카오톡 메시지 전송 성공:", response);
-                // 여기에 성공 시 실행할 코드를 추가하세요.
-            })
-            .catch(function (error) {
-                console.error("카카오톡 메시지 전송 오류:", error);
-                // 여기에 오류 시 실행할 코드를 추가하세요.
-            });
-    }
 </script>
-
 </html>

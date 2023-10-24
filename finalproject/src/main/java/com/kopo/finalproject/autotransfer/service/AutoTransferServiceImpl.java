@@ -54,6 +54,45 @@ public class AutoTransferServiceImpl implements AutoTransferService {
         return autoTransferMapper.getEndTransferInfo(account_number);
     }
 
+    @Override
+    @Transactional
+    public void autoTransfer(String amount, String dan, String an, String gid, String dateString) {
+        try {
+            data.put("amount", amount);
+            data.put("deposit_account_number", dan);
+            data.put("account_number", an);
+            data.put("guest_id", gid);
+            data.put("date", dateString);
+
+            // 1. 예금 계좌 테이블 수정 (update) - 돈 빠져나가기
+            depositaccountMapper.withdraw(data);
+
+            // 2. 적금 참여 테이블 기여도 금액 수정
+            joinSavingMapper.updateContributionAmount(data);
+
+            // 3. 적금 계좌 테이블 수정 (update) - (현재 금액) 돈 들어오기
+            savingaccountMapper.autoDeposit(data);
+
+            // 적금 계좌 잔액 가져오기 (이체 내역 insert를 위한)
+            String balance = savingaccountMapper.getBalance(data.get("account_number"));
+            data.put("current_balance_s", balance);
+
+            // 예금 계좌 잔액 가져오기 (이체 내역 insert를 위한)
+            balance = depositaccountMapper.getBalance(data.get("deposit_account_number"));
+            data.put("current_balance_d", balance);
+
+            // 4. 이체 내역 테이블 생성 (insert) - 내역 기록
+            transferHistoryMapper.insertHistory(data);
+            transferHistoryMapper.insertDepositHistory(data);
+
+            // 문자 보내기
+//            String content = "[HanaPet] 출금계좌 " + schedule.getDepositAccountNumber() + ' ' + schedule.getTransferAmount() + "원 자동이체 완료.";
+//            smsService.sendSms(guestMapper.getPhone(schedule.getGuestId()), content); // 돈 나가서 임시로 막아놓음
+
+        } catch (Exception e) {
+            throw new RuntimeException("자동이체 작업 중 오류 발생: " + e.getMessage());
+        }
+    }
 
     // 자동이체 실행
     @Override
@@ -87,7 +126,7 @@ public class AutoTransferServiceImpl implements AutoTransferService {
             transferHistoryMapper.insertDepositHistory(data);
 
             // 문자 보내기
-            String content = "[HanaPet] 출금계좌 " + schedule.getDepositAccountNumber() + ' ' + schedule.getTransferAmount() + "원 자동이체 완료.";
+//            String content = "[HanaPet] 출금계좌 " + schedule.getDepositAccountNumber() + ' ' + schedule.getTransferAmount() + "원 자동이체 완료.";
 //            smsService.sendSms(guestMapper.getPhone(schedule.getGuestId()), content); // 돈 나가서 임시로 막아놓음
 
         } catch (Exception e) {

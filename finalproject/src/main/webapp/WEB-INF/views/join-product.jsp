@@ -622,12 +622,12 @@
                         console.log(response)
                         if (response === "적금 생성 성공") {
                             if (requestData.sms_transfer) {
-                                let content = '[HanaPet]\n' + '<%=guest_name%>님의 출금계좌(' + account_number + ') 자동이체 등록';
-
+                                let content = '[Web발신]\n[HanaPet]\n' + '<%=guest_name%>님의 출금계좌(' + account_number + ') 자동이체 등록';
                                 console.log(content)
-                                //sendSmsRequest(content)
-                                content = '[HanaPet]\n' + account_number + '\n출금' + requestData.amount.toLocaleString() + '원\n자동이체';
-                                //sendSmsRequest(content)
+                                sendSmsRequest(content)
+                                content = '[Web발신]\n[HanaPet]\n' + account_number + '\n출금' + ((Number)(requestData.amount)).toLocaleString() + '원\n자동이체';
+                                console.log(content)
+                                sendSmsRequest(content)
                             }
                             modal.style.display = "block";
                         } else {
@@ -735,7 +735,7 @@
                 let account_number_parts = selectedAccountNumber.toString().split('-');
                 let account_number = account_number_parts[0] + "******" + account_number_parts[3];
                 console.log(requestData);
-                document.getElementById('account-name').textContent = '<%=accountNumber%>';
+                document.getElementById('account-name').textContent = '<%=savingName%>';
                 document.getElementById('pet-name').textContent = '<%=petName%>' + '를 위한 ';
                 $.ajax({
                     url: "/join-invited",
@@ -746,10 +746,10 @@
                         console.log(response)
                         if (response === "초대 적금 가입 성공") {
                             if (requestData.sms_transfer) {
-                                let content = '[HanaPet]\n' + '<%=guest_name%>님의 출금계좌(' + account_number + ') 자동이체 등록';
-                                //sendSmsRequest(content)
-                                content = '[HanaPet]\n' + account_number + '\n출금' + requestData.amount.toLocaleString() + '원\n자동이체';
-                                //sendSmsRequest(content)
+                                let content = '[Web발신]\n[HanaPet]\n' + '<%=guest_name%>님의 출금계좌(' + account_number + ') 자동이체 등록';
+                                sendSmsRequest(content)
+                                content = '[Web발신]\n[HanaPet]\n' + account_number + '\n출금' + ((Number)(requestData.amount)).toLocaleString() + '원\n자동이체';
+                                sendSmsRequest(content)
                             }
                             modal.style.display = "block";
                         } else {

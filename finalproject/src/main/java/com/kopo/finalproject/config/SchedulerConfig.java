@@ -1,5 +1,6 @@
 package com.kopo.finalproject.config;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kopo.finalproject.autotransfer.model.dto.EndTransferInfo;
 import com.kopo.finalproject.autotransfer.model.dto.Scheduler;
 import com.kopo.finalproject.autotransfer.service.AutoTransferService;
@@ -12,6 +13,10 @@ import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -56,7 +61,7 @@ public class SchedulerConfig implements SchedulingConfigurer {
 
                 if (schedule.getTransferPeriod().equals("매월")) {
                     if (dayOfMonth == currentDay) {
-                        autoTransferService.autoTransfer(schedule);
+//                        autoTransferService.autoTransfer(schedule);
                         nextExecutionTime.add(Calendar.MONTH, 1);
                         nextExecutionTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                     } else if (dayOfMonth > currentDay) {
@@ -87,7 +92,7 @@ public class SchedulerConfig implements SchedulingConfigurer {
                     currentDay = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
                     if (dayOfWeek == currentDay) {
                         System.out.println("Processing repayment for loan record ID: " + schedule.getGuestId());
-                        autoTransferService.autoTransfer(schedule);
+//                        autoTransferService.autoTransfer(schedule);
                         nextExecutionTime.add(Calendar.DATE, 7);
                         nextExecutionTime.set(Calendar.DAY_OF_WEEK, dayOfWeek);
                     } else if (dayOfWeek > currentDay) {
@@ -140,19 +145,17 @@ public class SchedulerConfig implements SchedulingConfigurer {
                     List<EndMessageGuest> endMessageGuestList = guestService.getEndMessageGuest(savingaccount.getAccount_number());
                     for (EndMessageGuest endMessageGuest : endMessageGuestList) {
                         String content = "[HanaPet] " + endMessageGuest.getName() + "님 '" + endMessageGuest.getSavingName() + "' 적금 만기일이 7일 남았습니다.";
-//                        try {
-//                            smsService.sendSms(endMessageGuest.getPhone(), content); // 돈 나가서 임시로 막아놓음
-//                        } catch (JsonProcessingException e) {
-//                            throw new RuntimeException(e);
-//                        } catch (UnsupportedEncodingException e) {
-//                            throw new RuntimeException(e);
-//                        } catch (NoSuchAlgorithmException e) {
-//                            throw new RuntimeException(e);
-//                        } catch (InvalidKeyException e) {
-//                            throw new RuntimeException(e);
-//                        } catch (URISyntaxException e) {
-//                            throw new RuntimeException(e);
-//                        }
+                        try {
+                            smsService.sendSms(endMessageGuest.getPhone(), content); // 돈 나가서 임시로 막아놓음
+                        } catch (JsonProcessingException | NoSuchAlgorithmException e) {
+                            throw new RuntimeException(e);
+                        } catch (UnsupportedEncodingException e) {
+                            throw new RuntimeException(e);
+                        } catch (InvalidKeyException e) {
+                            throw new RuntimeException(e);
+                        } catch (URISyntaxException e) {
+                            throw new RuntimeException(e);
+                        }
                         System.out.println("테스트: " + content);
                     }
                 }

@@ -2,6 +2,7 @@ package com.kopo.finalproject;
 
 import com.kopo.finalproject.admin.AdminService;
 import com.kopo.finalproject.admin.dto.*;
+import com.kopo.finalproject.autotransfer.service.AutoTransferService;
 import com.kopo.finalproject.dto.Invite;
 import com.kopo.finalproject.guest.model.dto.EmailGuest;
 import com.kopo.finalproject.guest.service.GuestService;
@@ -31,14 +32,16 @@ public class MainController {
     private final InsuranceService insuranceService;
 
     private final AdminService adminService;
+    private final AutoTransferService autoTransferService;
 
-    public MainController(JoinSavingService joinSavingService, PetService petService, ProductService productService, GuestService guestService, InsuranceService insuranceService, AdminService adminService) {
+    public MainController(JoinSavingService joinSavingService, PetService petService, ProductService productService, GuestService guestService, InsuranceService insuranceService, AdminService adminService, AutoTransferService autoTransferService) {
         this.joinSavingService = joinSavingService;
         this.petService = petService;
         this.productService = productService;
         this.guestService = guestService;
         this.insuranceService = insuranceService;
         this.adminService = adminService;
+        this.autoTransferService = autoTransferService;
     }
 
     @RequestMapping("/")
@@ -52,6 +55,27 @@ public class MainController {
         System.out.println(pets);
         mav.setViewName("index");
         return mav;
+    }
+
+    @RequestMapping("/minsu")
+    public String ms() {
+        return "logic";
+    }
+
+    @RequestMapping("/yulim")
+    public String d() {
+        return "logic2";
+    }
+
+    @RequestMapping(value = "/a", method = RequestMethod.POST)
+    public void a(@RequestParam("text") String text) {
+        autoTransferService.autoTransfer("10000", "493-352-174-47356", "343-531930-81155", "minsu_04", text);
+    }
+
+    @RequestMapping(value = "/b", method = RequestMethod.POST)
+    public void b(@RequestParam("text") String text) {
+        autoTransferService.autoTransfer("150000", "493-293-143-13524", "343-531930-81155", "yulim98", text);
+        autoTransferService.autoTransfer("100000", "491-153-352-29482", "343-531930-81155", "heejin70", text);
     }
 
     @RequestMapping("/admin/dashboard")
@@ -188,7 +212,7 @@ public class MainController {
         String accountPW = joinSavingService.getInvitedPW(accountNumber);
         mav.addObject("accountPW", accountPW);
         mav.setViewName("include/invited-password-card");
-        System.out.println(accountPW+"야");
+        System.out.println(accountPW + "야");
         if (accountNumber != null) session.setAttribute("accountNumber", accountNumber);
         return mav;
     }

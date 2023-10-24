@@ -5,14 +5,15 @@
 <mapper namespace="com.kopo.finalproject.transferhistory.model.dao.TransferHistoryMapper">
 
     <insert id="insertHistory" parameterType="HashMap">
-        INSERT INTO transfer_history(account_number_in, account_number_out, amount, balance_after_in)
-        VALUES (#{account_number}, #{deposit_account_number}, #{amount}, #{current_balance_s}, #{current_balance_d})
+        INSERT INTO transfer_history(account_number_in, account_number_out, amount, balance_after_in, transfer_date)
+        VALUES (#{account_number}, #{deposit_account_number}, #{amount}, #{current_balance_s},TO_DATE(#{date}, 'YYYY-MM-DD HH24:MI:SS'))
     </insert>
 
     <insert id="insertDepositHistory" parameterType="HashMap">
         INSERT INTO history(account_number, inout, transaction_amount, balance,
-                            transaction_class, content)
-        VALUES (#{deposit_account_number}, '출금', -#{amount}, #{current_balance_d}, '자동이체', '적금 자동이체')
+                            transaction_class, content, transaction_date)
+        VALUES (#{deposit_account_number}, '출금', -#{amount}, #{current_balance_d}, '자동이체', '적금 자동이체',
+                TO_DATE(#{date}, 'YYYY-MM-DD HH24:MI:SS'))
     </insert>
 
     <insert id="insertDepositHistoryEnd" parameterType="HashMap">
