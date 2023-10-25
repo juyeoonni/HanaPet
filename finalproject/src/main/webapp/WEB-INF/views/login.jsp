@@ -41,7 +41,7 @@
 ">
     <div style="width: 41.5%;;">
         <b style="font-size: 28px">Login</b>
-        <form id="loginForm" method="post" style="width: 62%;"> <!-- 로그인 폼 시작 -->
+        <form id="loginForm" method="post" style="width: 62%;">
             <div class="input-group">
                 <i class='bx bxs-user'></i>
                 <input type="text" placeholder="아이디" id="guest_id">
@@ -51,7 +51,7 @@
                 <input type="password" placeholder="비밀번호" id="pw">
             </div>
             <input type="button" class="button" value="로그인" onclick="loginFormFunc(); return false;">
-        </form> <!-- 로그인 폼 종료 -->
+        </form>
         <div style="display: flex; padding: 30px 0px; justify-content: center;">
             <b class="pointer" style="margin-right: 15px; font-size: 17px;align-self: center;">
                 비밀번호 찾기
@@ -124,7 +124,6 @@
 </body>
 <script>
     function kakaoLogin() {
-        // 카카오톡 로그인 창 띄우기
         window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=' + config.KAKAO_JAVASCRIPT_KEY + '&redirect_uri=http://localhost:8080/kakao-login&response_type=code';
     };
 
@@ -140,11 +139,9 @@
     }, 200)
 
     function loginFormFunc() {
-        // 아이디와 비밀번호 가져오기
         var guest_id = $("#guest_id").val();
         var pw = $("#pw").val();
 
-        // Ajax를 통해 서버에 요청 전송
         $.ajax({
             type: "POST",
             url: "/login-guest",
@@ -158,13 +155,10 @@
             },
             success: function (response) {
                 if (response === "로그인 성공") {
-                    // 로그인 성공 시 처리
-                    // alert("로그인 성공");
                     var link = document.createElement("a");
                     link.href = "/";
                     link.click();
                 } else {
-                    // 로그인 실패 시 처리
                     console.error("로그인 실패");
                 }
             }

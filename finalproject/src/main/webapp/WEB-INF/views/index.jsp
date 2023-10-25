@@ -174,7 +174,7 @@
             width: 900px;
             max-width: 100%;
             height: 500px;
-            margin: auto; /* 모달을 화면 중앙에 위치시킴 */
+            margin: auto;
             padding: 30px;
         }
 
@@ -184,7 +184,6 @@
 <%@ include file="include/header.jsp" %>
 
 <%
-    // 세션에서 accountNumber 값을 가져옴
     String accountNumber = (String) session.getAttribute("accountNumber");
 
     // accountNumber가 null이 아닌 경우 /invited로 리디렉션
@@ -270,27 +269,22 @@
             });
         });
 
-        // "Close" 버튼을 클릭했을 때 모달 내용을 지우는 이벤트
         document.getElementById("myModal").addEventListener('hidden.bs.modal', function () {
             const modalContent = document.getElementById("modalContent");
-            modalContent.innerHTML = ""; // 모달 내용 초기화
-            // 스크롤 활성화
+            modalContent.innerHTML = "";
             document.body.style.overflow = "";
         });
 
         function loadPage(url) {
 
-            // 모달의 배경 삭제
             const modalBackdrop = document.querySelector('.modal-backdrop');
             if (modalBackdrop) modalBackdrop.remove();
 
-            // AJAX를 통해 페이지를 로드하여 모달 내에 채웁니다.
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("modalContent").innerHTML = data;
 
-                    // 모달 내 링크 클릭 이벤트 처리
                     document.getElementById("modalContent").addEventListener("click", function (event) {
                         if (event.target.tagName === "A") {
                             console.log(url);
@@ -303,7 +297,6 @@
                     });
                 });
 
-            // 부트스트랩 API를 사용하여 모달을 표시
             const modalInstance = new bootstrap.Modal(document.getElementById("myModal"));
             modalInstance.show();
         }
@@ -313,14 +306,12 @@
         setTimeout(function () {
             const modalContent = document.querySelector('.modal-c');
 
-            // Display changes
             modalContent.querySelector('.top1').style.display = 'none';
             modalContent.querySelector('.top2').style.display = 'block';
             modalContent.querySelector('.middle').style.display = 'block';
             const endSection = modalContent.querySelector('.end');
             endSection.style.display = 'flex';
 
-            // Flex properties
             endSection.style.justifyContent = 'center';
             endSection.style.gap = '25px';
         }, 1200);

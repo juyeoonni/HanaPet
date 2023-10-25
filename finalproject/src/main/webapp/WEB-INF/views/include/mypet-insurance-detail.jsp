@@ -241,25 +241,21 @@
             margin-bottom: 25px;
         }
 
-        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
         table.dataTable.stripe > tbody > tr.odd > *, table.dataTable.display > tbody > tr.odd > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
-        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
         table.dataTable.stripe > tbody > tr.odd.selected > *, table.dataTable.display > tbody > tr.odd.selected > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
-        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
         table.dataTable.stripe > tbody > tr.even > *, table.dataTable.display > tbody > tr.even > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
-        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
         table.dataTable.stripe > tbody > tr.even.selected > *, table.dataTable.display > tbody > tr.even.selected > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
@@ -374,7 +370,6 @@
 
 <script>
     $(document).ready(function () {
-        // DataTable 초기화
         $.noConflict();
         $('#myTable').DataTable({
             dom: 'Bfrtip',
@@ -384,13 +379,11 @@
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json"
             },
-            "paging": true, // 페이지 나누기 사용
+            "paging": true,
             "info": true,
             "initComplete": function (settings, json) {
-                // '엑설' 버튼의 span 요소를 선택
                 let excelButtonSpan = document.querySelector('.buttons-excel span');
 
-                // span의 텍스트를 '엑셀'로 변경
                 if (excelButtonSpan) {
                     excelButtonSpan.textContent = '엑셀';
                 }

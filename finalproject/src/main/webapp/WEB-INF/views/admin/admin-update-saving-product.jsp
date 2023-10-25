@@ -10,18 +10,13 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-    <!-- Nucleo Icons -->
     <link href="/resources/css/nucleo-icons.css" rel="stylesheet"/>
     <link href="/resources/css/nucleo-svg.css" rel="stylesheet"/>
-    <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="/resources/css/nucleo-svg.css" rel="stylesheet"/>
-    <!-- CSS Files -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css"/>
-
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/b3a7369db8.js" crossorigin="anonymous"></script>
     <script
@@ -155,7 +150,6 @@
     </div>
 </aside>
 <main class="main-content position-relative border-radius-lg ">
-    <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
          data-scroll="false">
         <div class="container-fluid py-1 px-3">
@@ -176,7 +170,6 @@
                     <li class="nav-item d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1"></i>
-
                         </a>
                     </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -203,7 +196,6 @@
             </div>
         </div>
     </nav>
-    <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row">
             <div class="card">
@@ -338,7 +330,7 @@
         </footer>
     </div>
 </main>
-<!--   Core JS Files   -->
+
 <script src="/resources/js/core/popper.min.js"></script>
 <script src="/resources/js/core/bootstrap.min.js"></script>
 <script src="/resources/js/plugins/perfect-scrollbar.min.js"></script>
@@ -346,28 +338,25 @@
 <script src="/resources/js/plugins/chartjs.min.js"></script>
 <script>
     document.querySelector('form[name="form1"]').addEventListener('submit', function (event) {
-        // 이벤트의 기본 동작(폼 제출)을 일시 중지
+
         event.preventDefault();
 
         var amounts = document.querySelectorAll('.amount');
 
         amounts.forEach(function (input) {
-            // 쉼표 제거
             input.value = input.value.replace(/,/g, '');
         });
 
-        // 폼 제출
         event.target.submit();
     });
 
 </script>
 <script type="text/javascript">
-    // 원래의 이미지 이름을 변수에 저장
     var originalFileName = "${product.image}";
 
     $("#file").on('change', function () {
         var fileName = $("#file").val();
-        if (fileName !== originalFileName) { // 파일이 선택되었다면
+        if (fileName !== originalFileName) {
             fileName = fileName.split("\\")[2];
             $(".upload-name").val(fileName);
             $('input[name="image"]').val(fileName);
@@ -375,30 +364,25 @@
     });
 
     $(document).ready(function () {
-        const $inputFields = $(".amount"); // 이렇게 하면 모든 .amount 요소들이 $inputFields에 저장됩니다.
+        const $inputFields = $(".amount");
 
-        // 기존 값을 콤마로 구분된 값으로 변환
         $inputFields.each(function () {
             updateValueWithComma($(this));
         });
 
-        // 사용자가 값을 변경할 때 콤마를 다시 추가/제거
         $inputFields.on("input", function () {
             updateValueWithComma($(this));
         });
     });
 
     function updateValueWithComma($element) {
-        const valueWithoutCommas = $element.val().replace(/,/g, '');  // 콤마 제거
+        const valueWithoutCommas = $element.val().replace(/,/g, '');
         const formattedValue = Number(valueWithoutCommas).toLocaleString();
         $element.val(formattedValue === "0" ? "" : formattedValue);
     }
 
-
 </script>
 
-<!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="/resources/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>

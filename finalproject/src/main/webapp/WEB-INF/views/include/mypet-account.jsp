@@ -8,23 +8,23 @@
         }
 
         .toggleSwitch {
-            width: 50px; /* 전체 너비를 50%로 축소 */
-            height: 25px; /* 전체 높이를 50%로 축소 */
+            width: 50px;
+            height: 25px;
             display: block;
             position: relative;
-            border-radius: 15px; /* 반지름도 50%로 축소 */
+            border-radius: 15px;
             background-color: #fff;
             box-shadow: 0 0 8px 1.5px rgba(0 0 0 / 15%);
             cursor: pointer;
-            margin-bottom: 10px; /* 마진도 50%로 축소 */
+            margin-bottom: 10px;
         }
 
         .toggleSwitch .toggleButton {
-            width: 20px; /* 토글 버튼의 너비를 조절 */
-            height: 20px; /* 토글 버튼의 높이를 조절 */
+            width: 20px;
+            height: 20px;
             position: absolute;
             top: 50%;
-            left: 2px; /* 왼쪽 위치를 조절 */
+            left: 2px;
             transform: translateY(-50%);
             border-radius: 50%;
             background: var(--primary-color);
@@ -35,7 +35,7 @@
         }
 
         .toggles:checked ~ .toggleSwitch .toggleButton {
-            left: calc(100% - 22px); /* 토글 버튼의 왼쪽 위치를 조절 */
+            left: calc(100% - 22px);
             background: #fff;
         }
 
@@ -107,14 +107,12 @@
 </div>
 
 <div class="account-box" id="account-box">
-    <!-- 동적으로 카드 넣기 -->
 </div>
 <script>
     $(document).ready(function () {
-        var guest_id = '<%= guest_id %>'; // Java 값을 JavaScript 변수로 전달
+        var guest_id = '<%= guest_id %>';
         var totalAmount = 0;
 
-        // Ajax로 예금 계좌 목록 가져와서 옵션 추가
         $.ajax({
             url: '/depositaccounts',
             method: 'GET',

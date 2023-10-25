@@ -25,11 +25,10 @@
             padding: 0px 30px;
         }
 
-        /* 그리드 컨테이너 스타일 */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 4개의 열로 구성 */
-            gap: 40px; /* 아이템 사이의 간격 */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
         }
 
         .product-image {
@@ -66,7 +65,7 @@
             padding: 30px;
             display: flex;
             flex-direction: column;
-            border: 3px solid var(--primary-color); /* 5px 크기의 var(--primary-color) 테두리 설정 */
+            border: 3px solid var(--primary-color);
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 20px;
             height: 160px;
@@ -78,7 +77,6 @@
         }
 
         .card-side.front {
-            /*background-color: var(--primary-color);*/
         }
 
         .card:hover .card-side.front {
@@ -125,7 +123,6 @@
                         "cursor": "pointer"
                     })
                     .click(function () {
-                        // 시작하기 버튼 클릭 시 제품 정보를 세션에 저장
                         var productInfo = {
                             category: product.category,
                             description: product.description,
@@ -139,7 +136,6 @@
                         };
                         sessionStorage.setItem("selectedProduct", JSON.stringify(productInfo));
 
-                        // 새 페이지로 이동
                         window.location.href = "/one-product";
                     });
 
@@ -163,14 +159,14 @@
                         "font-weight": "bold",
                         "font-size": "27px"
                     }));
-                var box = $("<div>").addClass("card-body") // 클래스 이름을 'card-body'로 변경
+                var box = $("<div>").addClass("card-body")
                     .css({
                         "display": "flex",
                         "align-self": "end",
                         "margin-bottom": "20px"
                     })
                     .append($("<img>").attr("src", "/resources/img/" + product.image).addClass("product-image"))
-                    .append($("<div>").addClass("card-footer") // 클래스 이름을 'card-footer'로 변경
+                    .append($("<div>").addClass("card-footer")
                         .css("align-self", "center")
                         .append($("<div>").html("최대 연<br>" + (product.rate + product.prime_rate * 3) + "%").css({
                             "margin-left": "20px",
@@ -181,7 +177,7 @@
                     );
                 var middle = $("<div>").addClass("card-text").text(product.description).css({
                     "place-self": "start"
-                }); // 클래스 이름을 'card-text'로 변경
+                });
 
                 productCard.append(front.append(header).append(box).append(middle));
                 productCard.append(back.append(backContent.append(content)));

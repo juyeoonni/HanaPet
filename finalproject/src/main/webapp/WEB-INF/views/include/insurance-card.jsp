@@ -9,7 +9,7 @@
     .card {
         padding: 30px;
         margin-bottom: 30px;
-        border: 3px solid #E1E6DE; /* 5px 크기의 #BFDFCB 테두리 설정 */
+        border: 3px solid #E1E6DE;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
     }
@@ -33,8 +33,8 @@
 
     .left {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3개의 열을 생성합니다. */
-        gap: 20px; /* 열 사이의 간격을 조절할 수 있습니다. */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
         margin-right: 75px;
     }
 
@@ -62,10 +62,9 @@
         font-weight: bold;
     }
 
-    /* 선택된 체크박스의 색상 */
     input[type="checkbox"]:checked {
-        background-color: var(--primary-color); /* 선택된 상태일 때 배경 색상 변경 */
-        border: 2px solid var(--primary-color); /* 선택된 상태일 때 테두리 색상 변경 */
+        background-color: var(--primary-color);
+        border: 2px solid var(--primary-color);
     }
 
     .bold {
@@ -80,7 +79,7 @@
 
     .sc-KfMfS {
         color: var(--primary-color);
-        margin-right: 20px; /* 원하는 마진 크기로 조정합니다. */
+        margin-right: 20px;
         margin-bottom: 9px;
     }
 
@@ -213,27 +212,19 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // 모든 join-btn 요소를 가져옵니다.
         var joinButtons = document.getElementsByClassName("join-btn");
 
-        // 각 버튼에 이벤트 리스너를 추가합니다.
         for (let btn of joinButtons) {
             btn.addEventListener("click", function (event) {
-                // 클릭된 버튼의 부모 요소를 통해 필요한 정보를 가져옵니다.
                 var cardContent = event.target.closest(".card-content");
                 var insuranceName = cardContent.querySelector(".name").textContent.trim();
                 var insuranceAmount = cardContent.querySelector(".money p").textContent.split(" ")[1].trim();
 
-                // 정보를 객체로 저장
                 var insuranceInfo = {
                     insuranceName: insuranceName,
                     insuranceAmount: insuranceAmount
                 };
-
-                // 세션에 정보 저장
                 sessionStorage.setItem("selectedInsurance", JSON.stringify(insuranceInfo));
-
-                // 새 페이지로 이동
                 window.location.href = "/insurance-detail";
             });
         }

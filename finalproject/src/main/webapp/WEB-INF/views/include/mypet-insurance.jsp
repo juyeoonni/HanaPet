@@ -69,7 +69,7 @@
 
 <script>
     $(document).ready(function () {
-        var guest_id = '<%= guest_id %>'; // Java 값을 JavaScript 변수로 전달
+        var guest_id = '<%= guest_id %>';
         $.ajax({
             url: "/pets",
             type: "GET",

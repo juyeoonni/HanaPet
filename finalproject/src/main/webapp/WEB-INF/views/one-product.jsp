@@ -5,9 +5,7 @@
     <title>HanaPet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/resources/css/common.css">
-    <!-- 부트스트랩 CSS 링크 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 부트스트랩 JS 링크 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
@@ -161,23 +159,19 @@
         (2023.05.10 기준, 세전)
     </div>
 
-    <div class="accordion" id="productAccordion"> <!-- 아코디언을 감싸는 컨테이너 -->
-        <div class="accordion-item"> <!--아코디언의 각 항목을 나타내고, 하나의 아코디언 항목은 헤더와 본문으로 구성됨-->
-            <h2 class="accordion-header"> <!--아코디언 항목의 헤더 역할, 펼치기/접기 버튼이 들어감-->
+    <div class="accordion" id="productAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseProduct"
                         aria-expanded="true" aria-controls="collapseProduct">
                     적금 상품 상세 정보
                 </button>
-                <!--accordion-button: 아코디언 항목의 헤더에서 사용자가 클릭할 수 있는 버튼, 클릭하면 항목이 펼쳐지거나 접힘-->
-                <!--data-bs-toggle, data-bs-target: 부트스트랩의 아코디언을 동작시키기 위한 속성으로, 클릭 시 펼치기/접기 동작을 정의-->
             </h2>
             <div id="collapseProduct" class="accordion-collapse collapse show" aria-labelledby="headingProduct"
                  data-bs-parent="#productAccordion">
-                <!--accordion-collapse: 펼쳐지거나 접힐 때의 상태를 설정/ collapse: 접혀있음, show: 펼쳐진 상태-->
                 <div class="accordion-body"
                      style="border: 3px solid #E1E6DE; border-radius: 0px 0px 5px 5px; padding: 100px 150px">
-                    <!--아코디언 항목이 펼쳐졌을 때 내용이 들어가는 영역-->
                     <table align="center" width=100%>
                         <tr>
                             <td class="product-info-bold">상품 특징</td>
@@ -398,10 +392,8 @@
 
 <script>
     $(document).ready(function () {
-        // 세션에서 제품 정보 가져오기
         const productInfo = JSON.parse(sessionStorage.getItem("selectedProduct"));
 
-        // 제품 정보를 화면에 표시
         if (productInfo) {
             $("#productImg").attr("src", "/resources/img/" + productInfo.image);
             $("#productCategory").text(productInfo.category + " 펫 적금");
@@ -418,19 +410,15 @@
 
         $(".circle2 .centered-div").html(productInfo.min_period + "개월 이상<br>" + productInfo.max_period + "개월 이하");
 
-        // 가입 금액 정보 설정
         $(".circle3 .centered-div").html(productInfo.min_balance.toLocaleString() + "원 이상<br>" + productInfo.max_balance.toLocaleString() + "원 이하");
 
-        // 최대 금리 정보 설정
         $(".circle4 .centered-div").text("연 " + (productInfo.rate + productInfo.prime_rate * 3) + "%");
 
         $("#joinForm").click(function () {
-            // 선택된 약관 동의 여부 확인
             const isAgreed = document.getElementById("agree_all").checked;
             if (!isAgreed) {
                 alert("약관에 동의해주세요.");
             } else {
-                // 서버로 전송할 데이터 구성
                 const productData = {
                     category: productInfo.category,
                     min_period: productInfo.min_period,
@@ -441,7 +429,6 @@
                     prime_rate: productInfo.prime_rate
                 };
 
-                // hidden 필드에 데이터 설정
                 $("#category").val(productData.category);
                 $("#min_period").val(productData.min_period);
                 $("#max_period").val(productData.max_period);
@@ -450,7 +437,6 @@
                 $("#rate").val(productInfo.rate);
                 $("#prime_rate").val(productInfo.prime_rate);
 
-                // form 제출
                 $("#joinForm").submit();
             }
         });

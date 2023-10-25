@@ -9,8 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"--%>
-<%--            crossorigin="anonymous"></script>--%>
 
     <style>
         .menu-item {
@@ -109,10 +107,8 @@
     <jsp:include page="include/insurance-card.jsp"/>
 </div>
 <script>
-    // .button--border-point 클래스를 가진 모든 요소를 가져옵니다.
     var buttons = document.querySelectorAll('.button');
 
-    // 각 요소에 대해 함수를 실행합니다.
     buttons.forEach(function (button) {
         button.addEventListener('mouseover', function () {
             this.querySelector('img').src = "/resources/img/foot-fill.svg";

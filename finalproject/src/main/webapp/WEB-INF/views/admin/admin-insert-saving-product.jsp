@@ -352,17 +352,14 @@
 <script src="/resources/js/plugins/chartjs.min.js"></script>
 <script>
     document.querySelector('form[name="form1"]').addEventListener('submit', function (event) {
-        // 이벤트의 기본 동작(폼 제출)을 일시 중지
         event.preventDefault();
 
         var amounts = document.querySelectorAll('.amount');
 
         amounts.forEach(function (input) {
-            // 쉼표 제거
             input.value = input.value.replace(/,/g, '');
         });
 
-        // 폼 제출
         event.target.submit();
     });
 
@@ -377,10 +374,8 @@
     $(document).ready(function () {
         const $inputField = $(".amount");
 
-        // 기존 값을 콤마로 구분된 값으로 변환
         updateValueWithComma($inputField);
 
-        // 사용자가 값을 변경할 때 콤마를 다시 추가/제거
         $inputField.on("input", function () {
             updateValueWithComma($(this));
         });
@@ -393,7 +388,5 @@
     }
 
 </script>
-<!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 </body>

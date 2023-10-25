@@ -100,7 +100,7 @@
 
     function reject() {
         $.ajax({
-            url: "/delete-session", // 세션 삭제 처리
+            url: "/delete-session",
             type: "GET",
             always: window.location.href = "/"
         });

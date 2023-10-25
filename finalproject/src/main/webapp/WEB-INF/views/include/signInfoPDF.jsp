@@ -6,33 +6,23 @@
 <head>
     <meta charset="UTF-8">
     <title>My Insurance</title>
-    <!-- Favicons -->
     <link href="img/favicon.png" rel="icon"/>
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon"/>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"/>
     <link href="vendor/aos/aos.css" rel="stylesheet"/>
     <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet"/>
     <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet"/>
-
-    <!-- Variables CSS Files. Uncomment your preferred color scheme -->
     <link rel="stylesheet" type="text/css" href="css/variables.css">
-
-    <!-- Template Main CSS File  -->
     <link href="css/main.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="css/main2.css"/>
     <script src="https://kit.fontawesome.com/fd3ad8981e.js" ; crossorigin="anonymous"></script>
-
-    <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -145,26 +135,22 @@
 
     function pdfPrint() {
 
-        // 현재 document.body의 html을 A4 크기에 맞춰 PDF로 변환
         html2canvas(document.body, {
             onrendered: function (canvas) {
 
-                // 캔버스를 이미지로 변환
                 var imgData = canvas.toDataURL('image/png');
 
-                var imgWidth = 210; // 이미지 가로 길이(mm) A4 기준
-                var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+                var imgWidth = 210;
+                var pageHeight = imgWidth * 1.414;
                 var imgHeight = canvas.height * imgWidth / canvas.width;
                 var heightLeft = imgHeight;
 
                 var doc = new jsPDF('p', 'mm');
                 var position = 0;
 
-                // 첫 페이지 출력
                 doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
 
-                // 한 페이지 이상일 경우 루프 돌면서 출력
                 while (heightLeft >= 20) {
                     position = heightLeft - imgHeight;
                     doc.addPage();
@@ -172,9 +158,7 @@
                     heightLeft -= pageHeight;
                 }
 
-                // 파일 저장
                 doc.save('HanaPet_signInfo.pdf');
-
             }
 
         });

@@ -22,12 +22,10 @@
 
         #top-box {
             width: 140%;
-            /*height: 120px;*/
             padding: 30px;
             margin-top: 10px;
             background: #E1E6DE;
             margin-right: 10px;
-            /*box-shadow: 4px 4px 15px 1px rgba(0, 0, 0, 0.2);*/
             border-radius: 10px;
             margin-bottom: 40px;
         }

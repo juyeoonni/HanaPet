@@ -142,10 +142,8 @@
     </button>
 </div>
 <script>
-    // .button--border-point 클래스를 가진 모든 요소를 가져옵니다.
     var buttons = document.querySelectorAll('.button--border-point');
 
-    // 각 요소에 대해 함수를 실행합니다.
     buttons.forEach(function (button) {
         button.addEventListener('mouseover', function () {
             this.querySelector('img').src = "/resources/img/foot-fill.svg";

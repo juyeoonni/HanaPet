@@ -8,14 +8,11 @@
     <link rel="stylesheet" href="/resources/css/common.css">
     <link rel="stylesheet" href="/resources/css/join-product.css">
     <link rel="stylesheet" href="/resources/css/modal.css">
-    <!-- 부트스트랩 CSS 링크 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 부트스트랩 JS 링크 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 
     <style>
         table {
@@ -78,10 +75,8 @@
 <%@ include file="include/header.jsp" %>
 <div class="body">
     <section id="hero-animated" class="hero-animated2 align-items-center">
-
         <div id='mask_wrap2'>
             <div class="container" style="margin-top: 40px;">
-                <!-- 보험가입 폼 start -->
                 <div class="row">
                     <h4 class="mb-4" style="text-align: center">보험 가입 신청서</h4>
                     <div style="margin-top: 45px; display: flex;" data-wow-delay="0.3s">
@@ -364,7 +359,6 @@
         </div>
     </section>
 
-    <!-- 조건 충족 여부에 따른 가입 버튼 -->
     <div style="text-align: center; margin-top: 50px">
         <button type="button" class="Button" id="joinButton">가입하기</button>
     </div>
@@ -411,7 +405,6 @@
     });
 
     $("#joinButton").click(function () {
-        // 선택된 약관 동의 여부 확인
         const isAgreed = document.getElementById("agree_all").checked;
         if (!isAgreed) {
             alert("약관에 동의해주세요.");
@@ -446,7 +439,6 @@
             insuranceAmount: parseInt(productInfo.insuranceAmount.replace(/[^0-9]/g, ""), 10)
         };
 
-        console.log("이거야" + requestData);
         $.ajax({
             url: "/join-insuranceProduct",
             type: "POST",
@@ -472,24 +464,19 @@
     const modal = document.querySelector('.modal');
 
     function updateBalance() {
-        // select 요소에서 선택한 값을 가져오기
         const selectedValue = document.getElementById("accountNumberSelection").value;
 
-        // 선택한 값을 # 요소에 표시
         document.getElementById("current_balance").textContent = Number(selectedValue).toLocaleString() + "원";
         document.getElementById("able_balance").textContent = Number(selectedValue).toLocaleString() + "원";
 
-        // 계좌 비밀번호 입력창 reset
         document.getElementById('accountPassword').value = "";
         document.getElementById('pwMessage').textContent = "";
         flag1 = false;
-
     }
 
     $(document).ready(function () {
         var guest_id = '<%= guest_id %>';
 
-        // Ajax로 강아지 목록 가져와서 옵션 추가
         $.ajax({
             url: '/pets',
             method: 'GET',
@@ -509,12 +496,11 @@
                     const option = $('<option>', {
                         value: pet.pet_id,
                         text: pet.name,
-                        'data-breed': pet.breed, // 품종 정보를 data-breed 속성에 추가
-                        'data-age': pet.age // 나이 정보를 data-age 속성에 추가
+                        'data-breed': pet.breed,
+                        'data-age': pet.age
                     });
                     petSelection.append(option);
 
-                    // 반려견 선택 시 이벤트 핸들러 등록
                     petSelection.on('change', function () {
                         const selectedOption = petSelection.find(':selected');
                         const selectedBreed = selectedOption.data('breed');
@@ -523,11 +509,10 @@
 
                         $('#selectedPetName').text(selectedName + "를 위한");
 
-                        // 선택된 반려견의 품종을 테이블에 표시
                         if (selectedBreed) {
                             breedTableRow.show();
                             breedTableCell.text(selectedBreed);
-                            $('#dog').css('border-bottom', 'none'); // border-bottom 제거
+                            $('#dog').css('border-bottom', 'none');
                         } else {
                             breedTableRow.hide();
                         }
@@ -548,8 +533,6 @@
         document.getElementById('account-name').textContent = JSON.parse(sessionStorage.getItem("selectedInsurance")).insuranceName;
     });
 
-
-    // Ajax로 예금 계좌 목록 가져와서 옵션 추가
     $.ajax({
         url: '/depositaccounts',
         method: 'GET',
@@ -573,11 +556,8 @@
         }
     });
 
-    // Ajax로 예금 계좌 비밀번호 일치 확인
     $("#confirmButton").click(function (event) {
-// 선택된 계좌 옵션의 text 가져오기
         const account_number = $("#accountNumberSelection option:selected").text().split(' ')[0];
-// 입력한 계좌 비밀번호 가져오기
         const account_pw = $("#accountPassword").val();
 
         $.ajax({

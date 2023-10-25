@@ -77,25 +77,22 @@
             border-bottom: 2px solid #E1E6DE !important;
         }
 
-        /* 기본 버튼 스타일 */
         .custom-btn {
             background-color: var(--primary-color);
             border: 1px solid #fff;
-            color: #fff; /* 텍스트 색상을 흰색으로 지정 */
+            color: #fff;
         }
 
-        /* 선택된 버튼 스타일 */
         .custom-btn:checked {
-            background-color: #BFDFCB !important; /* 선택된 버튼의 배경색 변경 */
-            border: 1px solid #fff; /* 선택된 버튼의 테두리 스타일 변경 */
-            color: #fff; /* 선택된 버튼의 텍스트 색상을 흰색으로 유지 */
+            background-color: #BFDFCB !important;
+            border: 1px solid #fff;
+            color: #fff;
         }
 
-        /* 호버 상태일 때의 스타일 */
         .custom-btn:hover {
-            background-color: #BFDFCB; /* 호버 상태일 때 배경색 변경 */
-            border: 1px solid #fff; /* 호버 상태일 때 테두리 스타일 변경 */
-            color: #fff; /* 호버 상태일 때 텍스트 색상을 흰색으로 유지 */
+            background-color: #BFDFCB;
+            border: 1px solid #fff;
+            color: #fff;
         }
     </style>
 
@@ -156,7 +153,7 @@
 </div>
 <script>
     $(document).ready(function () {
-        var guest_id = '<%= guest_id %>'; // Java 값을 JavaScript 변수로 전달
+        var guest_id = '<%= guest_id %>';
         var totalAmount = 0;
         let totalAccount = 0;
         $.ajax({
@@ -215,7 +212,6 @@
                         let total_balance = 0;
                         totalAccount += myAccountsOfPet.length;
                         myAccountsOfPet.forEach(function (account) {
-                            // 필요한 정보 추출
                             var categoryImg = account.categoryImg;
                             var saving_name = account.savingName;
                             var balance = account.balance;
@@ -226,40 +222,34 @@
 
                             total_balance += parseInt(balance);
 
-                            // 주요 컨테이너 생성
                             var container = $('<div>').addClass('account-container');
                             var topContainer = $('<div>').addClass('top-container');
                             var leftContainer = $('<div style="margin-top: 10px">').addClass('left-container');
                             var rightContainer = $('<div>').addClass('right-container');
                             var buttonContainer = $('<div>').addClass('button-container');
 
-                            // 이미지 요소 생성 및 추가
                             var imgElement = $('<img style="width: 65px; height: 60px">').attr('src', 'resources/img/' + categoryImg).addClass('category-img');
                             leftContainer.append(imgElement);
 
                             if (account.balance == '1000') {
                                 var Div = $('<div>');
-                                // 적금 이름과 진행률 추가
                                 var nameDiv = $('<div style="font-weight: bold; font-size: 20px; margin-bottom: 10px">').text(saving_name);
-                                var progressBar = createProgressBar(100); // 막대 그래프 생성 함수
+                                var progressBar = createProgressBar(100);
 
                                 Div.append(nameDiv, progressBar);
                                 leftContainer.append(Div);
 
-                                // 만기 알림
                                 var endDiv = $('<div style="padding-top: 37px; font-size: 22px; font-weight: bold; color: var(--primary-color);">').text('만기된 적금입니다.');
                                 rightContainer.append(endDiv);
 
                             } else {
                                 var Div = $('<div>');
-                                // 적금 이름과 진행률 추가
                                 var nameDiv = $('<div style="font-weight: bold; font-size: 20px; margin-bottom: 10px">').text(saving_name);
                                 var progressBar = createProgressBar(progress_rate); // 막대 그래프 생성 함수
 
                                 Div.append(nameDiv, progressBar);
                                 leftContainer.append(Div);
 
-                                // 계좌 번호와 잔액 추가
                                 var accountNumberDiv = $('<div>').text(account_number.slice(0, 4) + '******' + account_number.slice(10));
                                 var balanceDiv = $('<div>').text('잔액 ' + Number(balance).toLocaleString() + '원');
                                 rightContainer.append(accountNumberDiv, balanceDiv);
@@ -269,7 +259,6 @@
                                     var kakaoLink = $('<button style="background: var(--primary-color); color: white; border: 3px solid var(--primary-color) ; border-radius: 10px;  padding: 5px 15px; width: 122px">').attr('id', 'kakaotalk-sharing-btn-' + account_number).attr('href', 'javascript:;').text("공유하기").css('cursor', 'pointer').css('pointer-events', 'auto');
                                     buttonContainer.append(kakaoLink);
 
-                                    // Kakao 공유 버튼을 생성하고 설정
                                     kakaoLink.on('click', function () {
                                         const sharedUrl = 'http://localhost:8080/invited-pw?account-number=' + account.accountNumber;
 
@@ -298,7 +287,6 @@
                                     });
                                 }
 
-                                // "자세히 보기" 버튼 생성
                                 var detailsButton = $('<button style="background: var(--primary-color); color: white; border: 3px solid var(--primary-color) ; border-radius: 10px; padding: 5px 15px; margin-left: 10px">').text('자세히 보기');
 
                                 detailsButton.on('click', function () {
@@ -309,12 +297,10 @@
                                 buttonContainer.append(detailsButton);
                             }
 
-                            // 생성한 컨테이너들을 상위 컨테이너에 추가
                             topContainer.append(leftContainer, rightContainer);
                             container.append(topContainer);
                             container.append(buttonContainer);
 
-                            // 생성한 컨테이너를 화면에 추가
                             accordionBody.append(container);
                         });
 
@@ -368,11 +354,11 @@
                 .attr("aria-valuemin", "0")
                 .attr("aria-valuemax", "100")
                 .css("borderRadius", "20px")
-                .css("width", "0%"); // 초기 너비를 0%로 설정
+                .css("width", "0%");
 
             progressBarContainer.append(progressBar);
 
-            progressBar.animate({width: progressRate + '%'}, 750); // 0.6초 동안 애니메이션 실행
+            progressBar.animate({width: progressRate + '%'}, 750);
 
             var progressText = $("<div style='text-align: center; color: #324D3D; font-size: 14px; z-index: 2; padding-right: 4px; align-self: self-end;'>").text(Math.round(progressRate) + "%");
 

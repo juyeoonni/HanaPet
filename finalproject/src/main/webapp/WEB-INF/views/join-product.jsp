@@ -89,7 +89,6 @@
                 <td>
                     <div style="display: flex">
                         <select class="form-dropdown" id="accountNumberSelection" required onchange="updateBalance()">
-                            <!-- Ajax로 옵션 추가될 예정 -->
                         </select>
                         <div class="color">
                             <div style="display: flex">
@@ -282,7 +281,6 @@
         </table>
 
     </form>
-    <!-- 조건 충족 여부에 따른 가입 버튼 -->
     <div style="text-align: center">
         <button type="button" class="Button" id="joinButton">가입하기</button>
     </div>
@@ -298,7 +296,7 @@
             <div class="contents">
                 <div class="first-content">
                     <img src=""/>
-                    <span id="pet-name"></span> <!--바꾸기-->
+                    <span id="pet-name"></span>
                     <span id="account-name"></span>
                     <span>에 가입되었습니다.</span>
                 </div>
@@ -331,11 +329,11 @@
         if (passwordInput.type === "password") {
             passwordInput.type = "text";
             eyeIcon.classList.remove('fa-eye-slash');
-            eyeIcon.classList.add('fa-eye'); // 숨기는 아이콘
+            eyeIcon.classList.add('fa-eye');
         } else {
             passwordInput.type = "password";
             eyeIcon.classList.remove('fa-eye');
-            eyeIcon.classList.add('fa-eye-slash'); // 보이는 아이콘
+            eyeIcon.classList.add('fa-eye-slash');
         }
     }
 
@@ -344,14 +342,10 @@
     let endDateFormat = null;
 
     function updateBalance() {
-        // select 요소에서 선택한 값을 가져오기
         const selectedValue = document.getElementById("accountNumberSelection").value;
 
-        // 선택한 값을 # 요소에 표시
         document.getElementById("current_balance").textContent = Number(selectedValue).toLocaleString() + "원";
         document.getElementById("able_balance").textContent = Number(selectedValue).toLocaleString() + "원";
-
-        // 계좌 비밀번호 입력창 reset
         document.getElementById('accountPassword').value = "";
         document.getElementById('pwMessage').textContent = "";
         flag1 = false;
@@ -362,7 +356,6 @@
             var guest_id = '<%= guest_id %>';
 
             if ('<%=petName%>' == 'null') {
-                // Ajax로 강아지 목록 가져와서 옵션 추가
                 $.ajax({
                     url: '/pets',
                     method: 'GET',
@@ -385,8 +378,6 @@
                 });
             }
 
-
-            // Ajax로 예금 계좌 목록 가져와서 옵션 추가
             $.ajax({
                 url: '/depositaccounts',
                 method: 'GET',
@@ -410,11 +401,8 @@
                 }
             });
 
-            // Ajax로 예금 계좌 비밀번호 일치 확인
             $("#confirmButton").click(function (event) {
-                // 선택된 계좌 옵션의 text 가져오기
                 const account_number = $("#accountNumberSelection option:selected").text().split(' ')[0];
-                // 입력한 계좌 비밀번호 가져오기
                 const account_pw = $("#accountPassword").val();
 
                 $.ajax({
@@ -452,8 +440,6 @@
             const maxBalance = parseFloat('${param.max_balance}');
             const maxPeriod = parseFloat('${param.max_period}');
 
-
-            // 가입 버튼 활성화/비활성화 함수
             function toggleJoinButton() {
                 const joinAmount = parseFloat(joinAmountInput.value.replace(/,/g, ''));
                 const joinPeriod = joinPeriodInput ? parseFloat(joinPeriodInput.value) : null;
@@ -483,31 +469,23 @@
 
 
             function calculateEndDate(months) {
-                const today = new Date(); // 현재 날짜 가져오기
-                const endDateFormat = new Date(today); // 현재 날짜를 복사하여 사용
-
-                endDateFormat.setMonth(today.getMonth() + months); // 월을 더해 몇 개월 후의 날짜 계산
-
-                // 날짜 포맷 설정 (예: "YYYY-MM-DD")
+                const today = new Date();
+                const endDateFormat = new Date(today);
+                endDateFormat.setMonth(today.getMonth() + months);
                 const year = endDateFormat.getFullYear();
-                const month = String(endDateFormat.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1을 해주고 2자리로 포맷
-                const day = String(endDateFormat.getDate()).padStart(2, '0'); // 일자를 2자리로 포맷
-
+                const month = String(endDateFormat.getMonth() + 1).padStart(2, '0');
+                const day = String(endDateFormat.getDate()).padStart(2, '0');
                 return year + '-' + month + '-' + day;
             }
 
-            // 입력 값 변경 시 가입 버튼 상태 업데이트
             if (joinPeriodInput) {
                 joinPeriodInput.addEventListener('input', toggleJoinButton);
                 joinPeriodInput.addEventListener('input', endDate);
             }
             joinAmountInput.addEventListener('input', toggleJoinButton);
 
-
-            // 세션에서 제품 정보 가져오기
             const productInfo = JSON.parse(sessionStorage.getItem("selectedProduct"));
 
-            // 제품 정보를 화면에 표시
             if (productInfo) {
                 $("#productImg").attr("src", "/resources/img/" + productInfo.image);
                 $("#productCategory").text(productInfo.category + " 펫 적금");
@@ -541,42 +519,31 @@
                 // 먼저 계좌 번호 생성
                 const accountNumber = createAccountNumber();
 
-                // 라디오 버튼 그룹을 가져옵니다.
                 var radioButtons = document.getElementsByName('transferSMS');
 
-                // 선택된 값을 저장할 변수를 선언합니다.
                 var selectedValue = '';
 
-                // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
                 for (var i = 0; i < radioButtons.length; i++) {
                     if (radioButtons[i].checked) {
                         selectedValue = radioButtons[i].value;
-                        break; // 선택된 값을 찾으면 반복을 종료합니다.
+                        break;
                     }
                 }
                 var radioButtons2 = document.getElementsByName('finishSMS');
-
-                // 선택된 값을 저장할 변수를 선언합니다.
                 var selectedValue2 = '';
 
-                // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
                 for (var i = 0; i < radioButtons2.length; i++) {
                     if (radioButtons2[i].checked) {
                         selectedValue2 = radioButtons2[i].value;
-                        break; // 선택된 값을 찾으면 반복을 종료합니다.
+                        break;
                     }
                 }
-
                 const radioButtons3 = document.getElementsByName('period');
-
-                // 선택된 값을 저장할 변수를 선언합니다.
                 let selectedValue3 = '';
-
-                // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
                 for (var i = 0; i < radioButtons3.length; i++) {
                     if (radioButtons3[i].checked) {
                         selectedValue3 = radioButtons3[i].value;
-                        break; // 선택된 값을 찾으면 반복을 종료합니다.
+                        break;
                     }
                 }
 
@@ -588,7 +555,6 @@
                 const final_amount_month = String(parseInt(amount) * parseInt(join_period));
                 const final_amount_week = String(getWeeksBetweenDates(end_date) * parseInt(amount));
 
-                // 필요한 데이터를 객체로 만들어 전송
                 const requestData = {
                     account_number: accountNumber,
                     join_period: join_period,
@@ -641,14 +607,12 @@
 
             }
 
-
             function sendSmsRequest(content) {
                 const requestData = {
                     recipientPhoneNumber: '<%=phone%>',
                     content: content
                 };
 
-                // 서버로 POST 요청을 보냅니다.
                 fetch('/user/sms', {
                     method: 'POST',
                     headers: {
@@ -658,65 +622,49 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        // 서버에서 받은 응답을 처리합니다.
                         console.log(data);
-                        console.log("됐다")
-                        // 여기에서 원하는 동작을 수행할 수 있습니다.
                     })
                     .catch(error => {
-                        // 오류가 발생한 경우 처리합니다.
                         console.error('Error sending SMS request:', error);
                         alert('인증번호 전송 중 오류가 발생했습니다.');
                     });
             }
 
             function joinInvitedSavingLogic() {
-                // 라디오 버튼 그룹을 가져옵니다.
                 var radioButtons = document.getElementsByName('transferSMS');
 
-                // 선택된 값을 저장할 변수를 선언합니다.
                 var selectedValue = '';
 
-                // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
                 for (var i = 0; i < radioButtons.length; i++) {
                     if (radioButtons[i].checked) {
                         selectedValue = radioButtons[i].value;
-                        break; // 선택된 값을 찾으면 반복을 종료합니다.
+                        break;
                     }
                 }
                 var radioButtons2 = document.getElementsByName('finishSMS');
 
-                // 선택된 값을 저장할 변수를 선언합니다.
                 var selectedValue2 = '';
 
-                // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
                 for (var i = 0; i < radioButtons2.length; i++) {
                     if (radioButtons2[i].checked) {
                         selectedValue2 = radioButtons2[i].value;
-                        break; // 선택된 값을 찾으면 반복을 종료합니다.
+                        break;
                     }
                 }
-
                 const radioButtons3 = document.getElementsByName('period');
 
-                // 선택된 값을 저장할 변수를 선언합니다.
                 let selectedValue3 = '';
 
-                // 라디오 버튼 그룹을 반복하면서 선택된 값을 찾습니다.
                 for (var i = 0; i < radioButtons3.length; i++) {
                     if (radioButtons3[i].checked) {
                         selectedValue3 = radioButtons3[i].value;
-                        break; // 선택된 값을 찾으면 반복을 종료합니다.
+                        break;
                     }
                 }
 
-                // accountNumberSelection 요소에서 현재 선택된 옵션을 가져옵니다.
                 const selectedOption = document.getElementById('accountNumberSelection').options[document.getElementById('accountNumberSelection').selectedIndex];
-
-                // 선택된 예금 계좌 번호를 가져옵니다.
                 const selectedAccountNumber = selectedOption.textContent.split(" ")[0];
 
-                // 필요한 데이터를 객체로 만들어 전송
                 const requestData = {
                     guest_id: '<%= guest_id %>',
                     account_number: '<%=accountNumber%>',
@@ -766,7 +714,7 @@
             let accountName = "";
             document.getElementById('joinButton').addEventListener('click', function (event) {
                 if ('<%=savingName%>' == null) {
-                    accountName = document.getElementById("accountName").value; // 입력 필드의 값을 가져옵니다.
+                    accountName = document.getElementById("accountName").value;
                 } else {
                     accountName = '<%=savingName%>'
                 }
@@ -783,7 +731,7 @@
                     if (!flag1) alert("계좌 비밀번호를 확인해주세요.");
                     else if (accountName.trim() === "") alert("적금 계좌명을 입력해주세요.");
                     else alert("가입 조건을 확인해주세요.");
-                    event.preventDefault(); // 조건을 만족하지 않을 경우 폼 제출 및 페이지 이동 중지
+                    event.preventDefault();
                 }
             });
 
@@ -793,14 +741,14 @@
                 const random = Math.random;
 
                 for (let i = 0; i < 6; i++) {
-                    const digit = Math.floor(random() * 10); // 0부터 9까지의 난수 생성
+                    const digit = Math.floor(random() * 10);
                     accountNumber += digits[digit];
                 }
 
                 accountNumber += '-';
 
                 for (let i = 0; i < 5; i++) {
-                    const digit = Math.floor(random() * 10); // 0부터 9까지의 난수 생성
+                    const digit = Math.floor(random() * 10);
                     accountNumber += digits[digit];
                 }
 
@@ -808,23 +756,13 @@
             }
 
             function calculateTotalInterest() {
-                // 시작 날짜와 종료 날짜를 JavaScript Date 객체로 변환
                 const startDate = new Date();
                 const endDate = new Date($("#endDateMessage").text().split(" ")[3]);
                 const amount = document.getElementById('joinAmount').value.replace(/,/g, '');
 
-
-                console.log(startDate + " " + endDate + " " + amount)
-
-                // 월별 입금 금액 및 연 이자율 설정
                 const monthlyInterestRate = (parseFloat('<%=rate%>') / 100) / 12;
-
-                // 기간 계산 (월 단위)
                 const months = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
 
-                console.log(months + " " + monthlyInterestRate)
-
-                // 총 이자 계산
                 let totalInterest = 0.0;
                 for (let i = 1; i <= months; i++) {
                     totalInterest += (amount * monthlyInterestRate * i);
@@ -859,7 +797,6 @@
             });
 
             function calculateInterestDaily() {
-                // 시작 날짜와 종료 날짜를 JavaScript Date 객체로 변환
                 const startDate = new Date();
                 startDate.setHours(0, 0, 0, 0);
                 const endDate = new Date(ed);
@@ -988,11 +925,8 @@
                 }
                 return weeks;
             }
-
-            // 페이지 로드 시 초기 호출
             updateJoinPeriodLabel();
 
-            // 라디오 버튼 상태 변경 시 호출되는 함수
             function updateJoinPeriodLabel() {
                 const radioWeekly = document.getElementById("period1");
                 const periodText = document.getElementById("period_text");
@@ -1004,26 +938,22 @@
                 }
             }
 
-            // 라디오 버튼 상태 변경 이벤트 핸들러 등록
             const radioButtons = document.getElementsByName("period");
             radioButtons.forEach((radio) => {
                 radio.addEventListener("change", updateJoinPeriodLabel);
             });
 
-            //모달 내에서 확인 버튼을 클릭하면 모달을 닫는 이벤트 핸들러
             const confirmButton = document.getElementById("confirmBtn");
 
             confirmButton.addEventListener("click", () => {
-                modal.style.display = "none"; // 모달을 화면에서 숨김
-                window.location.href = '/card'; // 페이지 이동 처리
+                modal.style.display = "none";
+                window.location.href = '/card';
             });
-
         }
     );
 
 
 </script>
-<!-- 모달 창에 뜨는 문구 생성 -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('petSelection').addEventListener('change', function () {

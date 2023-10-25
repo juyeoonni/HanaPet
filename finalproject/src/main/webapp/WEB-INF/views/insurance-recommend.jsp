@@ -16,14 +16,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .form-select {
-            width: 100%; /* 원하는 너비 설정 */
-            border-radius: 8px; /* 둥근 모서리 */
-            font-size: 20px; /* 글자 크기 */
-            transition: background-color 0.3s ease; /* 부드러운 효과를 위한 transition */
+            width: 100%;
+            border-radius: 8px;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
         }
 
         .form-select:hover {
-            background-color: #f8f8f8; /* 마우스 호버 시 배경색 변경 */
+            background-color: #f8f8f8;
         }
 
         .menu-title {
@@ -49,11 +49,11 @@
         }
 
         .center:hover {
-            transform: translateY(-10px); /* 위로 10px 움직임 */
+            transform: translateY(-10px);
         }
 
         .center:hover ~ .center {
-            transform: translateY(10px); /* 아래로 10px 움직임 */
+            transform: translateY(10px);
         }
 
 
@@ -86,7 +86,7 @@
         .insurance-product {
             padding: 30px 50px;
             margin-bottom: 30px;
-            border: 3px solid #E1E6DE; /* 5px 크기의 #BFDFCB 테두리 설정 */
+            border: 3px solid #E1E6DE;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 20px;
         }
@@ -108,7 +108,6 @@
             color: white;
         }
 
-
         .details-btn {
             display: inline-block;
             padding: 8px 12px;
@@ -122,7 +121,6 @@
 
         .details-btn:hover {
             transform: scale(1.02);
-
         }
     </style>
 
@@ -235,7 +233,6 @@
                     $('#desc').text('기타 질병에 대한 설명');
                     word = "";
                 }
-                // 스크롤 로직
                 $('html, body').animate({
                     scrollTop: $("#breedDropdown").offset().top
                 }, 90);
@@ -243,7 +240,7 @@
                 $('#arrow').css('display', 'inline');
 
             } else {
-                $('#selectedDisease').text("");  // No breed selected, clear the text
+                $('#selectedDisease').text("");
             }
         });
 
@@ -269,19 +266,16 @@
                         resultHTML += '<span class="selected-value">' + selectedAgeText + '</span> ';
                     }
 
-                    // 결과를 담을 변수 초기화
                     resultHTML += '</div><h5 style="text-align: center; font-weight: bold; margin-bottom: 20px">추천 보험 ' + data.length + '개</h5>';
 
-                    // data를 순회하면서 HTML 생성
                     for (let i = 0; i < data.length; i++) {
                         resultHTML += '<div class="insurance-product">';
                         resultHTML += '<p>' + data[i].description + '</p>';
                         resultHTML += '<h4 style="font-weight: bold">' + data[i].insurance_name + '</h4>';
 
-                        // data[i].rec_guarantee를 ','로 나누고 각 단어를 카드 형태로 생성
                         const tags = data[i].rec_guarantee.split(',').map(tag => {
-                            return '<span class="tag">' + tag.trim() + '</span>';  // trim()을 사용하여 여백 제거
-                        }).join(' ');  // 각 태그를 공백으로 연결
+                            return '<span class="tag">' + tag.trim() + '</span>';
+                        }).join(' ');
 
                         resultHTML += '<div class="tags">' + tags + '</div>';
                         resultHTML += '<br><h5 style="text-align: end; font-weight: bold">' + data[i].period + ' ' + Number(data[i].amount).toLocaleString() + '원</h5>';
@@ -289,7 +283,6 @@
                         resultHTML += '</div>';
                     }
 
-                    // 결과 HTML을 .recommend 클래스 요소에 추가
                     $('.recommend').html(resultHTML);
 
                     $('html, body').animate({
@@ -305,19 +298,16 @@
 
     });
 
-    // 각각의 data[i].insurance_name과 data[i].amount을 클릭 이벤트 핸들러에 전달하기 위한 함수
     function saveInsuranceInfo(insuranceName, amount) {
         var insuranceInfo = {
             insuranceName: insuranceName,
             insuranceAmount: amount
         };
 
-        // 세션에 정보 저장
         sessionStorage.setItem("selectedInsurance", JSON.stringify(insuranceInfo));
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        // breedRatio를 위한 막대차트
         let breedLabels = [];
         let breedPercentages = [];
 
@@ -325,25 +315,6 @@
         breedLabels.push("${data.breed}");
         breedPercentages.push("${data.percentage}");
         </c:forEach>
-
-        // let breedCtx = document.getElementById('breedChart').getContext('2d');
-        // new Chart(breedCtx, {
-        //     type: 'bar',
-        //     data: {
-        //         labels: breedLabels,
-        //         datasets: [{
-        //             label: '퍼센트',
-        //             data: breedPercentages,
-        //             backgroundColor: [
-        //                 '#edafb8',
-        //                 '#f7e1d7',
-        //                 '#dedbd2',
-        //                 '#b0c4b1',
-        //                 '#4a5759'
-        //             ]
-        //         }]
-        //     }
-        // });
 
         let myChart;
 
@@ -377,7 +348,7 @@
                 id: 'legendMargin',
                 beforeInit(chart, legend, options) {
                     const fitValue = chart.legend.fit;
-                    const spacing = 40; // 추가할 간격
+                    const spacing = 40;
 
                     chart.legend.fit = function fit() {
                         fitValue.bind(chart.legend)();
@@ -405,9 +376,8 @@
                     plugins: {
                         legend: {
                             labels: {
-                                // 글자 크기 조정
                                 font: {
-                                    size: 17, // 원하는 글자 크기를 설정합니다.
+                                    size: 17,
                                     weight: 'bold'
                                 },
                                 padding: 20
@@ -419,13 +389,11 @@
             });
         }
 
-        // Update the chart when ageDropdown value changes
         document.getElementById("ageDropdown").addEventListener('change', function () {
             updateDiseaseChart(this.value);
-            // 스크롤 로직
             $('html, body').animate({
                 scrollTop: $("#breedDropdown").offset().top
-            }, 90); // 1000ms (1초) 동안 스크롤
+            }, 90);
 
             $('#recommendationButton').css('display', 'contents');
             $('#arrow').css('display', 'inline');

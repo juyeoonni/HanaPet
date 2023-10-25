@@ -19,16 +19,15 @@
     <style>
         .blur-background {
 
-            pointer-events: none; /* 배경에 마우스 이벤트를 비활성화하여 모달 위의 요소에만 이벤트가 전달되도록 합니다. */
+            pointer-events: none;
         }
 
         .header-container {
             padding: 12.5px 12px 0px 12px !important;
         }
 
-        /* 모달 열릴 때 body를 흐리게 함 */
         body.modal-open {
-            overflow: hidden; /* 스크롤을 숨김 */
+            overflow: hidden;
         }
 
         #closeModalButton {
@@ -213,14 +212,11 @@
 <%
     String guest_id = (String) session.getAttribute("guest_id");
     String access_token = (String) session.getAttribute("accessToken");
-    // 여기서 필요한 세션값과 변수들을 설정하세요
 %>
 <script>
-    // Initialize the current date
     const currentDate = new Date();
     const petImg = {};
 
-    // Function to get the days in a month
     function getDaysInMonth(month, year) {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const daysArray = [];
@@ -229,22 +225,19 @@
         for (let i = 1; i <= daysInMonth; i++) {
             const date = {date: i, events: []};
 
-            // Check if the date is today
             if (
                 year === today.getFullYear() &&
                 month === today.getMonth() &&
                 i === today.getDate()
             ) {
-                date.today = true; // 오늘 날짜인 경우 표시하기 위해 플래그 설정
+                date.today = true;
             }
 
             daysArray.push(date);
         }
-
         return daysArray;
     }
 
-    // Function to render the calendar
     function renderCalendar(month) {
         currentDate.setMonth(month);
         const months = currentDate.getMonth() + 1;
@@ -270,10 +263,10 @@
             dateElement.className = "date";
 
             if (date.today) {
-                dateElement.classList.add("today"); // 오늘 날짜라면 .today 클래스 추가
+                dateElement.classList.add("today");
             }
 
-            dateElement.dataset.date = date.date; // Add a custom attribute to store the date
+            dateElement.dataset.date = date.date;
 
             const dateText = document.createElement("span");
             dateText.innerText = date.date;
@@ -291,12 +284,10 @@
         }
     }
 
-    // Function to go to the previous month
     function prevMonth() {
         renderCalendar(currentDate.getMonth() - 1);
     }
 
-    // Function to go to the next month
     function nextMonth() {
         renderCalendar(currentDate.getMonth() + 1);
     }
@@ -304,7 +295,6 @@
     const calendarRight = document.querySelector(".calendar-right");
     const calendarLeft = document.querySelector(".calendar-left");
 
-    // 일정을 표시하고 오른쪽 패널을 보여주는 함수
     function showEventPanel() {
         calendarRight.style.transform = "translateX(-70%)";
         calendarLeft.style.flex = "0.7";
@@ -312,19 +302,16 @@
         calendarRight.style.visibility = "visible"
     }
 
-    // 오른쪽 패널을 다시 숨기는 함수
     function hideEventPanel() {
-        calendarRight.style.transform = "translateX(-160%)"; // 처음 숨겨진 위치로 이동
-        // flex 속성을 부드럽게 변경하여 커지는 효과 생성
-        calendarLeft.style.transition = "flex 0.5s ease"; // 0.3초 동안 ease 가속도로 flex 변화
+        calendarRight.style.transform = "translateX(-160%)";
+        calendarLeft.style.transition = "flex 0.5s ease";
         calendarLeft.style.flex = "1";
         setTimeout(function () {
-            calendarRight.style.transition = ""; // transition 속성 제거
+            calendarRight.style.transition = "";
             calendarRight.style.visibility = "hidden";
-        }, 500); // 애니메이션 시간과 동일한 시간으로 설정 (0.5초)
+        }, 500);
     }
 
-    // Attach event listeners to date elements for adding events
     document.getElementById("calendarDatesContainer").addEventListener("click", function (event) {
         const target = event.target;
         if (target.classList.contains("date")) {
@@ -332,15 +319,10 @@
             if (selectedDate) {
                 selectedDate.classList.remove("selected");
             }
-
             target.classList.add("selected");
-
             const date = target.dataset.date;
-
-            // Get the year and month from the clicked date
-            const clickedYear = currentDate.getFullYear() % 100; // 연도 뒤 2글자만 가져옴
-            const clickedMonth = currentDate.getMonth() + 1; // 월 (0부터 시작하므로 +1)
-            // Format the clicked date in "yy/MM/dd" format
+            const clickedYear = currentDate.getFullYear() % 100;
+            const clickedMonth = currentDate.getMonth() + 1;
             const formattedClickedDate = clickedYear + "/" + (clickedMonth < 10 ? "0" + clickedMonth : clickedMonth) + "/" + (date < 10 ? "0" + date : date);
 
             const eventForm = document.getElementById("eventForm");
@@ -356,7 +338,6 @@
         }
     });
 
-    // Function to fetch events for all pets and display in the right panel
     function fetchAllPetDayEvents(eventDate, petIds) {
         const allPetEvents = {};
 
@@ -370,9 +351,7 @@
         });
     }
 
-    // Function to fetch month events from the server
     function fetchMonthEvents(year, month, pet_id) {
-        // Make an API request to fetch month events for the selected pet
         $.ajax({
             url: "/monthcalendars",
             type: "GET",
@@ -391,7 +370,6 @@
     }
 
     function fetchTransferEvents(year, month, pet_id) {
-        // Make an API request to fetch month events for the selected pet
         $.ajax({
             url: "/monthcalendars",
             type: "GET",
@@ -409,7 +387,6 @@
         });
     }
 
-    // Function to mark dates with events
     function markDatesWithEvents(data) {
         const calendarDatesContainer = document.getElementById("calendarDatesContainer");
         const dateElements = calendarDatesContainer.querySelectorAll(".date");
@@ -442,7 +419,6 @@
         return img;
     }
 
-    // Handle event form submission
     document.getElementById("addEventButton").addEventListener("click", function () {
         const startDateInput = document.getElementById("calendar_start_date").value;
         const endDateInput = document.getElementById("calendar_end_date").value;
@@ -451,12 +427,10 @@
         const petId = parseInt(document.getElementById("petSelection").value, 6);
         const eventDescription = document.getElementById("eventDescription").value;
 
-        // Loop through each date between startDate and endDate
         let currentDate = new Date(startDate);
         while (currentDate <= endDate) {
             const formattedDate = formatDateForDatabase(currentDate);
             sendEventToServer(formattedDate, petId, eventDescription);
-            // Move to the next day
             currentDate.setDate(currentDate.getDate() + 1);
         }
 
@@ -480,7 +454,6 @@
                         modal.style.display = "none";
                         renderCalendar(currentDate.getMonth());
                     } else {
-                        // 로그인 실패 시 처리
                         console.error("insert 실패");
                     }
                 },
@@ -491,10 +464,9 @@
         }
     });
 
-    // Function to format date for database storage
     function formatDateForDatabase(date) {
-        let year = date.getFullYear() % 100; // 뒤 두 자리 연도 값
-        let month = date.getMonth() + 1; // getMonth()는 0부터 시작하므로 +1
+        let year = date.getFullYear() % 100;
+        let month = date.getMonth() + 1;
         let day = date.getDate();
 
         if (year < 10) year = "0" + year;
@@ -504,7 +476,6 @@
         return year + "/" + month + "/" + day;
     }
 
-    // Function to display events for all pets in the right panel
     function displayAllPetEvents(allPetEvents) {
         const eventsListContainer = document.getElementById("eventsListContainer");
         eventsListContainer.innerHTML = "";
@@ -515,12 +486,12 @@
                 check = false;
 
                 const petInfoDiv = document.createElement("div");
-                petInfoDiv.style.display = "flex"; // flex 레이아웃 사용
-                petInfoDiv.style.alignItems = "center"; // 수직 가운데 정렬
-                petInfoDiv.style.gap = "10px"; // 아이템 사이의 간격 설정
+                petInfoDiv.style.display = "flex";
+                petInfoDiv.style.alignItems = "center";
+                petInfoDiv.style.gap = "10px";
 
                 const petIdItem = document.createElement("p");
-                petIdItem.innerText = petImg[petId][1]; // 이름
+                petIdItem.innerText = petImg[petId][1];
                 petIdItem.style.fontSize = "26px";
                 petInfoDiv.appendChild(petIdItem);
 
@@ -528,7 +499,6 @@
                 petInfoDiv.appendChild(petImgItem);
                 eventsListContainer.appendChild(petInfoDiv);
 
-                // <ul> 엘리먼트를 생성하여 이벤트 목록 추가
                 const eventsList = document.createElement("ul");
                 eventsList.style.padding = "5px";
                 petEvents.forEach(event => {
@@ -546,9 +516,7 @@
         }
     }
 
-    // Function to fetch day events from the server and populate eventsListContainer
     function fetchDayEvents(eventDate, petId, callback) {
-        // Make an AJAX request to fetch day events for the selected date and pet
         $.ajax({
             url: "/daycalendars",
             type: "GET",
@@ -566,12 +534,10 @@
         });
     }
 
-    // 모달 열기 버튼 클릭 시
     document.getElementById("openModalButton").addEventListener("click", function () {
         modal.style.display = 'block';
     });
 
-    // 모달 닫기 버튼 클릭 시 또는 모달 외부 클릭 시
     document.getElementById("closeModalButton").addEventListener("click", function () {
         modal.style.display = "none";
     });

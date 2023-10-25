@@ -11,9 +11,7 @@
 <body>
 <%@ include file="include/header.jsp" %>
 <div id="container" class="container">
-    <!-- FORM SECTION -->
     <div class="row">
-        <!-- SIGN UP -->
         <div class="col align-items-center flex-col sign-up">
             <div class="form-wrapper align-items-center">
                 <div class="form sign-up">
@@ -51,14 +49,9 @@
                     </p>
                 </div>
             </div>
-
         </div>
-        <!-- END SIGN UP -->
     </div>
-    <!-- END FORM SECTION -->
-    <!-- CONTENT SECTION -->
     <div class="row content-row">
-        <!-- SIGN IN CONTENT -->
         <div class="col align-items-center flex-col">
             <div class="text sign-in">
                 <h2>
@@ -70,8 +63,6 @@
 
             </div>
         </div>
-        <!-- END SIGN IN CONTENT -->
-        <!-- SIGN UP CONTENT -->
         <div class="col align-items-center flex-col">
             <div class="img sign-up">
 
@@ -83,9 +74,7 @@
 
             </div>
         </div>
-        <!-- END SIGN UP CONTENT -->
     </div>
-    <!-- END CONTENT SECTION -->
 </div>
 </body>
 <script>

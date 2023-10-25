@@ -13,14 +13,10 @@
     <title>
         Argon Dashboard 2 by Creative Tim
     </title>
-    <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-    <!-- Nucleo Icons -->
     <link href="/resources/css/nucleo-icons.css" rel="stylesheet"/>
     <link href="/resources/css/nucleo-svg.css" rel="stylesheet"/>
-    <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <!-- CSS Files -->
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
 </head>
 <style>
@@ -176,7 +172,6 @@
             </div>
         </div>
     </nav>
-    <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row">
             <div class="card">
@@ -269,8 +264,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Modal -->
         <c:forEach items="${products}" var="productList" varStatus="vs">
             <div class="modal fade" id="exampleModal${vs.index}" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -327,7 +320,7 @@
         </footer>
     </div>
 </main>
-<!--   Core JS Files   -->
+
 <script src="/resources/js/core/popper.min.js"></script>
 <script src="/resources/js/core/bootstrap.min.js"></script>
 <script src="/resources/js/plugins/perfect-scrollbar.min.js"></script>
@@ -364,9 +357,7 @@
         location.href = "/admin/email?category=" + category;
     }
 </script>
-<!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="/resources/js/argon-dashboard.min.js?v=2.0.4"></script>
 
 </body>

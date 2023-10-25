@@ -238,7 +238,6 @@
 </div>
 
 <script>
-    // "다음으로" 버튼을 클릭했을 때 실행되는 함수
     function checkPW() {
         // 입력한 비밀번호를 가져옴
         const enteredPassword = document.querySelector(".transition").value;
@@ -262,18 +261,15 @@
         window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=' + config.KAKAO_JAVASCRIPT_KEY + '&redirect_uri=http://localhost:8080/kakao-login&response_type=code';
     };
 
-    // 보이지 않는 내용을 관리하는 변수
     var hiddenContentVisible = false;
 
     function showHiddenContent() {
-        // hiddenContentVisible 변수를 토글하여 현재 상태를 변경
         hiddenContentVisible = !hiddenContentVisible;
 
         var card = document.querySelector(".card");
         var letter = document.querySelector(".letter-image");
         var text = document.querySelector(".hidden-text");
 
-        // hiddenContentVisible 변수에 따라 요소를 보이게 하거나 감춥니다.
         if (hiddenContentVisible) {
             card.style.display = "block";
             text.style.display = "none";

@@ -9,9 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- 부트스트랩 CSS 링크 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 부트스트랩 JS 링크 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
@@ -232,7 +230,7 @@
             flex-wrap: wrap;
             -webkit-box-align: center;
             align-items: center;
-            justify-content: space-between; /* 요소들을 가로로 균등 배치 */
+            justify-content: space-between;
         }
 
         .iEeHUW {
@@ -240,7 +238,7 @@
             display: flex;
             -webkit-box-pack: justify;
             justify-content: space-between;
-            width: 48%; /* 각 요소가 2개씩 들어가도록 너비 조절 */
+            width: 48%;
             padding: 15px;
             border: 1px solid #BFDFCB;
             border-radius: 10px;

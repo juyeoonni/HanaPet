@@ -6,20 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css"/>
-
-    <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <!-- Nucleo Icons -->
     <link href="/resources/css/nucleo-icons.css" rel="stylesheet">
     <link href="/resources/css/nucleo-svg.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <style media="all" id="fa-v4-font-face">/*!
-
-
     </style>
     <link href="/resources/css/nucleo-svg.css" rel="stylesheet">
-    <!-- CSS Files -->
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet">
 </head>
 
@@ -140,7 +133,6 @@
             </div>
         </div>
     </nav>
-    <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row mb-4" style="display: flex;">
 
@@ -346,7 +338,6 @@
         <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
     </div>
 </main>
-<!--   Core JS Files   -->
 <script src="/resources/js/core/popper.min.js"></script>
 <script src="/resources/js/core/bootstrap.min.js"></script>
 <script src="/resources/js/plugins/perfect-scrollbar.min.js"></script>
@@ -439,9 +430,8 @@
                     }
                 }, legend: {
                     labels: {
-                        // 글자 크기 조정
                         font: {
-                            size: 17, // 원하는 글자 크기를 설정합니다.
+                            size: 17,
                             weight: 'bold'
                         },
                         padding: 20
@@ -710,9 +700,7 @@
         Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
 </script>
-<!-- Github buttons -->
 <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="/resources/js/argon-dashboard.min.js?v=2.0.4"></script>
 
 

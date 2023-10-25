@@ -12,27 +12,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css"/>
 
-    <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
-    <!-- Nucleo Icons -->
     <link href="/resources/css/nucleo-icons.css" rel="stylesheet"/>
     <link href="/resources/css/nucleo-svg.css" rel="stylesheet"/>
-    <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/fd3ad8981e.js" ; crossorigin="anonymous"></script>
     <link href="/resources/css/nucleo-svg.css" rel="stylesheet"/>
-    <!-- CSS Files -->
     <link id="pagestyle" href="/resources/css/argon-dashboard.css?v=2.0.4" rel="stylesheet"/>
-
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css"/>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-
     <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/KOREAN.json"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-
     <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" type="text/css"
           rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -101,25 +93,21 @@
             margin-bottom: 25px;
         }
 
-        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
         table.dataTable.stripe > tbody > tr.odd > *, table.dataTable.display > tbody > tr.odd > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
-        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
         table.dataTable.stripe > tbody > tr.odd.selected > *, table.dataTable.display > tbody > tr.odd.selected > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
-        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
         table.dataTable.stripe > tbody > tr.even > *, table.dataTable.display > tbody > tr.even > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
-        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
         table.dataTable.stripe > tbody > tr.even.selected > *, table.dataTable.display > tbody > tr.even.selected > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
@@ -290,8 +278,6 @@
             </div>
         </div>
     </nav>
-    <!-- End Navbar -->
-
     <div class="container-fluid py-3">
         <div class="container-fluid py-2">
             <div class="row">
@@ -351,7 +337,6 @@
                         </div>
                     </div>
 
-                    <!-- 내용 -->
                     <div class="tab-content container m-0 p-0" id="myTabContent">
                         <div class="tab-pane fade show active" id="userinfo" role="tabpanel"
                              aria-labelledby="userinfo-tab">
@@ -395,8 +380,6 @@
             </div>
         </div>
 
-
-        <!-- mail 폼 -->
         <div class="container-fluid py-2">
             <div class="row">
                 <div class="col-md-12">
@@ -494,7 +477,6 @@
         const productType = document.getElementById("productType").value;
         const productDetail = document.getElementById("productDetail");
 
-        // 모든 옵션 초기화
         productDetail.innerHTML = '<option selected disabled>세부 상품을 선택하세요</option>';
 
         if (productType === '적금') {
@@ -618,7 +600,6 @@
 </script>
 <script>
     $(document).ready(function () {
-        // DataTable 초기화
         $.noConflict();
         $('#myTable').DataTable({
             dom: 'Bfrtip',
@@ -632,7 +613,6 @@
             "paging": true,
             "info": true,
             "initComplete": function (settings, json) {
-                // '엑설' 버튼의 span 요소를 선택
                 let excelButtonSpan = document.querySelector('.buttons-excel span');
                 if (excelButtonSpan) {
                     excelButtonSpan.textContent = '엑셀';
@@ -641,8 +621,6 @@
         });
     });
 </script>
-<!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="/resources/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>

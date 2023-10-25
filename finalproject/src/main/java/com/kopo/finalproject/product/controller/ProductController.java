@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class ProductController {
 
-    private final ProductService productService; // ProductService는 데이터베이스 조회를 담당하는 서비스 클래스
+    private final ProductService productService;
 
     @Autowired
     public ProductController(ProductService productService) {

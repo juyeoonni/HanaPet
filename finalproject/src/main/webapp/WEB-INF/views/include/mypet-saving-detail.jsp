@@ -21,9 +21,8 @@
             integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
             crossorigin="anonymous"></script>
     <script>
-        Kakao.init(config.KAKAO_JAVASCRIPT_KEY); // 사용하려는 앱의 JavaScript 키 입력
+        Kakao.init(config.KAKAO_JAVASCRIPT_KEY);
     </script>
-    <!-- 필요한 DataTables 스타일 및 스크립트 가져오기 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -112,8 +111,6 @@
             font-size: 17px;
         }
 
-        /* Hide the descending (downward arrow) sorting icon */
-
         .sorting::before .sorting::after {
             display: none !important;
         }
@@ -130,34 +127,25 @@
             margin-bottom: 25px;
         }
 
-        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
-
         table.dataTable.stripe > tbody > tr.odd > *, table.dataTable.display > tbody > tr.odd > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
-
-        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
 
         table.dataTable.stripe > tbody > tr.odd.selected > *, table.dataTable.display > tbody > tr.odd.selected > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
-        /* odd 클래스의 배경색과 그림자를 흰색으로 설정 */
-
         table.dataTable.stripe > tbody > tr.even > *, table.dataTable.display > tbody > tr.even > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
 
-        /* 선택된 항목에 대한 스타일도 흰색으로 설정 */
-
         table.dataTable.stripe > tbody > tr.even.selected > *, table.dataTable.display > tbody > tr.even.selected > * {
             box-shadow: inset 0 0 0 9999px rgba(255, 255, 255, 0) !important;
             background-color: white !important;
         }
-
 
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             background: #E1E6DE !important;
@@ -170,15 +158,6 @@
             color: white !important;
         }
 
-        /*table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:before, table.dataTable thead > tr > td.sorting:before, table.dataTable thead > tr > td.sorting_asc:before, table.dataTable thead > tr > td.sorting_desc:before, table.dataTable thead > tr > td.sorting_asc_disabled:before, table.dataTable thead > tr > td.sorting_desc_disabled:before {*/
-        /*    bottom: 54.5%;*/
-        /*    content: "▲"/"";*/
-        /*}*/
-
-        /*table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:after {*/
-        /*    top: 54.5%;*/
-        /*    content: "▼"/"";*/
-        /*}*/
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
         p {
@@ -193,10 +172,7 @@
 
         .card {
             background: #fff;
-            /*border-width: 0;*/
             border-radius: .25rem;
-            /*box-shadow: 0 1px 3px rgba(0, 0, 0, .05);*/
-            /*margin-bottom: 1.5rem*/
             border: none;
         }
 
@@ -207,8 +183,6 @@
             min-width: 0;
             word-wrap: break-word;
             background-color: #fff;
-            /*background-clip: border-box;*/
-            /*border-radius: .25rem*/
         }
 
         .card-header {
@@ -559,7 +533,6 @@
 <%@ include file="footer.jsp" %>
 <script>
     $(document).ready(function () {
-        // DataTable 초기화
         $.noConflict();
         $('#transactionTable').DataTable({
             dom: 'Bfrtip',
@@ -570,13 +543,11 @@
                 "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/ko.json"
             },
             "order": [[4, 'desc']], // 거래일시를 내림차순으로 정렬
-            "paging": true, // 페이지 나누기 사용
+            "paging": true,
             "info": true,
             "initComplete": function (settings, json) {
-                // '엑설' 버튼의 span 요소를 선택
                 let excelButtonSpan = document.querySelector('.buttons-excel span');
 
-                // span의 텍스트를 '엑셀'로 변경
                 if (excelButtonSpan) {
                     excelButtonSpan.textContent = '엑셀';
                 }
@@ -587,19 +558,16 @@
 <script>
     $(document).ready(function () {
         var ctx = $("#chart-line");
-
-        // Initialize arrays to hold labels and data
         var labels = [];
         var data = [];
 
-        // Iterate through info array and populate labels and data arrays
         <c:forEach var="infoItem" items="${info}">
         labels.push("${infoItem.guestName}");
         data.push(${infoItem.contributionRatio});
         </c:forEach>
 
         new Chart(ctx, {
-            type: 'pie', // Change chart type if needed
+            type: 'pie',
             data: {
                 labels: labels,
                 datasets: [{
@@ -628,7 +596,7 @@
         progressBar.append(progressText);
         progressBarContainer.append(progressBar);
         var container = progressBarContainer;
-        progressBar.animate({width: progressRate + '%'}, 650); // 0.6초 동안 애니메이션 실행
+        progressBar.animate({width: progressRate + '%'}, 650);
 
         return container;
     }
